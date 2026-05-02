@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 const WA_URL =
   "https://wa.me/5585981825194?text=" +
@@ -22,6 +23,56 @@ function CTAButton({ children }: { children: React.ReactNode }) {
     </a>
   );
 }
+
+const cases = [
+  {
+    name: "Dr. Thiago Pereira",
+    role: "Médico, especialista em finanças para médicos.",
+    story:
+      "Em 2024, faturou R$175.000 mesmo passando por 3 mentorias de players do mercado. Em 2025, aplicou a Tríade: reestruturamos a oferta de R$2.000 para R$4.000. Hoje o downsell é R$6.000 e a oferta principal é R$12.000.",
+    metric: "R$175k → R$950k",
+    label: "EM 1 ANO",
+    img: "dr-thiago.jpg",
+  },
+  {
+    name: "Renata Passos",
+    role: "Mentora de líderes, 20 anos de experiência.",
+    story:
+      "Não cobrava mais de R$2.000 com medo de ninguém comprar. Estruturamos a oferta. Passou a fechar R$5.000 e R$8.000 com consistência. Hoje fecha vendas acima de R$10.000 sem medo.",
+    metric: "R$2k → R$10k+",
+    label: "TICKET MULTIPLICADO",
+    img: "renata.jpg",
+  },
+  {
+    name: "Elvio Santos",
+    role: "Especialista, primeira mentoria.",
+    story:
+      "Ativou a estrutura de caixa rápido em cinco dias. Fechou 8 vendas da primeira mentoria.",
+    metric: "R$16.000",
+    label: "EM 5 DIAS",
+    img: "elvio.jpg",
+  },
+  {
+    name: "Thiago Siqueira",
+    role: "Assessoria financeira.",
+    story:
+      "Investiu R$131 em tráfego e um funil simples gerou uma assessoria financeira de R$4.000 fechada. R$16 por conversa qualificada. Esse mesmo funil sustentou o negócio por mais de um ano.",
+    metric: "R$16/lead",
+    label: "QUALIFICADO",
+    img: "thiago-siqueira.jpg",
+  },
+];
+
+const extras = [
+  { name: "A Escola de Exatas",    img: "escola-exatas.jpg" },
+  { name: "A Escola de Português", img: "escola-portugues.jpg" },
+  { name: "A Escola do Inglês",    img: "escola-ingles.jpg" },
+  { name: "Charles Cezar",         img: "charles-cezar.jpg" },
+  { name: "Diego Rufino",          img: "diego-rufino.jpg" },
+  { name: "Fabiane Silvério",      img: "fabiane-silverio.jpg" },
+  { name: "Tobias Kfoury",         img: "tobias.jpg" },
+  { name: "Eduardo Lopes",         img: "eduardo-lopes.jpg" },
+];
 
 export default function TriadePage() {
   return (
@@ -123,7 +174,7 @@ export default function TriadePage() {
                 "Um treinamento gravado com centenas de aulas para você assistir nas horas vagas.",
                 "Um pack de templates genéricos para você tentar adaptar sozinho.",
                 "Uma mentoria onde eu falo o que fazer e você se vira para executar.",
-                'Um agente de IA que responde a mesma coisa “inovadora” para todo mundo.',
+                'Um agente de IA que responde a mesma coisa "inovadora" para todo mundo.',
               ].map((item) => (
                 <li key={item} className="flex items-start gap-2 text-sm">
                   <span className="text-red-400 mt-1 shrink-0">✗</span>
@@ -206,13 +257,24 @@ export default function TriadePage() {
 
       {/* BIO */}
       <section className="bg-[#0a0a0a] text-white py-16 px-6">
-        <div className="max-w-3xl mx-auto">
-          <p className="text-xs uppercase tracking-[0.3em] text-[#c9a24a] mb-6">Quem está atrás dos resultados</p>
-          <h2 className="font-[family-name:var(--font-fraunces)] text-3xl mb-6">Meu nome é Netanias Ferreira.</h2>
-          <p className="text-white/60 text-lg mb-6">Poucos seguidores visíveis, <strong className="text-white">MUITO trabalho invisível.</strong></p>
-          <p className="text-white/70 leading-relaxed">
-            Nos últimos cinco anos, fui o nome que ninguém via, mas que estava atrás dos resultados que você vai ver agora.
-          </p>
+        <div className="max-w-3xl mx-auto grid md:grid-cols-[200px_1fr] gap-8 md:gap-12 items-start">
+          <div className="relative w-40 h-40 md:w-full md:aspect-square rounded-2xl overflow-hidden shrink-0 mx-auto md:mx-0">
+            <Image
+              src="/cases/netanias.jpg"
+              alt="Netanias Ferreira"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 160px, 200px"
+            />
+          </div>
+          <div>
+            <p className="text-xs uppercase tracking-[0.3em] text-[#c9a24a] mb-6">Quem está atrás dos resultados</p>
+            <h2 className="font-[family-name:var(--font-fraunces)] text-3xl mb-6">Meu nome é Netanias Ferreira.</h2>
+            <p className="text-white/60 text-lg mb-6">Poucos seguidores visíveis, <strong className="text-white">MUITO trabalho invisível.</strong></p>
+            <p className="text-white/70 leading-relaxed">
+              Nos últimos cinco anos, fui o nome que ninguém via, mas que estava atrás dos resultados que você vai ver agora.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -220,43 +282,25 @@ export default function TriadePage() {
       <section className="max-w-3xl mx-auto px-6 py-16">
         <p className="text-xs uppercase tracking-[0.3em] text-[#4a4a4a] mb-10">Cases de Implementação</p>
         <div className="grid md:grid-cols-2 gap-6">
-          {[
-            {
-              name: "Dr. Thiago Pereira",
-              role: "Médico, especialista em finanças para médicos.",
-              story: "Em 2024, faturou R$175.000 mesmo passando por 3 mentorias de players do mercado. Em 2025, aplicou a Tríade: reestruturamos a oferta de R$2.000 para R$4.000. Hoje o downsell é R$6.000 e a oferta principal é R$12.000.",
-              metric: "R$175k → R$950k",
-              label: "EM 1 ANO",
-            },
-            {
-              name: "Renata Passos",
-              role: "Mentora de líderes, 20 anos de experiência.",
-              story: "Não cobrava mais de R$2.000 com medo de ninguém comprar. Estruturamos a oferta. Passou a fechar R$5.000 e R$8.000 com consistência. Hoje fecha vendas acima de R$10.000 sem medo.",
-              metric: "R$2k → R$10k+",
-              label: "TICKET MULTIPLICADO",
-            },
-            {
-              name: "Elvio Santos",
-              role: "Especialista, primeira mentoria.",
-              story: "Ativou a estrutura de caixa rápido em cinco dias. Fechou 8 vendas da primeira mentoria.",
-              metric: "R$16.000",
-              label: "EM 5 DIAS",
-            },
-            {
-              name: "Thiago Siqueira",
-              role: "Assessoria financeira.",
-              story: "Investiu R$131 em tráfego e um funil simples gerou uma assessoria financeira de R$4.000 fechada. R$16 por conversa qualificada. Esse mesmo funil sustentou o negócio por mais de um ano.",
-              metric: "R$16/lead",
-              label: "QUALIFICADO",
-            },
-          ].map(({ name, role, story, metric, label }) => (
-            <div key={name} className="border border-[#e5e3dc] rounded-2xl p-6">
-              <p className="font-semibold text-lg mb-1">{name}</p>
-              <p className="text-xs text-[#4a4a4a] mb-4">{role}</p>
-              <p className="text-sm text-[#4a4a4a] leading-relaxed mb-6">{story}</p>
-              <div className="bg-[#f0ede6] rounded-xl p-4 text-center">
-                <p className="font-[family-name:var(--font-fraunces)] text-2xl font-bold">{metric}</p>
-                <p className="text-xs uppercase tracking-wider text-[#4a4a4a] mt-1">{label}</p>
+          {cases.map(({ name, role, story, metric, label, img }) => (
+            <div key={name} className="border border-[#e5e3dc] rounded-2xl overflow-hidden">
+              <div className="relative h-52 bg-neutral-100">
+                <Image
+                  src={`/cases/${img}`}
+                  alt={name}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+              <div className="p-6">
+                <p className="font-semibold text-lg mb-1">{name}</p>
+                <p className="text-xs text-[#4a4a4a] mb-4">{role}</p>
+                <p className="text-sm text-[#4a4a4a] leading-relaxed mb-6">{story}</p>
+                <div className="bg-[#f0ede6] rounded-xl p-4 text-center">
+                  <p className="font-[family-name:var(--font-fraunces)] text-2xl font-bold">{metric}</p>
+                  <p className="text-xs uppercase tracking-wider text-[#4a4a4a] mt-1">{label}</p>
+                </div>
               </div>
             </div>
           ))}
@@ -265,10 +309,21 @@ export default function TriadePage() {
         {/* Mais implementações */}
         <div className="mt-12 border-t border-[#e5e3dc] pt-10">
           <p className="text-xs uppercase tracking-[0.3em] text-[#4a4a4a] mb-6">Mais Implementações</p>
-          <p className="text-[#4a4a4a] mb-6">Aqui estão mais alguns mentores e consultores com os quais trabalhei nos últimos anos.</p>
-          <div className="flex flex-wrap gap-3">
-            {["A Escola de Exatas","A Escola de Português","A Escola do Inglês","Charles Cezar","Diego Rufino","Fabiane Silvério","Tobias Kfoury","Eduardo Lopes"].map((c) => (
-              <span key={c} className="border border-[#e5e3dc] rounded-full px-4 py-2 text-sm text-[#4a4a4a]">{c}</span>
+          <p className="text-[#4a4a4a] mb-8">Aqui estão mais alguns mentores e consultores com os quais trabalhei nos últimos anos.</p>
+          <div className="grid grid-cols-4 sm:grid-cols-4 gap-4 md:gap-6">
+            {extras.map(({ name, img }) => (
+              <div key={name} className="flex flex-col items-center gap-3">
+                <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden bg-neutral-100 shrink-0 ring-2 ring-[#e5e3dc]">
+                  <Image
+                    src={`/cases/${img}`}
+                    alt={name}
+                    fill
+                    className="object-cover"
+                    sizes="80px"
+                  />
+                </div>
+                <p className="text-xs text-[#4a4a4a] text-center leading-snug">{name}</p>
+              </div>
             ))}
           </div>
         </div>
