@@ -123,7 +123,7 @@ export default function TriadePage() {
                 "Um treinamento gravado com centenas de aulas para você assistir nas horas vagas.",
                 "Um pack de templates genéricos para você tentar adaptar sozinho.",
                 "Uma mentoria onde eu falo o que fazer e você se vira para executar.",
-                "Um agente de IA que responde a mesma coisa "inovadora" para todo mundo.",
+                'Um agente de IA que responde a mesma coisa “inovadora” para todo mundo.',
               ].map((item) => (
                 <li key={item} className="flex items-start gap-2 text-sm">
                   <span className="text-red-400 mt-1 shrink-0">✗</span>
