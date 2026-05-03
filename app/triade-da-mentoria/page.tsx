@@ -310,16 +310,17 @@ export default function TriadePage() {
         <div className="mt-12 border-t border-[#e5e3dc] pt-10">
           <p className="text-xs uppercase tracking-[0.3em] text-[#4a4a4a] mb-6">Mais Implementações</p>
           <p className="text-[#4a4a4a] mb-8">Aqui estão mais alguns mentores e consultores com os quais trabalhei nos últimos anos.</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
+          {/* Slider horizontal com snap */}
+          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3 -mx-6 px-6 scrollbar-hide">
             {extras.map(({ name, img }) => (
-              <div key={name} className="flex flex-col gap-2">
-                <div className="relative w-full aspect-[9/16] rounded-2xl overflow-hidden bg-neutral-100 ring-1 ring-[#e5e3dc]">
+              <div key={name} className="flex flex-col gap-2 shrink-0 snap-start w-40">
+                <div className="relative w-40 h-40 rounded-2xl overflow-hidden bg-neutral-100 ring-1 ring-[#e5e3dc]">
                   <Image
                     src={`/cases/${img}`}
                     alt={name}
                     fill
                     className="object-cover object-top"
-                    sizes="(max-width: 768px) 50vw, 25vw"
+                    sizes="160px"
                   />
                 </div>
                 <p className="text-xs text-[#4a4a4a] text-center leading-snug font-medium">{name}</p>

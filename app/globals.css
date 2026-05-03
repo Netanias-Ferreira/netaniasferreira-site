@@ -29,3 +29,12 @@ body {
   background: var(--color-accent);
   color: #0a0a0a;
 }
+
+/* Esconde scrollbar mantendo o scroll funcional */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
