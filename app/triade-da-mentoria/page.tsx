@@ -310,19 +310,19 @@ export default function TriadePage() {
         <div className="mt-12 border-t border-[#e5e3dc] pt-10">
           <p className="text-xs uppercase tracking-[0.3em] text-[#4a4a4a] mb-6">Mais Implementações</p>
           <p className="text-[#4a4a4a] mb-8">Aqui estão mais alguns mentores e consultores com os quais trabalhei nos últimos anos.</p>
-          <div className="grid grid-cols-4 sm:grid-cols-4 gap-4 md:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
             {extras.map(({ name, img }) => (
-              <div key={name} className="flex flex-col items-center gap-3">
-                <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden bg-neutral-100 shrink-0 ring-2 ring-[#e5e3dc]">
+              <div key={name} className="flex flex-col gap-2">
+                <div className="relative w-full aspect-[9/16] rounded-2xl overflow-hidden bg-neutral-100 ring-1 ring-[#e5e3dc]">
                   <Image
                     src={`/cases/${img}`}
                     alt={name}
                     fill
-                    className="object-cover"
-                    sizes="80px"
+                    className="object-cover object-top"
+                    sizes="(max-width: 768px) 50vw, 25vw"
                   />
                 </div>
-                <p className="text-xs text-[#4a4a4a] text-center leading-snug">{name}</p>
+                <p className="text-xs text-[#4a4a4a] text-center leading-snug font-medium">{name}</p>
               </div>
             ))}
           </div>
