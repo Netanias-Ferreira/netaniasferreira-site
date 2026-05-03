@@ -157,12 +157,12 @@ export default function ServicoDeCopyPage() {
           <div className="grid md:grid-cols-2 gap-8 md:gap-10">
             {/* Renata */}
             <article className="bg-[var(--color-bg-soft)] rounded-2xl p-8 border border-[var(--color-line)]">
-              <div className="aspect-[16/10] relative bg-neutral-200 rounded-xl mb-6 overflow-hidden">
+              <div className="aspect-square relative bg-[#f0ede6] rounded-xl mb-6 overflow-hidden">
                 <Image
                   src="/cases/renata.jpg"
                   alt="Renata Passos"
                   fill
-                  className="object-cover"
+                  className="object-contain"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
@@ -189,12 +189,12 @@ export default function ServicoDeCopyPage() {
 
             {/* Dr. Thiago */}
             <article className="bg-[var(--color-bg-soft)] rounded-2xl p-8 border border-[var(--color-line)]">
-              <div className="aspect-[16/10] relative bg-neutral-200 rounded-xl mb-6 overflow-hidden">
+              <div className="aspect-square relative bg-[#f0ede6] rounded-xl mb-6 overflow-hidden">
                 <Image
                   src="/cases/dr-thiago.jpg"
                   alt="Dr. Thiago Pereira"
                   fill
-                  className="object-cover"
+                  className="object-contain"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
@@ -214,12 +214,12 @@ export default function ServicoDeCopyPage() {
 
             {/* Tobias */}
             <article className="bg-[var(--color-bg-soft)] rounded-2xl p-8 border border-[var(--color-line)]">
-              <div className="aspect-[16/10] relative bg-neutral-200 rounded-xl mb-6 overflow-hidden">
+              <div className="aspect-square relative bg-[#f0ede6] rounded-xl mb-6 overflow-hidden">
                 <Image
                   src="/cases/tobias.jpg"
                   alt="Tobias Kfoury"
                   fill
-                  className="object-cover"
+                  className="object-contain"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
@@ -238,12 +238,12 @@ export default function ServicoDeCopyPage() {
 
             {/* Thiago Siqueira */}
             <article className="bg-[var(--color-bg-soft)] rounded-2xl p-8 border border-[var(--color-line)]">
-              <div className="aspect-[16/10] relative bg-neutral-200 rounded-xl mb-6 overflow-hidden">
+              <div className="aspect-square relative bg-[#f0ede6] rounded-xl mb-6 overflow-hidden">
                 <Image
                   src="/cases/thiago-siqueira.jpg"
                   alt="Thiago Siqueira"
                   fill
-                  className="object-cover"
+                  className="object-contain"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
@@ -447,13 +447,13 @@ export default function ServicoDeCopyPage() {
       {/* ============== BLOCO 7 — BIO ============== */}
       <section className="bg-[var(--color-bg-soft)] px-6 py-20 md:py-28">
         <div className="max-w-5xl mx-auto grid md:grid-cols-[2fr_3fr] gap-10 md:gap-14 items-start">
-          <div className="aspect-[4/5] relative bg-neutral-200 rounded-2xl overflow-hidden">
+          <div className="w-64 mx-auto md:w-full aspect-[3/4] relative bg-neutral-200 rounded-2xl overflow-hidden">
             <Image
               src="/cases/netanias.jpg"
               alt="Netanias Ferreira"
               fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 40vw"
+              className="object-contain object-top"
+              sizes="(max-width: 768px) 256px, 40vw"
             />
           </div>
           <div>

@@ -257,14 +257,14 @@ export default function TriadePage() {
 
       {/* BIO */}
       <section className="bg-[#0a0a0a] text-white py-16 px-6">
-        <div className="max-w-3xl mx-auto grid md:grid-cols-[200px_1fr] gap-8 md:gap-12 items-start">
-          <div className="relative w-40 h-40 md:w-full md:aspect-square rounded-2xl overflow-hidden shrink-0 mx-auto md:mx-0">
+        <div className="max-w-3xl mx-auto grid md:grid-cols-[220px_1fr] gap-8 md:gap-12 items-start">
+          <div className="relative w-56 mx-auto md:w-full aspect-[3/4] rounded-2xl overflow-hidden shrink-0 bg-[#1a1a1a]">
             <Image
               src="/cases/netanias.jpg"
               alt="Netanias Ferreira"
               fill
-              className="object-cover"
-              sizes="(max-width: 768px) 160px, 200px"
+              className="object-contain object-top"
+              sizes="(max-width: 768px) 224px, 220px"
             />
           </div>
           <div>
@@ -284,12 +284,12 @@ export default function TriadePage() {
         <div className="grid md:grid-cols-2 gap-6">
           {cases.map(({ name, role, story, metric, label, img }) => (
             <div key={name} className="border border-[#e5e3dc] rounded-2xl overflow-hidden">
-              <div className="relative h-52 bg-neutral-100">
+              <div className="relative aspect-square bg-[#f0ede6]">
                 <Image
                   src={`/cases/${img}`}
                   alt={name}
                   fill
-                  className="object-cover"
+                  className="object-contain"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
