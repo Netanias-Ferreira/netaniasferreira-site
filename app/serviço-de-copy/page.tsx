@@ -64,15 +64,15 @@ export default function ServicoDeCopyPage() {
       <section className="relative bg-[var(--color-bg)] text-white px-6 pt-20 pb-24 md:pt-32 md:pb-36">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(201,162,74,0.15),transparent_60%)] pointer-events-none" />
         <div className="relative max-w-4xl mx-auto text-center">
-          <SectionLabel>Netanias Ferreira · Copywriter Estrategista</SectionLabel>
           <h1 className="font-[family-name:var(--font-fraunces)] font-medium text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight mb-6 md:mb-8">
             Você é inteligente demais para continuar perdendo dinheiro com um
             funil que atrai curiosos e afasta quem pode pagar.
           </h1>
           <p className="text-base md:text-xl text-white/80 leading-relaxed max-w-3xl mx-auto mb-10 md:mb-12">
             Se você é mentor ou consultor, fatura entre{" "}
-            <span className="text-white font-semibold">R$ 20 mil e R$ 40 mil por mês</span>{" "}
-            e já tentou de tudo para chegar nos R$ 100k por mês — o problema
+            <strong className="text-white">R$ 20 mil e R$ 40 mil por mês</strong>{" "}
+            e já tentou de tudo para chegar nos{" "}
+            <strong className="text-white">R$ 100k por mês</strong> — o problema
             não é a sua estrutura.{" "}
             <span className="text-[var(--color-accent)] font-semibold">
               É A SUA COPY.
@@ -80,7 +80,7 @@ export default function ServicoDeCopyPage() {
           </p>
           <CTAButton>Agendar minha sessão de diagnóstico no WhatsApp</CTAButton>
           <p className="mt-6 text-xs text-white/40">
-            Resposta em até 24h · Sem compromisso
+            Resposta em até 24h
           </p>
         </div>
       </section>
@@ -90,8 +90,9 @@ export default function ServicoDeCopyPage() {
         <div className="max-w-3xl mx-auto">
           <SectionLabel>Por que estou escrevendo isso para você</SectionLabel>
           <h2 className="font-[family-name:var(--font-fraunces)] text-3xl md:text-4xl leading-tight mb-8 text-[var(--color-ink)]">
-            Eu reescrevo a copy do seu funil para você parar de perder leads
-            qualificados por causa de uma mensagem genérica.
+            Eu reescrevo a copy do seu funil para você{" "}
+            <em>parar de perder leads qualificados</em>{" "}
+            por causa de uma mensagem genérica.
           </h2>
           <p className="text-lg md:text-xl font-medium text-[var(--color-ink)] mb-10">
             Eu implemento, você colhe os resultados.
@@ -100,15 +101,19 @@ export default function ServicoDeCopyPage() {
           <div className="space-y-5 text-[var(--color-ink-soft)] text-base md:text-lg leading-relaxed">
             <p>Sua família não merece ver você frustrado…</p>
             <p>
-              Lead quebrado não é só um número. É estressante ver gente
-              chorando por desconto enquanto você entrega ouro na sua oferta.
+              <strong className="text-[var(--color-ink)]">Lead quebrado não é só um número.</strong>{" "}
+              É estressante ver gente chorando por desconto enquanto você
+              entrega ouro na sua oferta.
             </p>
             <p>Você já comprou várias mentorias de marketing.</p>
             <p>Já contratou gestor de tráfego.</p>
             <p>Já montou equipe.</p>
             <p>Já fez mentoria com algum guru do marketing digital…</p>
-            <p>E mesmo assim, o mês fecha com faturamento instável.</p>
-            <p>As conversas de alto valor somem.</p>
+            <p>
+              E mesmo assim, o mês fecha com{" "}
+              <strong className="text-[var(--color-ink)]">faturamento instável</strong>.
+            </p>
+            <p>As <strong className="text-[var(--color-ink)]">conversas de alto valor</strong> somem.</p>
             <p>
               Você sente que alguma coisa está errada, mas não sabe exatamente
               o quê.
@@ -126,13 +131,13 @@ export default function ServicoDeCopyPage() {
             </p>
             <p>
               O que leva as pessoas para a jornada de compra é a{" "}
-              <strong>copy</strong>. E quando a copy está genérica, ela não
-              fala com ninguém.
+              <strong>copy</strong>. E quando a copy está{" "}
+              <strong>genérica</strong>, ela não fala com ninguém.
             </p>
             <p>
-              Especialmente não fala com quem tem R$ 3.000 a R$ 10 mil no
-              bolso e experiência suficiente para identificar uma promessa
-              vazia de longe.
+              Especialmente não fala com quem tem{" "}
+              <strong className="text-[var(--color-ink)]">R$ 3.000 a R$ 10 mil no bolso</strong>{" "}
+              e experiência suficiente para identificar uma promessa vazia de longe.
             </p>
             <p className="pt-4 border-l-2 border-[var(--color-accent)] pl-5 italic">
               Esse lead vê seu anúncio. Sente que a mensagem não falava com
@@ -169,14 +174,23 @@ export default function ServicoDeCopyPage() {
               <p className="text-3xl md:text-4xl font-[family-name:var(--font-fraunces)] text-[var(--color-accent)] mb-3">
                 30 vendas de R$ 5 mil
               </p>
-              <p className="text-[var(--color-ink-soft)] mb-5">
-                Renata Passos não conseguia vender mentoria acima de R$ 2 mil
-                online, mesmo depois de passar pelos maiores mentores de
-                marketing do Brasil. Depois que reestruturei a narrativa da
-                oferta, ela fez 5 vendas de R$ 5 mil em 24 horas. Total: 30
-                vendas de R$ 5 mil na primeira oferta. Hoje vende a oferta
-                premium por mais de R$ 12 mil.
-              </p>
+              <div className="text-[var(--color-ink-soft)] mb-5 space-y-3">
+                <p>
+                  Renata Passos não conseguia vender mentoria{" "}
+                  <strong className="text-[var(--color-ink)]">acima de R$ 2 mil online</strong>,
+                  mesmo depois de passar pelos maiores mentores de marketing do Brasil.
+                </p>
+                <p>
+                  Depois que reestruturei a{" "}
+                  <strong className="text-[var(--color-ink)]">narrativa da oferta</strong>,
+                  ela fez <strong className="text-[var(--color-ink)]">5 vendas de R$ 5 mil em 24 horas</strong>.
+                </p>
+                <p>
+                  Total: <strong className="text-[var(--color-ink)]">30 vendas de R$ 5 mil</strong>{" "}
+                  na primeira oferta. Hoje vende a oferta premium por{" "}
+                  <strong className="text-[var(--color-ink)]">mais de R$ 12 mil</strong>.
+                </p>
+              </div>
               <blockquote className="border-l-2 border-[var(--color-accent)] pl-4 italic text-[var(--color-ink)]">
                 &ldquo;Trabalhei metade do que trabalhava e ganhei mais do que
                 ganhava. Netanias chegou pra me ajudar a enxergar o grande
@@ -201,15 +215,26 @@ export default function ServicoDeCopyPage() {
               <p className="text-3xl md:text-4xl font-[family-name:var(--font-fraunces)] text-[var(--color-accent)] mb-3">
                 R$ 175 mil → quase R$ 1 mi
               </p>
-              <p className="text-[var(--color-ink-soft)]">
-                Dr. Thiago Pereira (@drthiagoinvest), médico e expert em
-                finanças, já havia comprado várias mentorias antes de
-                trabalharmos juntos. Em 2024, faturou R$ 175 mil — bom, mas
-                irregular. Em 2025, com copy de anúncios, VSL e e-mails
-                ajustados, ele faturou quase R$ 1 milhão no ano. R$ 100 mil em
-                2 meses. Um único post gerou uma venda de R$ 10 mil com R$
-                761,72 de tráfego. Teve dia em que ele fez R$ 18 mil em 24h.
-              </p>
+              <div className="text-[var(--color-ink-soft)] space-y-3">
+                <p>
+                  Dr. Thiago Pereira (@drthiagoinvest), médico e expert em finanças,
+                  já havia comprado várias mentorias antes de trabalharmos juntos.
+                </p>
+                <p>
+                  Em 2024, faturou <strong className="text-[var(--color-ink)]">R$ 175 mil</strong> — bom, mas irregular.
+                </p>
+                <p>
+                  Em 2025, com{" "}
+                  <strong className="text-[var(--color-ink)]">copy de anúncios, VSL e e-mails ajustados</strong>,
+                  ele faturou <strong className="text-[var(--color-ink)]">quase R$ 1 milhão no ano</strong>.
+                </p>
+                <p>
+                  <strong className="text-[var(--color-ink)]">R$ 100 mil em 2 meses</strong>.
+                  Um único post gerou uma venda de{" "}
+                  <strong className="text-[var(--color-ink)]">R$ 10 mil com R$ 761,72 de tráfego</strong>.
+                  Teve dia em que ele fez <strong className="text-[var(--color-ink)]">R$ 18 mil em 24h</strong>.
+                </p>
+              </div>
             </article>
 
             {/* Tobias */}
@@ -226,14 +251,23 @@ export default function ServicoDeCopyPage() {
               <p className="text-3xl md:text-4xl font-[family-name:var(--font-fraunces)] text-[var(--color-accent)] mb-3">
                 21 MQLs em 1 campanha
               </p>
-              <p className="text-[var(--color-ink-soft)]">
-                Tobias Kfoury, o maior consultor de gestão do setor de saúde
-                da América Latina, fez um pedido: &ldquo;preciso gerar mais
-                leads para meu comercial&rdquo;. Na primeira campanha de
-                e-mail, teve 21 formulários preenchidos. Em maio de 2024,
-                bateu recorde de faturamento com MQLs para consultorias de até
-                R$ 60 mil.
-              </p>
+              <div className="text-[var(--color-ink-soft)] space-y-3">
+                <p>
+                  Tobias Kfoury, o{" "}
+                  <strong className="text-[var(--color-ink)]">maior consultor de gestão do setor de saúde da América Latina</strong>,
+                  fez um pedido: &ldquo;preciso gerar mais leads para meu comercial&rdquo;.
+                </p>
+                <p>
+                  Na primeira campanha de e-mail,{" "}
+                  <strong className="text-[var(--color-ink)]">teve 21 formulários preenchidos</strong>.
+                </p>
+                <p>
+                  Em maio de 2024,{" "}
+                  <strong className="text-[var(--color-ink)]">bateu recorde de faturamento</strong>{" "}
+                  com MQLs para consultorias de até{" "}
+                  <strong className="text-[var(--color-ink)]">R$ 60 mil</strong>.
+                </p>
+              </div>
             </article>
 
             {/* Thiago Siqueira */}
@@ -250,12 +284,19 @@ export default function ServicoDeCopyPage() {
               <p className="text-3xl md:text-4xl font-[family-name:var(--font-fraunces)] text-[var(--color-accent)] mb-3">
                 R$ 131 → R$ 4 mil fechados
               </p>
-              <p className="text-[var(--color-ink-soft)] mb-5">
-                Thiago Siqueira, expert em mercado financeiro, investiu R$ 131
-                em tráfego e fechou uma assessoria de R$ 4 mil. A copy gerou
-                MQLs por mais de 5 meses consecutivos. Nenhuma copizinha de
-                IA meia boca faz isso.
-              </p>
+              <div className="text-[var(--color-ink-soft)] mb-5 space-y-3">
+                <p>
+                  Thiago Siqueira, expert em mercado financeiro, investiu{" "}
+                  <strong className="text-[var(--color-ink)]">R$ 131 em tráfego</strong>{" "}
+                  e fechou uma{" "}
+                  <strong className="text-[var(--color-ink)]">assessoria de R$ 4 mil</strong>.
+                </p>
+                <p>
+                  A copy gerou{" "}
+                  <strong className="text-[var(--color-ink)]">MQLs por mais de 5 meses consecutivos</strong>.
+                </p>
+                <p>Nenhuma copizinha de IA meia boca faz isso.</p>
+              </div>
               <blockquote className="border-l-2 border-[var(--color-accent)] pl-4 italic text-[var(--color-ink)]">
                 &ldquo;Nenhum lead era totalmente desqualificado como
                 acontecia antes.&rdquo;
@@ -285,23 +326,25 @@ export default function ServicoDeCopyPage() {
               PARA COMPRAR.
             </p>
             <p>
-              Esse lead viu seu anúncio, sentiu que a mensagem não falava com
-              ele e foi embora em silêncio.
+              Esse lead viu seu anúncio, sentiu que a{" "}
+              <strong className="text-white">mensagem não falava com ele</strong>{" "}
+              e foi embora em silêncio.
             </p>
-            <p>Você não vê esse vazamento.</p>
+            <p>Você não vê esse <strong className="text-white">vazamento</strong>.</p>
             <p>Ele acontece antes da conversa começar.</p>
             <p>
-              E quanto mais você testa criativos novos, quanto mais tráfego
-              você compra sem ajustar a copy, mais você paga para amplificar
-              uma mensagem que já está afastando quem você quer atrair.
+              E quanto mais você testa criativos novos, quanto mais{" "}
+              <strong className="text-white">tráfego você compra sem ajustar a copy</strong>,
+              mais você paga para amplificar uma mensagem que já está
+              afastando quem você quer atrair.
             </p>
             <p>
               Não se resolve isso com novos funis, com lançamentos pagos, com
               webinários semanais… ou seja, com mais trabalho.
             </p>
             <p className="text-[var(--color-accent)] font-semibold text-lg md:text-xl pt-4">
-              Resolve-se com uma copy que conquista a confiança do lead
-              qualificado.
+              Resolve-se com uma copy que{" "}
+              <strong>conquista a confiança do lead qualificado</strong>.
             </p>
           </div>
         </div>
@@ -463,29 +506,35 @@ export default function ServicoDeCopyPage() {
               mentores e infoprodutores de alto ticket.
             </h2>
             <div className="space-y-4 text-[var(--color-ink-soft)] text-base md:text-lg leading-relaxed">
-              <p>Quatro anos trabalhando exclusivamente neste mercado.</p>
               <p>
-                Se for um iniciante, eu só trabalho com especialistas de
-                verdade, que podem transformar vidas.
+                <strong className="text-[var(--color-ink)]">Quatro anos</strong>{" "}
+                trabalhando exclusivamente neste mercado.
               </p>
               <p>
-                Sendo sincero: 90% dos meus clientes têm esse perfil — produto
-                validado, funil montado, perdendo vendas por uma mensagem que
-                não está na altura do que entregam.
+                Não trabalho com iniciantes. Só trabalho com{" "}
+                <strong className="text-[var(--color-ink)]">especialistas de verdade</strong>,
+                que podem transformar vidas.
+              </p>
+              <p>
+                Sendo sincero:{" "}
+                <strong className="text-[var(--color-ink)]">90% dos meus clientes</strong>{" "}
+                têm esse perfil — produto validado, funil montado,{" "}
+                <strong className="text-[var(--color-ink)]">perdendo vendas por uma mensagem que não está na altura do que entregam</strong>.
               </p>
               <p>
                 Minha especialidade é uma: analisar o funil de quem já tentou
                 de tudo, identificar onde a copy está falhando e reescrever
-                com precisão cirúrgica.
+                com <strong className="text-[var(--color-ink)]">precisão cirúrgica</strong>.
               </p>
               <p>
-                O funil volta a converter, os leads qualificados voltam a
-                encher o CRM — e sem depender de promessas mentirosas.
+                O funil volta a converter, os{" "}
+                <strong className="text-[var(--color-ink)]">leads qualificados voltam a encher o CRM</strong>{" "}
+                — e sem depender de promessas mentirosas.
               </p>
               <p className="text-[var(--color-ink)] font-medium">
-                Os resultados que você viu aqui não foram sorte. É um processo
-                repetido, testado e documentado em mais de 10 nichos com
-                resultados mensuráveis.
+                Os resultados que você viu aqui não foram sorte. É um{" "}
+                <strong>processo repetido, testado e documentado</strong>{" "}
+                em mais de 10 nichos com resultados mensuráveis.
               </p>
             </div>
           </div>
