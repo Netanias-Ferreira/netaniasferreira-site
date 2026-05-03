@@ -374,20 +374,38 @@ export default function TriadePage() {
         <h2 className="font-[family-name:var(--font-fraunces)] text-2xl mb-10">O que costumam me perguntar antes da conversa.</h2>
         <div className="space-y-4">
           {[
-            "Preciso ter produto criado para entrar?",
-            "Isso é mais uma mentoria?",
-            "Funciona para qualquer nicho?",
-            "E se eu não tiver muitos seguidores?",
-            "A tríade é para quem quer ultrapassar a barreira dos R$50 mil para os R$100 mil por mês?",
-            "Qual é o investimento?",
-          ].map((q) => (
+            {
+              q: "Preciso ter produto criado para entrar?",
+              a: "Não. A primeira frente da Tríade é exatamente a criação da sua oferta. Você sai com produto estruturado, promessa definida e preço certo.",
+            },
+            {
+              q: "Isso é mais uma mentoria?",
+              a: "Não. É implementação. Você não aprende para executar depois — a gente executa junto, agora, em 7 dias. Eu coloco a mão na massa no seu negócio.",
+            },
+            {
+              q: "Funciona para qualquer nicho?",
+              a: "Se você é especialista que consegue de fato ajudar as pessoas, funciona. Já implementei para médico, consultor financeiro, mentor de carreira, engenheiro, professor, terapeuta, infoprodutor. (Observação: não trabalho com nicho de espiritualidades alternativas como Tarô, Reiki etc. — sou cristão. Você é livre para crer no que quiser, eu para escolher com quem trabalho.)",
+            },
+            {
+              q: "E se eu não tiver muitos seguidores?",
+              a: "O Dr. Thiago faturou R$ 950.000 com menos de 20 mil seguidores. Audiência não é nada sem a oferta certa e funil calibrado com uma copy que atrai leads qualificados todos os dias.",
+            },
+            {
+              q: "Qual é o investimento?",
+              a: "A gente conversa sobre isso no WhatsApp, depois de eu entender o seu momento. Não faz sentido falar de número antes de eu saber se consigo entregar resultado para você.",
+            },
+            {
+              q: "A tríade é para quem quer ultrapassar a barreira dos R$50 mil para os R$100 mil por mês?",
+              a: "Sim. Na verdade, 90% dos meus clientes tem esse perfil: mentores que tem a meta de fazer R$ 100.000 por mês, ou mais.",
+            },
+          ].map(({ q, a }) => (
             <details key={q} className="border border-[#e5e3dc] rounded-xl">
-              <summary className="px-6 py-4 cursor-pointer font-medium list-none flex items-center justify-between">
-                {q}
-                <span className="text-[#c9a24a] ml-4 shrink-0">+</span>
+              <summary className="px-6 py-4 cursor-pointer font-medium list-none flex items-center justify-between gap-4">
+                <span>{q}</span>
+                <span className="text-[#c9a24a] shrink-0 text-xl leading-none">+</span>
               </summary>
-              <div className="px-6 pb-4 text-[#4a4a4a] text-sm leading-relaxed">
-                Me manda um "pronto" no WhatsApp e respondo pessoalmente essa e qualquer outra dúvida que você tiver.
+              <div className="px-6 pb-5 text-[#4a4a4a] text-sm leading-relaxed">
+                {a}
               </div>
             </details>
           ))}
