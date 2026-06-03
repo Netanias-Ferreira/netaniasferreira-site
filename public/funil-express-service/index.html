@@ -92,20 +92,16 @@
     position:relative;overflow:hidden;
     padding:120px 0 90px;
   }
-  .hero-logo-side{
-    position:absolute;top:0;right:2%;width:40%;height:100%;
-    display:flex;align-items:center;justify-content:center;padding:40px;z-index:2;
-  }
-  .hero-logo-side img{
-    max-width:340px;width:100%;height:auto;
-    filter:drop-shadow(0 0 50px rgba(196,240,0,.18));
-  }
-  @media(max-width:780px){.hero-logo-side{display:none}}
+  .hero-flex{display:flex;align-items:center;gap:48px}
+  .hero-content{flex:1 1 auto;max-width:600px;position:relative;z-index:3}
+  .hero-logo-desktop{flex:0 0 30%;display:flex;align-items:center;justify-content:center}
+  .hero-logo-desktop img{max-width:280px;width:100%;height:auto;filter:drop-shadow(0 0 50px rgba(196,240,0,.18))}
   .hero-logo-mobile{display:none}
   @media(max-width:780px){
-    .hero-logo-mobile{display:block;width:130px;height:auto;margin:0 0 26px}
+    .hero-flex{flex-direction:column}
+    .hero-logo-desktop{display:none}
+    .hero-logo-mobile{display:block;width:84px;height:auto;margin:0 0 22px}
   }
-  .hero-content{position:relative;z-index:3;max-width:680px}
 
   /* ---------- IMAGENS / PRINTS ---------- */
   .print-img{width:100%;height:auto;border-radius:10px;border:1px solid var(--border);display:block}
@@ -265,14 +261,14 @@
 
 <!-- ============ HERO ============ -->
 <header class="hero">
-  <div class="hero-logo-side"><img src="/funil-express-service/assets/logo-mecanismo.png" alt="Funil com Direct — Botão Impulsionar + Claude"></div>
-  <div class="wrap">
+  <div class="wrap hero-flex">
     <div class="hero-content">
       <img class="hero-logo-mobile" src="/funil-express-service/assets/logo-mecanismo.png" alt="">
       <span class="eyebrow">Para Especialistas Que Querem Vender Mais Mentorias</span>
       <h1>É realmente possível fechar vendas de mentorias de R$3.000 a R$10.000 usando o Botão Impulsionar + Claude IA em pleno 2026?</h1>
       <p class="lead">Nos próximos 5 minutos, vou te mostrar como gerar leads qualificados toda semana e vender ofertas de R$3.000 a R$10.000 usando um modelo de negócio enxuto.</p>
     </div>
+    <div class="hero-logo-desktop"><img src="/funil-express-service/assets/logo-mecanismo.png" alt="Funil com Direct — Botão Impulsionar + Claude"></div>
   </div>
 </header>
 
