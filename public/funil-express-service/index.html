@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Funil com Direct — Botão Impulsionar + Claude IA | Netanias Ferreira</title>
+<meta name="description" content="Como fechar vendas de mentorias de R$3.000 a R$10.000 usando o Botão Impulsionar + Claude IA — com um modelo de negócio enxuto.">
+
+<!-- OpenGraph -->
+<meta property="og:title" content="Funil com Direct — Botão Impulsionar + Claude IA">
+<meta property="og:description" content="Leads qualificados toda semana para ofertas de R$3.000 a R$10.000 — sem funis complexos, sem equipe, sem gestor de tráfego.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --black:#0A0A0A;
+    --graphite:#161616;
+    --graphite-2:#1E1E1E;
+    --card:#1A1A1A;
+    --border:#2A2A2A;
+    --accent:#C4F000;
+    --accent-hover:#D4FF1A;
+    --text:#EDEDED;
+    --text-dim:#A0A0A0;
+    --text-faint:#6E6E6E;
+    --serif:'Playfair Display',Georgia,serif;
+    --sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    --maxw:920px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--black);
+    color:var(--text);
+    font-family:var(--sans);
+    font-size:18px;
+    line-height:1.7;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .narrow{max-width:720px;margin:0 auto;padding:0 24px}
+
+  section{padding:80px 0;position:relative}
+  .bg-black{background:var(--black)}
+  .bg-graphite{background:var(--graphite)}
+  .bg-graphite2{background:var(--graphite-2)}
+
+  /* ---------- LIGHT THEME (blocos brancos alternados) ---------- */
+  .bg-light{background:#FFFFFF}
+  .bg-light h1,.bg-light h2,.bg-light h3{color:#0A0A0A}
+  .bg-light p{color:#4A4A4A}
+  .bg-light p.lead{color:#0A0A0A}
+  .bg-light strong{color:#0A0A0A}
+  .bg-light .hl{color:#4f7a00}
+  .bg-light .muted{color:#8A8A8A}
+  .bg-light .proof-card{background:#F7F7F5;border-color:#E4E4E0}
+  .bg-light .proof-quote{color:#0A0A0A}
+  .bg-light .img-placeholder{
+    background:repeating-linear-gradient(45deg,#EFEFEC,#EFEFEC 12px,#E6E6E2 12px,#E6E6E2 24px);
+    border-color:#D5D5D0;color:#9A9A95;
+  }
+  .bg-light .choice-bad{background:#F2F2F0;border-color:#E0E0DC}
+  .bg-light .choice-bad h3{color:#6A6A6A}
+  .bg-light .choice-good{background:linear-gradient(160deg,#F4FFD6,#FBFFF0);border-color:#A8C400}
+  .bg-light .choice-good h3{color:#4f7a00}
+  .bg-light ul.checklist li{color:#4A4A4A}
+  .bg-light .include-item{background:#F7F7F5;border-color:#E4E4E0}
+
+  h1,h2,h3{font-family:var(--serif);font-weight:700;line-height:1.2;letter-spacing:-0.01em}
+  h1{font-size:clamp(28px,5vw,46px)}
+  h2{font-size:clamp(24px,4vw,38px);margin-bottom:28px}
+  h3{font-size:clamp(20px,3vw,26px)}
+
+  p{margin-bottom:22px;color:var(--text-dim)}
+  p.lead{color:var(--text);font-size:20px}
+  strong{color:var(--text);font-weight:600}
+  .hl{color:var(--accent);font-weight:600}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:92vh;
+    display:flex;align-items:center;
+    background:
+      linear-gradient(180deg,rgba(10,10,10,.55) 0%,rgba(10,10,10,.85) 60%,var(--black) 100%),
+      var(--graphite);
+    position:relative;overflow:hidden;
+    padding:120px 0 90px;
+  }
+  .hero-logo-side{
+    position:absolute;top:0;right:2%;width:40%;height:100%;
+    display:flex;align-items:center;justify-content:center;padding:40px;z-index:2;
+  }
+  .hero-logo-side img{
+    max-width:340px;width:100%;height:auto;
+    filter:drop-shadow(0 0 50px rgba(196,240,0,.18));
+  }
+  @media(max-width:780px){.hero-logo-side{display:none}}
+  .hero-logo-mobile{display:none}
+  @media(max-width:780px){
+    .hero-logo-mobile{display:block;width:130px;height:auto;margin:0 0 26px}
+  }
+  .hero-content{position:relative;z-index:3;max-width:680px}
+
+  /* ---------- IMAGENS / PRINTS ---------- */
+  .print-img{width:100%;height:auto;border-radius:10px;border:1px solid var(--border);display:block}
+  .print-phone{max-width:300px;margin:0 auto}
+  .print-mid{max-width:420px;margin:0 auto}
+  .bg-light .print-img{border-color:#E0E0DC;box-shadow:0 6px 24px rgba(0,0,0,.06)}
+  .bio-photo img{width:100%;height:100%;object-fit:cover;border-radius:14px;display:block}
+  .eyebrow{
+    display:inline-block;font-size:13px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--accent);font-weight:600;margin-bottom:24px;
+    border:1px solid var(--border);padding:7px 16px;border-radius:40px;
+  }
+  .hero h1{margin-bottom:24px}
+  .hero p{font-size:19px;max-width:560px}
+
+  /* ---------- CTA BUTTON ---------- */
+  .cta-btn{
+    display:inline-flex;align-items:center;gap:12px;
+    background:var(--accent);color:#0A0A0A;
+    font-family:var(--sans);font-weight:700;font-size:17px;
+    padding:18px 36px;border-radius:8px;text-decoration:none;
+    letter-spacing:.01em;transition:all .2s ease;
+    box-shadow:0 8px 30px rgba(196,240,0,.18);
+    border:none;cursor:pointer;
+  }
+  .cta-btn:hover{background:var(--accent-hover);transform:translateY(-2px);box-shadow:0 12px 40px rgba(196,240,0,.28)}
+  .cta-btn svg{width:22px;height:22px;fill:#0A0A0A}
+  .cta-sub{display:block;margin-top:14px;font-size:14px;color:var(--text-faint)}
+  .cta-center{text-align:center;margin-top:40px}
+
+  /* ---------- DIVIDER ---------- */
+  .divider{width:60px;height:3px;background:var(--accent);margin:0 auto 36px;border-radius:2px}
+  .divider-left{margin:0 0 32px}
+
+  /* ---------- PROVA / PRINTS ---------- */
+  .proof-card{
+    background:var(--card);border:1px solid var(--border);border-radius:12px;
+    padding:28px;margin-bottom:24px;
+  }
+  .proof-quote{font-size:19px;color:var(--text);margin-bottom:18px}
+  .img-placeholder{
+    background:repeating-linear-gradient(45deg,#1c1c1c,#1c1c1c 12px,#212121 12px,#212121 24px);
+    border:1px dashed var(--border);border-radius:8px;
+    min-height:180px;display:flex;align-items:center;justify-content:center;
+    color:var(--text-faint);font-size:13px;letter-spacing:.06em;text-transform:uppercase;text-align:center;padding:20px;
+  }
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  @media(max-width:780px){.grid-2,.grid-4{grid-template-columns:1fr}}
+
+  /* ---------- MECANISMO / SELO ---------- */
+  .mechanism{text-align:center}
+  .seal{
+    width:200px;height:200px;margin:0 auto 40px;border-radius:50%;
+    background:radial-gradient(circle at 50% 40%,#222 0%,#141414 70%);
+    border:2px solid var(--accent);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    box-shadow:0 0 60px rgba(196,240,0,.12),inset 0 0 40px rgba(0,0,0,.6);
+    position:relative;
+  }
+  .seal::before{content:"";position:absolute;inset:14px;border:1px solid var(--border);border-radius:50%}
+  .seal-label{font-family:var(--serif);font-size:15px;color:var(--accent);letter-spacing:.04em;line-height:1.3;padding:0 24px;font-weight:600}
+  .seal-sub{font-size:11px;color:var(--text-faint);letter-spacing:.16em;text-transform:uppercase;margin-top:8px}
+
+  /* ---------- PILARES ---------- */
+  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+  @media(max-width:780px){.pillars{grid-template-columns:1fr}}
+  .pillar{
+    background:var(--card);border:1px solid var(--border);border-radius:12px;padding:30px 26px;
+    transition:border-color .2s;
+  }
+  .pillar:hover{border-color:var(--accent)}
+  .pillar-num{
+    font-family:var(--serif);font-size:38px;color:var(--accent);font-weight:800;
+    line-height:1;margin-bottom:16px;display:block;
+  }
+  .pillar h3{font-size:19px;margin-bottom:12px}
+  .pillar p{font-size:15px;margin-bottom:0}
+
+  /* ---------- 2 ESCOLHAS ---------- */
+  .choices{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:36px}
+  @media(max-width:780px){.choices{grid-template-columns:1fr}}
+  .choice{border-radius:12px;padding:32px 28px}
+  .choice-bad{background:var(--card);border:1px solid var(--border)}
+  .choice-good{background:linear-gradient(160deg,#1f2400,#141414);border:1px solid var(--accent)}
+  .choice h3{margin-bottom:16px}
+  .choice-bad h3{color:var(--text-dim)}
+  .choice-good h3{color:var(--accent)}
+  .choice p{font-size:16px;margin-bottom:0}
+
+  /* ---------- INCLUSO ---------- */
+  .include-item{
+    background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);
+    border-radius:10px;padding:28px 30px;margin-bottom:20px;
+  }
+  .include-item h3{font-size:20px;margin-bottom:14px;color:var(--text)}
+  .include-item p{font-size:16px;margin-bottom:0}
+
+  /* ---------- LIST ---------- */
+  ul.checklist{list-style:none;margin:0 0 22px}
+  ul.checklist li{
+    position:relative;padding-left:34px;margin-bottom:14px;color:var(--text-dim);font-size:17px;
+  }
+  ul.checklist li::before{
+    content:"";position:absolute;left:0;top:9px;width:18px;height:18px;
+    background:var(--accent);
+    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E") center/contain no-repeat;
+            mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E") center/contain no-repeat;
+  }
+
+  /* ---------- QUEM SOU EU (bio) ---------- */
+  .bio-grid{display:grid;grid-template-columns:300px 1fr;gap:48px;align-items:center}
+  @media(max-width:780px){.bio-grid{grid-template-columns:1fr;gap:28px}}
+  .bio-photo{
+    aspect-ratio:3/4;border-radius:14px;
+    background:repeating-linear-gradient(45deg,#1c1c1c,#1c1c1c 14px,#202020 14px,#202020 28px);
+    border:1px solid var(--border);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--text-faint);font-size:13px;letter-spacing:.06em;text-transform:uppercase;text-align:center;padding:20px;
+  }
+  .bio-name{font-family:var(--serif);color:var(--accent);font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;margin-bottom:8px;display:block}
+  .bio-content h2{margin-bottom:24px}
+  .bio-content p{font-size:17px}
+  .bio-personal{font-size:15px !important;color:var(--text-faint) !important;border-left:2px solid var(--border);padding-left:18px;margin-top:8px}
+
+  /* ---------- FINAL CTA ---------- */
+  .final{
+    background:linear-gradient(180deg,var(--black),#0d0d0d);
+    text-align:center;padding:100px 0;
+  }
+  .final h2{margin-bottom:20px}
+  .scarcity{
+    display:inline-block;background:rgba(196,240,0,.08);border:1px solid var(--border);
+    color:var(--accent);font-size:14px;letter-spacing:.04em;
+    padding:10px 22px;border-radius:40px;margin-bottom:32px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--black);border-top:1px solid var(--border);padding:40px 0;text-align:center}
+  footer p{font-size:13px;color:var(--text-faint);margin:0}
+
+  /* ---------- STICKY MOBILE CTA ---------- */
+  .sticky-cta{
+    position:fixed;bottom:0;left:0;right:0;z-index:100;
+    background:rgba(10,10,10,.96);border-top:1px solid var(--border);
+    padding:14px 20px;display:none;backdrop-filter:blur(8px);
+  }
+  .sticky-cta .cta-btn{width:100%;justify-content:center;padding:16px}
+  @media(max-width:780px){.sticky-cta{display:block} body{padding-bottom:80px}}
+
+  .spacer-sm{height:12px}
+  .center{text-align:center}
+  .muted{color:var(--text-faint);font-size:15px}
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-logo-side"><img src="assets/logo-mecanismo.png" alt="Funil com Direct — Botão Impulsionar + Claude"></div>
+  <div class="wrap">
+    <div class="hero-content">
+      <img class="hero-logo-mobile" src="assets/logo-mecanismo.png" alt="">
+      <span class="eyebrow">Serviço de Implementação Personalizada</span>
+      <h1>É realmente possível fechar vendas de mentorias de R$3.000 a R$10.000 usando o Botão Impulsionar + Claude IA em pleno 2026?</h1>
+      <p class="lead">Nos próximos 5 minutos, vou te mostrar como gerar leads qualificados toda semana e vender ofertas de R$3.000 a R$10.000 usando um modelo de negócio enxuto.</p>
+    </div>
+  </div>
+</header>
+
+<!-- ============ O ACORDO / DOR ============ -->
+<section class="bg-light">
+  <div class="narrow">
+    <p>Você provavelmente já comprou cursos e mentorias de marketing caras.</p>
+    <p>Mandaram você montar funis complexos, criar lançamentos exaustivos, ou produzir 7 conteúdos por dia.</p>
+    <p>Você fez tudo isso, gastou tempo, energia e… a liberdade geográfica, a liberdade financeira e a qualidade de vida <strong>não vieram</strong>.</p>
+    <p>Porque o mercado te vendeu uma estrutura robusta, mas esqueceu que não somos uma startup que inicia com rios de dinheiro para bancar a estrutura até gerar alta lucratividade.</p>
+  </div>
+</section>
+
+<!-- ============ PROVA RÁPIDA ============ -->
+<section class="bg-black">
+  <div class="wrap">
+    <div class="grid-2">
+      <div class="proof-card">
+        <p class="proof-quote">O <strong>Thiago Siqueira</strong>, um mentor que investiu <span class="hl">R$131,74</span> e fechou uma venda de <span class="hl">R$4.000</span>.</p>
+        <img class="print-img print-phone" src="assets/print-siqueira.jpg" alt="Conversa no WhatsApp: Thiago Siqueira fechou consultoria de R$4.000 investindo R$131,74">
+      </div>
+      <div class="proof-card">
+        <p class="proof-quote">A <strong>Renata Passos</strong>, que fez <span class="hl">5 vendas de R$5.000 em 24 horas</span> com um único post.</p>
+        <img class="print-img print-phone" src="assets/print-renata.jpg" alt="Comprovantes de vendas — Renata Passos, múltiplas vendas em 24 horas">
+      </div>
+    </div>
+    <div class="narrow" style="margin-top:40px">
+      <p class="lead center">O segredo deles foi esse: parar de focar na complexidade do funil e focar na <span class="hl">precisão da mensagem</span>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AUTORIDADE ============ -->
+<section class="bg-light">
+  <div class="narrow">
+    <div class="divider-left"></div>
+    <p>Trabalho nos bastidores do digital desde <strong>2021</strong> e…</p>
+    <p>… desde sempre, a guruzada vende a ideia de que é preciso ter uma cacetada de ferramentas, equipes gigantes e funis com dezenas de etapas para vender mentorias.</p>
+    <p>Eu percebi uma coisa óbvia: <strong>todo player tem um único funil em comum.</strong></p>
+    <p class="lead">TODOS eles.</p>
+    <ul class="checklist">
+      <li>Os players de lançamento <span class="muted">(print do Leandro Ferrari)</span></li>
+      <li>Players de funis <span class="muted">(print da Maria Eduarda)</span></li>
+      <li>Players de High Ticket <span class="muted">(print do Henrique Marinho)</span></li>
+      <li>Players de qualquer nicho <span class="muted">(print do Brasil Paralelo)</span></li>
+    </ul>
+  </div>
+  <div class="wrap" style="margin-top:20px">
+    <div class="grid-4">
+      <img class="print-img" src="assets/print-ferrari.jpg" alt="Leandro Ferrari — comentários pedindo o link nos posts">
+      <img class="print-img" src="assets/print-mariaeduarda.jpg" alt="Maria Eduarda — comentários 'Funis' pedindo acesso nos posts">
+      <img class="print-img" src="assets/print-marinho.jpg" alt="Henrique Marinho — comentários com palavra-chave nos posts">
+      <img class="print-img" src="assets/print-brasilparalelo.jpg" alt="Brasil Paralelo — comentários 'Quero' e resposta no direct">
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUEM SOU EU ============ -->
+<section class="bg-black">
+  <div class="wrap">
+    <div class="bio-grid">
+      <div class="bio-photo"><img src="assets/foto-netanias.jpg" alt="Netanias Ferreira"></div>
+      <div class="bio-content">
+        <span class="bio-name">Quem sou eu</span>
+        <h2>Netanias Ferreira</h2>
+        <p>Especialista em copywriting e estrategista de funis para mentores e consultores de alto ticket, criador do método <strong>Copy Contextual</strong> — com 4 anos de atuação exclusiva nesse mercado e cases documentados de clientes que saíram de R$175k para quase <span class="hl">R$1M de faturamento anual</span>.</p>
+        <p>Trabalho com especialistas que têm funil, equipe e tráfego rodando — mas perdem quem paga R$3k a R$15k antes de chegar no closer. Entro, diagnostico onde a comunicação quebra e reescrevo. Sem novo método. Sem nova mentoria de marketing. Com a precisão de quem conhece esse problema de dentro há 4 anos.</p>
+        <p class="bio-personal">Cristão, 30 anos, casado com Vitória, pai do Benjamim e do Davi. Mais do que o número no final do mês, o que me encanta é ver o especialista que estava prestes a desistir do digital perceber que o problema nunca foi ele — foi a mensagem. E que isso muda.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ O MECANISMO ============ -->
+<section class="bg-light">
+  <div class="narrow center">
+    <div class="divider"></div>
+    <h2>O Funil com Direct</h2>
+    <p>Hoje, ainda mais eficiente quando usamos o <strong>Claude</strong> do jeito certo.</p>
+    <p>O Dr. Thiago tem um carrossel impulsionado há <span class="hl">8 meses</span>, gerando leads qualificados todo dia.</p>
+  </div>
+  <div class="wrap" style="margin-top:16px">
+    <img class="print-img print-mid" src="assets/print-drthiago.jpg" alt="Carrossel do Dr. Thiago impulsionado há 8 meses — 915 curtidas, 324 comentários, postado em 15 de setembro de 2025">
+  </div>
+  <div class="narrow" style="margin-top:40px">
+    <p>Por isso, eu sempre implemento esse funil de vendas para meus clientes. Deixe-me te explicar a ciência por trás desse sistema.</p>
+    <p>Existem <strong>duas forças</strong> que fazem esse modelo ser imbatível para quem quer começar ou simplificar sua operação digital.</p>
+    <p>O botão impulsionar, quando alimentado com um <strong>Post Magnético</strong>, funciona como um laser. Ele não busca viralização; ele busca perfis qualificados que se identificam imediatamente com a sua narrativa.</p>
+    <p>Um único post impulsionado é capaz de trazer leads com <span class="hl">"cara de PIX"</span> direto para o seu direct todos os dias.</p>
+    <p>Mas o que você faz quando o lead chega no seu direct?</p>
+    <p class="lead">É aqui que 99% dos mentores erram.</p>
+    <p>Eles usam scripts prontos e frios, ou tentam usar o ChatGPT para conversar — gerando aquelas respostas robóticas que todo mundo odeia.</p>
+  </div>
+</section>
+
+<!-- ============ AMBIENTE DE CONVERSÃO IMEDIATA (SELO + PILARES) ============ -->
+<section class="bg-black mechanism">
+  <div class="narrow">
+    <div class="seal">
+      <span class="seal-label">Ambiente de Conversão Imediata</span>
+      <span class="seal-sub">O Mecanismo</span>
+    </div>
+    <p class="lead">Nós conduzimos a pessoa para um <strong>Ambiente de Conversão Imediata</strong>.</p>
+    <p>Nesse local, a pessoa identifica que você sabe qual é a dor latente dela — e faz a venda de R$3.000 parecer barata.</p>
+  </div>
+  <div class="wrap">
+    <div class="pillars">
+      <div class="pillar">
+        <span class="pillar-num">01</span>
+        <h3>Copy com Claude</h3>
+        <p>Copy criado por equipe de Marketing no Claude, treinado e personalizado para atrair clientes que pagam de R$3.000 a R$10.000.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-num">02</span>
+        <h3>Botão Impulsionar</h3>
+        <p>Para gerar demanda qualificada todo dia — sem Gerenciador de Anúncios, sem gestor de tráfego.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-num">03</span>
+        <h3>Ambiente de Conversão</h3>
+        <p>Mostra para o cliente que você tem a solução certa para o problema dele — sem parecer vendedor.</p>
+      </div>
+    </div>
+    <div class="narrow center" style="margin-top:40px">
+      <p class="lead">É simples, é direto e é extremamente lucrativo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AS 2 ESCOLHAS ============ -->
+<section class="bg-light">
+  <div class="narrow center">
+    <h2>Agora você tem duas escolhas</h2>
+  </div>
+  <div class="wrap">
+    <div class="choices">
+      <div class="choice choice-bad">
+        <h3>Continuar sozinho</h3>
+        <p>Tentando decifrar como treinar uma IA sozinho, gastando horas criando prompts que geralmente criam textos mornos e genéricos que ninguém lê.</p>
+      </div>
+      <div class="choice choice-good">
+        <h3>Deixar que eu monte para você</h3>
+        <p>Eu implemento esse sistema completo para você — e você começa a fechar novos mentorados toda semana.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ O QUE ESTÁ INCLUSO ============ -->
+<section class="bg-black">
+  <div class="narrow">
+    <div class="divider-left"></div>
+    <h2>O que está incluso no Serviço de Implementação</h2>
+
+    <div class="include-item">
+      <h3>1 — O Sistema de Aquisição com Botão Impulsionar</h3>
+      <p>Eu, pessoalmente, vou escrever as copys do funil para criar posts que filtram curiosos e atraem apenas leads qualificados prontos para pagar mais de R$3.000.</p>
+    </div>
+
+    <div class="include-item">
+      <h3>2 — Ambiente de Conversão Imediata</h3>
+      <p>Como transformar completos desconhecidos em pessoas que desejam comprar ofertas de R$3.000 a R$10.000 — sem parecer um vendedor chato e sem fazer sessão estratégica todo dia.</p>
+    </div>
+
+    <div class="include-item">
+      <h3>3 — Agentes e Skills de Copy Treinados por um Copywriter Sênior</h3>
+      <p>Você NÃO vai receber prompts genéricos. Você está acessando uma equipe de marketing testada e validada por mim em clientes reais — como a <strong>Escola de Exatas</strong>, uma empresa que faturou <span class="hl">R$10.000.000</span> na Hotmart e confiou nessa mesma equipe de marketing com IA para entregar copys para seus funis de vendas.</p>
+    </div>
+
+    <img class="print-img print-mid" style="margin-top:8px" src="assets/print-exatas.jpg" alt="Perfil verificado de A Escola de Exatas no Instagram — 53 mil seguidores">
+  </div>
+</section>
+
+<!-- ============ GANHA-GANHA ============ -->
+<section class="bg-light">
+  <div class="narrow">
+    <p>O mercado está cheio de cursos e mentorias que te jogam um monte de aulas que, apesar de terem bons conteúdos, te deixam <strong>sempre sozinho na execução</strong>.</p>
+    <p>Eu não vou fazer isso.</p>
+    <p class="lead">Eu vou implementar pessoalmente os meus processos de IA para o seu negócio. É uma implementação personalizada.</p>
+    <p>Eu faço a parte difícil para você ter direção e total confiança.</p>
+    <p>Minha meta é o ganha-ganha. Se eu implementar essa estrutura de aquisição no seu negócio digital e você começar a gerar leads qualificados e fechar mentorias de R$3.000 a R$10.000…</p>
+    <p>… você vai querer dar o próximo passo comigo no futuro, para serviços mais completos e recorrentes. Eu facilito seu processo de vendas para que possamos trabalhar juntos no mercado high ticket depois.</p>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section class="final" id="CTA_WHATSAPP">
+  <div class="narrow">
+    <span class="scarcity">Vagas limitadas pelo meu tempo — afinal, é um serviço</span>
+    <h2>Vamos colocar sua máquina de aquisição enxuta para rodar ainda esta semana</h2>
+    <p>Clique no botão abaixo e me chame no WhatsApp.</p>
+    <div class="cta-center">
+      <a href="#CTA_WHATSAPP" class="cta-btn" data-wa>
+        <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.043zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.247-.694.247-1.289.173-1.413z"/></svg>
+        Me chamar no WhatsApp agora
+      </a>
+      <span class="cta-sub">Te vejo lá. Valeu!</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 Netanias Ferreira — Consultoria de Copy &amp; Estratégia. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-cta">
+  <a href="#CTA_WHATSAPP" class="cta-btn" data-wa>
+    <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.043z"/></svg>
+    Quero implementar no meu negócio
+  </a>
+</div>
+
+<script>
+  // ===== CONFIG — TROCAR ANTES DO DEPLOY =====
+  // Número no formato internacional, só dígitos. Ex: 5584999998888
+  var WHATSAPP_NUMERO = "5585981825194";
+  var WHATSAPP_MSG = encodeURIComponent("Oi Netanias! Vim pela página do Funil com Direct e quero implementar no meu negócio.");
+
+  (function(){
+    var link = "https://wa.me/" + WHATSAPP_NUMERO + "?text=" + WHATSAPP_MSG;
+    document.querySelectorAll('[data-wa]').forEach(function(a){
+      a.setAttribute('href', link);
+      a.setAttribute('target','_blank');
+      a.setAttribute('rel','noopener');
+    });
+  })();
+</script>
+
+</body>
+</html>
