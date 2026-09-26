@@ -4,6 +4,8 @@ import type { NextConfig } from "next";
 // repassado por rewrite (o endereço continua sendo o deste site).
 const SQUAD = "https://squad-copy-netaniasdeusefiel-5381s-projects.vercel.app";
 const CRM = "https://copycon-crm-netaniasdeusefiel-5381s-projects.vercel.app";
+// o app financeiro já roda com basePath /financas, então o caminho passa inteiro
+const FINANCAS = "https://gestao-financeira-netaniasdeusefiel-5381s-projects.vercel.app";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -15,6 +17,8 @@ const nextConfig: NextConfig = {
       { source: "/squad/:path+", destination: `${SQUAD}/:path+` },
       { source: "/crm", destination: `${CRM}/` },
       { source: "/crm/:path+", destination: `${CRM}/:path+` },
+      { source: "/financas", destination: `${FINANCAS}/financas` },
+      { source: "/financas/:path+", destination: `${FINANCAS}/financas/:path+` },
     ];
   },
 };
