@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Arquitetura do Anúncio Unicórnio | Netanias Ferreira</title>
+<meta name="description" content="Convite privado: a copy que decide quem senta na sua reunião. Filtra o curioso, chama quem tem caixa. Manda DIAGNÓSTICO no Direct.">
+<meta property="og:title" content="A Arquitetura do Anúncio Unicórnio | Netanias Ferreira">
+<meta property="og:description" content="A copy que decide quem senta na sua reunião. Manda DIAGNÓSTICO no Direct.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== TOKENS (Brandbook Netanias v2.0) ===== */
+:root{
+  --bg:#2B2B2B;
+  --bg-2:#242424;
+  --bg-3:#1f1f1f;
+  --accent:#B8584B;
+  --accent-soft:rgba(184,88,75,.14);
+  --accent-line:rgba(184,88,75,.35);
+  --cream:#FAF7F2;
+  --muted:#9A9490;
+  --line:rgba(224,221,216,.10);
+  --line-strong:rgba(224,221,216,.16);
+  --success:#4CAF50;
+  --white:#FFFFFF;
+  --maxw:940px;
+  --radius:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--cream);
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+  font-size:17px;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,.display{font-family:'Outfit',sans-serif;line-height:1.12;letter-spacing:-.02em;font-weight:700}
+p{color:#e9e4dd}
+strong{color:var(--white);font-weight:700}
+em{font-style:italic;color:#f2ede6}
+.accent{color:var(--accent)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+
+/* ===== NAV ===== */
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);background:rgba(43,43,43,.72);border-bottom:1px solid var(--line)}
+.nav-in{max-width:var(--maxw);margin:0 auto;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:11px;text-decoration:none}
+.logo-mark{width:38px;height:38px;border-radius:9px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-family:'Outfit';font-weight:800;color:var(--white);font-size:16px;letter-spacing:-.03em;position:relative;overflow:hidden}
+.logo-mark::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:4px;background:rgba(0,0,0,.22)}
+.logo-txt{display:flex;flex-direction:column;line-height:1.05}
+.logo-txt b{font-family:'Outfit';font-weight:700;font-size:15px;color:var(--cream);letter-spacing:.01em}
+.logo-txt span{font-size:10px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;font-weight:600}
+.nav-cta{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--white);text-decoration:none;font-weight:600;font-size:14px;padding:10px 18px;border-radius:999px;transition:transform .15s ease,filter .15s ease;white-space:nowrap}
+.nav-cta:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.nav-cta .short{display:none}
+
+/* ===== BUTTONS ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--accent);color:var(--white);text-decoration:none;font-family:'Outfit';font-weight:600;font-size:17px;padding:17px 34px;border-radius:999px;transition:transform .16s ease,filter .16s ease,box-shadow .16s ease;box-shadow:0 10px 34px -12px rgba(184,88,75,.75);text-align:center}
+.btn:hover{filter:brightness(1.08);transform:translateY(-2px);box-shadow:0 16px 42px -12px rgba(184,88,75,.9)}
+.btn svg{width:19px;height:19px}
+.btn-note{display:block;margin-top:14px;color:var(--muted);font-size:13.5px;letter-spacing:.01em}
+
+/* ===== HERO ===== */
+.hero{position:relative;text-align:center;padding:82px 0 78px;overflow:hidden}
+.hero-glow{position:absolute;top:-140px;left:50%;transform:translateX(-50%);width:820px;height:620px;max-width:130vw;background:radial-gradient(50% 50% at 50% 50%,rgba(184,88,75,.30) 0%,rgba(184,88,75,.10) 42%,rgba(184,88,75,0) 72%);pointer-events:none;z-index:0}
+.hero .wrap{position:relative;z-index:1}
+.pill{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--accent-line);background:var(--accent-soft);color:#f0d8d2;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;padding:8px 16px;border-radius:999px;margin-bottom:26px}
+.pill .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+.hero h1{font-size:clamp(38px,6.4vw,68px);font-weight:800;max-width:16ch;margin:0 auto 26px}
+.hero h1 .accent{color:var(--accent)}
+.hero-sub{max-width:640px;margin:0 auto 36px;font-size:clamp(16px,2.2vw,19px);color:#d9d3cb;font-style:italic;line-height:1.65}
+.hero-actions{display:flex;flex-direction:column;align-items:center;gap:6px}
+
+/* ===== SECTION SHELL ===== */
+section{position:relative}
+.sec{padding:64px 0}
+.sec-sm{padding:48px 0}
+.eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+.sec h2{font-size:clamp(27px,4.2vw,40px);margin-bottom:22px;max-width:20ch}
+.sec.center{text-align:center}
+.sec.center h2,.sec.center .eyebrow{margin-left:auto;margin-right:auto}
+.lead{font-size:19px}
+.stack p{margin-bottom:20px}
+.stack p:last-child{margin-bottom:0}
+.divider{height:1px;background:var(--line);max-width:var(--maxw);margin:0 auto}
+
+/* dor block */
+.dor{background:linear-gradient(180deg,var(--bg) 0%,var(--bg-2) 100%)}
+.dor .punch{font-family:'Outfit';font-weight:700;font-size:clamp(22px,3.4vw,30px);color:var(--white);line-height:1.25;margin:26px 0}
+.dor .punch .accent{color:var(--accent)}
+.kicker{font-size:15px;letter-spacing:.02em}
+
+/* prova/case flowing */
+.origin h2 .accent{color:var(--accent)}
+.pullquote{border-left:3px solid var(--accent);padding:6px 0 6px 22px;margin:26px 0;font-family:'Outfit';font-weight:500;font-size:clamp(19px,2.8vw,24px);color:#f4efe8;font-style:italic;line-height:1.4}
+
+/* objection cards (bloco 4) */
+.obj-grid{display:grid;gap:18px}
+.obj-card{background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius);padding:26px 26px 28px;position:relative;overflow:hidden}
+.obj-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);opacity:.55}
+.obj-say{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px}
+.obj-say .q{flex:none;font-family:'Outfit';font-weight:800;color:var(--accent);font-size:30px;line-height:1;margin-top:-4px}
+.obj-say p{font-family:'Outfit';font-weight:600;font-size:18px;color:var(--white);font-style:italic}
+.obj-ans{color:#ddd7cf;font-size:16px}
+
+/* contrast (bloco 5) */
+.contrast{background:var(--bg-2)}
+.contrast-lead{max-width:60ch;margin-bottom:30px}
+.cgrid{display:grid;gap:14px}
+.crow{display:flex;gap:15px;align-items:flex-start;padding:20px 22px;border-radius:14px;border:1px solid var(--line);background:var(--bg-3)}
+.crow .ic{flex:none;width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;margin-top:1px}
+.crow.no .ic{background:rgba(154,148,144,.16);color:var(--muted)}
+.crow.yes{border-color:var(--accent-line);background:linear-gradient(180deg,rgba(184,88,75,.10),rgba(184,88,75,.03))}
+.crow.yes .ic{background:var(--accent);color:var(--white)}
+.crow p{font-size:16px}
+.crow.no p{color:#c8c2ba}
+.crow.yes p{color:#f3eee7}
+.crow .lbl{display:block;font-family:'Outfit';font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px}
+.crow.no .lbl{color:var(--muted)}
+.crow.yes .lbl{color:var(--accent)}
+
+/* stack items (bloco 6) */
+.items{display:grid;gap:16px;margin-top:8px}
+.item{background:var(--bg-2);border:1px solid var(--line-strong);border-radius:var(--radius);padding:24px 26px}
+.item h3{font-family:'Outfit';font-weight:700;font-size:19px;color:var(--white);margin-bottom:8px}
+.item h3 .num{color:var(--accent);margin-right:10px;font-weight:800}
+.item p{font-size:15.5px;color:#d6d0c8}
+.closing-note{margin-top:26px;background:var(--accent-soft);border:1px solid var(--accent-line);border-radius:var(--radius);padding:24px 26px;font-size:16.5px;color:#f2ebe3}
+
+/* timeline (bloco 7) */
+.timeline{background:var(--bg-2)}
+.tl{display:grid;gap:0;border:1px solid var(--line-strong);border-radius:var(--radius);overflow:hidden}
+.tl-row{display:grid;grid-template-columns:1fr 1.3fr 2.4fr;gap:0;border-top:1px solid var(--line)}
+.tl-row:first-child{border-top:none}
+.tl-cell{padding:20px 22px}
+.tl-head{background:var(--bg-3)}
+.tl-head .tl-cell{font-family:'Outfit';font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.tl-phase{font-family:'Outfit';font-weight:700;color:var(--white);font-size:17px}
+.tl-time{color:var(--accent);font-weight:600;font-size:15px}
+.tl-what{color:#d6d0c8;font-size:15.5px}
+.tl-note{margin-top:20px;text-align:center;color:var(--muted);font-style:italic;font-size:15px}
+
+/* garantia (bloco 8) */
+.guard{background:var(--bg-3);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+
+/* prova band (bloco 9) */
+.proof{background:linear-gradient(180deg,var(--bg-2),var(--bg))}
+.proof .lead{color:#e7e1d9}
+.proof .pullquote{border-color:var(--success)}
+
+/* CTA final (bloco 10) */
+.finale{position:relative;text-align:center;padding:84px 0 92px;overflow:hidden}
+.finale-glow{position:absolute;bottom:-180px;left:50%;transform:translateX(-50%);width:900px;height:640px;max-width:130vw;background:radial-gradient(50% 50% at 50% 50%,rgba(184,88,75,.26) 0%,rgba(184,88,75,.08) 46%,rgba(184,88,75,0) 74%);pointer-events:none;z-index:0}
+.finale .wrap{position:relative;z-index:1}
+.finale h2{font-size:clamp(30px,5vw,50px);margin-bottom:22px}
+.finale .stack{max-width:640px;margin:0 auto 34px;text-align:left}
+.finale .stack p{color:#e2dcd4}
+.word{display:inline-block;font-family:'Outfit';font-weight:700;color:var(--accent);letter-spacing:.02em}
+.ps{max-width:640px;margin:38px auto 0;padding-top:26px;border-top:1px solid var(--line);color:#cfc9c1;font-size:16px;font-style:italic}
+
+/* footer */
+.footer{padding:40px 0;border-top:1px solid var(--line);text-align:center}
+.footer .logo{justify-content:center;margin-bottom:12px}
+.footer small{color:var(--muted);font-size:13px;letter-spacing:.02em}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+/* responsive */
+@media(max-width:760px){
+  body{font-size:16px}
+  .sec{padding:52px 0}
+  .hero{padding:60px 0 58px}
+  .tl-row{grid-template-columns:1fr}
+  .tl-cell{padding:14px 20px;border-top:1px solid var(--line)}
+  .tl-row .tl-cell:first-child{border-top:none;padding-top:20px}
+  .tl-row .tl-cell:last-child{padding-bottom:20px}
+  .tl-head{display:none}
+  .tl-phase::after{content:none}
+  .nav-cta .full{display:none}
+  .nav-cta .short{display:inline}
+}
+@media(max-width:420px){
+  .nav-cta{padding:9px 14px}
+  .btn{width:100%;font-size:16px;padding:16px 22px}
+}
+
+/* ===== LIGHT THEME (fundo branco) ===== */
+:root{
+  --bg:#FFFFFF;
+  --bg-2:#FAF7F2;
+  --bg-3:#F1ECE4;
+  --cream:#2B2B2B;
+  --line:rgba(43,43,43,.10);
+  --line-strong:rgba(43,43,43,.14);
+  --accent-soft:rgba(184,88,75,.10);
+}
+body{color:#2B2B2B}
+p{color:#413c38}
+strong{color:#1f1f1f}
+em{color:#2B2B2B}
+.pill{color:#9a4033;background:var(--accent-soft);border-color:var(--accent-line)}
+.hero-sub{color:#5b554f}
+.hero-glow{background:radial-gradient(50% 50% at 50% 50%,rgba(184,88,75,.16) 0%,rgba(184,88,75,.05) 45%,rgba(184,88,75,0) 72%)}
+.finale-glow{background:radial-gradient(50% 50% at 50% 50%,rgba(184,88,75,.13) 0%,rgba(184,88,75,.04) 48%,rgba(184,88,75,0) 74%)}
+.hero-logo{display:inline-flex;justify-content:center;margin:0 auto 30px}
+.dor{background:linear-gradient(180deg,#fff 0%,#FAF7F2 100%)}
+.dor .punch{color:#1f1f1f}
+.kicker{color:#413c38}
+.pullquote{color:#2b2b2b}
+.obj-card{background:#fff;box-shadow:0 8px 26px -18px rgba(43,43,43,.35)}
+.obj-say p{color:#1f1f1f}
+.obj-ans{color:#4a453f}
+.contrast{background:var(--bg-2)}
+.crow{background:#fff}
+.crow.no p{color:#5f5a54}
+.crow.yes p{color:#332f2b}
+.crow.no .ic{background:rgba(43,43,43,.08);color:#7a746e}
+.item{background:#fff;box-shadow:0 8px 26px -18px rgba(43,43,43,.35)}
+.item h3{color:#1f1f1f}
+.item p{color:#4a453f}
+.closing-note{color:#3a342e}
+.timeline{background:var(--bg-2)}
+.tl-head{background:#F1ECE4}
+.tl-head .tl-cell{color:#6f6a64}
+.tl-phase{color:#1f1f1f}
+.tl-what{color:#4a453f}
+.guard{background:var(--bg-2)}
+.proof{background:linear-gradient(180deg,#FAF7F2,#fff)}
+.proof .lead{color:#413c38}
+.finale .stack p{color:#413c38}
+.ps{color:#5b554f}
+.footer small{color:#6f6a64}
+</style>
+</head>
+<body>
+
+<main id="topo">
+
+<!-- ===== HERO / BLOCO 1 ===== -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="wrap">
+    <span class="pill"><span class="dot"></span>Convite Privado</span>
+    <h1>A Arquitetura do <span class="accent">Anúncio Unicórnio</span></h1>
+    <p class="hero-sub">no fim, o mercado vai jurar que você montou uma sala inteira: um copywriter sênior, um estrategista de funil e um diretor de aquisição. É uma cabeça só. E ela pensa o seu negócio inteiro pra escrever uma linha.</p>
+  </div>
+</section>
+
+<!-- ===== BLOCO 2 — VALIDAÇÃO + DOR ===== -->
+<section class="sec dor reveal">
+  <div class="wrap stack">
+    <p class="lead"><strong>Você já é bom.</strong> Isso aqui não é pra iniciante e você sabe.</p>
+    <p>Só que tem uma coisa que ninguém te conta quando você já entrega resultado: dá pra ser referência no que faz e mesmo assim acordar sem saber quanto entra esse mês.</p>
+    <p class="punch">A agenda enche.<br><span class="accent">De curioso.</span></p>
+    <p>Quatro calls marcadas pra amanhã, e você já sabe: no minuto 55 vem o <em>"vou pensar"</em>, vem o <em>"tá caro pra mim agora"</em>, vem o pedido de desconto de cem reais. Uma hora do seu dia. No lixo.</p>
+    <p>E o pior nem é o tempo. É a sensação de ver gente com um décimo da sua bagagem cobrando 10k com facilidade... enquanto você, que já pagou o preço, briga por 3k.</p>
+    <p class="kicker"><strong>Você não está travado por falta de competência.</strong> Você está travado porque o seu anúncio está chamando <span class="accent">a pessoa errada</span> pra dentro da sua casa.</p>
+  </div>
+</section>
+
+<!-- ===== BLOCO 3 — ISSO ACABA AQUI + PROVA ===== -->
+<section class="sec origin reveal">
+  <div class="wrap stack">
+    <h2>Isso <span class="accent">acaba aqui.</span></h2>
+    <p>Faz 4 anos que eu faço só uma coisa: escrevo a copy que decide quem senta na sua reunião. Não gestor de tráfego, não agência de relatório bonito. Copy. A palavra que filtra.</p>
+    <p>E o resultado disso não é teoria minha, é print guardado.</p>
+    <p>Um médico que ensina investimento me chamou faturando 175 mil no ano. No ano seguinte, com a copy no lugar, fechou perto de 1 milhão. Teve 1 post que virou uma venda de 10 mil com R$ 761 gastos no anúncio. Teve dia de 18 mil caindo, recorrente.</p>
+    <p class="pullquote">Uma mentora que não passava de 3 mil no high ticket hoje vende a 12. Ela mesma me disse uma frase que eu guardo: "trabalhei metade do que trabalhava e ganhei mais do que ganhava."</p>
+    <p>Um assessor de investimento colocou R$ 131 no tráfego e fechou uma assessoria de 4 mil. R$ 16 por conversa qualificada. O funil segurou o negócio por mais de um ano sem eu tocar numa vírgula.</p>
+    <p>Eu não vou te prometer esses números. Eles são dessas pessoas, e eles executaram. O que eu te mostro é o padrão: em 100% das vezes, o problema não era o funil, não era o tráfego. Era a narrativa. A mensagem.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== BLOCO 4 — VOCÊ DIZ / O QUE A COPY FAZ ===== -->
+<section class="sec reveal">
+  <div class="wrap">
+    <div class="obj-grid">
+      <article class="obj-card">
+        <div class="obj-say"><span class="q">&ldquo;</span><p>Eu invisto em tráfego e só vem curioso sem dinheiro.</p></div>
+        <p class="obj-ans">Óbvio. O algoritmo do Meta não segmenta mais rico por botão de "Rolex" e "bairro nobre", isso morreu. Hoje quem faz o filtro é a mensagem. Se o seu anúncio abre com promessa genérica, o leilão te entrega a massa sem caixa. A copy certa põe o filtro nos 3 primeiros segundos: fala a dor que só quem tem empresa entende, e o curioso rola o feed pra frente antes mesmo de clicar.</p>
+      </article>
+      <article class="obj-card">
+        <div class="obj-say"><span class="q">&ldquo;</span><p>Ninguém fecha minha consultoria de 10k, e eu odeio ter que apertar na call.</p></div>
+        <p class="obj-ans">Então para de apostar tudo na call. É por isso que o vídeo de 120 segundos precisa construir autoridade de verdade, não fazer "convite vago". Quando o anúncio já plantou a tese na cabeça do comprador, a reunião deixa de ser um confronto de lábia e vira alinhamento. A conversa flui, porque o filtro já rodou lá atrás.</p>
+      </article>
+      <article class="obj-card">
+        <div class="obj-say"><span class="q">&ldquo;</span><p>Eu posto todo dia e continuo invisível pra quem tem dinheiro.</p></div>
+        <p class="obj-ans">Porque volume não é sinônimo de mensagem. Um anúncio que fala com a dor operacional certa vale por trinta que falam com todo mundo. O que a gente caça é o Anúncio Unicórnio: aquele criativo raro que fala exato com o comprador de alto valor, repele o leigo, e continua trazendo gente qualificada semana após semana. Um. Não trinta.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BLOCO 5 — DIFERENCIAÇÃO ===== -->
+<section class="sec contrast reveal">
+  <div class="wrap">
+    <h2>Deixa eu ser seco com você.</h2>
+    <p class="contrast-lead lead">Sobre o que isso <strong>não</strong> é:</p>
+    <div class="cgrid">
+      <div class="crow no"><span class="ic">&times;</span><div><span class="lbl">Não é</span><p>mais um gestor de tráfego que te manda relatório de CPL baixo e lava as mãos quando o lead não fecha.</p></div></div>
+      <div class="crow no"><span class="ic">&times;</span><div><span class="lbl">Não é</span><p>agência de lead a R$ 2,00 que enche sua agenda de reunião improdutiva.</p></div></div>
+      <div class="crow no"><span class="ic">&times;</span><div><span class="lbl">Não é</span><p>freelancer que abre o documento e te pergunta <em>"e aí, o que você quer que eu escreva hoje?"</em>.</p></div></div>
+      <div class="crow yes"><span class="ic">&check;</span><div><span class="lbl">É</span><p>outra coisa: é um cara que lê o seu negócio inteiro, acha a brecha na sua mensagem, e desenha a arquitetura de copy que decide quem entra no seu funil. O herói aqui não sou eu. É a palavra certa, no anúncio certo, filtrando a pessoa certa.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BLOCO 6 — EMPILHAMENTO ===== -->
+<section class="sec reveal">
+  <div class="wrap">
+    <p class="lead">O que entra nessa arquitetura:</p>
+    <div class="items">
+      <div class="item"><h3><span class="num">01</span>A tese da sua mensagem.</h3><p>Antes de escrever uma linha, eu leio o negócio todo: sua oferta, seu preço, onde o lead certo se perde. Sai daí o ângulo que o seu anúncio vai carregar. É estratégia, não "criatividade".</p></div>
+      <div class="item"><h3><span class="num">02</span>A copy que faz o filtro.</h3><p>Os roteiros de anúncio que repelem curioso nos primeiros segundos e constroem sua autoridade em 120. A mesma engenharia que segurou funil de cliente meu por 5 meses sem ajuste.</p></div>
+      <div class="item"><h3><span class="num">03</span>A peça de funil que sustenta o clique.</h3><p>Quando faz sentido, a página ou a VSL que recebe quem o anúncio filtrou, pra a jornada não quebrar no meio.</p></div>
+      <div class="item"><h3><span class="num">04</span>O cérebro do lado.</h3><p>Direção do negócio, não aula solta. Você senta com quem já rodou isso dezenas de vezes e não vai te deixar gravar no escuro.</p></div>
+    </div>
+    <div class="closing-note">E não para na métrica. Teve mentora que, com a mensagem no lugar, passou o feriado viajando e viu vendas de 5 mil caindo enquanto estava fora. É isso que uma copy que filtra destrava no fim: não é só agenda cheia, é agenda cheia da pessoa certa, e tempo pra viver o resto.</div>
+  </div>
+</section>
+
+<!-- ===== BLOCO 7 — LINHA DO TEMPO ===== -->
+<section class="sec timeline reveal">
+  <div class="wrap">
+    <div class="tl">
+      <div class="tl-row tl-head">
+        <div class="tl-cell">Fase</div><div class="tl-cell">Tempo</div><div class="tl-cell">O que acontece</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-cell tl-phase">Fundação</div>
+        <div class="tl-cell tl-time">1ª semana</div>
+        <div class="tl-cell tl-what">Leio o negócio inteiro, acho a brecha de mercado e cravo a tese da sua mensagem.</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-cell tl-phase">Primeiras peças</div>
+        <div class="tl-cell tl-time">Semanas 2 e 3</div>
+        <div class="tl-cell tl-what">Os roteiros de anúncio com filtro ativo entram no ar. Começamos a ler o feed real.</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-cell tl-phase">Leitura de dados</div>
+        <div class="tl-cell tl-time">Semana 4</div>
+        <div class="tl-cell tl-what">A gente vê quem o anúncio está trazendo de verdade e ajusta o filtro pela mão.</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-cell tl-phase">Lateralização</div>
+        <div class="tl-cell tl-time">Mês 2 em diante</div>
+        <div class="tl-cell tl-what">Achou o Unicórnio, a gente não joga fora quando o leilão esquenta: mantém a tese e varia só gancho, avatar e formato. Escala sem refazer do zero.</div>
+      </div>
+    </div>
+    <p class="tl-note">É o mapa do trabalho, não uma promessa de resultado com data marcada. Cada negócio anda no seu passo.</p>
+  </div>
+</section>
+
+<!-- ===== BLOCO 8 — GARANTIA ANTI-PROMESSA ===== -->
+<section class="sec guard reveal">
+  <div class="wrap stack">
+    <p class="lead">Vou te falar o que eu <strong>não</strong> prometo, porque isso é mais honesto que qualquer selo.</p>
+    <p>Eu não prometo milagre. Não prometo que 5 mil de anúncio viram 50 mil no caixa em 30 dias. Quem te promete isso está te vendendo ilusão, e você já é maduro demais pra cair nisso.</p>
+    <p>O que eu entrego é a palavra: uma copy que para de trazer curioso pra sua porta e passa a chamar quem tem caixa e maturidade pra comprar. O resultado no caixa depende também do seu tráfego, da sua entrega, da sua conversa. Essa parte é sua. A palavra é minha, e nessa eu não erro por descuido.</p>
+    <p>É mês a mês, sem fidelidade longa te prendendo. Se num mês não fizer sentido, você para. Simples assim.</p>
+  </div>
+</section>
+
+<!-- ===== BLOCO 9 — PROVA ===== -->
+<section class="sec proof reveal">
+  <div class="wrap stack">
+    <p class="lead">Prova documentada:</p>
+    <p class="lead">Uma mentora subiu de 3 mil pra 12 mil no ticket e bateu o primeiro milhão. Um médico que ensina finanças fez 100 mil em 2 meses e recorde de faturamento na Black sem fazer Black Friday. Um especialista em formação botou R$ 1.500 no tráfego e faturou 16 mil numa mentoria de 4 encontros. Um consultor da área de saúde tirou 21 formulários qualificados de uma única campanha de e-mail, alimentando mentorias de 20 mil e consultorias de 60.</p>
+    <p class="pullquote">Um deles resumiu por que não me troca por uma IA nem por copy mais barata: "Sua disponibilidade. E sua capacidade de entregar excelência quando o assunto é copy."</p>
+  </div>
+</section>
+
+<!-- ===== BLOCO 10 — CTA FINAL ===== -->
+<section class="finale reveal">
+  <div class="finale-glow"></div>
+  <div class="wrap">
+    <h2>O próximo passo não é pra todo mundo.</h2>
+    <div class="stack">
+      <p>Eu não trabalho com um monte de gente ao mesmo tempo, e o preço eu deixei de fora de propósito: o formato do trabalho depende do seu momento, e isso só sai numa conversa.</p>
+      <p>Manda a palavra <span class="word">DIAGNÓSTICO</span> no meu Direct.</p>
+      <p>A partir dela a gente marca uma conversa curta e reta, onde eu vou querer entender três coisas: qual é a sua oferta, como estão chegando os seus leads hoje, e onde exatamente o dinheiro está se perdendo. Sem isso eu não desenho nada. É diagnóstico de verdade: entendo sua oferta, seus leads e onde o dinheiro vaza.</p>
+      <p>De lá sai o desenho: ou <strong>eu seguro a caneta por você</strong> e escrevo a copy do seu funil, ou <strong>você monta com o meu cérebro do lado e eu audito cada peça</strong> pra você não errar sozinho. Uma das duas encaixa no seu momento, e é na conversa que a gente descobre qual.</p>
+    </div>
+    <a class="btn js-cta" href="#" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Mandar DIAGNÓSTICO no Direct
+    </a>
+    <p class="ps">O curioso continua rolando o feed. Quem já cansou de financiar reunião improdutiva manda DIAGNÓSTICO e vem sentar comigo.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <a class="logo" href="#topo" aria-label="Netanias Ferreira, Copy Contextual">
+      <span class="logo-mark">NF</span>
+      <span class="logo-txt"><b>Netanias Ferreira</b><span>Copy Contextual</span></span>
+    </a>
+    <small>A palavra certa, no anúncio certo, filtrando a pessoa certa.</small>
+  </div>
+</footer>
+
+<script>
+/* ===== CTA destination (editável) ===== */
+// Direct do Instagram. Pra usar WhatsApp, troque por: 'https://wa.me/55DDDNUMERO?text=DIAGN%C3%93STICO'
+var CTA_URL = "https://ig.me/m/netanias.ferreira";
+document.querySelectorAll(".js-cta").forEach(function(a){ a.setAttribute("href", CTA_URL); });
+
+/* ===== Reveal on scroll ===== */
+(function(){
+  var els = document.querySelectorAll(".reveal");
+  if(!("IntersectionObserver" in window)){els.forEach(function(e){e.classList.add("in");});return;}
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); } });
+  },{threshold:.12,rootMargin:"0px 0px -8% 0px"});
+  els.forEach(function(e){io.observe(e);});
+})();
+</script>
+
+<!-- ===== Captura de UTM ===== -->
+<script>
+document.addEventListener("DOMContentLoaded", (() => {
+    document.querySelectorAll("a").forEach((e => {
+        e.getAttribute("href")?.includes("#") || (
+            e.getAttribute("href")?.includes("?")
+            ? e.setAttribute("href", e.getAttribute("href") + window.location.search.replace("?", "&"))
+            : e.getAttribute("href")
+            ? e.setAttribute("href", e.getAttribute("href") + window.location.search)
+            : ""
+        );
+    }));
+}));
+</script>
+</body>
+</html>
