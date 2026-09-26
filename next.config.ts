@@ -1,7 +1,17 @@
 import type { NextConfig } from "next";
 
+// Sistemas internos publicados em /nome-do-sistema: cada um é um projeto Vercel próprio,
+// repassado por rewrite (o endereço continua sendo o deste site).
+const SQUAD = "https://squad-copy-netaniasdeusefiel-5381s-projects.vercel.app";
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  async redirects() {
+    return [{ source: "/squad", destination: "/squad/organograma-squad.html", permanent: false }];
+  },
+  async rewrites() {
+    return [{ source: "/squad/:path+", destination: `${SQUAD}/:path+` }];
+  },
 };
 
 export default nextConfig;
