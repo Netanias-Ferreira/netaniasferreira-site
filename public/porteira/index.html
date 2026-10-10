@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Convite Fechado — O Melhor Cliente do Seu Mercado | Netanias Ferreira</title>
+<meta name="description" content="O anúncio virou a porteira. Ele decide quem entra na sua agenda. Arquitetura do Criativo High Ticket — demanda qualificada todo dia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --carvao:#2B2B2B;
+    --terracota:#B8584B;
+    --terracota-escuro:#944839;
+    --offwhite:#FAF7F2;
+    --cinza:#9A9490;
+    --linha:rgba(43,43,43,.12);
+    --maxw:720px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:var(--offwhite);
+    color:var(--carvao);
+    line-height:1.6;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+    font-size:17px;
+    overflow-x:hidden;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  section{padding:46px 0}
+  p{margin-bottom:18px}
+  strong{font-weight:700}
+  em{font-style:italic;color:var(--cinza)}
+
+  /* monograma discreto */
+  .topbar{padding:26px 0 0}
+  .mono{width:38px;height:38px;border-radius:8px;display:block}
+
+  /* hero */
+  .hero{padding:34px 0 40px;border-bottom:1px solid var(--linha)}
+  .hero h1{
+    font-size:clamp(28px,7vw,46px);
+    font-weight:800;
+    line-height:1.12;
+    letter-spacing:-.02em;
+    color:var(--carvao);
+    margin-bottom:22px;
+  }
+  .hero h1 b{color:var(--terracota)}
+  .hero .note{
+    font-style:italic;
+    color:var(--cinza);
+    font-size:16px;
+    line-height:1.55;
+    border-left:3px solid var(--terracota);
+    padding-left:16px;
+  }
+
+  /* divisória */
+  .rule{height:1px;background:var(--linha);max-width:var(--maxw);margin:0 auto}
+  .lead-first::first-letter{}
+
+  h2.block-title{
+    font-size:clamp(21px,4.4vw,27px);
+    font-weight:700;
+    letter-spacing:-.01em;
+    line-height:1.25;
+    margin-bottom:24px;
+  }
+  .kicker{
+    display:inline-block;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--terracota);
+    margin-bottom:14px;
+  }
+  .punch{font-size:clamp(20px,4.6vw,26px);font-weight:700;line-height:1.3}
+
+  /* pilares */
+  .pilares{display:grid;gap:16px;margin:30px 0 8px}
+  .pilar{
+    background:#fff;
+    border:1px solid var(--linha);
+    border-radius:14px;
+    padding:24px 24px 26px;
+    border-top:4px solid var(--terracota);
+  }
+  .pilar .num{
+    font-size:14px;font-weight:800;letter-spacing:.1em;
+    color:var(--terracota);display:block;margin-bottom:8px;
+  }
+  .pilar .nome{font-size:20px;font-weight:700;margin-bottom:8px;display:block}
+  .pilar .desc{color:var(--carvao);opacity:.85;font-size:16px}
+  .base-note{
+    margin-top:26px;background:var(--carvao);color:var(--offwhite);
+    border-radius:14px;padding:26px 26px;
+  }
+  .base-note strong{color:#fff}
+  .base-note p{margin-bottom:12px}
+  .base-note p:last-child{margin-bottom:0}
+
+  /* você diz / aconselho */
+  .vd{margin:26px 0;border-left:3px solid var(--linha);padding-left:0}
+  .vd-item{margin-bottom:34px}
+  .vd-say{
+    background:#fff;border:1px solid var(--linha);border-radius:12px;
+    padding:18px 20px;font-style:italic;color:var(--carvao);
+    font-size:17px;position:relative;
+  }
+  .vd-say .tag,.vd-ans .tag{
+    display:block;font-style:normal;font-size:12px;font-weight:700;
+    letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px;color:var(--cinza);
+  }
+  .vd-ans{padding:18px 20px 4px 20px}
+  .vd-ans .tag{color:var(--terracota)}
+  .vd-ans p:last-child{margin-bottom:6px}
+  .vd-arrow{
+    text-align:center;color:var(--terracota);font-size:22px;
+    line-height:1;margin:6px 0;font-weight:700;
+  }
+
+  /* bullets negativos */
+  .nega{list-style:none;margin:8px 0}
+  .nega li{
+    font-size:clamp(17px,3.6vw,20px);font-weight:600;line-height:1.4;
+    padding:16px 0 16px 30px;border-bottom:1px solid var(--linha);position:relative;
+  }
+  .nega li:last-child{
+    border-bottom:none;color:var(--terracota-escuro);font-weight:700;
+  }
+  .nega li::before{
+    content:"";position:absolute;left:0;top:24px;width:14px;height:2px;background:var(--cinza);
+  }
+  .nega li:last-child::before{background:var(--terracota);width:16px;height:3px;top:26px}
+
+  /* plano list */
+  .plano{list-style:none;margin:10px 0;display:grid;gap:14px}
+  .plano li{
+    background:#fff;border:1px solid var(--linha);border-radius:12px;
+    padding:18px 20px;font-size:16px;
+  }
+  .plano li strong{color:var(--terracota-escuro)}
+
+  /* fases timeline */
+  .fases{position:relative;margin:30px 0 8px;padding-left:34px}
+  .fases::before{
+    content:"";position:absolute;left:11px;top:6px;bottom:6px;width:2px;background:var(--linha);
+  }
+  .fase{position:relative;margin-bottom:28px}
+  .fase:last-child{margin-bottom:0}
+  .fase .dot{
+    position:absolute;left:-34px;top:2px;width:24px;height:24px;border-radius:50%;
+    background:var(--offwhite);border:2px solid var(--cinza);
+    display:flex;align-items:center;justify-content:center;
+    font-size:11px;font-weight:800;color:var(--cinza);transition:all .5s ease;
+  }
+  .fase.lit .dot{background:var(--terracota);border-color:var(--terracota);color:#fff}
+  .fase .fnome{font-size:19px;font-weight:700;margin-bottom:6px}
+  .fase .fdesc{font-size:16px;opacity:.85}
+
+  /* proposta */
+  .proposta{background:var(--carvao);color:var(--offwhite)}
+  .proposta .wrap{padding-top:46px;padding-bottom:46px}
+  .proposta h2{color:#fff}
+  .proposta strong{color:#fff}
+  .proposta em{color:#c9c3bd}
+  .proposta .punch{color:var(--terracota);font-size:clamp(19px,4.4vw,24px)}
+
+  /* prova */
+  .prova .kicker{margin-bottom:18px}
+  .cases{display:grid;gap:18px;margin-top:8px}
+  .case{
+    background:#fff;border:1px solid var(--linha);border-radius:14px;
+    padding:24px;border-left:4px solid var(--terracota);
+  }
+  .case .nome{font-weight:700;font-size:17px;margin-bottom:8px;color:var(--terracota-escuro)}
+  .case p{font-size:16px;margin-bottom:0}
+  .quote{
+    margin-top:14px;padding-top:14px;border-top:1px solid var(--linha);
+    font-style:italic;color:var(--carvao);font-size:16px;
+  }
+  .quote cite{display:block;font-style:normal;font-size:13px;color:var(--cinza);margin-top:8px;font-weight:600}
+  .print{
+    margin-top:14px;display:block;width:100%;max-width:300px;height:auto;
+    border-radius:14px;border:1px solid var(--linha);
+    box-shadow:0 10px 30px rgba(43,43,43,.12);
+  }
+  .print-cap{display:block;font-size:12px;color:var(--cinza);margin-top:8px;font-weight:600}
+
+  /* cta final */
+  .cta{text-align:center;padding-bottom:70px}
+  .cta .big{font-size:clamp(23px,5.2vw,32px);font-weight:800;line-height:1.2;margin-bottom:14px;letter-spacing:-.01em}
+  .cta p{max-width:560px;margin-left:auto;margin-right:auto}
+  .btn{
+    display:inline-block;margin-top:14px;background:var(--terracota);color:#fff;
+    font-weight:700;font-size:18px;text-decoration:none;padding:20px 40px;
+    border-radius:60px;letter-spacing:.01em;transition:background .2s ease,transform .2s ease;
+    box-shadow:0 10px 30px rgba(184,88,75,.28);min-height:48px;
+  }
+  .btn:hover,.btn:focus-visible{background:var(--terracota-escuro);transform:translateY(-2px)}
+  .btn:focus-visible{outline:3px solid var(--carvao);outline-offset:3px}
+
+  /* motion base */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+  .vd-ans.reveal{transform:translateY(14px)}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .reveal{opacity:1!important;transform:none!important;transition:none!important}
+    .fase .dot{transition:none!important}
+    .btn{transition:none!important}
+  }
+  @media(min-width:680px){
+    .pilares{grid-template-columns:repeat(3,1fr)}
+    .cases{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <h1 class="reveal"><b>CONVITE FECHADO:</b> O MELHOR CLIENTE DO SEU MERCADO</h1>
+    <p class="note reveal">(O único problema quando esse plano começar a gerar resultado vai ser o volume de leads qualificados que vai chegar na sua base; você vai ter que aumentar o time comercial pra atender a todos)</p>
+  </div>
+</header>
+
+<!-- CARTA ABERTURA -->
+<section>
+  <div class="wrap">
+    <p class="reveal">Caro leitor 🙂</p>
+    <p class="reveal">Você já é bom no que faz.</p>
+    <p class="reveal">Não sei se você é mentor, consultor, dono de agência ou prestador de serviços.</p>
+    <p class="reveal"><strong>Mas de uma coisa eu sei:</strong> você tem bagagem, tem case, fecha venda de R$3 mil, R$10 mil, R$30 mil quando o cara certo senta na sua frente.</p>
+    <p class="reveal">O verdadeiro problema não está no funil… mas em quem chega até a call.</p>
+    <p class="reveal">Sua agenda enche de reunião e o caixa não acompanha.</p>
+    <p class="reveal">Você faz cinco diagnósticos na semana, sai de todos suado, e três eram curiosos sem dinheiro perguntando "quanto custa" pra sumir.</p>
+    <p class="reveal">Você gasta R$10, R$15 mil por mês no Meta pra lotar a agenda de gente que nunca foi comprar nada.</p>
+    <p class="reveal punch" style="color:var(--terracota)">Isso acaba hoje.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- MECANISMO + PILARES -->
+<section>
+  <div class="wrap">
+    <p class="reveal">Eu escrevo anúncio de high ticket há tempo o bastante pra saber uma coisa que quase ninguém no seu mercado entende: <strong>o cliente caro não se conquista na call.</strong></p>
+    <p class="reveal">Você ganha ou perde ele na copy do anúncio, antes de ele clicar.</p>
+    <p class="reveal">Desde que o Meta passou a ler o próprio criativo pra decidir pra quem entregar, quem escolhe o seu lead não é mais o interesse que você marcou no gerenciador.</p>
+    <p class="reveal"><strong>O anúncio virou a porteira.</strong> Ele decide quem entra na sua agenda.</p>
+    <p class="reveal">A maioria deixa a porteira escancarada e depois reclama do gado que entrou.</p>
+    <p class="reveal">O que eu faço tem nome: <strong>Arquitetura do Criativo High Ticket</strong>.</p>
+    <p class="reveal">Três pilares sobre uma base só.</p>
+
+    <div class="pilares">
+      <div class="pilar reveal">
+        <span class="num">01</span>
+        <span class="nome">Brecha Psicológica</span>
+        <span class="desc">a fresta exata na cabeça do seu cliente maduro por onde a mensagem entra.</span>
+      </div>
+      <div class="pilar reveal">
+        <span class="num">02</span>
+        <span class="nome">Mensagem Magnética</span>
+        <span class="desc">a copy que puxa quem tem caixa e empurra quem não tem.</span>
+      </div>
+      <div class="pilar reveal">
+        <span class="num">03</span>
+        <span class="nome">Anúncios Unicórnios</span>
+        <span class="desc">o formato e o gancho que fazem a peça rodar meses sem você mexer.</span>
+      </div>
+    </div>
+
+    <div class="base-note reveal">
+      <p>Tudo assentado na <strong>Linguagem de Operação Madura</strong>: a forma de falar que funciona como ímã pro profissional de verdade e repelente pro iniciante que ia travar a sua agenda.</p>
+      <p>Metade é copy. A outra metade é formato e gancho.</p>
+      <p>Quem cuida só de uma das metades entrega anúncio que morre em três dias.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- VOCÊ DIZ / ACONSELHO -->
+<section>
+  <div class="wrap">
+    <div class="vd">
+
+      <div class="vd-item">
+        <div class="vd-say reveal"><span class="tag">Você diz</span>"Minha agenda tá cheia e nenhum fecha a consultoria de 15 mil."</div>
+        <div class="vd-arrow reveal" aria-hidden="true">↓</div>
+        <div class="vd-ans reveal"><span class="tag">O que eu aconselho</span>
+          <p>ajuste a porta da sua agenda pra impedir o lead curioso e quebrado de lotar ela.</p>
+          <p>Troca o gancho que atrai curioso por uma frase que o leigo não entende e o maduro reconhece como dele.</p>
+          <p>A agenda afina e engrossa de caixa ao mesmo tempo.</p>
+        </div>
+      </div>
+
+      <div class="vd-item">
+        <div class="vd-say reveal"><span class="tag">Você diz</span>"Toda vez que o custo sobe, eu troco o funil inteiro e começo do zero."</div>
+        <div class="vd-arrow reveal" aria-hidden="true">↓</div>
+        <div class="vd-ans reveal"><span class="tag">O que eu aconselho</span>
+          <p>pare de medir o CPL e passe a medir custo por reunião qualificada que de fato aconteceu.</p>
+          <p>Você descobre que o funil tava certo. Era a frase dos 5 segundos que tava deixando o portão aberto.</p>
+        </div>
+      </div>
+
+      <div class="vd-item">
+        <div class="vd-say reveal"><span class="tag">Você diz</span>"Me falaram que é só jogar num prompt de IA e sai anúncio pronto."</div>
+        <div class="vd-arrow reveal" aria-hidden="true">↓</div>
+        <div class="vd-ans reveal"><span class="tag">O que eu aconselho</span>
+          <p>nenhum prompt entrega uma estratégia completa de <em>Teste, Validação e Escala</em>, com roteiros de copy que fazem o melhor cliente do seu mercado ver em você a melhor chance dele solucionar o problema.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- BULLETS NEGATIVOS -->
+<section>
+  <div class="wrap">
+    <ul class="nega">
+      <li class="reveal">VOCÊ NÃO PRECISA DE MAIS AULA.</li>
+      <li class="reveal">NÃO É AGÊNCIA QUE TROCA SEU FUNIL A CADA SEGUNDA.</li>
+      <li class="reveal">NEM DE UMA NOVA MENTORIA DE MARKETING…</li>
+      <li class="reveal">A PORTA DA SUA AGENDA É QUE PRECISA DE UM AJUSTE PRA NÃO DEIXAR MAIS QUALQUER UM PASSAR POR ELA.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PORTEIRA CALIBRADA -->
+<section>
+  <div class="wrap">
+    <p class="reveal">Toda vez que o seu custo por reunião sobe e bate aquele aperto de "lá vamos nós de novo", a porteira já tá calibrada.</p>
+    <p class="reveal punch">O anúncio continua filtrando.</p>
+    <p class="reveal">Entra quem tem caixa, some quem só queria saber o preço.</p>
+    <p class="reveal">Você acorda, olha o direct com três conversas de gente pronta e volta a fazer o que você faz de melhor: fechar.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- O QUE ENTRA -->
+<section>
+  <div class="wrap">
+    <h2 class="block-title reveal">O que entra com esse novo plano:</h2>
+    <ul class="plano">
+      <li class="reveal"><strong>O anúncio high ticket construído do zero</strong> sobre os três pilares, calibrado pra puxar MQL todo dia em vez de lead barato.</li>
+      <li class="reveal"><strong>A Linguagem de Operação Madura aplicada à sua oferta</strong> — a sua forma de falar virando ímã, não panfleto.</li>
+      <li class="reveal"><strong>A leitura da porteira</strong> — qual frase dos seus 5 segundos tá deixando o curioso entrar, e a troca cirúrgica que fecha o portão sem derrubar o volume.</li>
+      <li class="reveal"><strong>Anúncio feito pra durar</strong> — peça que roda meses sem ajuste, não criativo descartável de três dias.</li>
+    </ul>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- FASES -->
+<section>
+  <div class="wrap">
+    <span class="kicker reveal">Como funciona</span>
+    <div class="fases">
+      <div class="fase">
+        <span class="dot">1</span>
+        <div class="fnome reveal">Fase 1: a conversa.</div>
+        <div class="fdesc reveal">A gente senta, eu leio a sua oferta, o seu avatar e o anúncio que você roda hoje. Saio sabendo exatamente onde a porteira tá vazando.</div>
+      </div>
+      <div class="fase">
+        <span class="dot">2</span>
+        <div class="fnome reveal">Fase 2: a arquitetura.</div>
+        <div class="fdesc reveal">Brecha, mensagem e formato montados em cima do seu caixa real, não de teoria.</div>
+      </div>
+      <div class="fase">
+        <span class="dot">3</span>
+        <div class="fnome reveal">Fase 3: a nova porta da sua agenda no ar.</div>
+        <div class="fdesc reveal">O anúncio começa a filtrar. A medida passa a ser reunião qualificada realizada, não CPL.</div>
+      </div>
+      <div class="fase">
+        <span class="dot">4</span>
+        <div class="fnome reveal">Fase 4: a peça que fica de pé.</div>
+        <div class="fdesc reveal">Enquanto o concorrente troca de funil toda semana, o seu anúncio continua rodando e trazendo o cliente certo mês após mês.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROPOSTA -->
+<section class="proposta">
+  <div class="wrap">
+    <p class="reveal"><strong>Minha proposta é muito simples:</strong> o que eu entrego é o lead qualificado chegando no seu funil de vendas todo dia.</p>
+    <p class="reveal">E eu não trabalho com quem ainda acha que anúncio é despesa e vendedor é milagreiro.</p>
+    <p class="reveal">Se você quer alguém que garanta no papel que vai te deixar rico, procura outro, porque esse alguém tá te vendendo mentira.</p>
+    <p class="reveal">Isso aqui é pra quem já fatura, já roda tráfego e só quer parar de entupir a agenda de gente sem caixa.</p>
+    <p class="reveal punch">Se é você, continua lendo.</p>
+  </div>
+</section>
+
+<!-- PROVA / CASES -->
+<section class="prova">
+  <div class="wrap">
+    <div class="cases">
+
+      <div class="case reveal">
+        <div class="nome">Renata Passos</div>
+        <p>A Renata Passos saiu de uma venda de R$3 mil pra R$12 mil por cliente. Eu acelerei em cerca de três meses a chegada dela no primeiro milhão.</p>
+        <img class="print" src="assets/renata-milhao.jpeg" loading="lazy" alt="Mensagem da Renata Passos no WhatsApp: 'Só 5k pra bater 1 milhão'">
+        <span class="print-cap">Renata, a 5k de bater o primeiro milhão.</span>
+      </div>
+
+      <div class="case reveal">
+        <div class="nome">Dr. Thiago Pereira · @drthiagoinvest</div>
+        <p>Com o Dr. Thiago Pereira, em 2025, foi por volta de R$1 milhão em co-atribuição. Teve um post que virou R$10 mil com um anúncio de R$761 por trás.</p>
+        <div class="quote">"Pode confiar. Ele desenvolve um trabalho fundamental para atrair leads qualificados para o seu time comercial."
+          <cite>Dr. Thiago Pereira · @drthiagoinvest</cite>
+        </div>
+        <img class="print" src="assets/thiago-post-10k.jpeg" loading="lazy" alt="Mensagem do Dr. Thiago Pereira: 'saiu uma venda de 10K vinda do anúncio', gastou R$761,72">
+        <span class="print-cap">Uma venda de R$10 mil vinda do anúncio, com R$761 de tráfego.</span>
+      </div>
+
+      <div class="case reveal">
+        <div class="nome">Bluve Nutrition</div>
+        <p>Depois da copy, a Bluve bateu recorde de faturamento agendado: R$ 770 mil em agendamentos num mês, com leads muito mais qualificados.</p>
+        <img class="print" src="assets/bluve-recorde-faturamento.jpeg" loading="lazy" alt="Mensagem do Caio Lourran no grupo da Bluve: faturamento agendado de R$ 770.992,00, 'é recorde com certeza'">
+        <span class="print-cap">Caio Lourran, da Bluve: "Resultado do mês, é recorde com certeza."</span>
+      </div>
+
+      <div class="case reveal">
+        <div class="nome">Anúncio que dura</div>
+        <p>E tem copy minha rodando há mais de cinco meses sem eu encostar, trazendo aluno todo dia pra escola do meu cliente. Anúncio que dura é anúncio que você não precisa refazer.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- CTA FINAL -->
+<section class="cta">
+  <div class="wrap">
+    <p class="big reveal">A porta da sua agenda tá na sua mão agora.</p>
+    <p class="reveal">Você pode continuar trocando de funil toda vez que o custo sobe, ou pode me mandar uma mensagem e a gente lê junto por onde o curioso tá entrando.</p>
+    <p class="reveal">Me chama no WhatsApp e me conta a sua oferta e quanto você gasta hoje no Meta.</p>
+    <p class="reveal">Na conversa, eu te digo onde a porteira tá vazando e qual é o caminho certo pro seu caso.</p>
+    <p class="reveal"><strong>Clica no botão, manda a mensagem e vamos calibrar a sua porteira.</strong></p>
+    <a class="btn reveal" href="https://wa.me/5585981825194?text=Oi%20Netanias%2C%20quero%20calibrar%20a%20minha%20porteira">Falar com o Netanias no WhatsApp</a>
+  </div>
+</section>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reveals = document.querySelectorAll('.reveal');
+  var fases = document.querySelectorAll('.fase');
+
+  if(reduce || !('IntersectionObserver' in window)){
+    reveals.forEach(function(el){el.classList.add('in')});
+    fases.forEach(function(f){f.classList.add('lit')});
+    return;
+  }
+
+  // stagger por grupo (mesmo pai)
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var el = e.target;
+        var siblings = Array.prototype.filter.call(el.parentElement.children, function(c){return c.classList.contains('reveal')});
+        var idx = siblings.indexOf(el);
+        el.style.transitionDelay = (Math.max(0, idx) * 90) + 'ms';
+        el.classList.add('in');
+        io.unobserve(el);
+      }
+    });
+  }, {threshold:0.15, rootMargin:'0px 0px -8% 0px'});
+  reveals.forEach(function(el){io.observe(el)});
+
+  // fases acendem em sequência
+  var ioF = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('lit'); ioF.unobserve(e.target); }
+    });
+  }, {threshold:0.6});
+  fases.forEach(function(f){ioF.observe(f)});
+})();
+</script>
+
+<!-- captura de UTM -->
+<script>
+document.addEventListener("DOMContentLoaded", (() => {
+    document.querySelectorAll("a").forEach((e => {
+        e.getAttribute("href")?.includes("#") || (
+            e.getAttribute("href")?.includes("?")
+            ? e.setAttribute("href", e.getAttribute("href") + window.location.search.replace("?", "&"))
+            : e.getAttribute("href")
+            ? e.setAttribute("href", e.getAttribute("href") + window.location.search)
+            : ""
+        );
+    }));
+}));
+</script>
+
+</body>
+</html>
