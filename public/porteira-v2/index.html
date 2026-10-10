@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Convite Fechado — O Melhor Cliente do Seu Mercado | Netanias Ferreira</title>
+<meta name="description" content="O anúncio virou a porteira. Ele decide quem entra na sua agenda. Arquitetura do Criativo High Ticket — demanda qualificada todo dia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E0D12;
+    --black:#000000;
+    --paper:#FFFFFF;
+    --mist:#F0F2F2;
+    --gold:#BF9D7F;
+    --gold-soft:#D8C3AC;
+    --green:#1A6524;
+    --green-d:#124a1a;
+    --txt-dark:#EDE9E3;
+    --txt-dark-soft:#B6B1A9;
+    --txt-light:#17161A;
+    --txt-light-soft:#5B5852;
+    --line-dark:rgba(191,157,127,.22);
+    --line-light:rgba(14,13,18,.12);
+    --maxw:1040px;
+    --narrow:720px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Montserrat',system-ui,sans-serif;
+    background:var(--ink);
+    color:var(--txt-light);
+    line-height:1.68;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+    font-size:17px;
+    overflow-x:hidden;
+  }
+  .band{width:100%;padding:86px 0;position:relative}
+  .band>.wrap{position:relative;z-index:2}
+  /* fundo decorativo OPCIONAL (gerado pelo Codex depois). Fallback = cor sólida do brandbook atrás. */
+  .band.dark{background-color:var(--ink);color:var(--txt-dark)}
+  .band.black{background-color:var(--black);color:var(--txt-dark)}
+  .band.light{background-color:var(--paper);color:var(--txt-light)}
+  .band.mist{background-color:var(--mist);color:var(--txt-light)}
+  .bg-deco{position:absolute;inset:0;z-index:1;background-size:cover;background-position:center;background-repeat:no-repeat;opacity:.45;pointer-events:none;mix-blend-mode:screen}
+  .bg-pilares{background-image:url('/porteira-v2/assets/bg-pilares.jpg')}
+  .bg-fases{background-image:url('/porteira-v2/assets/bg-fases.jpg')}
+  .bg-proposta{background-image:url('/porteira-v2/assets/bg-proposta.jpg')}
+  .bg-cta{background-image:url('/porteira-v2/assets/bg-cta.jpg')}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px}
+  .wrap.narrow{max-width:var(--narrow)}
+  p{margin-bottom:20px}
+  .dark p,.black p{color:var(--txt-dark-soft)}
+  .dark p strong,.black p strong{color:var(--txt-dark)}
+  .light p,.mist p{color:var(--txt-light-soft)}
+  .light p strong,.mist p strong{color:var(--txt-light)}
+  strong{font-weight:700}
+  em{font-style:italic}
+  .dark em,.black em{color:var(--gold-soft)}
+  .light em,.mist em{color:var(--txt-light)}
+
+  /* eyebrow dourado */
+  .eyebrow{
+    display:inline-block;font-size:12.5px;font-weight:600;
+    letter-spacing:.34em;text-transform:uppercase;color:var(--gold);
+    margin-bottom:22px;
+  }
+  .eyebrow::before{content:"";display:inline-block;width:26px;height:1px;background:var(--gold);vertical-align:middle;margin-right:12px;opacity:.7}
+
+  h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:700;letter-spacing:-.01em;line-height:1.14}
+  .title{font-size:clamp(28px,5.2vw,46px);margin-bottom:24px}
+  .title.center{text-align:center}
+  .dark .title,.black .title{color:#fff}
+  .gold-ital{font-family:'Playfair Display',serif;font-style:italic;color:var(--gold);font-weight:600}
+  .lead{font-size:clamp(18px,2.4vw,21px);line-height:1.6}
+  .punch{font-family:'Playfair Display',serif;font-weight:700;font-style:italic;
+    font-size:clamp(22px,4.2vw,30px);line-height:1.28;color:var(--gold);margin:4px 0 20px}
+
+  /* HERO */
+  .hero{position:relative;background:var(--black);overflow:hidden;min-height:92vh;display:flex;align-items:center;padding:120px 0 90px}
+  .hero-photo{
+    position:absolute;inset:0;background:url('/porteira-v2/assets/hero-netanias.jpg') no-repeat;
+    background-size:cover;background-position:72% 30%;opacity:.5;
+  }
+  .hero-grad{position:absolute;inset:0;
+    background:
+      radial-gradient(120% 90% at 18% 40%, rgba(0,0,0,.92) 0%, rgba(0,0,0,.72) 42%, rgba(0,0,0,.28) 100%),
+      linear-gradient(180deg, rgba(14,13,18,.6) 0%, rgba(0,0,0,.2) 40%, rgba(0,0,0,.85) 100%);}
+  /* grão: texture-grao.png (Codex) por cima; fallback = ruído SVG inline (sempre funciona) */
+  .hero-grain{position:absolute;inset:0;opacity:.06;pointer-events:none;
+    background-image:
+      url('/porteira-v2/assets/texture-grao.png'),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:cover,120px 120px;}
+  .hero .wrap{position:relative;z-index:2;max-width:960px}
+  .hero-inner{max-width:680px}
+  .hero h1{font-size:clamp(32px,6.6vw,62px);line-height:1.08;color:#fff;margin-bottom:0}
+  .hero h1 .lblk{display:block}
+  .hero h1 .closed{color:var(--gold);font-style:italic;font-weight:600;font-size:.62em;letter-spacing:.02em;display:block;margin-bottom:10px}
+  .hero .note{
+    margin-top:30px;font-family:'Montserrat',sans-serif;font-style:normal;
+    color:var(--txt-dark-soft);font-size:15.5px;line-height:1.6;
+    border-left:2px solid var(--gold);padding-left:18px;max-width:560px;
+  }
+  .hero-cue{margin-top:40px;display:inline-flex;align-items:center;gap:10px;color:var(--gold);font-size:12.5px;letter-spacing:.26em;text-transform:uppercase;font-weight:600}
+  .hero-cue .arw{animation:bob 1.8s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
+
+  /* carta */
+  .para-flow p{font-size:18px}
+  .kill{color:var(--gold);font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:clamp(24px,5vw,34px);margin-top:8px}
+
+  /* PILARES */
+  .pilares{display:grid;gap:22px;margin:52px 0 10px}
+  .pilar{
+    position:relative;background:linear-gradient(180deg,rgba(191,157,127,.08),rgba(191,157,127,.02));
+    border:1px solid var(--line-dark);border-radius:18px;padding:34px 30px 32px;overflow:hidden;
+  }
+  .pilar .ring{position:absolute;top:22px;right:22px;width:46px;height:46px;opacity:.9}
+  .pilar .num{font-family:'Playfair Display',serif;font-weight:800;font-size:46px;color:var(--gold);line-height:1;display:block;margin-bottom:16px}
+  .pilar .pnome{font-family:'Playfair Display',serif;font-weight:700;font-size:23px;color:#fff;margin-bottom:12px;display:block}
+  .pilar .pdesc{color:var(--txt-dark-soft);font-size:16px;line-height:1.6}
+  .base-note{
+    margin-top:30px;border:1px solid var(--line-dark);border-left:3px solid var(--gold);
+    border-radius:16px;padding:30px 32px;background:rgba(0,0,0,.25);
+  }
+  .base-note p{margin-bottom:14px}.base-note p:last-child{margin-bottom:0}
+
+  /* VOCÊ DIZ / ACONSELHO */
+  .vd-item{margin-bottom:40px}
+  .vd-item:last-child{margin-bottom:0}
+  .vd-say{
+    background:var(--paper);border:1px solid var(--line-light);border-radius:16px;
+    padding:22px 24px;font-size:18px;color:var(--txt-light);
+    box-shadow:0 8px 26px rgba(14,13,18,.06);position:relative;
+  }
+  .vd-say .q{font-family:'Playfair Display',serif;font-style:italic;font-size:19px;color:var(--txt-light)}
+  .tag{display:block;font-family:'Montserrat',sans-serif;font-size:11.5px;font-weight:700;
+    letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px}
+  .vd-say .tag{color:var(--txt-light-soft)}
+  .vd-arrow{text-align:center;font-size:26px;line-height:1;margin:14px 0;color:var(--gold);font-weight:700}
+  .vd-ans{padding:4px 24px 0;border-left:2px solid var(--gold);margin-left:4px}
+  .vd-ans .tag{color:var(--green)}
+  .vd-ans p{margin-bottom:12px}.vd-ans p:last-child{margin-bottom:0}
+
+  /* bullets negativos */
+  .nega{list-style:none}
+  .nega li{
+    font-family:'Playfair Display',serif;font-size:clamp(19px,3.4vw,26px);font-weight:600;
+    line-height:1.32;padding:24px 0 24px 44px;border-bottom:1px solid var(--line-dark);position:relative;color:#fff;
+  }
+  .nega li:last-child{border-bottom:none;color:var(--gold)}
+  .nega li::before{content:"";position:absolute;left:0;top:35px;width:22px;height:1px;background:var(--txt-dark-soft)}
+  .nega li:last-child::before{content:"\2192";background:none;top:28px;left:0;color:var(--gold);font-size:22px;width:auto;height:auto;font-family:sans-serif}
+
+  /* plano */
+  .plano{list-style:none;display:grid;gap:16px;margin-top:40px}
+  .plano li{
+    background:var(--paper);border:1px solid var(--line-light);border-radius:14px;
+    padding:22px 24px;font-size:16.5px;color:var(--txt-light-soft);
+    border-left:3px solid var(--gold);
+  }
+  .plano li strong{color:var(--txt-light)}
+
+  /* FASES timeline */
+  .fases{position:relative;margin-top:52px;padding-left:42px}
+  .fases::before{content:"";position:absolute;left:13px;top:8px;bottom:8px;width:1px;background:var(--line-dark)}
+  .fase{position:relative;margin-bottom:38px}
+  .fase:last-child{margin-bottom:0}
+  .fase .dot{
+    position:absolute;left:-42px;top:0;width:28px;height:28px;border-radius:50%;
+    background:var(--ink);border:1px solid var(--line-dark);display:flex;align-items:center;justify-content:center;
+    font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:var(--txt-dark-soft);transition:all .55s ease;
+  }
+  .fase.lit .dot{background:var(--gold);border-color:var(--gold);color:var(--ink);box-shadow:0 0 0 6px rgba(191,157,127,.12)}
+  .fase .fnome{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:8px}
+  .fase .fdesc{color:var(--txt-dark-soft);font-size:16px}
+
+  /* proposta */
+  .proposta .lead{color:var(--txt-dark-soft)}
+
+  /* PROVA / cases */
+  .cases{display:grid;gap:26px;margin-top:48px}
+  .case{
+    background:var(--paper);border:1px solid var(--line-light);border-radius:18px;
+    padding:30px;box-shadow:0 10px 34px rgba(14,13,18,.07);
+  }
+  .case .cnome{font-family:'Playfair Display',serif;font-weight:700;font-size:20px;color:var(--txt-light);margin-bottom:12px}
+  .case .cnome span{display:block;font-family:'Montserrat',sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.08em;color:var(--gold);margin-top:3px}
+  .case p{font-size:16.5px;margin-bottom:0;color:var(--txt-light-soft)}
+  .quote{margin-top:18px;padding:18px 20px;background:var(--mist);border-radius:12px;
+    font-family:'Playfair Display',serif;font-style:italic;font-size:16.5px;color:var(--txt-light)}
+  .quote cite{display:block;font-family:'Montserrat',sans-serif;font-style:normal;font-size:12.5px;color:var(--txt-light-soft);margin-top:10px;font-weight:600}
+  .print{margin-top:18px;display:block;width:100%;max-width:300px;height:auto;border-radius:16px;
+    border:1px solid var(--line-light);box-shadow:0 12px 30px rgba(14,13,18,.14)}
+  .print-cap{display:block;font-size:12.5px;color:var(--txt-light-soft);margin-top:10px;font-weight:500}
+
+  /* MURAL de prova (galeria de prints em stagger) */
+  .mural-head{max-width:720px;margin:64px auto 0;text-align:center}
+  .mural-head .eyebrow::before{display:none}
+  .mural-head .eyebrow{margin-bottom:14px}
+  .mural{max-width:1040px;margin:34px auto 0;display:grid;grid-template-columns:1fr;gap:20px}
+  .mcard{
+    background:var(--paper);border:1px solid var(--line-light);border-radius:16px;overflow:hidden;
+    box-shadow:0 10px 30px rgba(14,13,18,.08);display:flex;flex-direction:column;
+  }
+  .mcard img{display:block;width:100%;height:auto;border-bottom:1px solid var(--line-light)}
+  .mcard .mcap{padding:16px 18px;font-size:14px;line-height:1.45;color:var(--txt-light-soft)}
+  .mcard .mcap b{display:block;font-family:'Playfair Display',serif;font-weight:700;font-size:15.5px;color:var(--txt-light);margin-bottom:4px}
+
+  /* CTA */
+  .cta{text-align:center}
+  .cta .title{margin-bottom:18px}
+  .cta p{max-width:580px;margin-left:auto;margin-right:auto;color:var(--txt-dark-soft)}
+  .cta p strong{color:#fff}
+  .btn{
+    display:inline-flex;align-items:center;gap:12px;margin-top:26px;background:var(--green);color:#fff;
+    font-family:'Montserrat',sans-serif;font-weight:700;font-size:17.5px;text-decoration:none;
+    padding:21px 42px;border-radius:60px;letter-spacing:.01em;min-height:48px;
+    transition:background .2s ease,transform .2s ease,box-shadow .2s ease;
+    box-shadow:0 14px 34px rgba(26,101,36,.34);
+  }
+  .btn:hover,.btn:focus-visible{background:var(--green-d);transform:translateY(-2px);box-shadow:0 18px 40px rgba(26,101,36,.42)}
+  .btn:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+  .btn svg{width:22px;height:22px;flex:none}
+
+  /* motion */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .75s cubic-bezier(.2,.7,.3,1),transform .75s cubic-bezier(.2,.7,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+  .vd-ans.reveal{transform:translateY(16px)}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .reveal{opacity:1!important;transform:none!important;transition:none!important}
+    .fase .dot{transition:none!important}
+    .btn{transition:none!important}
+    .hero-cue .arw{animation:none!important}
+  }
+  @media(min-width:680px){
+    .mural{grid-template-columns:repeat(3,1fr)}
+  }
+  @media(min-width:760px){
+    .pilares{grid-template-columns:repeat(3,1fr)}
+    .band{padding:104px 0}
+    .hero-photo{background-position:78% 28%;opacity:.62}
+    .hero-grad{background:
+      radial-gradient(90% 120% at 10% 50%, rgba(0,0,0,.95) 0%, rgba(0,0,0,.6) 48%, rgba(0,0,0,.08) 100%),
+      linear-gradient(180deg, rgba(14,13,18,.4) 0%, rgba(0,0,0,0) 45%, rgba(0,0,0,.6) 100%);}
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-photo" aria-hidden="true"></div>
+  <div class="hero-grad" aria-hidden="true"></div>
+  <div class="hero-grain" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="hero-inner">
+      <h1 class="reveal">
+        <span class="closed">Convite fechado:</span>
+        <span class="lblk">O melhor cliente</span>
+        <span class="lblk">do seu mercado</span>
+      </h1>
+      <p class="note reveal">(O único problema quando esse plano começar a gerar resultado vai ser o volume de leads qualificados que vai chegar na sua base; você vai ter que aumentar o time comercial pra atender a todos)</p>
+    </div>
+  </div>
+</header>
+
+<!-- CARTA ABERTURA -->
+<section class="band light">
+  <div class="wrap narrow para-flow">
+    <p class="reveal">Caro leitor 🙂</p>
+    <p class="reveal">Você já é bom no que faz.</p>
+    <p class="reveal">Não sei se você é mentor, consultor, dono de agência ou prestador de serviços.</p>
+    <p class="reveal"><strong>Mas de uma coisa eu sei:</strong> você tem bagagem, tem case, fecha venda de R$3 mil, R$10 mil, R$30 mil quando o cara certo senta na sua frente.</p>
+    <p class="reveal">O verdadeiro problema não está no funil… mas em quem chega até a call.</p>
+    <p class="reveal">Sua agenda enche de reunião e o caixa não acompanha.</p>
+    <p class="reveal">Você faz cinco diagnósticos na semana, sai de todos suado, e três eram curiosos sem dinheiro perguntando "quanto custa" pra sumir.</p>
+    <p class="reveal">Você gasta R$10, R$15 mil por mês no Meta pra lotar a agenda de gente que nunca foi comprar nada.</p>
+    <p class="kill reveal">Isso acaba hoje.</p>
+  </div>
+</section>
+
+<!-- MECANISMO + PILARES -->
+<section class="band dark">
+  <div class="bg-deco bg-pilares" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="narrow" style="max-width:720px;margin:0 auto">
+      <p class="reveal lead">Eu escrevo anúncio de high ticket há tempo o bastante pra saber uma coisa que quase ninguém no seu mercado entende: <strong>o cliente caro não se conquista na call.</strong></p>
+      <p class="reveal">Você ganha ou perde ele na copy do anúncio, antes de ele clicar.</p>
+      <p class="reveal">Desde que o Meta passou a ler o próprio criativo pra decidir pra quem entregar, quem escolhe o seu lead não é mais o interesse que você marcou no gerenciador.</p>
+      <p class="reveal punch">O anúncio virou a porteira. Ele decide quem entra na sua agenda.</p>
+      <p class="reveal">A maioria deixa a porteira escancarada e depois reclama do gado que entrou.</p>
+      <p class="reveal">O que eu faço tem nome: <strong>Arquitetura do Criativo High Ticket</strong>.</p>
+      <p class="reveal">Três pilares sobre uma base só.</p>
+    </div>
+
+    <div class="pilares">
+      <div class="pilar reveal">
+        <svg class="ring" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="20" fill="none" stroke="#BF9D7F" stroke-width="1.5" stroke-dasharray="42 84" stroke-linecap="round" opacity=".85"/><circle cx="24" cy="24" r="12" fill="none" stroke="#BF9D7F" stroke-width="1" stroke-dasharray="20 50" opacity=".5"/></svg>
+        <span class="num">01</span>
+        <span class="pnome">Brecha Psicológica</span>
+        <span class="pdesc">a fresta exata na cabeça do seu cliente maduro por onde a mensagem entra.</span>
+      </div>
+      <div class="pilar reveal">
+        <svg class="ring" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="20" fill="none" stroke="#BF9D7F" stroke-width="1.5" stroke-dasharray="70 84" stroke-linecap="round" opacity=".85"/><circle cx="24" cy="24" r="12" fill="none" stroke="#BF9D7F" stroke-width="1" stroke-dasharray="34 50" opacity=".5"/></svg>
+        <span class="num">02</span>
+        <span class="pnome">Mensagem Magnética</span>
+        <span class="pdesc">a copy que puxa quem tem caixa e empurra quem não tem.</span>
+      </div>
+      <div class="pilar reveal">
+        <svg class="ring" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="20" fill="none" stroke="#BF9D7F" stroke-width="1.5" stroke-dasharray="110 84" stroke-linecap="round" opacity=".85"/><circle cx="24" cy="24" r="12" fill="none" stroke="#BF9D7F" stroke-width="1" stroke-dasharray="52 50" opacity=".5"/></svg>
+        <span class="num">03</span>
+        <span class="pnome">Anúncios Unicórnios</span>
+        <span class="pdesc">o formato e o gancho que fazem a peça rodar meses sem você mexer.</span>
+      </div>
+    </div>
+
+    <div class="base-note reveal" style="max-width:720px;margin-left:auto;margin-right:auto">
+      <p>Tudo assentado na <strong>Linguagem de Operação Madura</strong>: a forma de falar que funciona como ímã pro profissional de verdade e repelente pro iniciante que ia travar a sua agenda.</p>
+      <p>Metade é copy. A outra metade é formato e gancho.</p>
+      <p>Quem cuida só de uma das metades entrega anúncio que morre em três dias.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VOCÊ DIZ / ACONSELHO -->
+<section class="band mist">
+  <div class="wrap narrow">
+    <h2 class="title reveal">Você diz <span class="gold-ital">&#8594;</span> o que eu aconselho</h2>
+
+    <div class="vd" style="margin-top:44px">
+      <div class="vd-item">
+        <div class="vd-say reveal"><span class="tag">Você diz</span><span class="q">"Minha agenda tá cheia e nenhum fecha a consultoria de 15 mil."</span></div>
+        <div class="vd-arrow reveal" aria-hidden="true">&#8595;</div>
+        <div class="vd-ans reveal"><span class="tag">O que eu aconselho</span>
+          <p>ajuste a porta da sua agenda pra impedir o lead curioso e quebrado de lotar ela.</p>
+          <p>Troca o gancho que atrai curioso por uma frase que o leigo não entende e o maduro reconhece como dele.</p>
+          <p>A agenda afina e engrossa de caixa ao mesmo tempo.</p>
+        </div>
+      </div>
+
+      <div class="vd-item">
+        <div class="vd-say reveal"><span class="tag">Você diz</span><span class="q">"Toda vez que o custo sobe, eu troco o funil inteiro e começo do zero."</span></div>
+        <div class="vd-arrow reveal" aria-hidden="true">&#8595;</div>
+        <div class="vd-ans reveal"><span class="tag">O que eu aconselho</span>
+          <p>pare de medir o CPL e passe a medir custo por reunião qualificada que de fato aconteceu.</p>
+          <p>Você descobre que o funil tava certo. Era a frase dos 5 segundos que tava deixando o portão aberto.</p>
+        </div>
+      </div>
+
+      <div class="vd-item">
+        <div class="vd-say reveal"><span class="tag">Você diz</span><span class="q">"Me falaram que é só jogar num prompt de IA e sai anúncio pronto."</span></div>
+        <div class="vd-arrow reveal" aria-hidden="true">&#8595;</div>
+        <div class="vd-ans reveal"><span class="tag">O que eu aconselho</span>
+          <p>nenhum prompt entrega uma estratégia completa de <em>Teste, Validação e Escala</em>, com roteiros de copy que fazem o melhor cliente do seu mercado ver em você a melhor chance dele solucionar o problema.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BULLETS NEGATIVOS -->
+<section class="band black">
+  <div class="wrap narrow">
+    <ul class="nega">
+      <li class="reveal">VOCÊ NÃO PRECISA DE MAIS AULA.</li>
+      <li class="reveal">NÃO É AGÊNCIA QUE TROCA SEU FUNIL A CADA SEGUNDA.</li>
+      <li class="reveal">NEM DE UMA NOVA MENTORIA DE MARKETING…</li>
+      <li class="reveal">A PORTA DA SUA AGENDA É QUE PRECISA DE UM AJUSTE PRA NÃO DEIXAR MAIS QUALQUER UM PASSAR POR ELA.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PORTEIRA CALIBRADA -->
+<section class="band light">
+  <div class="wrap narrow para-flow">
+    <p class="reveal">Toda vez que o seu custo por reunião sobe e bate aquele aperto de "lá vamos nós de novo", a porteira já tá calibrada.</p>
+    <p class="reveal punch" style="color:var(--green)">O anúncio continua filtrando.</p>
+    <p class="reveal">Entra quem tem caixa, some quem só queria saber o preço.</p>
+    <p class="reveal">Você acorda, olha o direct com três conversas de gente pronta e volta a fazer o que você faz de melhor: fechar.</p>
+  </div>
+</section>
+
+<!-- O QUE ENTRA -->
+<section class="band mist">
+  <div class="wrap narrow">
+    <h2 class="title reveal">O que entra com esse novo plano</h2>
+    <ul class="plano">
+      <li class="reveal"><strong>O anúncio high ticket construído do zero</strong> sobre os três pilares, calibrado pra puxar MQL todo dia em vez de lead barato.</li>
+      <li class="reveal"><strong>A Linguagem de Operação Madura aplicada à sua oferta:</strong> a sua forma de falar virando ímã, não panfleto.</li>
+      <li class="reveal"><strong>A leitura da porteira:</strong> qual frase dos seus 5 segundos tá deixando o curioso entrar, e a troca cirúrgica que fecha o portão sem derrubar o volume.</li>
+      <li class="reveal"><strong>Anúncio feito pra durar:</strong> peça que roda meses sem ajuste, não criativo descartável de três dias.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- FASES -->
+<section class="band dark">
+  <div class="bg-deco bg-fases" aria-hidden="true"></div>
+  <div class="wrap narrow">
+    <span class="eyebrow reveal">Como funciona</span>
+    <h2 class="title reveal">Da conversa à peça que fica de pé</h2>
+    <div class="fases">
+      <div class="fase">
+        <span class="dot">1</span>
+        <div class="fnome reveal">Fase 1: a conversa.</div>
+        <div class="fdesc reveal">A gente senta, eu leio a sua oferta, o seu avatar e o anúncio que você roda hoje. Saio sabendo exatamente onde a porteira tá vazando.</div>
+      </div>
+      <div class="fase">
+        <span class="dot">2</span>
+        <div class="fnome reveal">Fase 2: a arquitetura.</div>
+        <div class="fdesc reveal">Brecha, mensagem e formato montados em cima do seu caixa real, não de teoria.</div>
+      </div>
+      <div class="fase">
+        <span class="dot">3</span>
+        <div class="fnome reveal">Fase 3: a nova porta da sua agenda no ar.</div>
+        <div class="fdesc reveal">O anúncio começa a filtrar. A medida passa a ser reunião qualificada realizada, não CPL.</div>
+      </div>
+      <div class="fase">
+        <span class="dot">4</span>
+        <div class="fnome reveal">Fase 4: a peça que fica de pé.</div>
+        <div class="fdesc reveal">Enquanto o concorrente troca de funil toda semana, o seu anúncio continua rodando e trazendo o cliente certo mês após mês.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROPOSTA -->
+<section class="band black proposta">
+  <div class="bg-deco bg-proposta" aria-hidden="true"></div>
+  <div class="wrap narrow">
+    <span class="eyebrow reveal">Pra quem é</span>
+    <p class="reveal lead"><strong>Minha proposta é muito simples:</strong> o que eu entrego é o lead qualificado chegando no seu funil de vendas todo dia.</p>
+    <p class="reveal">E eu não trabalho com quem ainda acha que anúncio é despesa e vendedor é milagreiro.</p>
+    <p class="reveal">Se você quer alguém que garanta no papel que vai te deixar rico, procura outro, porque esse alguém tá te vendendo mentira.</p>
+    <p class="reveal">Isso aqui é pra quem já fatura, já roda tráfego e só quer parar de entupir a agenda de gente sem caixa.</p>
+    <p class="reveal punch">Se é você, continua lendo.</p>
+  </div>
+</section>
+
+<!-- PROVA / CASES -->
+<section class="band light">
+  <div class="wrap">
+    <div class="narrow" style="max-width:720px;margin:0 auto">
+      <h2 class="title reveal">Quem já calibrou a porteira</h2>
+    </div>
+    <div class="cases" style="max-width:720px;margin-left:auto;margin-right:auto">
+
+      <div class="case reveal">
+        <div class="cnome">Renata Passos</div>
+        <p>A Renata Passos saiu de uma venda de R$3 mil pra R$12 mil por cliente. Eu acelerei em cerca de três meses a chegada dela no primeiro milhão.</p>
+        <img class="print" src="/porteira-v2/assets/renata-milhao.jpeg" loading="lazy" alt="Mensagem da Renata Passos no WhatsApp: a 5k de bater o primeiro milhão">
+        <span class="print-cap">Renata, a 5k de bater o primeiro milhão.</span>
+      </div>
+
+      <div class="case reveal">
+        <div class="cnome">Dr. Thiago Pereira<span>@drthiagoinvest · especialista em investimentos</span></div>
+        <p>Com o Dr. Thiago Pereira, em 2025, foi por volta de R$1 milhão em co-atribuição. Teve um post que virou R$10 mil com um anúncio de R$761 por trás.</p>
+        <div class="quote">"Pode confiar. Ele desenvolve um trabalho fundamental para atrair leads qualificados para o seu time comercial."
+          <cite>Dr. Thiago Pereira · @drthiagoinvest</cite>
+        </div>
+        <img class="print" src="/porteira-v2/assets/thiago-post-10k.jpeg" loading="lazy" alt="Mensagem do Dr. Thiago Pereira: uma venda de 10K vinda do anúncio, gastou R$761,72">
+        <span class="print-cap">Uma venda de R$10 mil vinda do anúncio, com R$761 de tráfego.</span>
+      </div>
+
+      <div class="case reveal">
+        <div class="cnome">Bluve Nutrition</div>
+        <p>Depois da copy, a Bluve bateu recorde de faturamento agendado: R$ 770 mil em agendamentos num mês, com leads muito mais qualificados.</p>
+        <img class="print" src="/porteira-v2/assets/bluve-recorde-faturamento.jpeg" loading="lazy" alt="Mensagem do Caio Lourran no grupo da Bluve: faturamento agendado de R$ 770.992,00, é recorde">
+        <span class="print-cap">Caio Lourran, da Bluve: "Resultado do mês, é recorde com certeza."</span>
+      </div>
+
+      <div class="case reveal">
+        <div class="cnome">Anúncio que dura</div>
+        <p>E tem copy minha rodando há mais de cinco meses sem eu encostar, trazendo aluno todo dia pra escola do meu cliente. Anúncio que dura é anúncio que você não precisa refazer.</p>
+      </div>
+
+    </div>
+
+    <!-- MURAL de prova (volume) -->
+    <div class="mural-head">
+      <h3 class="title reveal" style="font-size:clamp(23px,4vw,32px)">O print não mente</h3>
+    </div>
+    <div class="mural">
+      <div class="mcard reveal">
+        <img src="/porteira-v2/assets/renata-5x5k-24h.jpeg" loading="lazy" alt="Print: Renata, 5 vendas de R$5 mil em 24 horas">
+        <div class="mcap"><b>Renata Passos</b>5 vendas de R$5 mil em 24 horas.</div>
+      </div>
+      <div class="mcard reveal">
+        <img src="/porteira-v2/assets/thiago-11-calls.jpeg" loading="lazy" alt="Print: Dr. Thiago Pereira, segunda-feira com 11 calls agendadas">
+        <div class="mcap"><b>Dr. Thiago Pereira</b>Segunda-feira com 11 calls de gente qualificada na agenda.</div>
+      </div>
+      <div class="mcard reveal">
+        <img src="/porteira-v2/assets/thiago-ads-5meses.jpeg" loading="lazy" alt="Print: Dr. Thiago Pereira, anúncio rodando 5 meses gerando MQL todo dia">
+        <div class="mcap"><b>Dr. Thiago Pereira</b>Anúncio rodando há 5 meses, trazendo MQL todo dia.</div>
+      </div>
+      <div class="mcard reveal">
+        <img src="/porteira-v2/assets/bluve-roas4.jpeg" loading="lazy" alt="Print: Bluve, ROAS 4 retomado">
+        <div class="mcap"><b>Bluve Nutrition</b>ROAS 4 retomado.</div>
+      </div>
+      <div class="mcard reveal">
+        <img src="/porteira-v2/assets/tobias-recorde.png" loading="lazy" alt="Print: Tobias Kfoury, maio de 2024 foi recorde de faturamento">
+        <div class="mcap"><b>Tobias Kfoury</b>Maio de 2024 foi recorde de faturamento.</div>
+      </div>
+      <div class="mcard reveal">
+        <img src="/porteira-v2/assets/tobias-confianca.jpeg" loading="lazy" alt="Print: Tobias Kfoury, confiança total nas decisões estratégicas do Netanias">
+        <div class="mcap"><b>Tobias Kfoury</b>Confiança total nas decisões estratégicas.</div>
+      </div>
+      <div class="mcard reveal">
+        <img src="/porteira-v2/assets/elvio-16k.jpg" loading="lazy" alt="Print: Elvio, R$16 mil na primeira campanha">
+        <div class="mcap"><b>Elvio</b>R$16 mil já na primeira campanha.</div>
+      </div>
+      <div class="mcard reveal">
+        <img src="/porteira-v2/assets/raphael-triplicou.jpeg" loading="lazy" alt="Print: Raphael Valente, triplicou as vendas do livro físico">
+        <div class="mcap"><b>Raphael Valente</b>Triplicou as vendas do livro físico.</div>
+      </div>
+      <div class="mcard reveal">
+        <img src="/porteira-v2/assets/gettare-ads-conversao.jpeg" loading="lazy" alt="Print: Escola de Exatas, novos anúncios aumentaram a conversão">
+        <div class="mcap"><b>Escola de Exatas</b>Os novos anúncios aumentaram a conversão.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="band dark cta">
+  <div class="bg-deco bg-cta" aria-hidden="true"></div>
+  <div class="wrap narrow">
+    <h2 class="title reveal">A porta da sua agenda tá na sua mão agora.</h2>
+    <p class="reveal">Você pode continuar trocando de funil toda vez que o custo sobe, ou pode me mandar uma mensagem e a gente lê junto por onde o curioso tá entrando.</p>
+    <p class="reveal">Me chama no WhatsApp e me conta a sua oferta e quanto você gasta hoje no Meta.</p>
+    <p class="reveal">Na conversa, eu te digo onde a porteira tá vazando e qual é o caminho certo pro seu caso.</p>
+    <p class="reveal"><strong>Clica no botão, manda a mensagem e vamos calibrar a sua porteira.</strong></p>
+    <a class="btn reveal" href="https://wa.me/5585981825194?text=Oi%20Netanias%2C%20quero%20calibrar%20a%20minha%20porteira">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.03a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.11.82.83-3.03-.2-.31a8.22 8.22 0 0 1-1.26-4.37c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.25 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43-.14-.01-.31-.01-.48-.01-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></svg>
+      Falar com o Netanias no WhatsApp
+    </a>
+  </div>
+</section>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reveals = document.querySelectorAll('.reveal');
+  var fases = document.querySelectorAll('.fase');
+
+  if(reduce || !('IntersectionObserver' in window)){
+    reveals.forEach(function(el){el.classList.add('in')});
+    fases.forEach(function(f){f.classList.add('lit')});
+    return;
+  }
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var el = e.target;
+        var siblings = Array.prototype.filter.call(el.parentElement.children, function(c){return c.classList.contains('reveal')});
+        var idx = siblings.indexOf(el);
+        el.style.transitionDelay = (Math.max(0, idx) * 85) + 'ms';
+        el.classList.add('in');
+        io.unobserve(el);
+      }
+    });
+  }, {threshold:0.14, rootMargin:'0px 0px -7% 0px'});
+  reveals.forEach(function(el){io.observe(el)});
+
+  var ioF = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('lit'); ioF.unobserve(e.target); }
+    });
+  }, {threshold:0.6});
+  fases.forEach(function(f){ioF.observe(f)});
+})();
+</script>
+
+<!-- captura de UTM -->
+<script>
+document.addEventListener("DOMContentLoaded", (() => {
+    document.querySelectorAll("a").forEach((e => {
+        e.getAttribute("href")?.includes("#") || (
+            e.getAttribute("href")?.includes("?")
+            ? e.setAttribute("href", e.getAttribute("href") + window.location.search.replace("?", "&"))
+            : e.getAttribute("href")
+            ? e.setAttribute("href", e.getAttribute("href") + window.location.search)
+            : ""
+        );
+    }));
+}));
+</script>
+
+</body>
+</html>
