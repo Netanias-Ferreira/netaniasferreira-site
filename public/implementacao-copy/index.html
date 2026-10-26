@@ -304,6 +304,10 @@
       url(/implementacao-copy/assets/peao-dinheiro.jpg) left center/cover no-repeat,#a9503f}
     .ab-grid{grid-template-columns:minmax(0,1fr);padding:64px 0 64px 44%}
   }
+  /* LISTAS DO COMPARATIVO: icone fixo + bloco de texto unico (rotulo em negrito flui com o texto) */
+  .xlist li{display:block;position:relative;padding-left:30px}
+  .xlist li .m{position:absolute;left:0;top:2px}
+  .xlist li strong{color:#fff;font-weight:700}
 </style>
 </head>
 <body>
@@ -545,23 +549,6 @@
   </div>
 </section>
 
-<!-- ======== 8. FAQ ======== -->
-<section class="sec">
-  <div class="wrap">
-    <h2 class="sectitle reveal">Perguntas <span class="accent">Importantes</span></h2>
-    <p class="sec-intro reveal">O que costumam me perguntar antes da conversa.</p>
-    <div class="faq">
-      <details class="reveal"><summary>Preciso ter produto criado para entrar?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="ans">Não. A primeira frente da Tríade é exatamente a criação da sua oferta. Você sai com produto estruturado, promessa definida e preço certo.</div></details>
-      <details class="reveal"><summary>Isso é mais uma mentoria?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="ans">Não. É implementação. Você não aprende para executar depois — a gente executa junto, agora, em 7 dias. Eu coloco a mão na massa no seu negócio.</div></details>
-      <details class="reveal"><summary>Funciona para qualquer nicho?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="ans">Se você é especialista que consegue de fato ajudar as pessoas, funciona. Já implementei para médico, consultor financeiro, mentor de carreira, engenheiro, professor, terapeuta, infoprodutor. <em>(Observação: não trabalho com nicho de espiritualidades alternativas como Tarô, Reiki etc. — sou cristão. Você é livre para crer no que quiser, eu para escolher com quem trabalho.)</em></div></details>
-      <details class="reveal"><summary>E se eu não tiver muitos seguidores?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="ans">O Dr. Thiago faturou R$ 950.000 com menos de 20 mil seguidores. Audiência não é nada sem a oferta certa e um funil calibrado com uma copy que atrai leads qualificados todos os dias.</div></details>
-      <details class="reveal"><summary>Qual é o investimento?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="ans">A gente conversa sobre isso no WhatsApp, depois de eu entender o seu momento para apresentar uma proposta personalizada. De todo modo, meus serviços começam pelo ticket de R$ 2.000.</div></details>
-      <details class="reveal"><summary>É muito caro?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="ans">Pense o seguinte: se as minhas copys, nos próximos 12 meses, ajudarem você a ter 100x mais resultados, me diga: é mesmo importante o preço que irá pagar?</div></details>
-      <details class="reveal"><summary>Você fará meus conteúdos?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="ans">NÃO. Eu não sou social media. Embora eu possa contribuir, eu NÃO vou criar uma linha editorial, nem suas pautas de conteúdos, nem escrever roteiros de conteúdos pra você. Não escrevo copy pra funis orgânicos.</div></details>
-    </div>
-  </div>
-</section>
-
 <!-- ======== 9. CTA FINAL ======== -->
 <section class="sec finalcta bgmoney" id="cta-final">
   <div class="glow" aria-hidden="true"></div>
@@ -577,6 +564,24 @@
     </div>
   </div>
 </section>
+
+<!-- ======== 8. FAQ ======== -->
+<section class="sec" style="background:var(--bg)">
+  <div class="wrap">
+    <h2 class="sectitle reveal">Perguntas <span class="accent">Importantes</span></h2>
+    <p class="sec-intro reveal">O que costumam me perguntar antes da conversa.</p>
+    <div class="faq">
+      <details class="reveal"><summary>Preciso ter produto criado para entrar?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="ans">Não. A primeira frente da Tríade é exatamente a criação da sua oferta. Você sai com produto estruturado, promessa definida e preço certo.</div></details>
+      <details class="reveal"><summary>Isso é mais uma mentoria?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="ans">Não. É implementação. Você não aprende para executar depois — a gente executa junto, agora, em 7 dias. Eu coloco a mão na massa no seu negócio.</div></details>
+      <details class="reveal"><summary>Funciona para qualquer nicho?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="ans">Se você é especialista que consegue de fato ajudar as pessoas, funciona. Já implementei para médico, consultor financeiro, mentor de carreira, engenheiro, professor, terapeuta, infoprodutor. <em>(Observação: não trabalho com nicho de espiritualidades alternativas como Tarô, Reiki etc. — sou cristão. Você é livre para crer no que quiser, eu para escolher com quem trabalho.)</em></div></details>
+      <details class="reveal"><summary>E se eu não tiver muitos seguidores?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="ans">O Dr. Thiago faturou R$ 950.000 com menos de 20 mil seguidores. Audiência não é nada sem a oferta certa e um funil calibrado com uma copy que atrai leads qualificados todos os dias.</div></details>
+      <details class="reveal"><summary>Qual é o investimento?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="ans">A gente conversa sobre isso no WhatsApp, depois de eu entender o seu momento para apresentar uma proposta personalizada. De todo modo, meus serviços começam pelo ticket de R$ 2.000.</div></details>
+      <details class="reveal"><summary>É muito caro?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="ans">Pense o seguinte: se as minhas copys, nos próximos 12 meses, ajudarem você a ter 100x mais resultados, me diga: é mesmo importante o preço que irá pagar?</div></details>
+      <details class="reveal"><summary>Você fará meus conteúdos?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="ans">NÃO. Eu não sou social media. Embora eu possa contribuir, eu NÃO vou criar uma linha editorial, nem suas pautas de conteúdos, nem escrever roteiros de conteúdos pra você. Não escrevo copy pra funis orgânicos.</div></details>
+    </div>
+  </div>
+</section>
+
 
 <script>
 (function(){
