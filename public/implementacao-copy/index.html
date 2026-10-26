@@ -224,6 +224,7 @@
   .finalcta p strong{color:#fff}
   .finalcta em{color:var(--terra-lt);font-style:italic}
 
+
   /* ===== reveal ===== */
   .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s,transform .7s}
   .reveal.in{opacity:1;transform:none}
@@ -254,6 +255,53 @@
     .bio{grid-template-columns:300px 1fr;gap:38px}
   }
   @media(min-width:1040px){ .grid6{grid-template-columns:repeat(4,1fr)} }
+
+  /* ===== IMAGENS (v2: padrão visual do modelo) ===== */
+  /* HERO: rei de xadrez de fundo */
+  .hero{padding:24px 0 0}
+  .hero-bg{background:linear-gradient(90deg,#131110 0%,rgba(19,17,16,.88) 32%,rgba(19,17,16,.25) 62%,rgba(19,17,16,0) 100%),
+    linear-gradient(180deg,rgba(19,17,16,.55) 0,rgba(19,17,16,0) 22%,rgba(19,17,16,0) 78%,#131110 100%),
+    url(/implementacao-copy/assets/hero-rei-xadrez.jpg) 78% center/cover no-repeat,#131110}
+  /* mobile: texto em cima, rei de xadrez embaixo (não disputa com o texto) */
+  .hero-bg{background:linear-gradient(180deg,#131110 0%,#131110 50%,rgba(19,17,16,.7) 58%,rgba(19,17,16,0) 74%,rgba(19,17,16,0) 90%,#131110 100%),
+    url(/implementacao-copy/assets/hero-rei-xadrez.jpg) 80% 100%/auto 50% no-repeat,#131110}
+  .hero-grid{grid-template-columns:1fr;padding:26px 0 300px}
+  .hero-grid .btn{margin-top:4px}
+  /* RETRATO no lugar do laptop */
+  .portrait{position:relative;max-width:400px;margin:0 auto}
+  .portrait::before{content:"";position:absolute;inset:8% -8% -2%;z-index:0;border-radius:50%;
+    background:radial-gradient(closest-side,rgba(194,91,73,.38),rgba(194,91,73,0) 72%);filter:blur(8px)}
+  .portrait img{position:relative;z-index:1;width:100%;height:auto;filter:drop-shadow(0 22px 34px rgba(0,0,0,.55))}
+  .portrait .notif{z-index:2}
+  .notif.n1{top:20%;left:-8px}
+  .notif.n2{bottom:12%;right:-8px}
+  /* DIAGRAMA: foto das peças no centro */
+  .dimg{position:relative;order:-1}
+  .dimg img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:50% 55%;border-radius:18px;
+    -webkit-mask-image:radial-gradient(ellipse 78% 78% at 50% 50%,#000 55%,transparent 100%);
+    mask-image:radial-gradient(ellipse 78% 78% at 50% 50%,#000 55%,transparent 100%)}
+  .dimg .lbl{position:absolute;left:50%;bottom:6%;transform:translateX(-50%);font-weight:800;font-size:13px;letter-spacing:.14em;
+    text-transform:uppercase;color:#fff;background:rgba(19,17,16,.72);border:1px solid var(--line);border-radius:30px;padding:7px 16px;white-space:nowrap}
+  /* FAIXA: peão + dinheiro */
+  .accentband{background:linear-gradient(180deg,rgba(169,80,63,0) 0,rgba(169,80,63,0) 120px,#a9503f 196px) top/100% 100% no-repeat,
+    url(/implementacao-copy/assets/peao-dinheiro.jpg) top/100% auto no-repeat,#a9503f}
+  .ab-grid{grid-template-columns:1fr;padding:200px 0 48px}
+  .accentband h2,.accentband p{text-shadow:0 1px 12px rgba(60,20,12,.35)}
+  /* PROCESSO e CTA: fundos com imagem */
+  .sec.bgchart{background:linear-gradient(180deg,#131110 0,rgba(19,17,16,.55) 28%,rgba(19,17,16,.55) 72%,#131110 100%),
+    url(/implementacao-copy/assets/bg-grafico.jpg) center/cover no-repeat,#131110}
+  .sec.bgmoney{background:linear-gradient(180deg,#1A1715 0,rgba(26,23,21,.5) 25%,rgba(26,23,21,.5) 75%,#1A1715 100%),
+    url(/implementacao-copy/assets/bg-dinheiro.jpg) center/cover no-repeat,#1A1715!important}
+  @media(min-width:760px){
+    .hero{padding:24px 0 0}
+    .hero-bg{background-position:center,center,right center,center}
+    .hero-grid{grid-template-columns:minmax(0,600px);padding:40px 0 120px;min-height:560px;align-content:center}
+    .diagram{grid-template-columns:1fr 1.35fr 1fr}
+    .dimg{order:0;grid-row:1}
+    .accentband{background:linear-gradient(90deg,rgba(80,28,18,0) 0,rgba(80,28,18,0) 38%,rgba(80,28,18,.28) 100%),
+      url(/implementacao-copy/assets/peao-dinheiro.jpg) left center/cover no-repeat,#a9503f}
+    .ab-grid{grid-template-columns:minmax(0,1fr);padding:64px 0 64px 44%}
+  }
 </style>
 </head>
 <body>
@@ -269,9 +317,7 @@
       <div>
         <h1 class="reveal">Você é inteligente demais para continuar perdendo dinheiro com um funil que atrai curiosos e <span class="accent">afasta quem pode pagar.</span></h1>
         <p class="sub reveal">Se você é mentor ou consultor, fatura entre R$ 20 mil e R$ 40 mil por mês e já tentou de tudo para chegar nos R$ 100 mil por mês — o problema não é a sua estrutura. <strong>É A SUA COPY.</strong></p>
-      </div>
-      <div class="hero-photo reveal">
-        <img src="/implementacao-copy/assets/hero-netanias.jpg" alt="Netanias Ferreira, Copywriter Estrategista">
+        <a class="btn reveal" href="#cta-final">Agendar diagnóstico</a>
       </div>
     </div>
   </div>
@@ -287,9 +333,8 @@
     </div>
     <div class="pv-grid">
       <div class="mockwrap reveal">
-        <div class="laptop">
-          <div class="screen"><img src="/implementacao-copy/assets/thiago-post-10k.jpeg" alt="Tela mostrando mensagens de vendas no funil"></div>
-          <div class="base"></div>
+        <div class="portrait">
+          <img src="/implementacao-copy/assets/netanias-retrato.webp" width="900" height="1050" loading="lazy" alt="Netanias Ferreira, copywriter estrategista, de braços cruzados">
           <div class="notif n1">
             <span class="play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
             <span><b>Venda realizada</b><span>R$ 5.000,00</span></span>
@@ -330,8 +375,8 @@
         <div class="dcard reveal"><b>Antes do formulário:</b> as pessoas já foram impactadas pela sua narrativa.</div>
         <div class="dcard reveal"><b>Antes da página de obrigado:</b> elas veem um anúncio escrito por você.</div>
       </div>
-      <div class="emblem reveal" aria-hidden="true">
-        <svg viewBox="0 0 150 150"><circle cx="75" cy="75" r="60" fill="none" stroke="#C25B49" stroke-width="1.5" stroke-dasharray="150 90" stroke-linecap="round" opacity=".85"/><circle cx="75" cy="75" r="44" fill="none" stroke="#C25B49" stroke-width="1" stroke-dasharray="70 50" opacity=".5"/><circle cx="75" cy="75" r="26" fill="none" stroke="#C25B49" stroke-width="1" opacity=".3"/></svg>
+      <div class="dimg reveal" aria-hidden="true">
+        <img src="/implementacao-copy/assets/xadrez-pecas.jpg" width="1600" height="900" loading="lazy" alt="">
         <span class="lbl">A sua COPY</span>
       </div>
       <div class="dcards right">
@@ -468,7 +513,7 @@
 </section>
 
 <!-- ======== 7. PROCESSO (5 passos numerados) ======== -->
-<section class="sec">
+<section class="sec bgchart">
   <div class="glow" aria-hidden="true"></div>
   <div class="wrap">
     <p class="procq reveal">Como transformar lead frio em uma pessoa pronta para comprar?</p>
@@ -518,7 +563,7 @@
 </section>
 
 <!-- ======== 9. CTA FINAL ======== -->
-<section class="sec finalcta" id="cta-final" style="background:var(--bg-2)">
+<section class="sec finalcta bgmoney" id="cta-final">
   <div class="glow" aria-hidden="true"></div>
   <div class="wrap">
     <h2 class="reveal">Se <em>já investiu pesado em mentorias e funis, e ainda sente que seu lead qualificado some antes de comprar…</em></h2>
