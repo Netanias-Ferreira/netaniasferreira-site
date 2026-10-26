@@ -15,7 +15,7 @@
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#131110;         /* navy da ref -> carvão escuro */
@@ -313,6 +313,17 @@
   .accentband p:last-child,.bio p:last-child{margin-bottom:0}
   /* autora da citação como subheadline */
   .pv-lead em{font-style:normal;font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase}
+
+  /* ===== RESET DE ATENÇÃO: subheadlines em serifa itálica (quebra o padrão da headline em Inter) ===== */
+  :root{--serif:'Instrument Serif',Georgia,'Times New Roman',serif}
+  .hero .sub,.sec-intro,.procq,.csub,.pv-lead em,.subblue{font-family:var(--serif);font-style:italic;font-weight:400;
+    letter-spacing:0;text-transform:none;line-height:1.3}
+  .hero .sub{font-size:clamp(20px,2.6vw,25px)}
+  .hero .sub strong{font-family:'Inter',system-ui,sans-serif;font-style:normal;font-weight:800;font-size:.8em;letter-spacing:.01em}
+  .sec-intro,.procq{font-size:clamp(19px,2.5vw,24px)}
+  .subblue{font-size:clamp(26px,4.6vw,40px)}
+  .pv-lead em{font-size:clamp(19px,2.4vw,23px)}
+  .csub,.xcard .csub{font-size:16px}
 </style>
 </head>
 <body>
@@ -497,8 +508,7 @@
 <!-- ======== RAZÕES (por que me contratam) ======== -->
 <section class="sec" style="background:var(--bg-2)">
   <div class="wrap">
-    <h2 class="sectitle reveal">Por que negócios que fazem R$ 2.000.000 por ano</h2>
-    <span class="subblue reveal" style="text-align:center">me contratam para escrever a copy deles?</span>
+    <h2 class="sectitle reveal">Por que negócios que fazem mais de R$ 2.000.000 por ano me contratam para escrever a copy em um mundo cheio de IAs?</h2>
     <div class="razoes">
       <div class="razao reveal">
         <span class="rt">Razão 1</span><h3>Inteligência de Mercado</h3>
