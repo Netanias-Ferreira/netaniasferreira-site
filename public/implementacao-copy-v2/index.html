@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Copy que atrai o cliente certo | Netanias Ferreira</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="Pare de perder lead qualificado por causa de uma copy genérica. Netanias Ferreira reescreve a narrativa do seu funil para atrair quem pode pagar.">
+<!--
+  ============================================================
+  V2 (TEMA CLARO) da /implementacao-copy/ para teste A/B interno (noindex).
+  Mesmo texto e mesma ordem da v1; muda só o visual.
+  Assets reaproveitados de /implementacao-copy/assets/ (não duplicar).
+  ============================================================
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     V2 · TEMA CLARO (teste A/B). Base branca/off-white, acento terracota.
+     Imagens escuras viram "painéis premium" arredondados dentro do container.
+     ============================================================ */
+  :root{
+    --bg:#FFFFFF;
+    --bg-2:#FAF7F2;
+    --bg-3:#F3EEE8;
+    --ink:#1A1715;
+    --ink-soft:#6B635C;
+    --terra:#C25B49;       /* acento: títulos grandes, ícones */
+    --terra-ink:#A84C3C;   /* acento p/ texto pequeno em fundo claro (AA 5,5:1) */
+    --terra-lt:#D98A7B;    /* acento em painel escuro */
+    --terra-d:#944839;     /* botão */
+    --terra-dd:#7d3a2f;
+    --dark:#131110;
+    --on-dark:#F3EEE8;
+    --on-dark-soft:#CBC3BB;
+    --line:rgba(26,23,21,.10);
+    --line-dark:rgba(243,238,232,.14);
+    --shadow-sm:0 1px 2px rgba(26,23,21,.05),0 6px 18px rgba(26,23,21,.06);
+    --shadow-md:0 2px 6px rgba(26,23,21,.06),0 18px 40px -8px rgba(26,23,21,.14);
+    --shadow-panel:0 34px 70px -24px rgba(26,23,21,.50),0 12px 28px -6px rgba(26,23,21,.16);
+    --r-panel:26px;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:20px}
+  body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);
+    line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img{max-width:100%;display:block}
+  strong{font-weight:700}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+  .accent{color:var(--terra)}
+  h1,h2,h3{font-weight:800;letter-spacing:-.02em;line-height:1.14}
+  .sec{padding:66px 0;position:relative}
+  .sectitle{font-size:clamp(23px,3.8vw,33px);text-align:center;margin-bottom:12px;color:var(--ink)}
+  .subblue{display:block;color:var(--terra);font-size:clamp(20px,3.4vw,30px);font-weight:800}
+  .sec-intro{text-align:center;max-width:620px;margin:0 auto 10px;color:var(--ink-soft);font-size:15.5px}
+
+  /* glow quente bem leve (no claro só dá temperatura) */
+  .glow{position:absolute;inset:0;pointer-events:none;z-index:0;
+    background:radial-gradient(55% 45% at 80% 18%,rgba(194,91,73,.07),transparent 70%)}
+  .sec>.wrap{position:relative;z-index:1}
+
+  /* ===== BOTÃO PILL ===== */
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--terra-d);color:#fff;font-weight:700;
+    font-size:15px;letter-spacing:.02em;text-decoration:none;padding:17px 32px;border-radius:40px;min-height:48px;
+    box-shadow:0 12px 28px -6px rgba(148,72,57,.45);transition:background .2s,transform .2s,box-shadow .2s}
+  .btn:hover,.btn:focus-visible{background:var(--terra-dd);transform:translateY(-2px);box-shadow:0 16px 34px -6px rgba(148,72,57,.55)}
+  .btn:focus-visible{outline:3px solid var(--terra);outline-offset:3px}
+  .btn svg{width:19px;height:19px;flex:none}
+
+  /* ===== 1. HERO = card escuro arredondado com o rei ===== */
+  .hero{position:relative;background:var(--bg);padding:6px 0 26px}
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 4px 14px}
+  .brand{font-weight:800;letter-spacing:.18em;font-size:13px;text-transform:uppercase;color:var(--ink)}
+  .brand span{color:var(--terra)}
+  .hero-card{position:relative;border-radius:var(--r-panel);overflow:hidden;background:var(--dark);
+    box-shadow:var(--shadow-panel);isolation:isolate}
+  /* mobile: texto em cima, rei embaixo dentro do card */
+  .hero-bg{position:absolute;inset:0;z-index:0;
+    background:linear-gradient(180deg,#131110 0%,rgba(19,17,16,.55) 22%,rgba(19,17,16,0) 45%,rgba(19,17,16,0) 82%,rgba(19,17,16,.85) 100%) center bottom/100% 340px no-repeat,
+      url(/implementacao-copy/assets/hero-rei-xadrez.jpg) 84% 100%/auto 340px no-repeat,#131110}
+  .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr);padding:34px 24px 290px}
+  .hero h1{font-size:clamp(28px,5.6vw,50px);color:#fff;margin-bottom:18px}
+  .hero .sub{color:var(--on-dark-soft);font-size:clamp(15px,2.1vw,18px);max-width:540px;margin-bottom:0}
+  .hero .sub strong{color:#fff}
+  .hero .accent{color:var(--terra-lt)}
+
+  /* ===== 2. PARA VOCÊ QUE (retrato + card 3 itens) ===== */
+  .pv-grid{display:grid;gap:40px;align-items:center;margin-top:34px}
+  .mockwrap{position:relative;padding:10px 6px 10px}
+  .portrait{position:relative;max-width:400px;margin:0 auto}
+  /* painel terracota claro: o recorte "assenta" nele, cabeça sai por cima */
+  .portrait::before{content:"";position:absolute;left:0;right:0;bottom:0;top:20%;z-index:0;border-radius:28px;
+    background:radial-gradient(90% 75% at 50% 100%,rgba(194,91,73,.30),rgba(194,91,73,.10) 62%,rgba(194,91,73,0) 100%),
+      linear-gradient(180deg,#F8ECE6,#F1DDD4);
+    box-shadow:inset 0 0 0 1px rgba(194,91,73,.16),0 24px 50px -24px rgba(148,72,57,.45)}
+  .portrait img{position:relative;z-index:1;width:100%;height:auto;
+    clip-path:inset(0 round 0 0 28px 28px);
+    filter:drop-shadow(0 10px 18px rgba(26,23,21,.16))}
+  .notif{position:absolute;z-index:2;background:#fff;border:1px solid var(--line);border-radius:14px;
+    padding:10px 14px 10px 10px;display:flex;gap:10px;align-items:center;box-shadow:var(--shadow-md);max-width:210px}
+  .notif .play{width:30px;height:30px;border-radius:8px;background:var(--terra-d);flex:none;display:flex;align-items:center;justify-content:center}
+  .notif .play svg{width:13px;height:13px;color:#fff}
+  .notif b{display:block;font-size:12.5px;color:var(--ink);font-weight:700;line-height:1.3}
+  .notif span{display:block;font-size:11px;color:var(--ink-soft)}
+  .notif.n1{top:40%;left:-8px}
+  .notif.n2{bottom:10%;right:-8px}
+  .pv-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:30px 26px;box-shadow:var(--shadow-md)}
+  .pv-card>h2{font-size:clamp(22px,3.6vw,30px);color:var(--ink);margin-bottom:18px}
+  .pv-item{display:flex;gap:14px;padding:16px 0;border-top:1px solid var(--line)}
+  .pv-item:first-of-type{border-top:none}
+  .pv-item .ic{width:26px;height:26px;color:var(--terra);flex:none;margin-top:2px}
+  .pv-item h3{font-size:16.5px;color:var(--terra-ink);margin-bottom:4px}
+  .pv-item p{font-size:14.5px;color:var(--ink-soft);margin:0}
+  .pv-lead{max-width:760px;margin:0 auto 6px;text-align:center;color:var(--ink-soft)}
+  .pv-lead .big{color:var(--ink);font-size:clamp(19px,3.2vw,25px);font-weight:800;display:block;margin-bottom:10px;line-height:1.3}
+  .pv-lead em{color:var(--terra-ink);font-style:normal;font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase}
+
+  /* ===== 3. DIAGRAMA = painel escuro com as peças + cartões em vidro ===== */
+  .diagram{position:relative;margin-top:36px;display:grid;gap:14px;border-radius:var(--r-panel);overflow:hidden;
+    padding:18px 16px 30px;box-shadow:var(--shadow-panel);
+    background:radial-gradient(70% 55% at 50% 30%,rgba(194,91,73,.22),rgba(194,91,73,0) 70%),
+      linear-gradient(180deg,#17120f,#100d0b)}
+  .dcards{display:grid;gap:12px}
+  .dcard{background:rgba(255,255,255,.06);border:1px solid var(--line-dark);border-left:3px solid var(--terra);
+    -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+    border-radius:14px;padding:16px 18px;font-size:14.5px;color:var(--on-dark-soft)}
+  .dcard b{color:#fff;font-weight:700}
+  .dconc{text-align:center;max-width:680px;margin:12px auto 0;color:#fff;font-weight:700;font-size:clamp(16px,2.6vw,20px)}
+  .dimg{position:relative;order:-1}
+  .dimg img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:50% 55%;border-radius:18px;
+    -webkit-mask-image:radial-gradient(closest-side,#000 58%,transparent 100%);
+    mask-image:radial-gradient(closest-side,#000 58%,transparent 100%)}
+  .dimg .lbl{position:absolute;left:50%;bottom:7%;transform:translateX(-50%);font-weight:800;font-size:13px;letter-spacing:.14em;
+    text-transform:uppercase;color:#fff;background:rgba(19,17,16,.72);border:1px solid rgba(194,91,73,.45);border-radius:30px;padding:7px 16px;white-space:nowrap}
+
+  /* ===== 4. CREDIBILIDADE ===== */
+  .grid6{display:grid;gap:26px 24px;margin-top:40px;position:relative}
+  .grid6::before{content:"";position:absolute;top:-16px;left:0;right:0;height:1px;background:var(--line)}
+  .gcol{position:relative}
+  .gcol::before{content:"";position:absolute;top:-19px;left:0;width:7px;height:7px;border-radius:50%;background:var(--terra)}
+  .gcol h3{color:var(--terra-ink);font-size:16px;margin:10px 0 8px}
+  .gcol p{font-size:13.5px;color:var(--ink-soft);margin:0}
+
+  /* ===== PROVA SOCIAL ===== */
+  .cases{display:grid;gap:22px;margin-top:38px;align-items:start}
+  .case{background:#fff;border:1px solid var(--line);border-top:3px solid var(--terra);
+    border-radius:18px;padding:26px 24px;box-shadow:var(--shadow-sm)}
+  .case .cnome{font-weight:800;font-size:18px;color:var(--ink)}
+  .case .ctag{display:block;font-size:11.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--terra-ink);margin:3px 0 13px}
+  .case p{font-size:15px;color:var(--ink-soft);margin:0}
+  .case .quote{margin-top:14px;padding:14px 16px;background:var(--bg-2);border-left:3px solid var(--terra);
+    border-radius:0 12px 12px 0;font-style:italic;font-size:14.5px;color:var(--ink)}
+  .case .quote cite{display:block;font-style:normal;font-size:12px;color:var(--ink-soft);margin-top:7px;font-weight:600}
+  /* prints de WhatsApp (fundo claro): moldura p/ não sumirem no branco */
+  .case .print{margin-top:16px;max-width:280px;width:100%;border-radius:14px;background:#fff;
+    border:1px solid rgba(26,23,21,.14);box-shadow:0 2px 4px rgba(26,23,21,.05),0 14px 30px -10px rgba(26,23,21,.22)}
+  .mural{display:grid;gap:18px;max-width:1000px;margin:34px auto 0}
+  .mcard{background:#fff;border:1px solid rgba(26,23,21,.12);border-radius:16px;overflow:hidden;box-shadow:var(--shadow-md)}
+  .mcard img{width:100%;border-bottom:1px solid var(--line)}
+  .mcard .mcap{padding:12px 16px 14px;font-size:13px;color:var(--ink-soft)}
+  .mcard .mcap b{display:block;color:var(--ink);font-weight:700;font-size:14px;margin-bottom:2px}
+
+  /* ===== 5. FAIXA TERRACOTA = banner arredondado com o peão ===== */
+  .accentband{background:var(--bg);padding:56px 0}
+  .ab-grid{display:grid;grid-template-columns:minmax(0,1fr);align-items:center;border-radius:var(--r-panel);overflow:hidden;
+    box-shadow:var(--shadow-panel);padding:232px 24px 34px;
+    background:linear-gradient(180deg,rgba(169,80,63,0) 0,rgba(169,80,63,0) 150px,#a9503f 250px) 0 0/100% 100% no-repeat,
+      url(/implementacao-copy/assets/peao-dinheiro.jpg) 0 0/max(100%,480px) auto no-repeat,#a9503f}
+  .accentband h2{color:#fff;font-size:clamp(22px,4.2vw,32px);margin-bottom:12px}
+  .accentband p{color:rgba(255,255,255,.95);font-size:15.5px;margin-bottom:1.4em}
+  .accentband p:last-child{margin-bottom:0}
+  .accentband strong{color:#fff}
+  .accentband h2,.accentband p{text-shadow:0 1px 12px rgba(60,20,12,.35)}
+
+  /* ===== 6. COMPARAÇÃO ===== */
+  .xwrap{position:relative;display:grid;gap:22px;margin-top:38px}
+  .xcard{background:#fff;border:1px solid var(--line);border-radius:20px;padding:30px 26px;box-shadow:var(--shadow-sm)}
+  .xcard.neg{border-top:3px solid #7d3a2f;background:#FCFBF9}
+  .xcard.pos{border-top:3px solid var(--terra);box-shadow:var(--shadow-md)}
+  .xcard h3{font-size:17px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);margin-bottom:4px}
+  .xcard .csub{font-size:12.5px;color:var(--ink-soft);margin-bottom:16px}
+  .xlist{list-style:none;display:grid;gap:12px}
+  .xlist li{display:block;position:relative;padding-left:30px;font-size:14.5px;color:var(--ink-soft);line-height:1.45}
+  .xlist li .m{position:absolute;left:0;top:2px;width:19px;height:19px}
+  .xlist li strong{color:var(--ink);font-weight:700}
+  .neg .m{color:#a5452f}.pos .m{color:var(--terra)}
+  .xcard.pos .xlist li{color:var(--ink)}
+  .xbadge{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;
+    background:var(--terra-d);display:flex;align-items:center;justify-content:center;z-index:3;
+    box-shadow:0 10px 22px -4px rgba(148,72,57,.45);border:4px solid #fff}
+  .xbadge svg{width:22px;height:22px;color:#fff}
+
+  /* ===== RAZÕES ===== */
+  .razoes{display:grid;gap:20px;margin-top:38px;align-items:start}
+  .razao{background:#fff;border:1px solid var(--line);border-top:3px solid var(--terra);border-radius:18px;padding:26px 24px;box-shadow:var(--shadow-sm)}
+  .razao .rt{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--terra-ink)}
+  .razao h3{font-size:19px;color:var(--ink);margin:7px 0 12px}
+  .razao p{font-size:14.5px;color:var(--ink-soft);margin-bottom:10px}
+  .razao p:last-child{margin-bottom:0}
+  .razao em{color:var(--terra-ink);font-style:italic}
+
+  /* ===== 7. PROCESSO (claro: bg-grafico substituído por CSS) ===== */
+  .sec.bgchart{background:
+      radial-gradient(50% 60% at 100% 0%,rgba(194,91,73,.07),rgba(194,91,73,0) 70%),
+      radial-gradient(45% 50% at 0% 100%,rgba(194,91,73,.05),rgba(194,91,73,0) 70%),
+      var(--bg)}
+  .procq{text-align:center;color:var(--ink-soft);margin-bottom:4px;font-size:15.5px}
+  .steps{display:grid;gap:16px;margin-top:40px}
+  .step{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;background:#fff;border:1px solid var(--line);
+    border-radius:18px;padding:22px 20px;box-shadow:var(--shadow-sm)}
+  .step .n{font-size:40px;font-weight:900;line-height:.9;color:transparent;-webkit-text-stroke:1.5px var(--terra);
+    font-feature-settings:"tnum"}
+  @supports not ((-webkit-text-stroke:1px #000)){.step .n{color:var(--terra)}}
+  .step h3{font-size:17px;color:var(--ink);margin-bottom:7px}
+  .step p{font-size:14px;color:var(--ink-soft);margin:0}
+
+  /* ===== BIO ===== */
+  .bio{display:grid;gap:28px;align-items:start;background:#fff;border:1px solid var(--line);
+    border-radius:24px;padding:26px;margin-top:10px;box-shadow:var(--shadow-md)}
+  .bio .bp{border-radius:18px;overflow:hidden;max-width:300px;box-shadow:0 18px 36px -14px rgba(26,23,21,.35)}
+  .bio .bp img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:72% 20%}
+  .bio p{font-size:15px;color:var(--ink-soft);margin-bottom:1.4em}
+  .bio p:last-child{margin-bottom:0}
+  .bio strong{color:var(--ink)}
+  .bio .ey{font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--terra-ink);display:block;margin-bottom:12px}
+
+  /* ===== 8. FAQ ===== */
+  .faq{max-width:760px;margin:36px auto 0;display:grid;gap:11px}
+  details{background:#fff;border:1px solid rgba(26,23,21,.12);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm)}
+  details[open]{border-color:rgba(194,91,73,.35)}
+  summary{list-style:none;cursor:pointer;padding:18px 20px;font-weight:700;font-size:15.5px;color:var(--ink);
+    display:flex;justify-content:space-between;gap:14px;align-items:center;min-height:48px}
+  summary::-webkit-details-marker{display:none}
+  summary:focus-visible{outline:3px solid var(--terra);outline-offset:-3px;border-radius:14px}
+  summary .chev{flex:none;width:17px;height:17px;color:var(--terra);transition:transform .25s}
+  details[open] summary .chev{transform:rotate(180deg)}
+  details .ans{padding:0 20px 20px;font-size:14.5px;color:var(--ink-soft)}
+  details .ans em{color:var(--terra-ink)}
+
+  /* ===== 9. CTA FINAL = painel escuro com o fundo de dinheiro ===== */
+  .finalcta{text-align:center}
+  .finalcta h2{font-size:clamp(22px,3.8vw,32px);color:var(--ink);margin-bottom:16px}
+  .finalcta p{max-width:600px;margin:0 auto 14px;color:var(--ink-soft);font-size:15.5px}
+  .finalcta p strong{color:var(--ink)}
+  .finalcta em{color:var(--terra-ink);font-style:italic}
+  .sec.bgmoney{background:var(--bg)}
+  .cpanel{border-radius:var(--r-panel);overflow:hidden;box-shadow:var(--shadow-panel);padding:52px 22px 56px;
+    background:radial-gradient(62% 70% at 50% 50%,rgba(19,17,16,.6),rgba(19,17,16,0) 78%),
+      url(/implementacao-copy/assets/bg-dinheiro.jpg) center/cover no-repeat,#131110}
+  .cpanel h2{color:#fff}
+  .cpanel p{color:var(--on-dark-soft)}
+  .cpanel p strong{color:#fff}
+  .cpanel em{color:var(--terra-lt)}
+  .cpanel .btn:focus-visible{outline-color:var(--terra-lt)}
+
+  /* ===== reveal ===== */
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s,transform .7s}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .reveal{opacity:1!important;transform:none!important;transition:none!important}
+    .btn,summary .chev{transition:none!important}
+  }
+
+  /* ===== TABLET+ ===== */
+  @media(min-width:600px){
+    .hero-bg{background:linear-gradient(180deg,#131110 0%,rgba(19,17,16,.55) 22%,rgba(19,17,16,0) 45%,rgba(19,17,16,0) 82%,rgba(19,17,16,.85) 100%) center bottom/100% 400px no-repeat,
+      url(/implementacao-copy/assets/hero-rei-xadrez.jpg) 84% 100%/auto 400px no-repeat,#131110}
+    .hero-grid{padding:48px 40px 340px}
+  }
+  /* ===== DESKTOP ===== */
+  @media(min-width:760px){
+    .sec{padding:92px 0}
+    .accentband{padding:80px 0}
+    .pv-grid{grid-template-columns:1fr 1fr}
+    .diagram{grid-template-columns:1fr 1.35fr 1fr;align-items:center;gap:22px;padding:34px 30px 38px}
+    .diagram .dcards.left{text-align:right}
+    .diagram .dcards.left .dcard{border-left:1px solid var(--line-dark);border-right:3px solid var(--terra)}
+    .dimg{order:0;grid-row:1;grid-column:2}
+    .diagram .dcards.left{grid-row:1;grid-column:1}
+    .diagram .dcards.right{grid-row:1;grid-column:3}
+    .dconc{grid-column:1/-1}
+    .grid6{grid-template-columns:repeat(3,1fr)}
+    .cases{grid-template-columns:1fr 1fr}
+    .mural{grid-template-columns:repeat(3,1fr)}
+    .ab-grid{padding:64px 48px 64px 44%;
+      background:linear-gradient(90deg,rgba(80,28,18,0) 0,rgba(80,28,18,0) 36%,rgba(80,28,18,.42) 100%),
+        url(/implementacao-copy/assets/peao-dinheiro.jpg) left center/cover no-repeat,#a9503f}
+    .xwrap{grid-template-columns:1fr 1fr;gap:30px}
+    .razoes{grid-template-columns:repeat(3,1fr)}
+    .steps{grid-template-columns:repeat(6,1fr);gap:20px}
+    .step{grid-column:span 2}
+    .step:nth-child(4){grid-column:2/span 2}
+    .bio{grid-template-columns:300px 1fr;gap:40px;padding:34px}
+    .cpanel{padding:80px 48px}
+    .notif.n1{left:-40px;top:24%}
+    .notif.n2{right:-24px}
+  }
+  /* hero lado a lado só quando há largura p/ texto + rei sem disputa */
+  @media(min-width:960px){
+    .hero{padding:8px 0 40px}
+    .hero-bg{background:linear-gradient(90deg,#131110 0%,rgba(19,17,16,.92) 30%,rgba(19,17,16,.4) 56%,rgba(19,17,16,0) 78%),
+      linear-gradient(180deg,rgba(19,17,16,.35) 0,rgba(19,17,16,0) 25%,rgba(19,17,16,0) 75%,rgba(19,17,16,.5) 100%),
+      url(/implementacao-copy/assets/hero-rei-xadrez.jpg) 78% center/cover no-repeat,#131110}
+    .hero-grid{grid-template-columns:minmax(0,580px);padding:72px 64px;min-height:540px;align-content:center}
+  }
+  @media(min-width:1040px){ .grid6{grid-template-columns:repeat(4,1fr)} }
+</style>
+</head>
+<body>
+
+<!-- ======== 1. HERO ======== -->
+<header class="hero">
+  <div class="wrap">
+    <div class="topbar">
+      <span class="brand">Netanias<span>.</span> Ferreira</span>
+    </div>
+    <div class="hero-card">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-grid">
+      <div>
+        <h1 class="reveal">Você é inteligente demais para continuar perdendo dinheiro com um funil que atrai curiosos e <span class="accent">afasta quem pode pagar.</span></h1>
+        <p class="sub reveal">Se você é mentor ou consultor, fatura entre R$ 20 mil e R$ 40 mil por mês e já tentou de tudo para chegar nos R$ 100 mil por mês — o problema não é a sua estrutura. <strong>É A SUA COPY.</strong></p>
+      </div>
+    </div>
+    </div>
+  </div>
+</header>
+
+<!-- ======== 2. PARA VOCÊ QUE (laptop + card 3 itens) ======== -->
+<section class="sec" style="background:var(--bg-2)">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="pv-lead reveal">
+      <span class="big">"Comunicação não é o que você fala, mas o que o outro compreende do que foi dito."</span>
+      <em>Claudia Belucci</em>
+    </div>
+    <div class="pv-grid">
+      <div class="mockwrap reveal">
+        <div class="portrait">
+          <img src="/implementacao-copy/assets/netanias-retrato.webp" width="900" height="1050" loading="lazy" alt="Netanias Ferreira, copywriter estrategista, de braços cruzados">
+          <div class="notif n1">
+            <span class="play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+            <span><b>Venda realizada</b><span>R$ 5.000,00</span></span>
+          </div>
+          <div class="notif n2">
+            <span class="play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+            <span><b>Venda realizada</b><span>R$ 10.000,00</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="pv-card reveal">
+        <h2>Isto é pra você que já tentou de tudo:</h2>
+        <div class="pv-item">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0Z"/><path d="M8 12l2.5 2.5L16 9"/></svg>
+          <div><h3>Já contratou gestor de tráfego</h3><p>e o mês fecha com faturamento instável mesmo assim.</p></div>
+        </div>
+        <div class="pv-item">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg>
+          <div><h3>Já montou equipe comercial</h3><p>mas as conversas com leads de alto valor se tornaram raras.</p></div>
+        </div>
+        <div class="pv-item">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6 4.4 2.3 7.2-6.3-4.6L5.7 21 8 13.8 2 9.4h7.6Z"/></svg>
+          <div><h3>Já fez mentoria com algum guru</h3><p>do mercado digital… e sente que algo está errado, mas não sabe o quê.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== 3. DIAGRAMA (o que determina a qualidade do lead) ======== -->
+<section class="sec">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <h2 class="sectitle reveal">O que exatamente determina a <span class="accent">qualidade dos seus leads</span></h2>
+    <p class="sec-intro reveal">O lead NUNCA chega no seu comercial ou no seu Pixel sem antes ter contato com a sua COPY. Quem determina a qualidade da sua agenda é a narrativa.</p>
+    <div class="diagram">
+      <div class="dcards left">
+        <div class="dcard reveal"><b>Antes do formulário:</b> as pessoas já foram impactadas pela sua narrativa.</div>
+        <div class="dcard reveal"><b>Antes da página de obrigado:</b> elas veem um anúncio escrito por você.</div>
+      </div>
+      <div class="dimg reveal" aria-hidden="true">
+        <img src="/implementacao-copy/assets/xadrez-pecas.jpg" width="1600" height="900" loading="lazy" alt="">
+        <span class="lbl">A sua COPY</span>
+      </div>
+      <div class="dcards right">
+        <div class="dcard reveal"><b>Antes do closer:</b> ela assistiu a um vídeo de vendas ou participou de um webinário.</div>
+        <div class="dcard reveal"><b>Resultado:</b> quanto mais leads ruins você atrai, mais o pixel aprende que "aquele" é o seu cliente ideal.</div>
+      </div>
+      <p class="dconc reveal">Quem determina a QUALIDADE dos seus leads é a narrativa, e ponto final.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======== 4. GRID 6 (credibilidade) + PROVA SOCIAL ======== -->
+<section class="sec" style="background:var(--bg-2)">
+  <div class="wrap">
+    <h2 class="sectitle reveal">Nos últimos 4 anos, trabalhei exclusivamente com</h2>
+    <span class="subblue reveal" style="text-align:center;margin-bottom:10px">mentores, consultores e infoprodutores</span>
+    <p class="sec-intro reveal">Em 100% dos casos, eles já tinham tudo. Faltava um braço estratégico na copy: o coração das vendas de todo negócio de sucesso.</p>
+    <div class="grid6">
+      <div class="gcol reveal"><h3>Tobias Kfoury</h3><p>Maior consultor de gestão em saúde da América Latina, autor de 5 livros.</p></div>
+      <div class="gcol reveal"><h3>Dr. Thiago Pereira</h3><p>Médico e especialista em finanças, autor de "Manual de Finanças para Médicos".</p></div>
+      <div class="gcol reveal"><h3>Renata Passos</h3><p>Mentora com meta de R$ 1 milhão batida (plaquinha Eduzz), autora de 2 livros.</p></div>
+      <div class="gcol reveal"><h3>Thiago Siqueira</h3><p>Gestor patrimonial de profissionais de alta renda.</p></div>
+      <div class="gcol reveal"><h3>Bluve Nutrition</h3><p>Empresa de nutracêuticos que faz 7 dígitos por ano.</p></div>
+      <div class="gcol reveal"><h3>Eduardo Lopes</h3><p>Consultor de Finanças e Investimentos.</p></div>
+      <div class="gcol reveal"><h3>A Escola de Exatas</h3><p>A maior referência no mercado de concursos na área de Exatas (7 dígitos/ano).</p></div>
+      <div class="gcol reveal"><h3>Outros</h3><p>Que, por contrato, prefiro não citar publicamente…</p></div>
+    </div>
+
+    <h3 class="sectitle reveal" style="margin-top:64px">Pessoas que confiaram em mim para <span class="accent">reconquistar os Leads Qualificados</span></h3>
+    <div class="cases">
+      <div class="case reveal">
+        <div class="cnome">Renata Passos</div><span class="ctag">Mentora de liderança e carreira</span>
+        <p>Ela parou de vender 20 anos de experiência por R$ 2 mil e começou a vender por R$ 5, R$ 8, R$ 12 mil.</p>
+        <div class="quote">"Trabalhei metade do que trabalhava e ganhei mais do que ganhava. Netanias chegou pra me ajudar a enxergar o grande valor que eu tinha."<cite>Renata Passos</cite></div>
+        <img class="print" src="/implementacao-copy/assets/renata-5x5k-24h.jpeg" loading="lazy" alt="Print: Renata, 5 vendas de R$ 5 mil em 24 horas">
+      </div>
+      <div class="case reveal">
+        <div class="cnome">Dr. Thiago Pereira</div><span class="ctag">@drthiagoinvest · médico e expert em finanças</span>
+        <p>Anúncios que estão ativos por 3, 5, 12 meses seguidos gerando leads qualificados.</p>
+        <img class="print" src="/implementacao-copy/assets/thiago-post-10k.jpeg" loading="lazy" alt="Print: venda de R$ 10 mil vinda de um anúncio de R$ 761,72">
+      </div>
+      <div class="case reveal">
+        <div class="cnome">Tobias Kfoury</div><span class="ctag">Maior consultor de gestão em saúde da América Latina</span>
+        <p>Fez um pedido: "preciso gerar mais leads para meu comercial". Na primeira campanha de e-mail, teve 21 formulários preenchidos. Em maio de 2024, bateu recorde de faturamento com MQLs para consultorias de até R$ 60 mil.</p>
+        <img class="print" src="/implementacao-copy/assets/tobias-recorde.png" loading="lazy" alt="Print: maio de 2024 foi recorde de faturamento">
+      </div>
+      <div class="case reveal">
+        <div class="cnome">Bluve</div><span class="ctag">Nutracêuticos · 7 dígitos/ano</span>
+        <p>Depois da copy, a Bluve retomou o ROI 4. Nas palavras do time: "há muito tempo não temos ROI 4".</p>
+        <img class="print" src="/implementacao-copy/assets/bluve-roas4.jpeg" loading="lazy" alt="Print: ROI 4 retomado">
+      </div>
+    </div>
+    <div class="mural">
+      <div class="mcard reveal"><img src="/implementacao-copy/assets/renata-milhao.jpeg" loading="lazy" alt="Print: Renata a 5k do primeiro milhão"><div class="mcap"><b>Renata Passos</b>A 5k de bater o primeiro milhão.</div></div>
+      <div class="mcard reveal"><img src="/implementacao-copy/assets/thiago-11-calls.jpeg" loading="lazy" alt="Print: Dr. Thiago com 11 calls na agenda"><div class="mcap"><b>Dr. Thiago Pereira</b>Segunda com 11 calls na agenda.</div></div>
+      <div class="mcard reveal"><img src="/implementacao-copy/assets/bluve-recorde-faturamento.jpeg" loading="lazy" alt="Print: Bluve recorde de faturamento"><div class="mcap"><b>Bluve</b>Recorde de faturamento agendado.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== 5. BANDA ACENTO (agitação) ======== -->
+<section class="accentband">
+  <div class="wrap">
+    <div class="ab-grid">
+      <div>
+        <h2 class="reveal">Todo dia aparecem dois especialistas: um com uma copy medíocre e o outro com uma narrativa que pega pesca baleia $$$</h2>
+        <p class="reveal">O lead curioso vai aparecer de qualquer jeito. Você NÃO PODE é perder todos os dias a chance de conversar com o cliente pronto para comprar.<br><br><strong>O LEAD QUE JÁ TEM DINHEIRO, JÁ TEM PROBLEMA E JÁ ESTÁ PRONTO PARA COMPRAR.</strong> Esse viu seu anúncio, sentiu que a mensagem não falava com ele e foi embora em silêncio.</p>
+        <p class="reveal">Você não vê esse vazamento. Ele acontece antes da conversa começar. E quanto mais tráfego você compra sem ajustar a copy, mais você paga para amplificar uma mensagem que já afasta quem você quer atrair.</p>
+        <p class="reveal"><strong>Não se resolve com mais funil, mais lançamento ou mais trabalho. Se resolve com uma copy que conquista a confiança do Lead Qualificado.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== 6. X COMPARISON ======== -->
+<section class="sec">
+  <div class="wrap">
+    <h2 class="sectitle reveal">Dois caminhos para o mesmo tráfego</h2>
+    <p class="sec-intro reveal">A estrutura do funil pode ser a melhor do mundo. É a narrativa que decide quem entra.</p>
+    <div class="xwrap">
+      <div class="xcard neg reveal">
+        <h3>Copy genérica</h3>
+        <p class="csub">(a que o ChatGPT cospe morno)</p>
+        <ul class="xlist">
+          <li><svg class="m" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Não fala com ninguém, especialmente com quem tem R$ 3 a R$ 30 mil no bolso.</li>
+          <li><svg class="m" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>O lead de alto valor fareja o texto robô e some em silêncio.</li>
+          <li><svg class="m" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Mancha o pixel com uma montanha de curioso quebrado.</li>
+          <li><svg class="m" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Satura rápido: você troca de criativo toda semana.</li>
+          <li><svg class="m" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Faturamento instável, mês fechando no sufoco.</li>
+        </ul>
+      </div>
+      <div class="xcard pos reveal">
+        <h3>Copy estratégica</h3>
+        <p class="csub">(escrita a partir da sua história e da sua oferta)</p>
+        <ul class="xlist">
+          <li><svg class="m" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><strong>Copys únicas</strong> que se destacam no leilão de público do Facebook.</li>
+          <li><svg class="m" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><strong>Águas limpas:</strong> enquanto todos copiam a IA, você nada sozinho.</li>
+          <li><svg class="m" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><strong>Leads qualificados</strong> chegando conscientes e prontos pra comprar.</li>
+          <li><svg class="m" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><strong>Mais atenção, menos humilhação:</strong> sem dancinha nem formato viral.</li>
+          <li><svg class="m" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><strong>Demanda previsível:</strong> anúncios no ar meses e meses, gerando MQL sem parar.</li>
+        </ul>
+      </div>
+      <div class="xbadge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== RAZÕES (por que me contratam) ======== -->
+<section class="sec" style="background:var(--bg-2)">
+  <div class="wrap">
+    <h2 class="sectitle reveal">Por que negócios que fazem R$ 2.000.000 por ano</h2>
+    <span class="subblue reveal" style="text-align:center">me contratam para escrever a copy deles?</span>
+    <div class="razoes">
+      <div class="razao reveal">
+        <span class="rt">Razão 1</span><h3>Inteligência de Mercado</h3>
+        <p>Você pediria pra casar no primeiro encontro? Antes da lua de mel, você conquista aos poucos até a hora H.</p>
+        <p>Por isso, antes de escrever uma linha, eu vou atrás das palavras exatas que o seu lead de R$ 3 mil a R$ 30 mil usa quando reclama do problema, do medo que não fala em voz alta e da objeção que faz ele fechar a página. Copy que vende nasce de escutar o mercado melhor que o concorrente.</p>
+      </div>
+      <div class="razao reveal">
+        <span class="rt">Razão 2</span><h3>Narrativa sem "cara" de IA</h3>
+        <p><em>O homem do século XXI odeia o tédio. E está muito tedioso ver tudo com cara de IA.</em></p>
+        <p>Enquanto o concorrente pede pro ChatGPT cuspir mais um texto morno, eu escrevo a partir da sua história, da sua oferta e do seu jeito de falar. Lead de alto valor fareja texto robô de longe. A sua voz é o que o robô nunca vai copiar, e com ela seus anúncios ficam meses no ar sem saturar.</p>
+      </div>
+      <div class="razao reveal">
+        <span class="rt">Razão 3</span><h3>ROI Previsível</h3>
+        <p><em>Não existe segredo: pra vender mais, você precisa de demanda qualificada todo santo dia.</em></p>
+        <p>Um vídeo viral traz pico e some. A copy com estratégia não depende de dancinha nem de formato do momento: sustenta anúncio e funil no ar mês após mês, pingando reunião qualificada no seu comercial. Vira a rotina de abrir o CRM e ver gente pronta pra comprar entrando no funil.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== 7. PROCESSO (5 passos numerados) ======== -->
+<section class="sec bgchart">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="procq reveal">Como transformar lead frio em uma pessoa pronta para comprar?</p>
+    <h2 class="sectitle reveal">Entenda o <span class="accent">meu processo de copy</span></h2>
+    <p class="sec-intro reveal">O exato processo que eu uso para contribuir com negócios que escalam para 2 milhões (ou mais) por ano.</p>
+    <div class="steps">
+      <div class="step reveal"><span class="n">1.</span><div><h3>Oferta Irrecusável</h3><p>A gente senta e eu abro o seu funil inteiro: oferta, página, anúncio, vídeo de vendas. Você responde como num diagnóstico de especialista e eu identifico onde a copy deixa o lead escapar. Você sai sabendo o nome do problema.</p></div></div>
+      <div class="step reveal"><span class="n">2.</span><div><h3>Inteligência de Mercado</h3><p>Eu mergulho na sua pesquisa: as palavras do público, os medos reais, as objeções e o que faz o lead com dinheiro confiar ou ir embora. Paro de adivinhar. Você recebe o mapa de quem é o seu cliente ideal de verdade.</p></div></div>
+      <div class="step reveal"><span class="n">3.</span><div><h3>A Página de R$ 2.000.000</h3><p>Com a inteligência na mão, eu reescrevo o coração do seu funil: a página que faz quem tem R$ 3 a R$ 30 mil parar e sentir que a mensagem fala com ele. A peça que já destravou milhões. Você recebe pronta pra pôr no ar.</p></div></div>
+      <div class="step reveal"><span class="n">4.</span><div><h3>Mensagem Magnética</h3><p>Eu escrevo a narrativa principal do seu funil ou campanha, que qualifica o lead certo e repele o curioso quebrado, pra você parar de manchar o pixel. Você recebe uma narrativa que lota a agenda de quem tem dinheiro, problema e pressa.</p></div></div>
+      <div class="step reveal"><span class="n">5.</span><div><h3>Narrativa para funis e campanhas</h3><p>Por fim, costuro a copy de todo o resto: e-mails, anúncios, campanhas de webinário e as sequências que levam o lead da curiosidade até o comercial. O funil inteiro conversando como uma coisa só, gerando reunião qualificada mês após mês.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== BIO ======== -->
+<section class="sec" style="background:var(--bg-2)">
+  <div class="wrap">
+    <div class="bio">
+      <div class="bp reveal"><img src="/implementacao-copy/assets/hero-netanias.jpg" alt="Netanias Ferreira" loading="lazy"></div>
+      <div>
+        <span class="ey reveal">Quem escreve</span>
+        <p class="reveal">Sou <strong>Netanias Ferreira</strong>, Copywriter Estrategista, especializado em mentores e infoprodutores de alto ticket. Quatro anos trabalhando exclusivamente neste mercado. Se for um iniciante, eu só trabalho com especialistas de verdade, que podem transformar vidas.</p>
+        <p class="reveal"><strong>Mas, sendo sincero, 90% dos meus clientes têm esse perfil:</strong> produto validado, já têm funil montado e estavam perdendo vendas com uma mensagem que não está na altura do que eles entregam.</p>
+        <p class="reveal">Minha especialidade é uma: analisar o funil de quem já tentou de tudo, identificar onde a copy está falhando e <strong>reescrever com precisão cirúrgica.</strong> O funil volta a converter, os leads qualificados voltam a encher o CRM, e sem depender de promessas mentirosas.</p>
+        <p class="reveal"><strong>Os resultados que você viu aqui não foram sorte.</strong> É um processo repetido, testado e documentado em mais de 10 nichos com resultados mensuráveis.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== 9. CTA FINAL ======== -->
+<section class="sec finalcta bgmoney" id="cta-final">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="cpanel">
+    <h2 class="reveal">Se <em>já investiu pesado em mentorias e funis, e ainda sente que seu lead qualificado some antes de comprar…</em></h2>
+    <p class="reveal"><strong>O problema tem nome:</strong> copy desalinhada com o público. Isso tem solução. E ela começa com um diagnóstico.</p>
+    <p class="reveal">Quando vamos a um médico, não esperamos que ele adivinhe como vai solucionar nossa dor. <strong>Respondemos ao que ele perguntar e aguardamos o resultado do diagnóstico do especialista.</strong></p>
+    <div style="margin-top:24px">
+      <a class="btn reveal" href="https://wa.me/5585981825194?text=Oi%20Netanias%2C%20quero%20agendar%20minha%20sess%C3%A3o%20de%20diagn%C3%B3stico%20de%20copy">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.03a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.11.82.83-3.03-.2-.31a8.22 8.22 0 0 1-1.26-4.37c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.25 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43-.14-.01-.31-.01-.48-.01-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></svg>
+        Agendar diagnóstico pelo WhatsApp
+      </a>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== 8. FAQ ======== -->
+<section class="sec" style="background:var(--bg)">
+  <div class="wrap">
+    <h2 class="sectitle reveal">Perguntas <span class="accent">Importantes</span></h2>
+    <p class="sec-intro reveal">O que costumam me perguntar antes da conversa.</p>
+    <div class="faq">
+      <details class="reveal"><summary>Preciso ter produto criado para entrar?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="ans">Não. A primeira frente da Tríade é exatamente a criação da sua oferta. Você sai com produto estruturado, promessa definida e preço certo.</div></details>
+      <details class="reveal"><summary>Isso é mais uma mentoria?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="ans">Não. É implementação. Você não aprende para executar depois — a gente executa junto, agora, em 7 dias. Eu coloco a mão na massa no seu negócio.</div></details>
+      <details class="reveal"><summary>Funciona para qualquer nicho?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="ans">Se você é especialista que consegue de fato ajudar as pessoas, funciona. Já implementei para médico, consultor financeiro, mentor de carreira, engenheiro, professor, terapeuta, infoprodutor. <em>(Observação: não trabalho com nicho de espiritualidades alternativas como Tarô, Reiki etc. — sou cristão. Você é livre para crer no que quiser, eu para escolher com quem trabalho.)</em></div></details>
+      <details class="reveal"><summary>E se eu não tiver muitos seguidores?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="ans">O Dr. Thiago faturou R$ 950.000 com menos de 20 mil seguidores. Audiência não é nada sem a oferta certa e um funil calibrado com uma copy que atrai leads qualificados todos os dias.</div></details>
+      <details class="reveal"><summary>Qual é o investimento?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="ans">A gente conversa sobre isso no WhatsApp, depois de eu entender o seu momento para apresentar uma proposta personalizada. De todo modo, meus serviços começam pelo ticket de R$ 2.000.</div></details>
+      <details class="reveal"><summary>É muito caro?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="ans">Pense o seguinte: se as minhas copys, nos próximos 12 meses, ajudarem você a ter 100x mais resultados, me diga: é mesmo importante o preço que irá pagar?</div></details>
+      <details class="reveal"><summary>Você fará meus conteúdos?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="ans">NÃO. Eu não sou social media. Embora eu possa contribuir, eu NÃO vou criar uma linha editorial, nem suas pautas de conteúdos, nem escrever roteiros de conteúdos pra você. Não escrevo copy pra funis orgânicos.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ======== 10. CTA PÓS-FAQ ======== -->
+<section class="sec finalcta" id="cta-faq" style="background:var(--bg-2)">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <h2 class="reveal">Eu reescrevo a narrativa do seu funil para você parar de perder Leads qualificados por causa de uma mensagem genérica.</h2>
+    <div style="margin-top:24px">
+      <a class="btn reveal" href="https://wa.me/5585981825194?text=Oi%20Netanias%2C%20quero%20agendar%20minha%20sess%C3%A3o%20de%20diagn%C3%B3stico%20de%20copy">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.03a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.11.82.83-3.03-.2-.31a8.22 8.22 0 0 1-1.26-4.37c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.25 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43-.14-.01-.31-.01-.48-.01-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></svg>
+        Agendar diagnóstico pelo WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reveals = document.querySelectorAll('.reveal');
+  if(reduce || !('IntersectionObserver' in window)){reveals.forEach(function(el){el.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var el=e.target;
+        var sibs=Array.prototype.filter.call(el.parentElement.children,function(c){return c.classList.contains('reveal')});
+        el.style.transitionDelay=(Math.max(0,sibs.indexOf(el))*65)+'ms';
+        el.classList.add('in');io.unobserve(el);
+      }
+    });
+  },{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+  reveals.forEach(function(el){io.observe(el)});
+})();
+</script>
+
+<!-- captura de UTM -->
+<script>
+document.addEventListener("DOMContentLoaded", (() => {
+    document.querySelectorAll("a").forEach((e => {
+        e.getAttribute("href")?.includes("#") || (
+            e.getAttribute("href")?.includes("?")
+            ? e.setAttribute("href", e.getAttribute("href") + window.location.search.replace("?", "&"))
+            : e.getAttribute("href")
+            ? e.setAttribute("href", e.getAttribute("href") + window.location.search)
+            : ""
+        );
+    }));
+}));
+</script>
+
+</body>
+</html>
