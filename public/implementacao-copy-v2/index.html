@@ -330,6 +330,14 @@
   @keyframes wIn{to{opacity:1;transform:none;filter:none}}
   .hero-fx{position:absolute;inset:0;z-index:0;width:100%;height:100%;pointer-events:none}
   @media (prefers-reduced-motion:reduce){.hero h1 .w{animation:none;opacity:1;transform:none;filter:none}.hero-fx{display:none}}
+
+  /* ===== CTA final animado (teste A/B v2) ===== */
+  .cpanel{position:relative;isolation:isolate}
+  .cpanel>*:not(canvas){position:relative;z-index:1}
+  .cpanel .hero-fx{z-index:0}
+  .cpanel h2.split .w{display:inline-block;opacity:0;transform:translateY(.55em);filter:blur(6px)}
+  .cpanel h2.split.go .w{animation:wIn .75s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:calc(var(--i)*45ms + .1s)}
+  @media (prefers-reduced-motion:reduce){.cpanel h2.split .w{opacity:1;transform:none;filter:none}}
 </style>
 </head>
 <body>
@@ -576,7 +584,8 @@
   <div class="glow" aria-hidden="true"></div>
   <div class="wrap">
     <div class="cpanel">
-    <h2 class="reveal">Se <em>já investiu pesado em mentorias e funis, e ainda sente que seu lead qualificado some antes de comprar…</em></h2>
+      <canvas class="hero-fx" aria-hidden="true"></canvas>
+    <h2 class="split">Se <em>já investiu pesado em mentorias e funis, e ainda sente que seu lead qualificado some antes de comprar…</em></h2>
     <p class="reveal"><strong>O problema tem nome:</strong> copy desalinhada com o público. Isso tem solução. E ela começa com um diagnóstico.</p>
     <p class="reveal">Quando vamos a um médico, não esperamos que ele adivinhe como vai solucionar nossa dor. <strong>Respondemos ao que ele perguntar e aguardamos o resultado do diagnóstico do especialista.</strong></p>
     <div style="margin-top:24px">
@@ -691,6 +700,49 @@ document.addEventListener("DOMContentLoaded", (() => {
   }
   init();
   new IntersectionObserver(function(e){var v=e[0].isIntersecting;if(v&&!run){run=true;draw();}else if(!v){run=false;cancelAnimationFrame(raf);}}).observe(cv);
+  var t;window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(init,200);});
+})();
+
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var box=document.querySelector('.cpanel'); if(!box||reduce)return;
+  var h=box.querySelector('h2.split'),n=0;
+  (function walk(node){
+    Array.prototype.slice.call(node.childNodes).forEach(function(c){
+      if(c.nodeType===3){
+        var f=document.createDocumentFragment();
+        c.textContent.split(/(\s+)/).forEach(function(t){
+          if(!t)return;
+          if(/^\s+$/.test(t)){f.appendChild(document.createTextNode(' '));return;}
+          var w=document.createElement('span');w.className='w';w.style.setProperty('--i',n++);w.textContent=t;f.appendChild(w);
+        });
+        node.replaceChild(f,c);
+      } else if(c.nodeType===1) walk(c);
+    });
+  })(h);
+  var cv=box.querySelector('.hero-fx'),ctx=cv.getContext('2d'),W,H,P=[],run=false,raf;
+  function size(){var d=Math.min(window.devicePixelRatio||1,1.5),r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=W*d;cv.height=H*d;ctx.setTransform(d,0,0,d,0,0);}
+  function mk(top){return{x:Math.random()*W,y:top?Math.random()*H:-30,s:10+Math.random()*16,v:.25+Math.random()*.55,r:Math.random()*6.28,vr:(Math.random()-.5)*.02,a:.07+Math.random()*.16,dx:(Math.random()-.5)*.25};}
+  function init(){size();var c=Math.round(Math.min(26,W/18));P=[];for(var i=0;i<c;i++)P.push(mk(true));}
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    P.forEach(function(p,i){
+      p.y+=p.v;p.x+=p.dx;p.r+=p.vr;
+      if(p.y>H+30){P[i]=mk(false);return;}
+      ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r);
+      ctx.fillStyle='rgba(217,138,123,'+p.a+')';ctx.strokeStyle='rgba(194,91,73,'+(p.a+.1)+')';ctx.lineWidth=1;
+      ctx.fillRect(-p.s,-p.s*.5,p.s*2,p.s);ctx.strokeRect(-p.s,-p.s*.5,p.s*2,p.s);
+      ctx.beginPath();ctx.arc(0,0,p.s*.22,0,6.28);ctx.stroke();
+      ctx.restore();
+    });
+    if(run)raf=requestAnimationFrame(draw);
+  }
+  init();
+  new IntersectionObserver(function(e){
+    var v=e[0].isIntersecting;
+    if(v){h.classList.add('go');if(!run){run=true;draw();}}
+    else{run=false;cancelAnimationFrame(raf);}
+  },{threshold:.35}).observe(box);
   var t;window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(init,200);});
 })();
 </script>
