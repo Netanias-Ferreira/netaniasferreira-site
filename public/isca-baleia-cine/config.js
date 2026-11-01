@@ -3,7 +3,7 @@ window.SITE = {
 
   frames: {
     total: 160,
-    desktop: "assets/frames/desktop/f_{n}.webp",
-    mobile: "assets/frames/mobile/f_{n}.webp",
+    desktop: "/isca-baleia-cine/assets/frames/desktop/f_{n}.webp",
+    mobile: "/isca-baleia-cine/assets/frames/mobile/f_{n}.webp",
   },
 };
