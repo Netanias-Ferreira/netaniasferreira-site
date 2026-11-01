@@ -297,3 +297,17 @@ mark { background: var(--acento); color: var(--acento-texto); padding: .02em .22
   .rodape { padding-bottom: 90px; }
 }
 .painel--largo { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgb(18 14 12 / .94); }
+
+/* Celular: texto da abertura legível sobre o vídeo */
+@media (max-width: 860px) {
+  .momento { bottom: 5vh; }
+  .momento .painel--vidro {
+    background: rgb(12 10 9 / .88);
+    padding: 18px 16px;
+    text-shadow: 0 1px 8px rgb(0 0 0 / .8);
+  }
+  .cine-vinheta { background: linear-gradient(to top, rgb(12 10 9 / .75) 0%, transparent 60%), linear-gradient(to bottom, transparent 85%, var(--fundo) 100%); }
+  .apoio--topo { font-size: 13px; line-height: 1.45; margin-bottom: .7em; opacity: .95; }
+  .titulo-abertura { font-size: clamp(24px, 7.4vw, 32px); line-height: 1.1; }
+  .destaque { font-size: clamp(22px, 6.4vw, 30px); }
+}
