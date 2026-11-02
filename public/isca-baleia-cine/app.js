@@ -26,7 +26,7 @@
 
     // Carrega em passadas (1 a cada 8, depois 1 a cada 4…) para cobrir o filme inteiro cedo
     carregar(0);
-    if (!reduzir) {
+    {
       const fila = [];
       for (const passo of [8, 4, 2, 1]) for (let i = 0; i < total; i += passo) if (!fila.includes(i)) fila.push(i);
       let k = 0;
@@ -78,17 +78,18 @@
 
     const quadro = () => {
       alvo = progresso() * (total - 1);
-      atual += (alvo - atual) * 0.18; // suaviza: sensação de filme, não de slide
+      atual = reduzir ? alvo : atual + (alvo - atual) * 0.18; // suaviza: sensação de filme, não de slide
       if (Math.abs(alvo - atual) < 0.05) atual = alvo;
       desenhar(Math.round(atual));
       atualizarMomentos(atual / (total - 1));
       requestAnimationFrame(quadro);
     };
 
-    addEventListener("resize", ajustar);
+    // barra de endereço do celular dispara resize a cada rolagem: só refaz o canvas se a largura mudar de verdade
+    let largura = innerWidth;
+    addEventListener("resize", () => { if (Math.abs(innerWidth - largura) > 40) { largura = innerWidth; ajustar(); } });
     ajustar();
-    if (reduzir) atualizarMomentos(0);
-    else requestAnimationFrame(quadro);
+    requestAnimationFrame(quadro);
   }
 
   /* ── Parallax leve nas artes ──────────────────────────────────────────── */

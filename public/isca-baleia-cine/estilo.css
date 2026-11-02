@@ -215,9 +215,7 @@ p { margin: 0 0 1em; color: var(--texto-suave); text-wrap: pretty; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
-  .revelar, .momento:first-of-type { opacity: 1; transform: none; filter: none; }
-  .cine { height: 100svh; }
-  .momento:not(:first-of-type), .cine-dica { display: none; }
+  .revelar { opacity: 1; transform: none; filter: none; }
 }
 
 /* ── Isca de Baleia ───────────────────────────────────────────────────── */
