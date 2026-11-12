@@ -358,6 +358,18 @@ table.adm{width:100%;border-collapse:collapse;font-size:13px}table.adm td,table.
   .stat .muted{font-size:11.5px}
   .cx-recipe li{grid-template-columns:84px minmax(0,1fr)}
 }
+/* High Ticket: etiqueta por etapa do funil */
+.ht{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;border-radius:999px;padding:3px 9px;white-space:nowrap;justify-self:start;border:1px solid transparent}
+.ht-topo{background:var(--blue-soft);color:var(--blue);border-color:color-mix(in srgb,var(--blue) 25%,transparent)}
+.ht-meio{background:var(--accent-soft);color:var(--accent-txt);border-color:color-mix(in srgb,var(--accent) 35%,transparent)}
+.ht-fundo{background:var(--ok-soft);color:var(--ok);border-color:color-mix(in srgb,var(--ok) 30%,transparent)}
+.cx-opt .ht{margin-left:auto;font-size:10.5px;padding:2px 7px}.cx-opt .ht+.q{margin-left:6px}
+.capa-vazia{background:var(--surface-2);border:1px dashed var(--line);color:var(--muted);font-weight:600;font-size:13px}
+.ht-pills{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.ht-pills .rot{font-size:12px;font-weight:700;color:var(--fg);margin-right:2px}
+.ht-pills .chip{min-height:36px}
+.ht-atalho{padding:16px;display:grid;gap:10px}.ht-atalho .actions .btn{min-height:44px}
+@media (max-width:860px){.ht-pills{flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}.ht-atalho{padding:14px}}
 </style>
 </head>
 <body>
@@ -380,7 +392,9 @@ const ehVideo = a => /\.(mp4|mov|webm|m4v)$/i.test(a || "");
 const contato = () => CONTATO_NETANIAS.startsWith("http") ? CONTATO_NETANIAS : "#";
 const linkSeguro = u => /^https?:\/\//i.test(u || "") ? u : "#";
 const NIVEIS = {"intro": "Cada pessoa chega no anúncio sabendo uma coisa diferente sobre o próprio problema e sobre a sua oferta. Se o anúncio começa num ponto que ela ainda não alcançou, ela não entende. Se começa num ponto que ela já passou, ela se entedia. O nível de consciência diz onde a conversa deve começar.", "regra_ouro": "Comece o anúncio exatamente onde está a cabeça do seu público, nunca onde está a sua.", "niveis": [{"nivel": "inconsciente", "titulo": "Não sabe que tem um problema", "o_que_e": "A pessoa vive o problema, mas ainda não deu nome a ele. Para ela, aquilo é normal ou é só o jeito que a vida é.", "como_falar": "Abra pela identidade dela ou por uma cena que ela reconhece, nunca pelo produto. Entregue uma verdade incômoda que faça ela se ver no espelho. No high ticket, esse anúncio filtra pelo jeito de pensar, não vende.", "erro_comum": "Falar do método, do preço ou da oferta para quem nem sabe que precisa de ajuda.", "etapa_funil": "topo", "exemplos": ["Para qualquer pessoa com o mínimo de educação financeira, a poupança não é uma opção.", "100 dias sem redes sociais. A lição número 1 que aprendi você não vai gostar de ouvir.", "Quando você vai arrumar um trabalho de verdade? Eu: no meu trabalho de verdade."]}, {"nivel": "consciente do problema", "titulo": "Sente a dor, não sabe a saída", "o_que_e": "A pessoa sabe que algo está errado e sente isso no bolso ou na rotina. Ela ainda não sabe que existe um jeito de resolver.", "como_falar": "Abra pela dor dela, com as palavras que ela usa, em cena concreta. Mostre que você entende o problema melhor do que ela e só então aponte que existe uma saída. No high ticket, deixe claro o custo de continuar como está.", "erro_comum": "Pular direto para a solução sem antes provar que entende a dor.", "etapa_funil": "topo", "exemplos": ["Meu perfil parece abandonado. Mas já vendeu mais de R$300 mil em serviços.", "O \"vou pensar\" depois da call é falta de preparo do lead.", "Atender 7 horas por dia pra mal conseguir pagar as contas do mês não é liberdade, é sobreviver."]}, {"nivel": "consciente da solução", "titulo": "Sabe o que quer, não conhece você", "o_que_e": "A pessoa já sabe o resultado que deseja e que existe um caminho para chegar lá. Ela só não sabe que a sua oferta entrega isso.", "como_falar": "Abra pelo resultado que ela quer, dito de forma concreta e com número. Depois mostre por que o seu caminho chega lá melhor que os outros, com mecanismo e prova. No high ticket, a prova de casos parecidos com o dela pesa mais que a promessa.", "erro_comum": "Gastar tempo explicando o problema para quem já está procurando a solução.", "etapa_funil": "meio", "exemplos": ["Isso é o que acontece com o corpo de quem faz treino híbrido.", "Quer achar oferta de low ticket? Escreve isso aqui na biblioteca de anúncios.", "Para vender serviços e mentorias de R$5 mil a R$10 mil para pessoas que ainda não conhecem você."]}, {"nivel": "consciente do produto", "titulo": "Conhece você, ainda não decidiu", "o_que_e": "A pessoa já sabe o que você vende e o que a oferta faz. Ela ainda tem dúvida se funciona para ela ou se vale o preço.", "como_falar": "Abra pelo produto e pelo que ele já fez por gente como ela. Entregue prova, detalhes da entrega e resposta para as objeções que travam a decisão. No high ticket, mostre o passo a passo de como é trabalhar com você.", "erro_comum": "Repetir a apresentação genérica em vez de matar a dúvida que impede a compra.", "etapa_funil": "meio", "exemplos": ["Falaram que esse treino não funciona, mas eu testei por 7 dias.", "Vou te mostrar algo que todo eletricista residencial deveria ter.", "Vender 1 mentoria por semana sem abrir turma: anúncio que atrai, aplicação que filtra, sessão que fecha."]}, {"nivel": "totalmente consciente", "titulo": "Já quer, só precisa do empurrão", "o_que_e": "A pessoa conhece a oferta, confia e já quer comprar. Falta só um motivo para agir agora.", "como_falar": "Abra direto pela oferta, condição e prazo. Entregue o que muda hoje: bônus, vaga, condição especial ou fim do prazo. No high ticket, a urgência vem de vaga limitada e agenda real, nunca de desconto inventado.", "erro_comum": "Voltar a explicar o problema e o método para quem só está esperando o convite.", "etapa_funil": "fundo", "exemplos": ["Atenção. Última chance da promoção de feriadão com 40% de desconto.", "A pedidos, estendemos a nossa maior oferta de todos os tempos.", "Apenas hoje está liberado o lote antecipado no menor preço."]}]};
-const FILTRO0 = () => ({tipo:"", funil:"", etapa:"", nivel:"", angulo:"", q:""});
+const FILTRO0 = () => ({ht:"", tipo:"", funil:"", etapa:"", nivel:"", angulo:"", q:""});
+const HT = ["Topo","Meio","Fundo"];
+const htTag = fm => HT.includes(fm?.ht_etapa) ? `<span class="ht ht-${fm.ht_etapa.toLowerCase()}">High Ticket · ${fm.ht_etapa} de funil</span>` : "";
 const S = { user:null, admin:false, formatos:[], exemplos:[], angulos:[], tutoriais:[], favs:new Map(), f:FILTRO0() };
 
 function toast(m){ const t = document.createElement("div"); t.className = "toast"; t.setAttribute("role","status"); t.textContent = m; document.body.append(t); setTimeout(() => t.remove(), 2200); }
@@ -524,6 +538,8 @@ function vInicio(m){
   <div class="stats"><a class="panel stat stat-link" href="#formatos"><b>${S.formatos.length}</b><span class="muted">formatos de criativos</span><span class="stat-ir">Ver formatos →</span></a>
   <a class="panel stat stat-link" href="#formatos"><b>${S.exemplos.length}</b><span class="muted">criativos com gancho de exemplo</span><span class="stat-ir">Ver criativos →</span></a>
   <a class="panel stat stat-link" href="#angulos"><b>${S.angulos.length}</b><span class="muted">ângulos de copy</span><span class="stat-ir">Ver ângulos →</span></a></div>
+  <div class="panel ht-atalho"><h2>Formatos que mais funcionam para alto ticket</h2><p class="muted">Escolha a etapa do funil e veja os formatos indicados para ela.</p>
+  <div class="actions">${HT.map(h => `<button class="btn" type="button" data-ht="${h}">${h} de funil <span class="muted">${S.formatos.filter(f => f.ht_etapa === h).length}</span></button>`).join("")}</div></div>
   <div class="panel" style="padding:16px;display:grid;gap:12px"><h2>Tutorial</h2>
   ${TUTORIAL_VIDEO ? `<video class="media" controls playsinline preload="metadata" src="${esc(TUTORIAL_VIDEO)}"></video>` : `<div class="video"><span>Vídeo tutorial em breve</span></div>`}</div>
   <div class="steps panel">
@@ -531,11 +547,13 @@ function vInicio(m){
    <div class="step"><span class="n">2</span><div><b>Veja os exemplos e baixe</b><p class="muted">Gancho, resumo, texto e o arquivo para modelar.</p></div></div>
    <div class="step"><span class="n">3</span><div><b>Escolha o ângulo e teste</b><p class="muted">Copie o prompt do ângulo, marque o que já testou e mande seu criativo para a curadoria.</p></div></div>
   </div><a class="btn primary" href="#formatos" style="justify-self:start">Ver formatos</a>` + rodape();
+  m.addEventListener("click", e => { const b = e.target.closest("[data-ht]"); if (!b) return; S.f = FILTRO0(); S.f.ht = b.dataset.ht; location.hash = "formatos"; });
 }
 const uniq = k => [...new Set(S.exemplos.map(x => x[k]).filter(Boolean))].sort();
 function formatosFiltrados(){
   const f = S.f, q = f.q.toLowerCase();
   return S.formatos.filter(fm => {
+    if (f.ht && fm.ht_etapa !== f.ht) return false;
     if (f.tipo && fm.tipo !== f.tipo) return false;
     const ex = S.exemplos.filter(e => e.formato_id === fm.id);
     for (const k of ["funil","etapa"]) if (f[k] && !ex.some(e => e[k] === f[k])) return false;
@@ -628,12 +646,13 @@ function cxEscolhas(){
 }
 function cxLinhas(){
   const qtd = new Map(); S.exemplos.forEach(e => qtd.set(e.formato_id, (qtd.get(e.formato_id) || 0) + 1));
-  const fmts = [...S.formatos].sort((a, b) => (a.tipo === b.tipo ? 0 : a.tipo === "video" ? -1 : 1) || (qtd.get(b.id) || 0) - (qtd.get(a.id) || 0) || String(a.nome).localeCompare(b.nome));
+  const htOrd = f => { const i = HT.indexOf(f.ht_etapa); return i < 0 ? 9 : i; };
+  const fmts = [...S.formatos].sort((a, b) => htOrd(a) - htOrd(b) || (htOrd(a) < 9 ? 0 : (a.tipo === b.tipo ? 0 : a.tipo === "video" ? -1 : 1)) || (qtd.get(b.id) || 0) - (qtd.get(a.id) || 0) || String(a.nome).localeCompare(b.nome));
   const grupos = new Set(S.angulos.map(a => a.grupo)).size;
   return [
     {id:"nivel", nome:"Nível de consciência", meta:"Onde está a cabeça do público", ops:NIVEIS.niveis.map((n, i) => ({v:String(i), rot:`${n.nivel}: ${n.titulo}`}))},
     {id:"angulo", nome:"Ângulo", meta:`${S.angulos.length} ângulos em ${grupos} grupos`, ops:S.angulos.map(a => ({v:String(a.id), rot:a.nome, grupo:a.grupo}))},
-    {id:"formato", nome:"Formato", meta:`${S.formatos.length} formatos, os com mais exemplos primeiro`, ops:fmts.map(f => ({v:String(f.id), rot:f.nome, grupo:f.tipo === "video" ? "Vídeo" : "Imagem", q:qtd.get(f.id) || 0}))},
+    {id:"formato", nome:"Formato", meta:`${S.formatos.length} formatos, High Ticket primeiro`, ops:fmts.map(f => ({v:String(f.id), rot:f.nome, grupo:htOrd(f) < 9 ? "High Ticket" : f.tipo === "video" ? "Vídeo" : "Imagem", ht:htOrd(f) < 9 ? f.ht_etapa : "", q:qtd.get(f.id) || 0}))},
     {id:"gancho", nome:"Gancho", meta:"10 tipos de abertura", ops:GANCHOS.map((g, i) => ({v:String(i), rot:g.nome}))}
   ];
 }
@@ -645,14 +664,14 @@ function cxDesc(id, c){
   const x = c[id]; if (!x) return "";
   if (id === "nivel") return `<b>Como falar:</b> ${esc(x.como_falar)}`;
   if (id === "angulo") return `<b>${esc(x.grupo)}.</b> ${esc(x.descricao || "")}`;
-  if (id === "formato") return `${esc(x.o_que_e || "")} <a href="#formato/${x.id}">Ver exemplos deste formato</a>`;
+  if (id === "formato") return `${htTag(x) ? htTag(x) + " " : ""}${esc(x.o_que_e || "")} <a href="#formato/${x.id}">Ver ${S.exemplos.some(e => e.formato_id === x.id) ? "exemplos deste formato" : "este formato"}</a>`;
   return `${esc(x.desc)}${x.ex.map(t => `<div class="example">${esc(t)}</div>`).join("")}`;
 }
 function cxComando(){
   const c = cxEscolhas();
   const oferta = CX.oferta.trim() || "[descreva aqui o que você vende, para quem e por quanto]";
   const l = [
-    c.formato ? `- Formato: ${c.formato.nome} (${c.formato.tipo === "video" ? "vídeo" : "imagem"}).${c.formato.o_que_e ? " O que é: " + c.formato.o_que_e : ""}${c.formato.quando_usar ? " Quando usar: " + c.formato.quando_usar : ""}` : "- Formato: escolha o mais adequado para o resto da combinação.",
+    c.formato ? `- Formato: ${c.formato.nome} (${c.formato.tipo === "video" ? "vídeo" : "imagem"}${HT.includes(c.formato.ht_etapa) ? `, indicado para alto ticket no ${c.formato.ht_etapa.toLowerCase()} de funil` : ""}).${c.formato.o_que_e ? " O que é: " + c.formato.o_que_e : ""}${c.formato.quando_usar ? " Quando usar: " + c.formato.quando_usar : ""}` : "- Formato: escolha o mais adequado para o resto da combinação.",
     c.angulo ? `- Ângulo: ${c.angulo.nome} (grupo ${c.angulo.grupo}).${c.angulo.descricao ? " " + c.angulo.descricao : ""}` : "- Ângulo: escolha o que mais combina com o público e a oferta.",
     c.gancho ? `- Gancho do tipo ${c.gancho.nome}: ${c.gancho.desc} Exemplo de abertura desse tipo: "${c.gancho.ex[0]}"` : "- Gancho: escolha o tipo que mais faz esse público parar.",
     c.nivel ? `- Público no nível de consciência "${c.nivel.nivel}" (${c.nivel.titulo}). Como falar: ${c.nivel.como_falar} Erro a evitar: ${c.nivel.erro_comum}` : "- Nível de consciência: deduza pela oferta e diga qual escolheu."
@@ -680,7 +699,7 @@ function vCaixa(m){
   const lista = r => { let g = null, i = 0;
     return r.ops.map(o => { let h = "";
       if (o.grupo && o.grupo !== g) { g = o.grupo; h = `<li class="cx-grp" role="presentation" data-grp="${esc(g)}">${esc(g)}</li>`; }
-      return h + `<li role="option" class="cx-opt" tabindex="0" data-v="${esc(o.v)}" data-g="${esc(o.grupo || "")}" aria-selected="false"><span class="n">${++i}</span><span>${esc(o.rot)}</span>${o.q != null ? `<span class="q">${o.q} ex.</span>` : ""}</li>`; }).join(""); };
+      return h + `<li role="option" class="cx-opt" tabindex="0" data-v="${esc(o.v)}" data-g="${esc(o.grupo || "")}" aria-selected="false"><span class="n">${++i}</span><span>${esc(o.rot)}</span>${o.ht ? `<span class="ht ht-${o.ht.toLowerCase()}">${esc(o.ht)}</span>` : ""}${o.q != null ? `<span class="q">${o.q} ex.</span>` : ""}</li>`; }).join(""); };
   m.innerHTML = topo("Máquina de Validação", "Escolha uma opção em cada linha. Cada combinação vira um criativo diferente.") + `
   <div class="cx-board">
     <div style="display:grid;gap:14px;min-width:0">
@@ -773,16 +792,17 @@ function vCaixa(m){
 function vFormatos(m){
   const sel = (k, rot, ops) => `<select class="f" data-k="${k}" aria-label="${rot}"><option value="">${rot}: todos</option>${ops.map(o => `<option ${S.f[k] === o ? "selected" : ""}>${esc(o)}</option>`).join("")}</select>`;
   m.innerHTML = topo("Formatos", "O que é cada formato e quando usar.") + `
-  <div class="filterbar"><div class="search"><input type="search" id="q" aria-label="Buscar" placeholder="Buscar formato ou gancho" value="${esc(S.f.q)}"></div>
+  <div class="filterbar"><div class="ht-pills" role="group" aria-label="High Ticket"><span class="rot">High Ticket</span>${["", ...HT].map(h => `<button type="button" class="chip ${S.f.ht === h ? "on" : ""}" data-htf="${h}" aria-pressed="${S.f.ht === h}">${h || "Todos"}</button>`).join("")}</div><div class="search"><input type="search" id="q" aria-label="Buscar" placeholder="Buscar formato ou gancho" value="${esc(S.f.q)}"></div>
   <div class="filters"><select class="f" data-k="tipo" aria-label="Tipo"><option value="">Tipo: todos</option><option value="video" ${S.f.tipo === "video" ? "selected" : ""}>Vídeo</option><option value="imagem" ${S.f.tipo === "imagem" ? "selected" : ""}>Imagem</option></select>
   ${sel("funil","Funil",uniq("funil"))}${sel("etapa","Etapa",uniq("etapa"))}${sel("nivel","Nível de consciência",[...new Set([...uniq("nivel"),...(S.f.nivel?[S.f.nivel]:[])])])}${sel("angulo","Ângulo",uniq("angulo_grupo"))}</div></div>
   <div id="lista"></div>` + rodape();
   const desenhar = () => { const l = formatosFiltrados();
     $("#lista").innerHTML = `<div class="showing"><span>${l.length} formato(s)</span>${Object.values(S.f).some(Boolean) ? '<button class="btn" id="limpar">Limpar filtros</button>' : ""}</div>
-    ${l.length ? `<div class="pieces" style="margin-top:12px">${l.map(fm => `<a class="panel fmt-card" href="#formato/${fm.id}">${capa(fm)}<span class="mono muted">${fm.tipo === "video" ? "Vídeo" : "Imagem"} · ${S.exemplos.filter(e => e.formato_id === fm.id).length} exemplos</span><h3>${esc(fm.nome)}</h3>${fm.o_que_e ? `<p><b>O que é:</b> ${esc(fm.o_que_e)}</p>` : ""}${fm.quando_usar ? `<p class="muted"><b>Quando usar:</b> ${esc(fm.quando_usar)}</p>` : ""}<span class="btn ver-mais">Ver mais criativos →</span></a>`).join("")}</div>` : '<div class="empty panel" style="margin-top:12px">Nenhum formato com esses filtros.</div>'}`;
+    ${l.length ? `<div class="pieces" style="margin-top:12px">${l.map(fm => `<a class="panel fmt-card" href="#formato/${fm.id}">${capa(fm) || '<div class="capa capa-vazia"><span>Exemplos em breve</span></div>'}${htTag(fm)}<span class="mono muted">${fm.tipo === "video" ? "Vídeo" : "Imagem"} · ${S.exemplos.filter(e => e.formato_id === fm.id).length} exemplos</span><h3>${esc(fm.nome)}</h3>${fm.o_que_e ? `<p><b>O que é:</b> ${esc(fm.o_que_e)}</p>` : ""}${fm.quando_usar ? `<p class="muted"><b>Quando usar:</b> ${esc(fm.quando_usar)}</p>` : ""}<span class="btn ver-mais">Ver mais criativos →</span></a>`).join("")}</div>` : '<div class="empty panel" style="margin-top:12px">Nenhum formato com esses filtros.</div>'}`;
     ligarCapas($("#lista"));
     const lp = $("#limpar"); if (lp) lp.onclick = () => { S.f = FILTRO0(); vFormatos(m); }; };
   m.querySelectorAll("select.f").forEach(s => s.onchange = () => { S.f[s.dataset.k] = s.value; desenhar(); });
+  m.querySelectorAll("[data-htf]").forEach(b => b.onclick = () => { S.f.ht = b.dataset.htf; m.querySelectorAll("[data-htf]").forEach(x => { const on = x.dataset.htf === S.f.ht; x.classList.toggle("on", on); x.setAttribute("aria-pressed", String(on)); }); desenhar(); });
   $("#q").oninput = e => { S.f.q = e.target.value; desenhar(); };
   desenhar();
 }
@@ -869,9 +889,9 @@ function vFormato(m, id){
   if (!fm) { location.hash = "formatos"; return; }
   const ex = S.exemplos.filter(e => e.formato_id === fm.id);
   m.innerHTML = topo(fm.nome, `${fm.tipo === "video" ? "Vídeo" : "Imagem"} · ${ex.length} exemplos`) + `<a class="btn" href="#formatos" style="justify-self:start">← Voltar aos formatos</a>
-  <div class="panel piece">${fm.o_que_e ? `<p><b>O que é:</b> ${esc(fm.o_que_e)}</p>` : ""}${fm.quando_usar ? `<p><b>Quando usar:</b> ${esc(fm.quando_usar)}</p>` : ""}</div>
-  <div class="pieces" id="exs">${ex.map(blocoExemplo).join("") || '<div class="empty panel">Exemplos chegando em breve.</div>'}</div>` + rodape();
-  ligarExemplos($("#exs"));
+  <div class="panel piece">${htTag(fm)}${fm.o_que_e ? `<p><b>O que é:</b> ${esc(fm.o_que_e)}</p>` : ""}${fm.quando_usar ? `<p><b>Quando usar:</b> ${esc(fm.quando_usar)}</p>` : ""}</div>
+  ${ex.length ? `<div class="pieces" id="exs">${ex.map(blocoExemplo).join("")}</div>` : ""}` + rodape();
+  if (ex.length) ligarExemplos($("#exs"));
 }
 function vAngulos(m){
   const grupos = [...new Set(S.angulos.map(a => a.grupo))];
