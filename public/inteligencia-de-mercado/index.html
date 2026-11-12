@@ -231,6 +231,7 @@ select.f,.adm input{border:1px solid var(--line);background:var(--surface);color
 table.adm{width:100%;border-collapse:collapse;font-size:13px}table.adm td,table.adm th{border-top:1px solid var(--line);padding:8px;text-align:left}
 .tablewrap{overflow-x:auto}
 .mt{margin-top:10px}
+.escada{display:grid;gap:14px;--degrau:0px}@media (min-width:861px){.escada{--degrau:28px}}.nivel{padding:18px;display:grid;gap:10px}.nivel-head{display:flex;gap:12px;align-items:center}.nivel-head>div{flex:1;min-width:0}.n-num{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--amber));color:#111;font-weight:800;display:grid;place-items:center;flex:none}.nivel .erro{color:var(--bad)}:root[data-theme="dark"] .nivel .erro{color:#F87171}
 .fmt-card{color:inherit}.capa{position:relative;aspect-ratio:4/5;border-radius:12px;overflow:hidden;background:#1C1C1C;display:grid;place-items:center}.capa img,.capa video{width:100%;height:100%;object-fit:cover;display:block}.capa .play{pointer-events:none}.ver-mais{justify-self:start;padding:5px 12px;font-size:12px}.fmt-card:hover .ver-mais{border-color:var(--accent)}
 </style>
 </head>
@@ -254,6 +255,7 @@ const midia = a => a ? (MIDIA_BASE.replace(/\/?$/, "/") + a.split("/").map(encod
 const ehVideo = a => /\.(mp4|mov|webm|m4v)$/i.test(a || "");
 const contato = () => CONTATO_NETANIAS.startsWith("http") ? CONTATO_NETANIAS : "#";
 const linkSeguro = u => /^https?:\/\//i.test(u || "") ? u : "#";
+const NIVEIS = {"intro": "Cada pessoa chega no anúncio sabendo uma coisa diferente sobre o próprio problema e sobre a sua oferta. Se o anúncio começa num ponto que ela ainda não alcançou, ela não entende. Se começa num ponto que ela já passou, ela se entedia. O nível de consciência diz onde a conversa deve começar.", "regra_ouro": "Comece o anúncio exatamente onde está a cabeça do seu público, nunca onde está a sua.", "niveis": [{"nivel": "inconsciente", "titulo": "Não sabe que tem um problema", "o_que_e": "A pessoa vive o problema, mas ainda não deu nome a ele. Para ela, aquilo é normal ou é só o jeito que a vida é.", "como_falar": "Abra pela identidade dela ou por uma cena que ela reconhece, nunca pelo produto. Entregue uma verdade incômoda que faça ela se ver no espelho. No high ticket, esse anúncio filtra pelo jeito de pensar, não vende.", "erro_comum": "Falar do método, do preço ou da oferta para quem nem sabe que precisa de ajuda.", "etapa_funil": "topo", "exemplos": ["Para qualquer pessoa com o mínimo de educação financeira, a poupança não é uma opção.", "100 dias sem redes sociais. A lição número 1 que aprendi você não vai gostar de ouvir.", "Quando você vai arrumar um trabalho de verdade? Eu: no meu trabalho de verdade."]}, {"nivel": "consciente do problema", "titulo": "Sente a dor, não sabe a saída", "o_que_e": "A pessoa sabe que algo está errado e sente isso no bolso ou na rotina. Ela ainda não sabe que existe um jeito de resolver.", "como_falar": "Abra pela dor dela, com as palavras que ela usa, em cena concreta. Mostre que você entende o problema melhor do que ela e só então aponte que existe uma saída. No high ticket, deixe claro o custo de continuar como está.", "erro_comum": "Pular direto para a solução sem antes provar que entende a dor.", "etapa_funil": "topo", "exemplos": ["Meu perfil parece abandonado. Mas já vendeu mais de R$300 mil em serviços.", "O \"vou pensar\" depois da call é falta de preparo do lead.", "Atender 7 horas por dia pra mal conseguir pagar as contas do mês não é liberdade, é sobreviver."]}, {"nivel": "consciente da solução", "titulo": "Sabe o que quer, não conhece você", "o_que_e": "A pessoa já sabe o resultado que deseja e que existe um caminho para chegar lá. Ela só não sabe que a sua oferta entrega isso.", "como_falar": "Abra pelo resultado que ela quer, dito de forma concreta e com número. Depois mostre por que o seu caminho chega lá melhor que os outros, com mecanismo e prova. No high ticket, a prova de casos parecidos com o dela pesa mais que a promessa.", "erro_comum": "Gastar tempo explicando o problema para quem já está procurando a solução.", "etapa_funil": "meio", "exemplos": ["Isso é o que acontece com o corpo de quem faz treino híbrido.", "Quer achar oferta de low ticket? Escreve isso aqui na biblioteca de anúncios.", "Para vender serviços e mentorias de R$5 mil a R$10 mil para pessoas que ainda não conhecem você."]}, {"nivel": "consciente do produto", "titulo": "Conhece você, ainda não decidiu", "o_que_e": "A pessoa já sabe o que você vende e o que a oferta faz. Ela ainda tem dúvida se funciona para ela ou se vale o preço.", "como_falar": "Abra pelo produto e pelo que ele já fez por gente como ela. Entregue prova, detalhes da entrega e resposta para as objeções que travam a decisão. No high ticket, mostre o passo a passo de como é trabalhar com você.", "erro_comum": "Repetir a apresentação genérica em vez de matar a dúvida que impede a compra.", "etapa_funil": "meio", "exemplos": ["Falaram que esse treino não funciona, mas eu testei por 7 dias.", "Vou te mostrar algo que todo eletricista residencial deveria ter.", "Vender 1 mentoria por semana sem abrir turma: anúncio que atrai, aplicação que filtra, sessão que fecha."]}, {"nivel": "totalmente consciente", "titulo": "Já quer, só precisa do empurrão", "o_que_e": "A pessoa conhece a oferta, confia e já quer comprar. Falta só um motivo para agir agora.", "como_falar": "Abra direto pela oferta, condição e prazo. Entregue o que muda hoje: bônus, vaga, condição especial ou fim do prazo. No high ticket, a urgência vem de vaga limitada e agenda real, nunca de desconto inventado.", "erro_comum": "Voltar a explicar o problema e o método para quem só está esperando o convite.", "etapa_funil": "fundo", "exemplos": ["Atenção. Última chance da promoção de feriadão com 40% de desconto.", "A pedidos, estendemos a nossa maior oferta de todos os tempos.", "Apenas hoje está liberado o lote antecipado no menor preço."]}]};
 const FILTRO0 = () => ({tipo:"", funil:"", etapa:"", nivel:"", angulo:"", q:""});
 const S = { user:null, admin:false, formatos:[], exemplos:[], angulos:[], favs:new Map(), f:FILTRO0() };
 
@@ -301,7 +303,7 @@ async function carregar(){
 }
 
 /* ---------- casca ---------- */
-const ROTAS = ["inicio","formatos","formato","angulos","favoritos","curadoria","admin"];
+const ROTAS = ["inicio","formatos","formato","angulos","niveis","favoritos","curadoria","admin"];
 function casca(){
   const ini = (S.user.email || "?")[0].toUpperCase();
   $("#root").innerHTML = `<div class="app">
@@ -312,6 +314,7 @@ function casca(){
       <span class="mono mt">Biblioteca</span>
       <a href="#formatos" data-r="formatos">Formatos <span class="count">${S.formatos.length}</span></a>
       <a href="#angulos" data-r="angulos">Ângulos <span class="count">${S.angulos.length}</span></a>
+      <a href="#niveis" data-r="niveis">Níveis de consciência <span class="count">5</span></a>
       <a href="#favoritos" data-r="favoritos">Favoritos <span class="count" id="c-fav">${S.favs.size}</span></a>
       <span class="mono mt">Com o Netanias</span>
       <a href="#curadoria" data-r="curadoria">Curadoria</a>
@@ -335,7 +338,7 @@ function rota(){
   document.querySelectorAll(".nav a").forEach(a => a.classList.toggle("on", a.dataset.r === r || (r === "formato" && a.dataset.r === "formatos")));
   // troca o <main> para não acumular ouvintes de clique entre telas
   const velho = $("#main"); const m = velho.cloneNode(false); velho.replaceWith(m);
-  ({inicio:vInicio, formatos:vFormatos, formato:x => vFormato(x, arg), angulos:vAngulos, favoritos:vFavoritos, curadoria:vCuradoria, admin:vAdmin})[r](m);
+  ({inicio:vInicio, formatos:vFormatos, formato:x => vFormato(x, arg), angulos:vAngulos, niveis:vNiveis, favoritos:vFavoritos, curadoria:vCuradoria, admin:vAdmin})[r](m);
   const b = $("#b-menu"); if (b) b.onclick = () => $("#side").classList.add("open");
   window.scrollTo(0, 0);
 }
@@ -360,7 +363,8 @@ function formatosFiltrados(){
   return S.formatos.filter(fm => {
     if (f.tipo && fm.tipo !== f.tipo) return false;
     const ex = S.exemplos.filter(e => e.formato_id === fm.id);
-    for (const k of ["funil","etapa","nivel"]) if (f[k] && !ex.some(e => e[k] === f[k])) return false;
+    for (const k of ["funil","etapa"]) if (f[k] && !ex.some(e => e[k] === f[k])) return false;
+    if (f.nivel && !ex.some(e => norm(e.nivel) === norm(f.nivel))) return false;
     if (f.angulo && !ex.some(e => e.angulo_grupo === f.angulo)) return false;
     if (q && !(fm.nome + " " + (fm.o_que_e || "") + " " + (fm.quando_usar || "") + " " + ex.map(e => e.gancho || "").join(" ")).toLowerCase().includes(q)) return false;
     return true; });
@@ -380,12 +384,27 @@ function ligarCapas(root){
   obsCapa = new IntersectionObserver(es => es.forEach(en => { if (!en.isIntersecting) return; const v = en.target; v.preload = "metadata"; v.src = v.dataset.src; v.removeAttribute("data-src"); obsCapa.unobserve(v); }), {rootMargin:"200px"});
   vs.forEach(v => obsCapa.observe(v));
 }
+const norm = s => String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
+function vNiveis(m){
+  const n = NIVEIS.niveis;
+  m.innerHTML = topo("Níveis de consciência", "Em que ponto o seu público está, e como falar com ele em cada um.") + `
+  <div class="panel" style="padding:16px"><p>${esc(NIVEIS.intro)}</p></div>
+  <div class="impl" style="display:block"><span class="mono" style="color:var(--amber)">Regra de ouro</span><p style="max-width:none;opacity:1;font-size:16px;margin-top:6px">${esc(NIVEIS.regra_ouro)}</p></div>
+  <div class="escada">${n.map((x, i) => `<article class="panel nivel" style="margin-left:calc(${i} * var(--degrau))">
+    <div class="nivel-head"><span class="n-num">${i + 1}</span><div><span class="mono">${esc(x.nivel)}</span><h2>${esc(x.titulo)}</h2></div><span class="tag funil">${esc(x.etapa_funil)}</span></div>
+    <p><b>O que é:</b> ${esc(x.o_que_e)}</p><p><b>Como falar:</b> ${esc(x.como_falar)}</p><p class="erro"><b>Erro comum:</b> ${esc(x.erro_comum)}</p>
+    ${(x.exemplos || []).length ? `<div><b>Ganchos de exemplo</b><div class="list mt" style="gap:6px">${x.exemplos.map(g => `<div class="example">${esc(g)}</div>`).join("")}</div></div>` : ""}
+    <button class="btn primary" data-nivel="${esc(x.nivel)}" style="justify-self:start">Ver formatos deste nível</button></article>`).join("")}</div>` + rodape();
+  m.addEventListener("click", e => { const b = e.target.closest("[data-nivel]"); if (!b) return;
+    const alvo = uniq("nivel").find(v => norm(v) === norm(b.dataset.nivel)) || b.dataset.nivel;
+    S.f = FILTRO0(); S.f.nivel = alvo; location.hash = "formatos"; });
+}
 function vFormatos(m){
   const sel = (k, rot, ops) => `<select class="f" data-k="${k}" aria-label="${rot}"><option value="">${rot}: todos</option>${ops.map(o => `<option ${S.f[k] === o ? "selected" : ""}>${esc(o)}</option>`).join("")}</select>`;
   m.innerHTML = topo("Formatos", "O que é cada formato e quando usar.") + `
   <div class="filterbar"><div class="search"><input type="search" id="q" aria-label="Buscar" placeholder="Buscar formato ou gancho" value="${esc(S.f.q)}"></div>
   <div class="filters"><select class="f" data-k="tipo" aria-label="Tipo"><option value="">Tipo: todos</option><option value="video" ${S.f.tipo === "video" ? "selected" : ""}>Vídeo</option><option value="imagem" ${S.f.tipo === "imagem" ? "selected" : ""}>Imagem</option></select>
-  ${sel("funil","Funil",uniq("funil"))}${sel("etapa","Etapa",uniq("etapa"))}${sel("nivel","Nível de consciência",uniq("nivel"))}${sel("angulo","Ângulo",uniq("angulo_grupo"))}</div></div>
+  ${sel("funil","Funil",uniq("funil"))}${sel("etapa","Etapa",uniq("etapa"))}${sel("nivel","Nível de consciência",[...new Set([...uniq("nivel"),...(S.f.nivel?[S.f.nivel]:[])])])}${sel("angulo","Ângulo",uniq("angulo_grupo"))}</div></div>
   <div id="lista"></div>` + rodape();
   const desenhar = () => { const l = formatosFiltrados();
     $("#lista").innerHTML = `<div class="showing"><span>${l.length} formato(s)</span>${Object.values(S.f).some(Boolean) ? '<button class="btn" id="limpar">Limpar filtros</button>' : ""}</div>
