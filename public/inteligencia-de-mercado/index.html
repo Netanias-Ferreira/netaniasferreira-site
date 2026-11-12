@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Inteligência do Mercado · Netanias Ferreira</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: app de membros, menu lateral fixo + área principal com rotas por hash; no celular o menu vira gaveta */
+:root{
+  --bg:#F3F3F1; --surface:#FFFFFF; --surface-2:#ECEBE8; --line:#DCDAD5;
+  --fg:#1E1E1E; --muted:#6B6863; --accent:#B8584B; --accent-fg:#FFFFFF; --accent-soft:#F3E2DE;
+  --ok:#2F7D5B; --ok-soft:#DDEFE6;
+  --font-display:"Space Grotesk",system-ui,sans-serif; --font-body:"Inter",system-ui,sans-serif; --font-mono:"JetBrains Mono",ui-monospace,monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#161616; --surface:#1F1F1F; --surface-2:#292826; --line:#34322F;
+  --fg:#EDEBE7; --muted:#A39F98; --accent:#D97A6B; --accent-fg:#1A1110; --accent-soft:#3A2522;
+  --ok:#6CC59D; --ok-soft:#1E3329; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#161616; --surface:#1F1F1F; --surface-2:#292826; --line:#34322F;
+  --fg:#EDEBE7; --muted:#A39F98; --accent:#D97A6B; --accent-fg:#1A1110; --accent-soft:#3A2522;
+  --ok:#6CC59D; --ok-soft:#1E3329; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:14px;line-height:1.5}
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance;margin:0;letter-spacing:-.01em}
+h1{font-size:28px} h2{font-size:20px} h3{font-size:15px}
+p{margin:0}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mono{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.muted{color:var(--muted)}
+.app{display:grid;grid-template-columns:248px 1fr;min-height:100%}
+/* menu lateral */
+.side{position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--surface);border-right:1px solid var(--line);display:flex;flex-direction:column;padding:20px 14px;gap:18px}
+.brand{display:flex;align-items:center;gap:10px;padding:0 6px}
+.brand-mark{width:30px;height:30px;border-radius:8px;background:var(--accent);color:var(--accent-fg);display:grid;place-items:center;font-family:var(--font-display);font-weight:700}
+.brand b{font-family:var(--font-display);font-size:15px;line-height:1.1;display:block}
+.brand small{color:var(--muted);font-size:11px}
+.nav-group{display:flex;flex-direction:column;gap:2px}
+.nav-group .mono{color:var(--muted);padding:0 8px 6px}
+.nav a{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;border-radius:8px;text-decoration:none;color:var(--fg)}
+.nav a:hover{background:var(--surface-2)}
+.nav a.on{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.nav .count{font-family:var(--font-mono);font-size:11px;color:var(--muted)}
+.nav a.on .count{color:var(--accent)}
+.side-cta{margin-top:auto;border:1px solid var(--line);border-radius:var(--r);padding:12px;display:grid;gap:8px;background:var(--surface-2)}
+.side-cta p{font-size:12px}
+.user{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+.avatar{width:26px;height:26px;border-radius:50%;background:var(--fg);color:var(--bg);display:grid;place-items:center;font-size:11px;font-weight:600}
+/* principal */
+.main{min-width:0;padding-block:28px 60px;padding-left:max(28px,env(safe-area-inset-left,0px));padding-right:max(28px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:24px}
+.top{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;justify-content:space-between}
+.top-meta{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:8px}
+.pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-size:12px;text-decoration:none}
+.pill.solid{background:var(--accent);border-color:var(--accent);color:var(--accent-fg);font-weight:600}
+.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:7px 12px;font-size:13px}
+.btn:hover{border-color:var(--fg)}
+.btn.primary{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.btn.on{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)}
+.btn.fav-on{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
+.search{display:flex;gap:8px}
+.search input{border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:8px;padding:8px 12px;min-width:0;width:220px;font:inherit}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+.chip{flex:none;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 11px;font-size:12px;white-space:nowrap}
+.chip .n{font-family:var(--font-mono);font-size:10px;color:var(--muted);margin-left:4px}
+.chip.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.chip.on .n{color:var(--bg);opacity:.7}
+.filterbar{display:flex;flex-direction:column;gap:10px}
+.showing{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:8px 12px;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.card-head{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;font-size:11px;color:var(--muted);gap:6px}
+.tag{font-size:11px;border-radius:999px;padding:2px 8px;background:var(--surface-2);color:var(--fg);white-space:nowrap}
+.tag.funil{background:var(--accent-soft);color:var(--accent)}
+.tag.meu{background:var(--ok-soft);color:var(--ok)}
+.thumb{aspect-ratio:4/5;position:relative;display:grid;place-items:center;overflow:hidden;cursor:pointer;border:0;padding:0;width:100%}
+.play{position:absolute;width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,.55);display:grid;place-items:center;color:#fff;font-size:15px}
+.card-body{padding:10px;display:grid;gap:8px}
+.card-body h3{font-size:14px}
+.metrics{display:flex;gap:10px;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+.actions{display:flex;flex-wrap:wrap;gap:6px}
+.actions .btn{padding:5px 9px;font-size:12px}
+/* miniaturas desenhadas por formato */
+.t-preta{background:#0E0E0E;color:#fff;font-family:var(--font-display);font-weight:700;font-size:15px;text-align:center;padding:18px;line-height:1.15}
+.t-notas{background:#FBF7E8;color:#222;align-content:start;justify-items:start;padding:16px;gap:6px;font-size:11px;text-align:left}
+.t-notas b{font-size:14px;color:#111}
+.t-notas i{font-style:normal;color:#C79A14;font-size:11px}
+.t-zap{background:#E9DFD4;align-content:start;padding:14px;gap:6px;justify-items:stretch}
+.bub{background:#fff;border-radius:8px;padding:6px 8px;font-size:11px;color:#222;max-width:80%}
+.bub.me{background:#D7F5C9;justify-self:end}
+.t-verde{background:linear-gradient(#7A9BB8,#486A86);color:#fff}
+.t-verde .face{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:62%;height:42%;background:#2A2522;border-radius:50% 50% 0 0}
+.t-verde .shot{position:absolute;top:12%;left:12%;right:12%;height:38%;background:#fff;border-radius:6px;color:#222;font-size:11px;padding:8px;font-weight:600}
+.t-div{grid-template-rows:1fr 1fr;place-items:stretch}
+.t-div span:first-child{background:#3B4A5A}
+.t-div span:last-child{background:#B9A58A}
+.t-ad{grid-template-columns:1fr 1fr;place-items:stretch;font-size:11px;font-weight:700;color:#fff}
+.t-ad span{display:grid;place-items:center}
+.t-ad span:first-child{background:#6E6A66}
+.t-ad span:last-child{background:#2F7D5B}
+.t-noticia{background:#F1F1F1;align-content:start;padding:0}
+.t-noticia .bar{background:#C0262D;color:#fff;font-weight:700;font-size:11px;padding:6px 10px;width:100%}
+.t-noticia p{padding:10px;color:#111;font-family:Georgia,serif;font-size:14px;font-weight:700;text-align:left}
+.t-post{background:#fff;align-content:start;justify-items:start;padding:14px;gap:8px;color:#111;text-align:left;font-size:12px}
+.t-post .who{display:flex;gap:6px;align-items:center;font-weight:600}
+.t-post .who i{width:20px;height:20px;border-radius:50%;background:#1D9BF0}
+/* listas e páginas */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.list{display:flex;flex-direction:column}
+.row{border-top:1px solid var(--line);padding:14px 16px;display:grid;gap:6px}
+.row:first-child{border-top:0}
+.row-head{display:flex;gap:12px;align-items:baseline;justify-content:space-between;cursor:pointer;background:none;border:0;padding:0;text-align:left;width:100%}
+.row-head .num{font-family:var(--font-mono);font-size:11px;color:var(--muted);width:24px;flex:none}
+.row-head .t{flex:1;min-width:0}
+.row-head .t b{display:block;font-family:var(--font-display);font-size:15px}
+.open-box{display:grid;gap:10px;padding:6px 0 4px 36px}
+.example{border-left:3px solid var(--accent);padding:6px 12px;background:var(--surface-2);border-radius:0 8px 8px 0;font-size:13px}
+.prompt{background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:var(--font-mono);font-size:12px;white-space:pre-wrap;overflow-x:auto}
+.prompt-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px}
+.group-head{padding:16px;border-bottom:1px solid var(--line);display:grid;gap:4px}
+.group-head .mono{color:var(--accent)}
+.pieces{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.piece{padding:16px;display:grid;gap:8px;align-content:start}
+.piece .mono{color:var(--accent)}
+.funnel{display:grid;gap:8px;justify-items:center}
+.lvl{border:0;color:var(--bg);background:var(--fg);padding:14px 10px;text-align:center;border-radius:6px;display:grid;gap:2px;transition:transform .15s}
+.lvl:hover{transform:scale(1.01)}
+.lvl b{font-family:var(--font-display);font-size:15px}
+.lvl small{opacity:.75}
+.hook{display:grid;gap:8px}
+.hook-text{font-size:15px;line-height:1.6}
+.slot{background:var(--accent-soft);color:var(--accent);font-family:var(--font-mono);font-size:11px;padding:2px 6px;border-radius:4px;white-space:nowrap}
+.src{font-size:12px;color:var(--muted);border-left:2px solid var(--line);padding-left:10px}
+.adv{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center}
+.adv .logo{width:36px;height:36px;border-radius:8px;background:var(--surface-2);display:grid;place-items:center;font-family:var(--font-display);font-weight:700}
+.steps{display:grid;gap:12px}
+.step{display:grid;grid-template-columns:36px 1fr;gap:12px;padding:16px}
+.step .n{width:30px;height:30px;border-radius:50%;background:var(--fg);color:var(--bg);display:grid;place-items:center;font-family:var(--font-display);font-weight:700}
+.video{aspect-ratio:16/9;background:linear-gradient(135deg,#2B2B2B,#4A3A36);border-radius:var(--r);display:grid;place-items:center;color:#fff;position:relative}
+.lessons{display:grid;gap:8px;padding:14px}
+.lesson{border:1px solid var(--line);border-radius:8px;padding:10px;display:grid;gap:2px}
+.lesson.on{border-color:var(--accent);background:var(--accent-soft)}
+.onb{display:grid;grid-template-columns:1fr 280px;gap:16px}
+.form{display:grid;gap:10px}
+.form label{display:grid;gap:4px;font-size:12px;color:var(--muted)}
+.form input,.form textarea,.form select{border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:8px;padding:9px 11px;font:inherit}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+details{border-top:1px solid var(--line);padding:12px 16px}
+details summary{cursor:pointer;font-weight:600}
+details p{margin-top:8px;color:var(--muted)}
+.empty{padding:28px;text-align:center;color:var(--muted)}
+.note-box{display:grid;gap:6px}
+.note-box textarea{width:100%;min-height:70px;border:1px solid var(--line);border-radius:8px;background:var(--surface-2);color:var(--fg);padding:8px;font:inherit}
+.impl{background:var(--fg);color:var(--bg);border-radius:var(--r);padding:22px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+.impl p{max-width:60ch;opacity:.85}
+.impl .btn{background:var(--accent);color:var(--accent-fg);border-color:var(--accent);font-weight:600}
+.foot{font-size:12px;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+/* janela */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);display:grid;place-items:center;z-index:50;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.modal{background:var(--surface);border-radius:12px;max-width:420px;width:100%;max-height:100%;overflow:auto;display:grid}
+.modal-head{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;gap:8px}
+.modal .thumb{aspect-ratio:9/16;cursor:default}
+.modal-foot{padding:12px 14px;display:flex;gap:8px;flex-wrap:wrap}
+.toast{position:fixed;bottom:max(20px,env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:9px 16px;border-radius:999px;font-size:13px;z-index:60}
+.proto{font-size:11px;background:var(--accent-soft);color:var(--accent);border-radius:6px;padding:6px 10px}
+.menu-btn{display:none}
+@media (max-width:860px){
+  .app{grid-template-columns:1fr}
+  .side{position:fixed;inset:0 auto 0 0;width:260px;z-index:40;transform:translateX(-100%);transition:transform .2s;padding-top:max(20px,env(safe-area-inset-top,0px));padding-left:max(14px,env(safe-area-inset-left,0px))}
+  .side.open{transform:none}
+  .menu-btn{display:inline-flex}
+  .main{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .onb{grid-template-columns:1fr}
+  .search input{width:100%}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+  .open-box{padding-left:0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* Paleta nova (sales dashboard laranja/âmbar), substitui a do protótipo; layout igual */
+:root,:root[data-theme="light"]{--bg:#F4F4F2;--surface:#FFFFFF;--surface-2:#F4F4F2;--line:#ECECEC;--fg:#111111;--muted:#6B6B6B;
+ --accent:#F7931E;--accent-txt:#C2410C;--accent-fg:#111111;--accent-soft:#FFEDD5;--amber:#FDB022;--yellow:#FFC83D;
+ --ok:#15803D;--ok-soft:#DCFCE7;--bad:#DC2626;--blue:#1D4ED8;--blue-soft:#DBEAFE;--r:18px;--shadow:0 1px 2px rgba(0,0,0,.04),0 6px 20px rgba(0,0,0,.05);
+ --font-display:"Inter",system-ui,sans-serif;--side-bg:#161616;--side-fg:#FFFFFF;--side-muted:#9A9A9A;--side-on:#2A2A2A;color-scheme:light}
+:root[data-theme="dark"]{--bg:#1A1A1A;--surface:#222222;--surface-2:#2A2A2A;--line:#333333;--fg:#F5F5F5;--muted:#A3A3A3;--accent:#F7931E;--accent-fg:#111111;--accent-txt:#FDB022;--accent-soft:#3A2A16;--ok:#4ADE80;--ok-soft:#14321F;--blue:#93C5FD;--blue-soft:#1E2A44;color-scheme:dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1A1A1A;--surface:#222222;--surface-2:#2A2A2A;--line:#333333;--fg:#F5F5F5;--muted:#A3A3A3;--accent:#F7931E;--accent-fg:#111111;--accent-txt:#FDB022;--accent-soft:#3A2A16;--ok:#4ADE80;--ok-soft:#14321F;--blue:#93C5FD;--blue-soft:#1E2A44;color-scheme:dark}}
+h1,h2,h3{font-weight:700;letter-spacing:-.02em}
+.side{background:var(--side-bg);color:var(--side-fg);border-right:0}
+.side .brand small,.side .nav-group .mono,.side .user,.side .nav .count{color:var(--side-muted)}
+.side .nav a{color:var(--side-fg)} .side .nav a:hover{background:#222}
+.side .nav a.on{background:var(--side-on);color:#fff;box-shadow:inset 3px 0 0 var(--accent)} .side .nav a.on .count{color:var(--accent)}
+.brand-mark{background:linear-gradient(135deg,var(--accent),var(--amber));color:#111}
+.side-cta{background:#1F1F1F;border-color:#2E2E2E;color:#fff}
+.side-cta .btn.primary{background:var(--yellow);color:#111;border-color:var(--yellow);font-weight:600}
+.side .btn{background:#222;border-color:#333;color:#fff} .avatar{background:var(--accent);color:#111}
+.panel,.card{border-radius:var(--r);box-shadow:var(--shadow);border-color:var(--line)}
+.btn{border-radius:999px} .btn.primary{background:#111;color:#fff;border-color:#111}
+:root[data-theme="dark"] .main .btn.primary{background:#F5F5F5;color:#111;border-color:#F5F5F5}
+.btn.fav-on{color:var(--accent-txt);border-color:var(--accent)} .tag.funil{color:var(--accent-txt)}
+.mono{color:var(--accent-txt)} .muted.mono,.mono.muted{color:var(--muted)}
+select.f{border-radius:999px} .chip.on{background:#111;color:#fff}
+.stat{background:var(--surface)} .stats .stat:first-child{background:#1C1C1C;color:#fff;border-color:#1C1C1C}
+.stats .stat:first-child .muted{color:#BDBDBD}
+.stats .stat:first-child::after{content:"";display:block;height:6px;margin-top:12px;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--amber))}
+.stat b{font-size:36px;font-weight:800}
+.impl{background:#1C1C1C;color:#fff;border-radius:var(--r)} .impl .btn{background:var(--yellow);color:#111;border-color:var(--yellow)}
+.status.respondido{background:var(--ok-soft);color:var(--ok)} .status{background:var(--blue-soft);color:var(--blue)}
+.example{border-left-color:var(--accent)} :focus-visible{outline-color:var(--accent)}
+@media (max-width:860px){.app{grid-template-columns:minmax(0,1fr)}} .main{min-width:0;overflow-x:hidden}
+
+.login{min-height:100vh;display:grid;place-items:center;padding:20px}
+.login .panel{max-width:400px;width:100%;padding:28px;display:grid;gap:14px}
+.media{width:100%;max-height:70vh;background:#000;display:block;object-fit:contain;border-radius:8px}
+.fmt-card{padding:16px;display:grid;gap:8px;align-content:start;text-decoration:none}
+.fmt-card:hover{border-color:var(--fg)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.stat{padding:16px}.stat b{font-family:var(--font-display);font-size:30px;display:block}
+.ex{padding:14px;display:grid;gap:10px;align-content:start}
+.ex pre{white-space:pre-wrap;font:inherit;margin:8px 0 0;background:var(--surface-2);padding:10px;border-radius:8px;max-height:260px;overflow:auto}
+.ex details{padding:0;border:0}
+.status{font-size:11px;border-radius:999px;padding:2px 8px;background:var(--surface-2);white-space:nowrap}
+.status.respondido{background:var(--ok-soft);color:var(--ok)}
+select.f,.adm input{border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:8px;padding:7px 10px;font:inherit;max-width:100%}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+table.adm{width:100%;border-collapse:collapse;font-size:13px}table.adm td,table.adm th{border-top:1px solid var(--line);padding:8px;text-align:left}
+.tablewrap{overflow-x:auto}
+.mt{margin-top:10px}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="module">
+/* ===== CONFIG (preencher antes de publicar) ===== */
+const SUPABASE_URL = "https://jxricnopvahlauurrwvj.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_JeZAfeTSJvyiem-25UiVRA_Hgs4oBCt";   // chave PÚBLICA (anon/publishable)
+const MIDIA_BASE = "https://midia.netaniasferreira.com.br/"; // domínio público do R2
+const CONTATO_NETANIAS = "https://wa.me/558581825194";      // WhatsApp de trabalho do Netanias
+const TUTORIAL_VIDEO = "";                        // URL do vídeo tutorial (vazio = espaço reservado)
+/* ================================================ */
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+const configurado = SUPABASE_ANON_KEY.startsWith("sb_") || SUPABASE_ANON_KEY.startsWith("eyJ");
+const sb = configurado ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const midia = a => a ? (MIDIA_BASE.replace(/\/?$/, "/") + a.split("/").map(encodeURIComponent).join("/")) : "";
+const ehVideo = a => /\.(mp4|mov|webm|m4v)$/i.test(a || "");
+const contato = () => CONTATO_NETANIAS.startsWith("http") ? CONTATO_NETANIAS : "#";
+const linkSeguro = u => /^https?:\/\//i.test(u || "") ? u : "#";
+const FILTRO0 = () => ({tipo:"", funil:"", etapa:"", nivel:"", angulo:"", q:""});
+const S = { user:null, admin:false, formatos:[], exemplos:[], angulos:[], favs:new Map(), f:FILTRO0() };
+
+function toast(m){ const t = document.createElement("div"); t.className = "toast"; t.setAttribute("role","status"); t.textContent = m; document.body.append(t); setTimeout(() => t.remove(), 2200); }
+function tema(){ const r = document.documentElement; const atual = r.dataset.theme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); r.dataset.theme = atual === "dark" ? "light" : "dark"; localStorage.setItem("im-tema", r.dataset.theme); }
+if (localStorage.getItem("im-tema")) document.documentElement.dataset.theme = localStorage.getItem("im-tema");
+const marca = `<div class="brand"><div class="brand-mark">N</div><div><b>Inteligência do Mercado</b><small>Netanias Ferreira</small></div></div>`;
+
+/* ---------- login ---------- */
+function telaLogin(msg = ""){
+  $("#root").innerHTML = `<main class="login"><div class="panel">${marca}
+    <h1>Entrar</h1>
+    <p class="muted">Digite seu e-mail. Você recebe um link para entrar, sem senha.</p>
+    <form class="form" id="f-login"><label>E-mail<input type="email" name="email" required autocomplete="email" inputmode="email"></label>
+    <button class="btn primary" type="submit">Receber link de acesso</button></form>
+    <p class="muted" id="login-msg" role="status">${esc(msg)}</p>
+    <button class="btn" id="b-tema" style="justify-self:start">Tema claro/escuro</button></div></main>`;
+  $("#b-tema").onclick = tema;
+  $("#f-login").onsubmit = async e => { e.preventDefault();
+    const email = e.target.email.value.trim();
+    if (!sb) { $("#login-msg").textContent = "Sistema em configuração."; return; }
+    const { error } = await sb.auth.signInWithOtp({ email, options:{ emailRedirectTo: location.origin + location.pathname } });
+    $("#login-msg").textContent = error ? "Não consegui enviar o link. Confira o e-mail e tente de novo." : "Pronto. Abra seu e-mail e toque no link para entrar.";
+  };
+}
+function telaSemAcesso(){
+  $("#root").innerHTML = `<main class="login"><div class="panel">${marca}
+    <h1>Acesso ainda não liberado</h1>
+    <p class="muted">O e-mail ${esc(S.user.email)} ainda não tem acesso à Inteligência do Mercado. Fale com o Netanias para liberar.</p>
+    <a class="btn primary" href="${contato()}" target="_blank" rel="noopener">Falar com o Netanias</a>
+    <button class="btn" id="sair">Entrar com outro e-mail</button></div></main>`;
+  $("#sair").onclick = sair;
+}
+async function sair(){ await sb.auth.signOut(); location.hash = ""; location.reload(); }
+
+/* ---------- dados ---------- */
+async function carregar(){
+  const [f, e, a, fv] = await Promise.all([
+    sb.from("im_formatos").select("*").order("nome"),
+    sb.from("im_exemplos").select("*").order("id"),
+    sb.from("im_angulos").select("*").order("id"),
+    sb.from("im_favoritos").select("*")]);
+  S.formatos = f.data || []; S.exemplos = e.data || []; S.angulos = a.data || [];
+  S.favs = new Map((fv.data || []).map(x => [x.exemplo_id, x]));
+}
+
+/* ---------- casca ---------- */
+const ROTAS = ["inicio","formatos","formato","angulos","favoritos","curadoria","admin"];
+function casca(){
+  const ini = (S.user.email || "?")[0].toUpperCase();
+  $("#root").innerHTML = `<div class="app">
+  <aside class="side" id="side">${marca}
+    <nav class="nav-group nav" aria-label="Menu">
+      <span class="mono">Começo</span>
+      <a href="#inicio" data-r="inicio">Comece por aqui</a>
+      <span class="mono mt">Biblioteca</span>
+      <a href="#formatos" data-r="formatos">Formatos <span class="count">${S.formatos.length}</span></a>
+      <a href="#angulos" data-r="angulos">Ângulos <span class="count">${S.angulos.length}</span></a>
+      <a href="#favoritos" data-r="favoritos">Favoritos <span class="count" id="c-fav">${S.favs.size}</span></a>
+      <span class="mono mt">Com o Netanias</span>
+      <a href="#curadoria" data-r="curadoria">Curadoria</a>
+      ${S.admin ? '<a href="#admin" data-r="admin">Painel do Netanias</a>' : ""}
+    </nav>
+    <div class="side-cta"><p><b>Squad completo personalizado</b><br>Quer o sistema inteiro montado para a sua oferta? Chame o Netanias.</p><a class="btn primary" href="${contato()}" target="_blank" rel="noopener">Chamar o Netanias</a></div>
+    <div class="user"><span class="avatar">${esc(ini)}</span><span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis">${esc(S.user.email)}</span></div>
+    <div class="actions"><button class="btn" id="b-tema">Tema claro/escuro</button><button class="btn" id="b-sair">Sair</button></div>
+  </aside>
+  <main class="main" id="main"></main></div>`;
+  $("#b-tema").onclick = tema; $("#b-sair").onclick = sair;
+  $("#side").addEventListener("click", e => { if (e.target.closest("a")) $("#side").classList.remove("open"); });
+}
+function rodape(){ return `<div class="impl"><div><h2>Implementação de funil de aquisição para alto ticket</h2><p>Eu monto com você o funil que leva o lead do anúncio até a call de venda, com estes formatos aplicados na sua oferta.</p></div><a class="btn" href="${contato()}" target="_blank" rel="noopener">Quero a implementação</a></div>
+<div class="foot"><span>© ${new Date().getFullYear()} Netanias Ferreira</span><span>Inteligência do Mercado</span></div>`; }
+function topo(t, sub = ""){ return `<div class="top"><div><button class="btn menu-btn" id="b-menu" aria-label="Abrir menu">☰ Menu</button><h1 style="margin-top:8px">${esc(t)}</h1>${sub ? `<p class="muted">${esc(sub)}</p>` : ""}</div></div>`; }
+
+function rota(){
+  let [r, arg] = (location.hash.slice(1) || "inicio").split("/");
+  if (!ROTAS.includes(r) || (r === "admin" && !S.admin)) r = "inicio";
+  document.querySelectorAll(".nav a").forEach(a => a.classList.toggle("on", a.dataset.r === r || (r === "formato" && a.dataset.r === "formatos")));
+  // troca o <main> para não acumular ouvintes de clique entre telas
+  const velho = $("#main"); const m = velho.cloneNode(false); velho.replaceWith(m);
+  ({inicio:vInicio, formatos:vFormatos, formato:x => vFormato(x, arg), angulos:vAngulos, favoritos:vFavoritos, curadoria:vCuradoria, admin:vAdmin})[r](m);
+  const b = $("#b-menu"); if (b) b.onclick = () => $("#side").classList.add("open");
+  window.scrollTo(0, 0);
+}
+
+/* ---------- telas ---------- */
+function vInicio(m){
+  m.innerHTML = topo("Comece por aqui", "Formatos de anúncio que já escalaram, com o princípio pronto para levar à sua oferta high ticket.") + `
+  <div class="stats"><div class="panel stat"><b>${S.formatos.length}</b><span class="muted">formatos</span></div>
+  <div class="panel stat"><b>${S.exemplos.length}</b><span class="muted">exemplos</span></div>
+  <div class="panel stat"><b>${S.angulos.length}</b><span class="muted">ângulos</span></div></div>
+  <div class="panel" style="padding:16px;display:grid;gap:12px"><h2>Tutorial</h2>
+  ${TUTORIAL_VIDEO ? `<video class="media" controls playsinline preload="metadata" src="${esc(TUTORIAL_VIDEO)}"></video>` : `<div class="video"><span>Vídeo tutorial em breve</span></div>`}</div>
+  <div class="steps panel">
+   <div class="step"><span class="n">1</span><div><b>Escolha um formato</b><p class="muted">Filtre por etapa do funil e nível de consciência do seu público.</p></div></div>
+   <div class="step"><span class="n">2</span><div><b>Veja os exemplos e baixe</b><p class="muted">Gancho, resumo, texto e o arquivo para modelar.</p></div></div>
+   <div class="step"><span class="n">3</span><div><b>Escolha o ângulo e teste</b><p class="muted">Copie o prompt do ângulo, marque o que já testou e mande seu criativo para a curadoria.</p></div></div>
+  </div><a class="btn primary" href="#formatos" style="justify-self:start">Ver formatos</a>` + rodape();
+}
+const uniq = k => [...new Set(S.exemplos.map(x => x[k]).filter(Boolean))].sort();
+function formatosFiltrados(){
+  const f = S.f, q = f.q.toLowerCase();
+  return S.formatos.filter(fm => {
+    if (f.tipo && fm.tipo !== f.tipo) return false;
+    const ex = S.exemplos.filter(e => e.formato_id === fm.id);
+    for (const k of ["funil","etapa","nivel"]) if (f[k] && !ex.some(e => e[k] === f[k])) return false;
+    if (f.angulo && !ex.some(e => e.angulo_grupo === f.angulo)) return false;
+    if (q && !(fm.nome + " " + (fm.o_que_e || "") + " " + (fm.quando_usar || "") + " " + ex.map(e => e.gancho || "").join(" ")).toLowerCase().includes(q)) return false;
+    return true; });
+}
+function vFormatos(m){
+  const sel = (k, rot, ops) => `<select class="f" data-k="${k}" aria-label="${rot}"><option value="">${rot}: todos</option>${ops.map(o => `<option ${S.f[k] === o ? "selected" : ""}>${esc(o)}</option>`).join("")}</select>`;
+  m.innerHTML = topo("Formatos", "O que é cada formato e quando usar.") + `
+  <div class="filterbar"><div class="search"><input type="search" id="q" aria-label="Buscar" placeholder="Buscar formato ou gancho" value="${esc(S.f.q)}"></div>
+  <div class="filters"><select class="f" data-k="tipo" aria-label="Tipo"><option value="">Tipo: todos</option><option value="video" ${S.f.tipo === "video" ? "selected" : ""}>Vídeo</option><option value="imagem" ${S.f.tipo === "imagem" ? "selected" : ""}>Imagem</option></select>
+  ${sel("funil","Funil",uniq("funil"))}${sel("etapa","Etapa",uniq("etapa"))}${sel("nivel","Nível de consciência",uniq("nivel"))}${sel("angulo","Ângulo",uniq("angulo_grupo"))}</div></div>
+  <div id="lista"></div>` + rodape();
+  const desenhar = () => { const l = formatosFiltrados();
+    $("#lista").innerHTML = `<div class="showing"><span>${l.length} formato(s)</span>${Object.values(S.f).some(Boolean) ? '<button class="btn" id="limpar">Limpar filtros</button>' : ""}</div>
+    ${l.length ? `<div class="pieces" style="margin-top:12px">${l.map(fm => `<a class="panel fmt-card" href="#formato/${fm.id}"><span class="mono muted">${fm.tipo === "video" ? "Vídeo" : "Imagem"} · ${S.exemplos.filter(e => e.formato_id === fm.id).length} exemplos</span><h3>${esc(fm.nome)}</h3>${fm.o_que_e ? `<p><b>O que é:</b> ${esc(fm.o_que_e)}</p>` : ""}${fm.quando_usar ? `<p class="muted"><b>Quando usar:</b> ${esc(fm.quando_usar)}</p>` : ""}</a>`).join("")}</div>` : '<div class="empty panel" style="margin-top:12px">Nenhum formato com esses filtros.</div>'}`;
+    const lp = $("#limpar"); if (lp) lp.onclick = () => { S.f = FILTRO0(); vFormatos(m); }; };
+  m.querySelectorAll("select.f").forEach(s => s.onchange = () => { S.f[s.dataset.k] = s.value; desenhar(); });
+  $("#q").oninput = e => { S.f.q = e.target.value; desenhar(); };
+  desenhar();
+}
+function blocoExemplo(e){
+  const fav = S.favs.get(e.id); const url = midia(e.arquivo);
+  const tags = ["funil","etapa","nivel","nicho","angulo"].map(k => e[k] ? `<span class="tag ${k === "funil" ? "funil" : ""}">${esc(e[k])}</span>` : "").join("");
+  return `<article class="panel ex" data-id="${e.id}">
+   ${url ? (ehVideo(e.arquivo) ? `<video class="media" controls playsinline preload="metadata" src="${esc(url)}"></video>` : `<img class="media" loading="lazy" alt="${esc(e.gancho || "Exemplo do formato")}" src="${esc(url)}">`) : ""}
+   <div class="actions">${tags}</div>
+   ${e.gancho ? `<p><b>Gancho:</b> ${esc(e.gancho)}</p>` : ""}${e.resumo ? `<p class="muted">${esc(e.resumo)}</p>` : ""}
+   ${e.texto ? `<details><summary>Texto completo</summary><pre>${esc(e.texto)}</pre></details>` : ""}
+   ${e.estrutura ? `<details><summary>Estrutura</summary><pre>${esc(e.estrutura)}</pre></details>` : ""}
+   ${e.cta ? `<p><b>CTA:</b> ${esc(e.cta)}</p>` : ""}
+   <div class="actions">
+    ${url ? `<a class="btn" href="${esc(url)}" download target="_blank" rel="noopener">↓ Baixar</a>` : ""}
+    <button class="btn" data-tx="txt">Transcrição .txt</button><button class="btn" data-tx="md">Transcrição .md</button>
+    <button class="btn ${fav ? "fav-on" : ""}" data-act="fav">${fav ? "★ Favorito" : "☆ Favoritar"}</button>
+    <button class="btn ${fav?.testado ? "on" : ""}" data-act="testei">${fav?.testado ? "✓ Já testei" : "Marcar já testei"}</button>
+   </div>
+   <div class="note-box"><label class="muted" for="n${e.id}">Minha anotação</label><textarea id="n${e.id}" placeholder="O que eu quero testar com este exemplo">${esc(fav?.nota || "")}</textarea><button class="btn" data-act="nota" style="justify-self:start">Salvar anotação</button></div>
+  </article>`;
+}
+function baixarTexto(e, ext, fm){
+  const nome = fm?.nome || "Exemplo";
+  const t = ext === "md"
+    ? `# ${nome}\n\n**Gancho:** ${e.gancho || ""}\n\n**Resumo:** ${e.resumo || ""}\n\n## Texto\n\n${e.texto || ""}\n\n## Estrutura\n\n${e.estrutura || ""}\n\n**CTA:** ${e.cta || ""}\n`
+    : `${nome}\n\nGancho: ${e.gancho || ""}\n\nResumo: ${e.resumo || ""}\n\nTexto:\n${e.texto || ""}\n\nEstrutura:\n${e.estrutura || ""}\n\nCTA: ${e.cta || ""}\n`;
+  const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([t], {type: ext === "md" ? "text/markdown;charset=utf-8" : "text/plain;charset=utf-8"})); a.download = `exemplo-${e.id}.${ext}`; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+function ligarExemplos(root, aoMudar){
+  root.addEventListener("click", async ev => {
+    const b = ev.target.closest("button"); const art = ev.target.closest("article.ex"); if (!b || !art) return;
+    const id = +art.dataset.id, e = S.exemplos.find(x => x.id === id), fm = S.formatos.find(f => f.id === e?.formato_id);
+    if (b.dataset.tx) return baixarTexto(e, b.dataset.tx, fm);
+    if (!b.dataset.act) return;
+    const atual = S.favs.get(id);
+    if (b.dataset.act === "fav" && atual) {
+      const { error } = await sb.from("im_favoritos").delete().eq("exemplo_id", id); if (error) return toast("Não consegui salvar."); S.favs.delete(id);
+    } else {
+      const reg = { exemplo_id:id, testado: atual?.testado || false, nota: atual?.nota || null };
+      if (b.dataset.act === "testei") reg.testado = !reg.testado;
+      if (b.dataset.act === "nota") reg.nota = art.querySelector("textarea").value;
+      const { data, error } = await sb.from("im_favoritos").upsert(reg, {onConflict:"user_id,exemplo_id"}).select().single();
+      if (error) return toast("Não consegui salvar."); S.favs.set(id, data);
+    }
+    toast(b.dataset.act === "nota" ? "Anotação salva." : "Salvo.");
+    const c = $("#c-fav"); if (c) c.textContent = S.favs.size;
+    if (aoMudar) aoMudar(); else art.outerHTML = blocoExemplo(e);
+  });
+}
+function vFormato(m, id){
+  const fm = S.formatos.find(f => String(f.id) === String(id));
+  if (!fm) { location.hash = "formatos"; return; }
+  const ex = S.exemplos.filter(e => e.formato_id === fm.id);
+  m.innerHTML = topo(fm.nome, `${fm.tipo === "video" ? "Vídeo" : "Imagem"} · ${ex.length} exemplos`) + `<a class="btn" href="#formatos" style="justify-self:start">← Voltar aos formatos</a>
+  <div class="panel piece">${fm.o_que_e ? `<p><b>O que é:</b> ${esc(fm.o_que_e)}</p>` : ""}${fm.quando_usar ? `<p><b>Quando usar:</b> ${esc(fm.quando_usar)}</p>` : ""}</div>
+  <div class="pieces" id="exs">${ex.map(blocoExemplo).join("") || '<div class="empty panel">Exemplos chegando em breve.</div>'}</div>` + rodape();
+  ligarExemplos($("#exs"));
+}
+function vAngulos(m){
+  const grupos = [...new Set(S.angulos.map(a => a.grupo))];
+  m.innerHTML = topo("Ângulos", `${S.angulos.length} ângulos por grupo. Copie o prompt e use na sua IA.`) +
+   (grupos.map(g => `<section class="panel"><div class="group-head"><span class="mono">Grupo</span><h2>${esc(g)}</h2></div><div class="list">${S.angulos.filter(a => a.grupo === g).map(a => `<details><summary><span class="mono muted">${a.id}</span> ${esc(a.nome)}</summary>${a.descricao ? `<p>${esc(a.descricao)}</p>` : ""}${a.prompt ? `<div class="prompt" style="margin-top:8px"><div class="prompt-head"><span class="mono">Prompt</span><button class="btn" data-copy="${a.id}">Copiar prompt</button></div>${esc(a.prompt)}</div>` : ""}</details>`).join("")}</div></section>`).join("") || '<div class="empty panel">Nenhum ângulo carregado.</div>') + rodape();
+  m.addEventListener("click", async e => { const b = e.target.closest("[data-copy]"); if (!b) return; const a = S.angulos.find(x => String(x.id) === b.dataset.copy);
+    try { await navigator.clipboard.writeText(a.prompt); toast("Prompt copiado."); } catch { toast("Não consegui copiar. Selecione o texto."); } });
+}
+function vFavoritos(m){
+  const desenhar = () => { const ex = S.exemplos.filter(e => S.favs.has(e.id));
+    $("#exs").innerHTML = ex.map(blocoExemplo).join("") || '<div class="empty panel">Você ainda não favoritou nenhum exemplo. Abra um formato e toque em Favoritar.</div>'; };
+  m.innerHTML = topo("Favoritos", "Os exemplos que você guardou, com o que já testou e suas anotações.") + `<div class="pieces" id="exs"></div>` + rodape();
+  desenhar(); ligarExemplos($("#exs"), desenhar);
+}
+function vCuradoria(m){
+  m.innerHTML = topo("Curadoria", "Mande o criativo que você criou. Eu analiso e devolvo o que ajustar.") + `
+  <form class="panel form" id="f-cur" style="padding:16px"><label>Link do criativo (Drive, Instagram ou anúncio)<input name="arquivo" type="url" required placeholder="https://"></label>
+  <label>Contexto: oferta, público e o que você quer saber<textarea name="descricao" rows="4" required></textarea></label>
+  <button class="btn primary" type="submit" style="justify-self:start">Enviar para análise</button></form>
+  <h2>Meus envios</h2><div class="panel list" id="envios"><div class="empty">Carregando…</div></div>` + rodape();
+  const listar = async () => { const { data, error } = await sb.from("im_curadoria").select("*").order("criado_em", {ascending:false});
+    $("#envios").innerHTML = error ? '<div class="empty">Não consegui carregar seus envios.</div>' : (data.length ? data.map(c => `<div class="row"><div class="row-head" style="cursor:default"><span class="t"><b>${esc((c.descricao || "").slice(0, 90))}</b><a class="muted" href="${esc(linkSeguro(c.arquivo))}" target="_blank" rel="noopener">${esc(c.arquivo)}</a></span><span class="status ${esc(c.status)}">${esc(c.status)}</span></div>${c.resposta ? `<div class="example"><b>Resposta do Netanias:</b><br>${esc(c.resposta)}</div>` : ""}</div>`).join("") : '<div class="empty">Nenhum envio ainda.</div>'); };
+  $("#f-cur").onsubmit = async e => { e.preventDefault(); const fd = new FormData(e.target);
+    const { error } = await sb.from("im_curadoria").insert({ arquivo: fd.get("arquivo"), descricao: fd.get("descricao") });
+    if (error) return toast("Não consegui enviar. Tente de novo."); e.target.reset(); toast("Enviado. Eu respondo por aqui."); listar(); };
+  listar();
+}
+function vAdmin(m){
+  m.innerHTML = topo("Painel do Netanias") + `
+  <section class="panel" style="padding:16px;display:grid;gap:12px"><h2>Liberar acesso</h2>
+  <form class="form" id="f-ac"><label>E-mail<input name="email" type="email" required></label><label>Nome<input name="nome"></label><label>Válido até (vazio = sem prazo)<input name="valido_ate" type="date"></label><button class="btn primary" style="justify-self:start">Liberar</button></form>
+  <div class="tablewrap" id="acessos"></div></section>
+  <section class="panel" style="padding:16px;display:grid;gap:12px"><h2>Envios de curadoria</h2><div id="curs" class="list"></div></section>`;
+  const listarAc = async () => { const { data, error } = await sb.from("im_acessos").select("*").order("criado_em", {ascending:false});
+    $("#acessos").innerHTML = error ? '<p class="muted">Sem permissão de administrador. Rode o 002-admin.sql no banco.</p>' : `<table class="adm"><tr><th>E-mail</th><th>Nome</th><th>Válido até</th><th>Status</th><th></th></tr>${data.map(a => `<tr><td>${esc(a.email)}</td><td>${esc(a.nome)}</td><td><input type="date" aria-label="Validade" value="${esc(a.valido_ate || "")}" data-val="${esc(a.email)}"></td><td>${a.ativo ? "Ativo" : "Desativado"}</td><td><button class="btn" data-tg="${esc(a.email)}" data-on="${a.ativo}">${a.ativo ? "Desativar" : "Ativar"}</button></td></tr>`).join("")}</table>`; };
+  const listarCur = async () => { const { data, error } = await sb.from("im_curadoria").select("*").order("criado_em", {ascending:false});
+    $("#curs").innerHTML = error ? '<p class="muted">Sem permissão de administrador.</p>' : (data.length ? data.map(c => `<div class="row"><span class="mono muted">${esc(c.email || c.user_id)} · ${new Date(c.criado_em).toLocaleDateString("pt-BR")} · ${esc(c.status)}</span><p>${esc(c.descricao)}</p><a href="${esc(linkSeguro(c.arquivo))}" target="_blank" rel="noopener">${esc(c.arquivo)}</a><div class="note-box"><textarea aria-label="Resposta" data-resp="${c.id}">${esc(c.resposta || "")}</textarea><button class="btn primary" data-r="${c.id}" style="justify-self:start">Responder</button></div></div>`).join("") : '<div class="empty">Nenhum envio.</div>'); };
+  $("#f-ac").onsubmit = async e => { e.preventDefault(); const fd = new FormData(e.target);
+    const { error } = await sb.from("im_acessos").upsert({ email: fd.get("email").trim().toLowerCase(), nome: fd.get("nome") || null, valido_ate: fd.get("valido_ate") || null, ativo: true });
+    if (error) return toast("Não consegui liberar."); e.target.reset(); toast("Acesso liberado."); listarAc(); };
+  m.addEventListener("click", async e => { const t = e.target.closest("[data-tg]"); const r = e.target.closest("button[data-r]");
+    if (t) { const { error } = await sb.from("im_acessos").update({ ativo: t.dataset.on !== "true" }).eq("email", t.dataset.tg); if (error) return toast("Não consegui mudar."); listarAc(); }
+    if (r) { const txt = m.querySelector(`[data-resp="${r.dataset.r}"]`).value; const { error } = await sb.from("im_curadoria").update({ resposta: txt, status: "respondido" }).eq("id", r.dataset.r); if (error) return toast("Não consegui responder."); toast("Resposta enviada."); listarCur(); } });
+  m.addEventListener("change", async e => { const i = e.target.closest("[data-val]"); if (!i) return; const { error } = await sb.from("im_acessos").update({ valido_ate: i.value || null }).eq("email", i.dataset.val); toast(error ? "Não consegui salvar." : "Validade salva."); });
+  listarAc(); listarCur();
+}
+
+/* ---------- partida ---------- */
+let iniciado = false;
+async function iniciar(){
+  if (!sb) return telaLogin("Sistema em configuração: falta a chave pública do banco.");
+  const { data:{ session } } = await sb.auth.getSession();
+  if (!session) return telaLogin();
+  if (iniciado) return; iniciado = true;
+  S.user = session.user;
+  S.admin = !!(await sb.rpc("im_admin")).data;
+  const { data: liberado } = await sb.rpc("im_liberado");
+  if (!liberado && !S.admin) return telaSemAcesso();
+  await carregar(); casca(); rota();
+  addEventListener("hashchange", rota);
+}
+if (sb) sb.auth.onAuthStateChange(ev => { if (ev === "SIGNED_IN") setTimeout(iniciar, 0); });
+iniciar();
+</script>
+</body>
+</html>
