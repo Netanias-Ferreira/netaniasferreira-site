@@ -264,20 +264,63 @@ if (localStorage.getItem("im-tema")) document.documentElement.dataset.theme = lo
 const marca = `<div class="brand"><div class="brand-mark">N</div><div><b>Inteligência do Mercado</b><small>Netanias Ferreira</small></div></div>`;
 
 /* ---------- login ---------- */
+const SENHA_PADRAO = "Netanias12345";
+const voltaLogin = () => location.origin + location.pathname;
 function telaLogin(msg = ""){
   $("#root").innerHTML = `<main class="login"><div class="panel">${marca}
     <h1>Entrar</h1>
-    <p class="muted">Digite seu e-mail. Você recebe um link para entrar, sem senha.</p>
     <form class="form" id="f-login"><label>E-mail<input type="email" name="email" required autocomplete="email" inputmode="email"></label>
-    <button class="btn primary" type="submit">Receber link de acesso</button></form>
+    <label>Senha<input type="password" name="senha" required autocomplete="current-password"></label>
+    <button class="btn primary" type="submit">Entrar</button></form>
+    <button class="btn" id="b-link" type="button" style="justify-self:start">Primeiro acesso / esqueci a senha</button>
     <p class="muted" id="login-msg" role="status">${esc(msg)}</p>
     <button class="btn" id="b-tema" style="justify-self:start">Tema claro/escuro</button></div></main>`;
   $("#b-tema").onclick = tema;
+  const aviso = t => { $("#login-msg").textContent = t; };
+  $("#b-link").onclick = async () => {
+    const email = $("#f-login").email.value.trim();
+    if (!email) return aviso("Digite seu e-mail acima e toque de novo para receber o link de acesso.");
+    if (!sb) return aviso("Sistema em configuração.");
+    const { error } = await sb.auth.signInWithOtp({ email, options:{ emailRedirectTo: voltaLogin() } });
+    aviso(error ? "Não consegui enviar o link. Confira o e-mail e tente de novo." : "Pronto. Abra seu e-mail e toque no link para entrar.");
+  };
   $("#f-login").onsubmit = async e => { e.preventDefault();
-    const email = e.target.email.value.trim();
-    if (!sb) { $("#login-msg").textContent = "Sistema em configuração."; return; }
-    const { error } = await sb.auth.signInWithOtp({ email, options:{ emailRedirectTo: location.origin + location.pathname } });
-    $("#login-msg").textContent = error ? "Não consegui enviar o link. Confira o e-mail e tente de novo." : "Pronto. Abra seu e-mail e toque no link para entrar.";
+    const email = e.target.email.value.trim(), password = e.target.senha.value;
+    if (!sb) return aviso("Sistema em configuração.");
+    aviso("Entrando…");
+    let { error } = await sb.auth.signInWithPassword({ email, password });
+    if (error && password === SENHA_PADRAO && /invalid/i.test(error.message || "")) {
+      const { data: ok } = await sb.rpc("im_liberado_email", { e: email });
+      if (ok) {
+        const cad = await sb.auth.signUp({ email, password, options:{ emailRedirectTo: voltaLogin() } });
+        if (cad.error) return aviso("Não consegui criar seu acesso. Use o link de primeiro acesso abaixo.");
+        ({ error } = await sb.auth.signInWithPassword({ email, password }));
+        if (error && /confirm/i.test(error.message || "")) return aviso("Confirme seu e-mail pelo link que enviamos e depois entre de novo.");
+      }
+    }
+    if (error) return aviso("E-mail ou senha incorretos. Se é seu primeiro acesso, use a senha que o Netanias te passou.");
+  };
+}
+function telaSenha(obrigatoria){
+  const alvo = obrigatoria ? $("#root") : $("#main");
+  const html = `<div class="panel" style="max-width:420px;width:100%;padding:28px;display:grid;gap:14px">${obrigatoria ? marca : ""}
+    <h1>${obrigatoria ? "Crie sua senha" : "Trocar senha"}</h1>
+    <p class="muted">${obrigatoria ? "Antes de entrar, troque a senha inicial por uma só sua." : "Escolha uma senha nova."} Mínimo de 8 caracteres.</p>
+    <form class="form" id="f-senha"><label>Nova senha<input type="password" name="s1" required minlength="8" autocomplete="new-password"></label>
+    <label>Repita a nova senha<input type="password" name="s2" required minlength="8" autocomplete="new-password"></label>
+    <button class="btn primary" type="submit">Salvar senha</button></form>
+    ${obrigatoria ? '<button class="btn" id="b-sair2" style="justify-self:start">Sair</button>' : '<a class="btn" href="#inicio" style="justify-self:start">Cancelar</a>'}
+    <p class="muted" id="senha-msg" role="status"></p></div>`;
+  alvo.innerHTML = obrigatoria ? `<main class="login">${html}</main>` : html;
+  if (obrigatoria) $("#b-sair2").onclick = sair;
+  $("#f-senha").onsubmit = async e => { e.preventDefault();
+    const s1 = e.target.s1.value, s2 = e.target.s2.value, msg = t => { $("#senha-msg").textContent = t; };
+    if (s1.length < 8) return msg("A senha precisa ter pelo menos 8 caracteres.");
+    if (s1 === SENHA_PADRAO) return msg("Escolha uma senha diferente da senha inicial.");
+    if (s1 !== s2) return msg("As duas senhas não estão iguais.");
+    const { error } = await sb.auth.updateUser({ password: s1, data:{ senha_trocada: true } });
+    if (error) return msg("Não consegui salvar a senha. Tente outra.");
+    if (obrigatoria) iniciar(); else { toast("Senha trocada."); location.hash = "inicio"; }
   };
 }
 function telaSemAcesso(){
@@ -302,7 +345,7 @@ async function carregar(){
 }
 
 /* ---------- casca ---------- */
-const ROTAS = ["inicio","formatos","formato","angulos","niveis","favoritos","curadoria","admin"];
+const ROTAS = ["senha","inicio","formatos","formato","angulos","niveis","favoritos","curadoria","admin"];
 function casca(){
   const ini = (S.user.email || "?")[0].toUpperCase();
   $("#root").innerHTML = `<div class="app">
@@ -321,7 +364,7 @@ function casca(){
     </nav>
     <div class="side-cta"><p>Quer ativar um sistema de marketing com IA, completo na sua operação? Chame o Netanias.</p><a class="btn primary" href="${contato()}" target="_blank" rel="noopener">Chamar o Netanias</a></div>
     <div class="user"><span class="avatar">${esc(ini)}</span><span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis">${esc(S.user.email)}</span></div>
-    <div class="actions"><button class="btn" id="b-tema">Tema claro/escuro</button><button class="btn" id="b-sair">Sair</button></div>
+    <div class="actions"><button class="btn" id="b-tema">Tema claro/escuro</button><a class="btn" href="#senha">Trocar senha</a><button class="btn" id="b-sair">Sair</button></div>
   </aside>
   <main class="main" id="main"></main></div>`;
   $("#b-tema").onclick = tema; $("#b-sair").onclick = sair;
@@ -337,7 +380,7 @@ function rota(){
   document.querySelectorAll(".nav a").forEach(a => a.classList.toggle("on", a.dataset.r === r || (r === "formato" && a.dataset.r === "formatos")));
   // troca o <main> para não acumular ouvintes de clique entre telas
   const velho = $("#main"); const m = velho.cloneNode(false); velho.replaceWith(m);
-  ({inicio:vInicio, formatos:vFormatos, formato:x => vFormato(x, arg), angulos:vAngulos, niveis:vNiveis, favoritos:vFavoritos, curadoria:vCuradoria, admin:vAdmin})[r](m);
+  ({senha:() => telaSenha(false), inicio:vInicio, formatos:vFormatos, formato:x => vFormato(x, arg), angulos:vAngulos, niveis:vNiveis, favoritos:vFavoritos, curadoria:vCuradoria, admin:vAdmin})[r](m);
   const b = $("#b-menu"); if (b) b.onclick = () => $("#side").classList.add("open");
   window.scrollTo(0, 0);
 }
@@ -522,6 +565,7 @@ async function iniciar(){
   if (!sb) return telaLogin("Sistema em configuração: falta a chave pública do banco.");
   const { data:{ session } } = await sb.auth.getSession();
   if (!session) return telaLogin();
+  if (session.user.user_metadata?.senha_trocada !== true) return telaSenha(true);
   if (iniciado) return; iniciado = true;
   S.user = session.user;
   S.admin = !!(await sb.rpc("im_admin")).data;
