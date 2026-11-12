@@ -220,7 +220,7 @@ select.f{border-radius:999px} .chip.on{background:#111;color:#fff}
 .fmt-card{padding:16px;display:grid;gap:8px;align-content:start;text-decoration:none}
 .fmt-card:hover{border-color:var(--fg)}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
-.stat{padding:16px}.stat b{font-family:var(--font-display);font-size:30px;display:block}
+.stat{padding:16px}.stat-link{display:block;text-decoration:none;color:inherit;cursor:pointer;transition:transform .15s,box-shadow .15s}.stat-link:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.08)}.stat-ir{display:block;margin-top:8px;font-size:12px;font-weight:600;color:var(--accent)}.stats .stat:first-child .stat-ir{color:var(--amber)}.stat b{font-family:var(--font-display);font-size:30px;display:block}
 .ex{padding:14px;display:grid;gap:10px;align-content:start}
 .ex pre{white-space:pre-wrap;font:inherit;margin:8px 0 0;background:var(--surface-2);padding:10px;border-radius:8px;max-height:260px;overflow:auto}
 .ex details{padding:0;border:0}
@@ -388,9 +388,9 @@ function rota(){
 /* ---------- telas ---------- */
 function vInicio(m){
   m.innerHTML = topo("Comece por aqui", "Formatos de anúncio que já escalaram, com o princípio pronto para levar à sua oferta high ticket.") + `
-  <div class="stats"><div class="panel stat"><b>${S.formatos.length}</b><span class="muted">formatos</span></div>
-  <div class="panel stat"><b>${S.exemplos.length}</b><span class="muted">exemplos</span></div>
-  <div class="panel stat"><b>${S.angulos.length}</b><span class="muted">ângulos</span></div></div>
+  <div class="stats"><a class="panel stat stat-link" href="#formatos"><b>${S.formatos.length}</b><span class="muted">formatos de criativos</span><span class="stat-ir">Ver formatos →</span></a>
+  <a class="panel stat stat-link" href="#formatos"><b>${S.exemplos.length}</b><span class="muted">criativos com gancho de exemplo</span><span class="stat-ir">Ver criativos →</span></a>
+  <a class="panel stat stat-link" href="#angulos"><b>${S.angulos.length}</b><span class="muted">ângulos de copy</span><span class="stat-ir">Ver ângulos →</span></a></div>
   <div class="panel" style="padding:16px;display:grid;gap:12px"><h2>Tutorial</h2>
   ${TUTORIAL_VIDEO ? `<video class="media" controls playsinline preload="metadata" src="${esc(TUTORIAL_VIDEO)}"></video>` : `<div class="video"><span>Vídeo tutorial em breve</span></div>`}</div>
   <div class="steps panel">
