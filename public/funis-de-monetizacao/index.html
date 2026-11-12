@@ -184,8 +184,7 @@ function desenharFunil(arg, rolar){
     ${sec("Passo a passo", (fn.fases || []).length ? (() => { let n = 0; return fn.fases.map(fa => `<div class="fn-fase"><h3>${esc(fa.fase)}</h3><ol start="${n + 1}">${(fa.passos || []).map(p => (n++, `<li>${esc(p)}</li>`)).join("")}</ol></div>`).join(""); })() : lis(fn.passo_a_passo, "ol"))}
     ${sec("Regras do fluxo", lis(fn.regras))}
     ${sec("Números para acompanhar", lis(fn.metricas))}
-    ${fn.erro_comum ? `<section class="panel fn-sec"><div class="ficha-erro"><h3>Erro mais comum</h3><p>${esc(fn.erro_comum)}</p></div></section>` : ""}
-    <section class="cta curto" aria-label="Contato"><p>Quer ativar um sistema de marketing com IA, completo na sua operação? Chame o Netanias.</p><a class="btn" href="${CONTATO}" target="_blank" rel="noopener">Chamar o Netanias</a></section>`;
+    ${fn.erro_comum ? `<section class="panel fn-sec"><div class="ficha-erro"><h3>Erro mais comum</h3><p>${esc(fn.erro_comum)}</p></div></section>` : ""}`;
   if (fn.mermaid) desenharDiagrama($("#fn-diag"), fn.mermaid, `Funil ${fn.numero} (${fn.nome})`);
   const amp = $("#fn-ampliar"); if (amp) amp.onclick = () => ampliarDiagrama($("#fn-diag"), fn.nome);
   $("#fn-corpo").onchange = e => { const c = e.target.closest("[data-chk]"); if (!c) return; c.checked ? mk.add(+c.dataset.chk) : mk.delete(+c.dataset.chk); try { localStorage.setItem(chave, JSON.stringify([...mk])); } catch {} };
