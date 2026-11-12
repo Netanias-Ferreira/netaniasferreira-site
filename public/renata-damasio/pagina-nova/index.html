@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mentoria ELA | Renata Damasio</title>
+<meta name="description" content="Mentoria ELA, individual, para mulheres em liderança executiva no corporativo. Uma carreira em que você não precisa escolher entre subir de cargo e ter uma vida.">
+<meta property="og:title" content="Mentoria ELA | Renata Damasio">
+<meta property="og:description" content="Mentoria ELA, individual, para mulheres em liderança executiva no corporativo.">
+<meta property="og:image" content="img/web/hero-ela.webp">
+<meta name="theme-color" content="#211D18">
+<!-- PÁGINA DE DEMONSTRAÇÃO. Destino do formulário: DESCONHECIDO (a definir). Tracking/pixel: DESCONHECIDO. Não publicar. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --creme:#FAF6EE;      /* fundo do site */
+  --creme-claro:#FBF3E7;/* texto do botão no site */
+  --tinta:#211D18;      /* texto do site */
+  --terra:#A7432B;      /* botão do site */
+  --areia:#F3E8DE;      /* creme do site com 8% de terracota (tom da própria paleta) */
+  --tinta-suave:#5A524A;/* texto do site a 75% sobre o creme */
+  --bronze:#8E725A;     /* tom da arte do hero do site (só decoração) */
+  --wrap:40rem;
+  --raio:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--creme);color:var(--tinta);font-family:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:1.125rem;line-height:1.7;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+h1,h2,h3{font-weight:800;line-height:1.2;letter-spacing:-0.01em;margin:0 0 1rem}
+h1{font-size:clamp(1.65rem,1.1rem + 2.6vw,2.9rem)}
+h2{font-size:clamp(1.5rem,1.15rem + 1.6vw,2.2rem)}
+h3{font-size:clamp(1.25rem,1.05rem + .9vw,1.6rem)}
+p{margin:0 0 1.15rem}
+ul{margin:0 0 1.25rem;padding:0}
+em{font-style:italic}
+a{color:inherit}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 1.25rem}
+.wide{max-width:72rem;margin:0 auto;padding:0 1.25rem}
+section{padding:4rem 0}
+.s-creme{background:var(--creme)}
+.s-areia{background:var(--areia)}
+.s-escuro{background:var(--tinta);color:var(--creme)}
+:focus-visible{outline:3px solid var(--terra);outline-offset:3px;border-radius:6px}
+.s-escuro :focus-visible,.hero :focus-visible{outline-color:var(--creme-claro)}
+.skip{position:absolute;left:-999px;top:0;background:var(--tinta);color:var(--creme);padding:.75rem 1rem;z-index:30}
+.skip:focus{left:1rem;top:1rem}
+
+/* Botão (único CTA) */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:1rem 1.75rem;border:0;border-radius:999px;background:var(--terra);color:var(--creme-claro);font:800 1.0625rem/1.25 "Manrope",sans-serif;text-align:center;cursor:pointer;box-shadow:0 10px 24px -12px rgba(167,67,43,.65);transition:transform .2s ease,box-shadow .2s ease,filter .2s ease;width:100%;max-width:26rem}
+.btn:hover{transform:translateY(-1px);filter:brightness(.94);box-shadow:0 14px 28px -12px rgba(167,67,43,.75)}
+.btn:active{transform:translateY(0)}
+.cta{margin:2.25rem 0 0;display:flex;flex-direction:column;align-items:center}
+.cta--left{align-items:flex-start}
+
+/* Espaço reservado (marcadores da copy) */
+mark.ph{background:#FFF3B0;color:#3A3220;font-size:.88em;font-weight:600;padding:.1em .35em;border-radius:4px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.ph-box{border:2px dashed #C9A227;background:#FFF9DB;color:#3A3220;border-radius:var(--raio);padding:1rem 1.15rem;font-size:.95rem;line-height:1.6}
+.ph-box mark.ph{background:#FFEA8A}
+.s-escuro .ph-box{color:#3A3220}
+
+/* HERO */
+.hero{background:linear-gradient(180deg,rgba(33,29,24,.9) 0%,rgba(33,29,24,.72) 55%,rgba(33,29,24,.6) 100%),url(img/web/hero-fundo-m.webp) 70% 0/cover no-repeat,var(--tinta);color:var(--creme);padding:2rem 0 3rem}
+.hero-grid{display:grid;gap:2rem;align-items:center}
+.hero-logo{width:132px;margin:0 0 1.5rem}
+.pre{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--creme-claro);margin:0 0 1.1rem;padding-left:.9rem;border-left:3px solid var(--terra);line-height:1.5}
+.hero h1{color:var(--creme-claro);margin-bottom:1.1rem}
+.hero .sub{font-size:1.0625rem;color:#EDE3D6;margin-bottom:.9rem}
+.hero .linha{font-size:.9rem;font-weight:700;letter-spacing:.02em;color:#D9C8B4;margin:0}
+.hero .cta{align-items:flex-start;margin-top:1.5rem}
+.micro{font-size:.9rem;line-height:1.55;color:#D9C8B4;margin:.85rem 0 0;max-width:30rem}
+.hero-foto{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:4/5;max-height:560px;box-shadow:0 30px 60px -30px rgba(0,0,0,.7)}
+.hero-foto img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+
+/* Texto corrido */
+.prosa p{max-width:65ch}
+.soco{font-size:clamp(1.3rem,1.1rem + .8vw,1.65rem);font-weight:800;line-height:1.35;margin:1.75rem 0}
+.q{font-weight:700;font-size:1.15rem;border-left:4px solid var(--terra);padding:.2rem 0 .2rem 1rem;margin:1.75rem 0}
+.s-escuro .q{border-left-color:var(--creme-claro)}
+.citacao{font-family:"Playfair Display",Georgia,serif;font-style:italic;font-size:1.2rem;line-height:1.55}
+.confissao{background:var(--tinta);color:var(--creme);border-radius:var(--raio);padding:1.5rem 1.4rem;font-family:"Playfair Display",Georgia,serif;font-size:1.2rem;line-height:1.6;position:relative}
+.confissao::before{content:"";position:absolute;left:0;top:1.25rem;bottom:1.25rem;width:4px;background:var(--terra);border-radius:0 4px 4px 0}
+.subtitulo{margin-top:3.5rem;padding-top:2.25rem;border-top:1px solid rgba(33,29,24,.15)}
+.nome-problema{display:block;margin:2rem 0;padding:1.75rem 1.4rem;background:var(--tinta);color:var(--creme-claro);border-radius:var(--raio);font-size:1.1rem;text-align:center}
+.nome-problema strong{display:block;font-family:"Playfair Display",Georgia,serif;font-weight:600;font-size:clamp(2rem,1.5rem + 2.5vw,3rem);line-height:1.1;margin-top:.5rem;color:var(--creme-claro)}
+
+/* Bloco 3 */
+.cols{display:grid;gap:1.25rem}
+.col{border-radius:var(--raio);padding:1.5rem 1.35rem;background:#fff;border:1px solid rgba(33,29,24,.08)}
+.col p{margin-bottom:1rem;font-size:1.125rem}
+.col ul{list-style:none;margin:0}
+.col li{position:relative;padding-left:2rem;margin-bottom:.85rem;line-height:1.55}
+.col--sim li::before{content:"";position:absolute;left:0;top:.2em;width:1.25rem;height:1.25rem;border-radius:50%;background:var(--terra) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3 3 7-7' fill='none' stroke='%23FBF3E7' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/80% no-repeat}
+.col--nao{background:transparent;border:1px dashed rgba(33,29,24,.35)}
+.col--nao li{color:var(--tinta-suave)}
+.col--nao li::before{content:"";position:absolute;left:.15rem;top:.25em;width:1rem;height:1rem;border:2px solid var(--tinta-suave);border-radius:50%;background:linear-gradient(45deg,transparent 44%,var(--tinta-suave) 44%,var(--tinta-suave) 56%,transparent 56%)}
+
+/* Bloco 4 */
+.pedras{list-style:none;margin:0 0 1.5rem;display:grid;gap:.6rem}
+.pedras li{background:#fff;border-radius:10px;padding:.8rem 1rem .8rem 2.6rem;position:relative;font-weight:600;line-height:1.45;border:1px solid rgba(33,29,24,.08)}
+.pedras li::before{content:"";position:absolute;left:1rem;top:50%;width:.85rem;height:.7rem;margin-top:-.35rem;background:var(--bronze);border-radius:45% 55% 50% 40%}
+.formato{background:var(--tinta);color:var(--creme);border-radius:var(--raio);padding:1.4rem 1.35rem;font-weight:600}
+.r{margin-top:3.5rem;padding-top:2.5rem;border-top:1px solid rgba(33,29,24,.15)}
+.r-tag{display:inline-block;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;color:var(--terra);margin:0 0 .75rem}
+.r-tag strong{font-weight:800}
+.colunas3{list-style:none;display:grid;gap:.75rem;margin:0 0 1.5rem}
+.colunas3 li{background:#fff;border-radius:10px;padding:1rem 1.1rem;border-top:4px solid var(--terra);line-height:1.5}
+.colunas3 li:nth-child(2){border-top-color:var(--bronze)}
+.colunas3 li:nth-child(3){border-top-color:var(--tinta)}
+.entrega{background:#fff;border-radius:var(--raio);padding:1.4rem 1.35rem;margin:1.75rem 0;border:1px solid rgba(167,67,43,.25);box-shadow:0 16px 32px -24px rgba(33,29,24,.45)}
+.entrega p{margin:0 0 .75rem;font-weight:600}
+.entrega p strong{color:var(--terra);font-weight:800}
+.entrega ul{margin:0;list-style:none}
+.entrega li{position:relative;padding-left:1.5rem;margin-bottom:.6rem;line-height:1.55}
+.entrega li::before{content:"";position:absolute;left:0;top:.6em;width:.55rem;height:.55rem;background:var(--terra);border-radius:2px;transform:rotate(45deg)}
+.entrega p:last-child,.entrega li:last-child{margin-bottom:0}
+.cena{font-style:normal;background:var(--creme);border-left:4px solid var(--bronze);padding:.9rem 1.1rem;border-radius:0 10px 10px 0}
+
+/* Bloco 5 */
+.quatro{list-style:none;display:grid;gap:1rem;margin:1.5rem 0 2rem}
+.quatro li{background:var(--tinta);color:var(--creme);border-radius:var(--raio);padding:1.4rem 1.35rem;line-height:1.55}
+.quatro li strong{display:block;color:var(--creme-claro);font-size:1.2rem;margin-bottom:.4rem}
+.lista-suave{list-style:none;margin:0 0 1.5rem}
+.lista-suave li{padding:.65rem 0 .65rem 1.75rem;position:relative;border-bottom:1px solid rgba(33,29,24,.12);line-height:1.55}
+.lista-suave li::before{content:"";position:absolute;left:.2rem;top:1.25rem;width:.7rem;height:2px;background:var(--terra)}
+
+/* Bloco 6 */
+.quem-grid{display:grid;gap:2rem;align-items:start}
+.quem-foto{border-radius:22px;overflow:hidden;max-width:24rem;box-shadow:0 30px 60px -32px rgba(33,29,24,.6)}
+.bandeira{margin:2rem 0;padding:1.5rem 0 1.5rem 1.25rem;border-left:4px solid var(--terra);font-family:"Playfair Display",Georgia,serif;font-style:italic;font-size:clamp(1.3rem,1.1rem + 1vw,1.75rem);line-height:1.45}
+.bandeira p{margin:0}
+.logos{margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(33,29,24,.12)}
+.logos ul{list-style:none;margin:0;display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem}
+.logos li{background:#fff;border-radius:12px;height:76px;display:flex;align-items:center;justify-content:center;padding:.75rem}
+.logos img{max-height:44px;width:auto;max-width:100%;object-fit:contain}
+.logos li.ph-logo{background:#FFF9DB;border:2px dashed #C9A227;color:#3A3220;font-size:.8rem;font-weight:700;text-align:center;line-height:1.3}
+
+/* Bloco 7 */
+.depos{display:grid;gap:1.25rem;margin:1.5rem 0 2rem}
+.depo{margin:0;background:#fff;border-radius:var(--raio);padding:1.6rem 1.4rem 1.4rem;position:relative;border:1px solid rgba(33,29,24,.08)}
+.depo::before{content:"\201C";position:absolute;top:-.35rem;left:1rem;font-family:"Playfair Display",Georgia,serif;font-size:4rem;line-height:1;color:var(--terra);opacity:.35}
+.depo blockquote{margin:0 0 1rem;font-family:"Playfair Display",Georgia,serif;font-size:1.1rem;line-height:1.6}
+.depo blockquote p{margin:0}
+.depo figcaption{font-size:.95rem;color:var(--tinta-suave);line-height:1.45}
+.depo figcaption strong{color:var(--tinta)}
+.ph-stack{display:grid;gap:1rem}
+
+/* Bloco 8 */
+.passos{display:grid;gap:1rem;margin:1.5rem 0 0}
+.passo{background:var(--creme);color:var(--tinta);border-radius:var(--raio);padding:1.4rem 1.35rem;position:relative;overflow:hidden}
+.passo::after{content:"";position:absolute;right:-30px;top:-30px;width:90px;height:90px;border-radius:50%;background:rgba(167,67,43,.12)}
+.passo p{margin:0;line-height:1.6}
+.passo strong{display:block;font-size:1.15rem;margin-bottom:.4rem;color:var(--terra)}
+
+/* Bloco 9 FAQ */
+.faq{margin-top:1.5rem;border-top:1px solid rgba(33,29,24,.15)}
+.faq details{border-bottom:1px solid rgba(33,29,24,.15)}
+.faq summary{list-style:none;cursor:pointer;padding:1.15rem 2.5rem 1.15rem 0;position:relative;min-height:44px;font-weight:700;line-height:1.45}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary strong{font-weight:700}
+.faq summary::after{content:"";position:absolute;right:.5rem;top:50%;width:.7rem;height:.7rem;margin-top:-.5rem;border-right:2px solid var(--terra);border-bottom:2px solid var(--terra);transform:rotate(45deg);transition:transform .2s ease}
+.faq details[open] summary::after{transform:rotate(-135deg);margin-top:-.15rem}
+.faq details p{padding:0 0 1.25rem;margin:0;color:var(--tinta-suave)}
+
+/* Bloco 11 */
+.final .duas{display:grid;gap:1rem;margin:1.5rem 0}
+.final .semana{border-radius:var(--raio);padding:1.4rem 1.35rem;line-height:1.65;margin:0}
+.final .semana--1{background:rgba(250,246,238,.06);border:1px solid rgba(250,246,238,.18);color:#D9C8B4}
+.final .semana--2{background:var(--creme);color:var(--tinta)}
+.final .primeiro{font-size:1.25rem;font-weight:800;color:var(--creme-claro);margin-top:2rem}
+
+/* Barra fixa (celular) */
+.barra{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:.7rem 1rem calc(.7rem + env(safe-area-inset-bottom));background:rgba(33,29,24,.96);box-shadow:0 -10px 24px -12px rgba(0,0,0,.5);transform:translateY(110%);transition:transform .3s ease;display:flex;justify-content:center}
+.barra.on{transform:translateY(0)}
+.barra .btn{max-width:30rem;min-height:52px;font-size:.95rem;padding:.8rem 1rem;white-space:nowrap}
+
+/* Diálogo */
+dialog{border:0;border-radius:18px;padding:2rem 1.5rem 1.5rem;max-width:min(30rem,calc(100vw - 2rem));background:var(--creme);color:var(--tinta);box-shadow:0 40px 80px -30px rgba(0,0,0,.6)}
+dialog::backdrop{background:rgba(33,29,24,.7)}
+dialog p{margin:0 0 1.5rem;font-size:1.0625rem}
+.btn-fechar{min-height:48px;padding:.75rem 1.5rem;border-radius:999px;border:2px solid var(--tinta);background:transparent;color:var(--tinta);font:700 1rem "Manrope",sans-serif;cursor:pointer}
+.btn-fechar:hover{background:var(--tinta);color:var(--creme)}
+
+/* Movimento de entrada */
+.js .rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.js .rv.in{opacity:1;transform:none}
+
+@media (max-width:767px){
+  body{padding-bottom:84px}
+}
+@media (min-width:768px){
+  body{font-size:1.1875rem}
+  section{padding:5.5rem 0}
+  .hero{padding:3rem 0 5rem;background:linear-gradient(90deg,rgba(33,29,24,.94) 0%,rgba(33,29,24,.82) 38%,rgba(33,29,24,.3) 100%),url(img/web/hero-fundo.webp) center/cover no-repeat,var(--tinta)}
+  .hero-grid{grid-template-columns:1.15fr .85fr;gap:3.5rem}
+  .hero-logo{width:160px}
+  .cols{grid-template-columns:1fr 1fr}
+  .colunas3{grid-template-columns:repeat(3,1fr)}
+  .quatro{grid-template-columns:1fr 1fr}
+  .quem-grid{grid-template-columns:20rem 1fr;gap:3rem}
+  .quem-foto{position:sticky;top:2rem}
+  .logos ul{grid-template-columns:repeat(5,1fr)}
+  .depos{grid-template-columns:1fr}
+  .passos{grid-template-columns:repeat(3,1fr)}
+  .final .duas{grid-template-columns:1fr 1fr}
+  .barra{display:none}
+  .btn{width:auto}
+  .wrap--largo{max-width:60rem}
+}
+@media (min-width:1440px){
+  .wide{max-width:78rem}
+}
+@media print{.js .rv{opacity:1;transform:none}.barra{display:none}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+  .js .rv{opacity:1;transform:none}
+}
+</style>
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+<!-- 1 · HERO -->
+<header class="hero" id="topo">
+  <div class="wide hero-grid">
+    <div>
+      <img class="hero-logo" src="img/web/logo-ela.webp" width="600" height="330" alt="Mentoria ELA">
+      <p class="pre">Exclusivo para mulheres em liderança executiva no corporativo.</p>
+      <h1>Chegou a hora de ter uma carreira em que você não precisa escolher entre subir de cargo e ter uma vida (família, saúde, tempo).</h1>
+      <p class="sub">Tenha Acesso ao Plano Personalizado até o próximo cargo e coloque a sua Semana-Modelo para rodar, mesmo que hoje você carregue a empresa e a casa sozinha.</p>
+      <p class="linha">Mentoria ELA · individual · para mulheres em liderança executiva no corporativo.</p>
+      <div class="cta">
+        <button type="button" class="btn js-aplicar">Quero aplicar para a Mentoria ELA</button>
+        <p class="micro">Preencha se você for uma executiva que acredita que é possível viver uma carreira de sucesso sem ver a vida pessoal virar um parto toda semana.</p>
+      </div>
+    </div>
+    <div class="hero-foto">
+      <img src="img/web/renata-sofa.webp" width="900" height="1164" alt="Renata Damasio sorrindo, sentada num sofá claro, de terninho terracota" fetchpriority="high">
+    </div>
+  </div>
+</header>
+
+<main id="conteudo">
+
+<!-- 2 · DOR E VILÃO -->
+<section class="s-creme" aria-labelledby="b2">
+  <div class="wrap prosa">
+    <h2 id="b2" class="rv">Você ainda está perdendo o jantar da família com trabalho que nem era seu?</h2>
+    <p class="soco rv">20h40. O jantar esfriou no prato, e você ainda está respondendo um e-mail que era de outra área.</p>
+    <p>No escritório, você se sente devendo à sua casa. Em casa, você se sente devendo ao escritório. A culpa chega pelos dois lados, na mesma noite, e ninguém naquela mesa percebe que você está pagando as duas contas ao mesmo tempo.</p>
+    <p>Seu filho conta como foi o dia. Você ouve a metade. A outra metade está no celular virado para baixo, do lado do garfo, vibrando.</p>
+    <p class="q">Há quantas noites o seu prato esfria assim?</p>
+    <p class="q">E quantas vezes você prometeu a si mesma, no trânsito de volta, que amanhã ia ser diferente?</p>
+    <p>Você não está sozinha nessa mesa. Marcela Flores, presidente da ANPEI, escreveu num post do LinkedIn para as mulheres que constroem uma carreira enquanto criam os filhos: <span class="citacao">"Teve noite em que chorei escondida para que ela não visse."</span></p>
+    <p class="soco">Presidente. Com cargo e palco. E chorando escondida.</p>
+    <p>Quase três em cada quatro mulheres líderes já pensaram em largar o cargo por causa dessa carga mental (LinkedIn). Talvez você tenha pensado nisso hoje, parada no sinal, com a mão no volante.</p>
+    <p>Eu sou Renata Damasio. E o que eu descobri sobre essa mesa muda o jeito de olhar para o seu cansaço.</p>
+    <p class="soco">O seu cansaço tem endereço.</p>
+    <p>Ele mora no molde de carreira que ensinaram para você. Um molde desenhado para quem chega em casa e encontra o jantar pronto. Você entrou nele carregando a casa inteira junto. Ninguém ajustou o molde. Ele só passou a cobrar de você em dobro.</p>
+    <p>Você chama isso de falta de organização, de pouca disciplina, de fase.</p>
+    <p class="soco">Eu chamo pelo nome.</p>
+
+    <h3 class="subtitulo rv">A empresa que te chama de imprescindível não quer que você leia este trecho.</h3>
+    <p>Eu passei boa parte da minha carreira do lado de dentro da sala. Como HRBP, a cadeira que conecta o RH ao board, lado a lado com CEOs, dentro de comitês executivos reais.</p>
+    <p>Do lado de dentro, uma conta fica clara. Do lado de fora, quase ninguém consegue enxergar.</p>
+    <p>Faz essa conta do lado de quem assina a folha de pagamento.</p>
+    <p>A líder que nunca reclama entrega duas cadeiras pelo salário de uma. Ela segura a operação que ninguém assumiu. Cobre a reunião que o time largou na sexta às 18h. Faz o curso a mais para provar que merece a cadeira em que já está sentada.</p>
+    <p class="soco">Promover essa mulher custa caro. Perder essa mulher custa mais caro ainda.</p>
+    <p>Então o molde entrega a ela um elogio: imprescindível.</p>
+    <p>Se o molde pudesse confessar, ele diria assim:</p>
+    <p class="confissao rv"><em>Eu preciso de você exatamente onde você está. Cansada, eficiente e agradecida pelo elogio. Se você subir, eu tenho que contratar alguém para a sua cadeira e outra pessoa para a operação que você carregava sem ninguém pedir. Então eu te chamo de imprescindível e deixo tudo como está.</em></p>
+    <p class="soco">Imprescindível é a palavra que mantém você sentada no mesmo lugar, sorrindo.</p>
+    <p>E quem paga a diferença é a sua casa.</p>
+    <p class="q">Você já assinou o cartão de despedida de uma diretora brilhante, daquelas que sabiam tudo da operação e saíram dizendo que precisavam de um tempo?</p>
+    <p>Para cada mulher promovida a diretora, duas deixam o cargo (McKinsey). Quantas delas saíram com a competência intacta e a semana em pedaços?</p>
+    <p>Agora pensa no que acontece se nada mudar na sua.</p>
+    <p>A próxima cadeira vazia pode ser a sua. Ou pode ser a cadeira da apresentação de fim de ano da escola, a que você vai assistir do fundo, de pé, com o celular vibrando no bolso, enquanto o seu filho procura você na plateia.</p>
+    <p class="q">O quão pesado foi o último domingo em que você abriu o notebook só para adiantar uma coisinha?</p>
+
+    <h3 class="subtitulo rv">As CEOs brasileiras têm 2,79 pós e MBAs em média. Os CEOs, 1,43. Por quê?</h3>
+    <p>Renata Gomide era CMO do Grupo Boticário quando recebeu uma proposta, grávida. Ela contou à Forbes o que passou pela cabeça dela naquela hora: <span class="citacao">"Me perguntei se eu era a pessoa certa para o cargo..."</span></p>
+    <p class="soco">Uma CMO. Com o currículo que ela tinha. Duvidando de si no dia em que a proposta chegou.</p>
+    <p>Essa dúvida explica a conta do título. O molde planta na mulher, cedo, a ideia de que ela precisa provar duas vezes o que o colega prova uma. E cada diploma a mais é uma tentativa de pagar essa dúvida. Ela paga com noites, com fins de semana, com jantares frios. E a dúvida continua lá, esperando a próxima proposta.</p>
+    <p class="nome-problema rv">Eu dei um nome a esse peso: <strong>A Prova Dobrada.</strong></p>
+    <p>A Prova Dobrada é o curso a mais, feito depois que as crianças dormem. É a operação que ninguém assumiu e que caiu no seu colo numa sexta à noite. É a reunião que só você cobre e a culpa de chegar depois do jantar.</p>
+    <p>E ela cresce a cada degrau. Cada promoção coloca mais um pedaço dela nas suas costas. Por isso, quanto mais você sobe, mais parece que vai ter de largar a vida para continuar subindo.</p>
+    <p>Eu conheço essa prova por dentro, desde o meu primeiro filho.</p>
+    <p>Foram mais de 20 anos no corporativo. Mais de 10 em posição executiva. Centenas de líderes que eu mentorei. Tempo suficiente para ver a Prova Dobrada se repetir cargo após cargo, sempre com a mesma cara: uma mulher competente, exausta, provando de novo aquilo que ela já provou.</p>
+    <p>E foi isso que me mostrou que dá para separar a Prova Dobrada da sua semana, peça por peça. O que é do cargo fica com você. O que é prova a mais sai, com o nome de quem deveria carregar.</p>
+    <p>Quando essa separação acontece, o jantar volta para a mesa. A apresentação da escola volta para a primeira fila. E a próxima proposta encontra você inteira, sem você precisar perguntar se é a pessoa certa.</p>
+    <p class="q">Quantas apresentações de escola ainda faltam antes de o seu filho parar de procurar você na plateia?</p>
+    <p class="soco">Essa separação começa tirando peso, antes de acrescentar qualquer coisa.</p>
+    <div class="cta"><button type="button" class="btn js-aplicar">Quero aplicar para a Mentoria ELA</button></div>
+  </div>
+</section>
+
+<!-- 3 · PARA QUEM É / PARA QUEM NÃO É -->
+<section class="s-areia" aria-labelledby="b3">
+  <div class="wrap wrap--largo">
+    <h2 id="b3" class="rv">Exclusivo para executivas que querem o próximo cargo mas não aceitam pagar com a casa.</h2>
+    <div class="cols">
+      <div class="col col--sim rv">
+        <p><strong>A Mentoria ELA é para você se:</strong></p>
+        <ul>
+          <li>É gerente executiva, diretora, head, VP ou C-Level numa empresa corporativa, média ou grande, nacional ou multinacional.</li>
+          <li>Lidera outros líderes há pelo menos 2 anos.</li>
+          <li>Sabe qual cadeira quer em seguida e já percebeu que mais um curso não vai te levar até ela.</li>
+          <li>Está cansada de responder e-mail no domingo à noite para provar que está presente.</li>
+          <li>Quer subir com a família, a saúde e o tempo dentro da agenda, escritos com dia e hora.</li>
+        </ul>
+      </div>
+      <div class="col col--nao rv">
+        <p><strong>A Mentoria ELA NÃO é para você se:</strong></p>
+        <ul>
+          <li>Lidera operação de loja, turno ou fábrica fora de um ambiente corporativo executivo.</li>
+          <li>Acabou de assumir a primeira liderança e procura o básico de como liderar.</li>
+          <li>Está buscando vaga ou recolocação imediata. Isto aqui é um programa de mentoria individual.</li>
+          <li>Quer curso gravado ou fórmula pronta, sem colocar a sua semana real na mesa.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · MECANISMO + 4 Rs -->
+<section class="s-creme" aria-labelledby="b4">
+  <div class="wrap prosa">
+    <h2 id="b4" class="rv">Como você pode subir mais carregando menos.</h2>
+    <p class="soco">Pensa numa mulher subindo uma escada com uma mochila nas costas.</p>
+    <p>A cada degrau, alguém coloca mais uma pedra lá dentro:</p>
+    <ul class="pedras rv">
+      <li>a operação que ninguém assumiu;</li>
+      <li>o curso a mais para provar que merece;</li>
+      <li>a reunião que só ela cobre;</li>
+      <li>a culpa de chegar depois do boa-noite.</li>
+    </ul>
+    <p>Ela chega cansada em cada andar. E toda ajuda que ela recebe ensina a mesma coisa: subir mais rápido. MBA soma, coaching em grupo soma, dica de visibilidade soma. Numa mulher que já está exausta, somar é mais uma pedra.</p>
+    <p class="soco">Ninguém abre a mochila.</p>
+    <p>O Código dos 4 Rs começa por ela. Primeiro você tira o peso que nunca foi do cargo. Depois escolhe para onde vai e quanto aceita pagar. Em seguida protege a semana. E só então se coloca na frente de quem decide, com a própria voz.</p>
+    <p class="formato rv">São 90 dias. Seis encontros individuais com a Renata, online, de 90 minutos, a cada 15 dias. Entre um encontro e outro, um canal direto no WhatsApp em dias úteis, com resposta em até 1 dia útil.</p>
+
+    <!-- R1 -->
+    <div class="r">
+      <h3 class="rv">O que você nunca deveria ter colocado na sua mochila.</h3>
+      <p class="r-tag"><strong>R1 · Raiz · semanas 1 a 4 · encontros 1 e 2</strong></p>
+      <p>Toda líder sobrecarregada carrega uma frase que o molde ensinou cedo demais: <em>eu tenho que dar conta de tudo sozinha</em>.</p>
+      <p>Na Raiz, a mochila vai para cima da mesa. Você e a Renata passam por uma semana real sua, item por item, e separam tudo em três colunas:</p>
+      <ul class="colunas3 rv">
+        <li><strong>É do cargo:</strong> fica com você.</li>
+        <li><strong>É operação de outra pessoa:</strong> sai, com o nome de quem recebe.</li>
+        <li><strong>É Prova Dobrada:</strong> sai de vez.</li>
+      </ul>
+      <p>Antes de fechar a Raiz, você escreve os seus 3 inegociáveis de vida, com dia e hora. Eles entram na agenda antes de qualquer reunião.</p>
+      <div class="entrega rv"><p>Você sai com o seu <strong>Inventário da Mochila.</strong></p></div>
+      <p class="cena">E com uma terça-feira diferente: às 18h30, você fecha o notebook com a pauta de amanhã já nas mãos de outra pessoa e chega em casa a tempo do banho do seu filho.</p>
+      <p>Tatiana Villefort escreveu: <span class="citacao">"você não precisa fazer isso sozinha"</span>. A Raiz começa exatamente aí.</p>
+    </div>
+
+    <!-- R2 -->
+    <div class="r">
+      <h3 class="rv">Como se tornar a candidata pronta quando você se pergunta se é a pessoa certa.</h3>
+      <p class="r-tag"><strong>R2 · Rota · semanas 5 e 6 · encontro 3</strong></p>
+      <p class="soco">22h10. A proposta chega num e-mail de quatro linhas. Ela lê duas vezes, fecha o notebook, e o estômago gela.</p>
+      <p class="q">O quão sozinha você já se sentiu na noite em que a porta abriu e a única pergunta na sua cabeça era se você é mesmo a pessoa certa?</p>
+      <p>Ela conhece esse frio de outra noite.</p>
+      <p>Dois anos antes, imprimiu a descrição de uma vaga de diretoria. Pegou a caneta e marcou os requisitos, um por um. Faltava um. Guardou a folha na gaveta e prometeu a si mesma: <em>quando eu tiver 100%, eu me candidato.</em></p>
+      <p>Na segunda-feira, um colega com pouco mais da metade da lista levantou a mão. A vaga foi dele.</p>
+      <p>Ela fez o curso que faltava. Na vaga seguinte, achou outro item em branco. Esperou de novo. E de novo a cadeira ficou com quem pediu primeiro.</p>
+      <p class="soco">Toda vez que você espera a lista fechar, a decisão sai da sala sem o seu nome.</p>
+      <p>O molde ensina a mulher a só se candidatar com a lista inteira marcada. E quem decide a sucessão nunca vê a folha que ficou na gaveta.</p>
+      <p>Na Rota, a sua prontidão sai da gaveta e ganha prova escrita antes de a próxima proposta chegar.</p>
+      <div class="entrega rv">
+        <p>Você sai com a sua <strong>Rota de 18 meses:</strong></p>
+        <ul>
+          <li>o cargo-alvo, escolhido por você;</li>
+          <li>as 3 entregas que provam que você está pronta para ele;</li>
+          <li>o mapa de quem decide a sucessão;</li>
+          <li>e o custo de vida que você aceita pagar e o que recusa, escritos antes de qualquer proposta.</li>
+        </ul>
+      </div>
+      <p class="cena">Numa quarta-feira qualquer, o headhunter liga com uma vaga de VP que exige mudar de cidade. Você responde em 2 minutos. A resposta já estava escrita na sua Rota, e a noite continua sua.</p>
+    </div>
+
+    <!-- R3 -->
+    <div class="r">
+      <h3 class="rv">Agora você pode ter a primeira fila na apresentação da escola, com o celular no bolso.</h3>
+      <p class="r-tag"><strong>R3 · Ritmo · semanas 7 a 10 · encontros 4 e 5</strong></p>
+      <p>Almoço de domingo. A mãe serve o arroz e pergunta pelo neto.</p>
+      <p><em>Depois da diretoria, mãe.</em></p>
+      <p class="soco">Ela respondeu isso aos 32. Repetiu aos 35. Aos 38, a mãe parou de perguntar.</p>
+      <p>Ninguém marcou o dia dessa decisão. A agenda decidiu por ela, uma reunião das 19h de cada vez. E ela entrou numa conta que nunca escolheu: uma em cada quatro mulheres ouvidas pela Nexus com a Todas Group já desistiu da maternidade por causa da carreira.</p>
+      <p>No mesmo andar, a colega que teve o filho saiu da disputa pela diretoria. Também sem decidir. Só cansou de chegar atrasada nos dois lugares.</p>
+      <p class="soco">Duas mulheres. Cada uma perdeu um lado da vida. Nenhuma assinou embaixo.</p>
+      <p>O molde ensinou essa escolha e lucra com ela: cada mulher que desiste de um lado entrega o outro inteiro para a empresa, disponível às 21h.</p>
+      <p class="q">O quão caro já saiu cada pedaço da sua vida que você empurrou para depois do próximo cargo?</p>
+      <p>No Ritmo, você e a Renata desenham a semana para caber as duas vidas. E vale para quem não tem filhos também: a consulta adiada há meses, o treino, o domingo sem notebook.</p>
+      <div class="entrega rv">
+        <p>Você sai com a sua <strong>Semana-Modelo:</strong></p>
+        <ul>
+          <li>a agenda-padrão com os blocos de vida protegidos;</li>
+          <li>a regra de delegação para cada tipo de demanda;</li>
+          <li>3 conversas difíceis roteirizadas: com o gestor, com o time e em casa.</li>
+        </ul>
+      </div>
+      <p class="cena">Quinta-feira, fim de tarde. Você está na primeira fila da apresentação da escola. O celular fica no bolso, sem vibrar. A reunião das 17h acontece sem você, conduzida pela gerente que você preparou.</p>
+    </div>
+
+    <!-- R4 -->
+    <div class="r">
+      <h3 class="rv">Eles repetiram a sua ideia como se fosse deles... Mas quando você mostrou o número...</h3>
+      <p class="r-tag"><strong>R4 · Resultado · semanas 11 e 12 · encontro 6</strong></p>
+      <p>Terça, 10h. Ela propõe trocar o fornecedor que atrasa todo mês. Silêncio na mesa. Alguém muda de assunto.</p>
+      <p>Doze minutos depois, um colega diz a mesma coisa com outras palavras. O diretor aponta a caneta para ele: <em>boa ideia.</em></p>
+      <p class="soco">Que sorte a dela. Teve a ideia certa e ainda assistiu de camarote ao elogio ir para outra cadeira.</p>
+      <p class="q">O quão pequena você já se sentiu ouvindo a sua ideia sair da boca de outra pessoa e virar aplauso?</p>
+      <p>Naquela noite, montando a apresentação do trimestre, ela faz pior. Apaga do slide o número que ela mesma entregou. Medo de parecer exagerada, o mesmo que 44% das mulheres ouvidas pela Casa Mundo com a Natura sentem ao falar dos próprios sonhos e metas.</p>
+      <p>A sala que ignorou a ideia dela escuta número. E o molde ensinou a mulher a esconder justamente o número.</p>
+      <p class="soco">No Resultado, o seu número ganha a sua voz.</p>
+      <div class="entrega rv">
+        <p>Você sai com o seu <strong>Dossiê de Resultado:</strong></p>
+        <ul>
+          <li>as suas entregas dos últimos 24 meses, em números;</li>
+          <li>a sua narrativa de 3 minutos para quem decide;</li>
+          <li>e 1 conversa de carreira feita com o seu gestor ou patrocinador dentro dos 90 dias.</li>
+        </ul>
+      </div>
+      <p class="cena">No comitê, você apresenta o seu número. Ninguém repete a sua ideia. E à noite você chega a tempo de contar como foi o dia no jantar.</p>
+      <p>Os 90 dias fecham com retrospectiva, celebração e o ritual mensal para revisar a sua Rota depois que a mentoria acaba.</p>
+    </div>
+    <div class="cta"><button type="button" class="btn js-aplicar">Quero aplicar para a Mentoria ELA</button></div>
+  </div>
+</section>
+
+<!-- 5 · O QUE VOCÊ LEVA EM 90 DIAS -->
+<section class="s-areia" aria-labelledby="b5">
+  <div class="wrap wrap--largo">
+    <h2 id="b5" class="rv">Construa uma carreira da qual todos em casa se orgulhariam.</h2>
+    <p>Em 90 dias, você tem quatro coisas nas mãos. E cada uma muda uma cena da sua semana.</p>
+    <ul class="quatro">
+      <li class="rv"><strong>O Inventário da Mochila.</strong> A terça em que você chega para o banho do filho, e a pauta de amanhã já está com quem deveria estar.</li>
+      <li class="rv"><strong>A Rota de 18 meses.</strong> A ligação do headhunter que você responde em 2 minutos, sem perder o sono, porque o preço que você aceita pagar já estava escrito.</li>
+      <li class="rv"><strong>A Semana-Modelo.</strong> A primeira fila na escola, a consulta que finalmente saiu da lista, o domingo sem notebook.</li>
+      <li class="rv"><strong>O Dossiê de Resultado.</strong> O comitê em que você diz o seu número com a sua voz.</li>
+    </ul>
+    <div class="prosa" style="max-width:var(--wrap)">
+      <p class="soco">E tem o que nenhuma planilha mede.</p>
+      <p>O orgulho de quem te acompanha:</p>
+      <ul class="lista-suave">
+        <li>o seu filho contando na escola o que a mãe dele faz;</li>
+        <li>a sua mãe ouvindo você falar do trabalho sem aquela ruga de preocupação na testa;</li>
+        <li>o marido que parou de perguntar até quando vai ser assim.</li>
+      </ul>
+      <p>E o seu nome passando de uma empresa para outra como referência:</p>
+      <ul class="lista-suave">
+        <li>a gerente que você preparou conduzindo a reunião das 17h;</li>
+        <li>a próxima mulher da sala encontrando o caminho um pouco mais aberto porque você passou por ali antes.</li>
+      </ul>
+      <p class="citacao">"Que nosso legado seja construído por nossas conquistas, pelas pessoas que desenvolvemos e pelas oportunidades que ajudamos a abrir para outras mulheres", escreveu Jennifer Alves.</p>
+      <p>O cargo depende de quem decide. A Rota, a semana e a voz dependem de você e saem prontas dos 90 dias.</p>
+      <div class="cta"><button type="button" class="btn js-aplicar">Quero aplicar para a Mentoria ELA</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · QUEM CONDUZ -->
+<section class="s-creme" aria-labelledby="b6">
+  <div class="wide">
+    <div class="quem-grid">
+      <div class="quem-foto rv">
+        <img src="img/web/renata-blazer.webp" width="538" height="768" loading="lazy" alt="Renata Damasio, de blazer branco, sorrindo com a mão apoiada no queixo">
+      </div>
+      <div class="prosa" style="max-width:var(--wrap)">
+        <h2 id="b6" class="rv">Como o meu primeiro filho me fez subir mais rápido.</h2>
+        <p>O meu primeiro grande desafio como executiva chegou junto com o meu primeiro filho.</p>
+        <p>A conta que o mercado faz para uma mulher nessa hora é conhecida. Ela vê o positivo numa segunda de manhã e, antes de ligar para casa, já pensa no comitê de promoções. Esconde o enjoo na reunião das 9h. Escolhe a blusa mais larga do armário. E sabe que acabou de entrar numa fila em que 94,8% das mulheres ficam sem promoção durante a gravidez.</p>
+        <p class="q">O quão alto o medo já falou na sua cabeça quando você pensou num filho e, no segundo seguinte, no próximo cargo?</p>
+        <p class="soco">Essa conta trata a maternidade como perda. Eu usei a maternidade para acelerar a carreira.</p>
+        <p class="ph-box"><mark class="ph">[DETALHE A COLETAR COM A RENATA: a cena real desse período. O que ela mudou na semana, o que ela largou, o que ela pediu, qual cargo veio e quando. 3 a 5 frases curtas, na voz dela.]</mark></p>
+        <p>Hoje sou mãe de dois meninos. E recuso a escolha que ensinaram para tantas de nós.</p>
+        <blockquote class="bandeira rv"><p>"Eu me recuso a acreditar que subir de cargo signifique abrir mão da vida que você construiu."</p></blockquote>
+        <p>Foram mais de 20 anos de carreira corporativa, mais de 15 como líder e mais de 10 em posição executiva. Sou especialista em HRBP, a cadeira que conecta o RH ao board. Implantei áreas de RH do zero, fui head da função, trabalhei lado a lado com CEOs, dentro de comitês executivos reais. Vi de perto como decidem quem sobe.</p>
+        <p>Atuei como líder ou consultora na TIM, na Vale, na Globo, na Oi, na Invepar, no MetrôRio, na Via040, na Afya e no Grupo +Soma. Nesse caminho, mentorei centenas de líderes.</p>
+        <p>Sou psicóloga, tenho MBA em Gestão de Negócios pela UFRJ e formações em Harvard e na Disney.</p>
+        <p class="soco">Já estive na sala em que decidem a sua carreira.</p>
+      </div>
+    </div>
+    <div class="logos" data-ui="logos" aria-label="Empresas em que a Renata atuou">
+      <ul>
+        <li><img src="img/web/logo-tim.webp" width="320" height="85" loading="lazy" alt="TIM"></li>
+        <li><img src="img/web/logo-vale.webp" width="320" height="124" loading="lazy" alt="Vale"></li>
+        <li><img src="img/web/logo-globo.webp" width="320" height="320" loading="lazy" alt="Globo"></li>
+        <li><img src="img/web/logo-oi.webp" width="320" height="275" loading="lazy" alt="Oi"></li>
+        <li><img src="img/web/logo-afya.webp" width="320" height="137" loading="lazy" alt="Afya"></li>
+        <li class="ph-logo">[Logo Invepar: a incluir]</li>
+        <li><img src="img/web/logo-metrorio.webp" width="320" height="320" loading="lazy" alt="MetrôRio"></li>
+        <li class="ph-logo">[Logo Via040: a incluir]</li>
+        <li><img src="img/web/logo-soma.webp" width="320" height="78" loading="lazy" alt="Grupo +Soma"></li>
+        <li><img src="img/web/logo-mag.webp" width="320" height="154" loading="lazy" alt="MAG Seguros"></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · PROVAS -->
+<section class="s-areia" aria-labelledby="b7">
+  <div class="wrap">
+    <h2 id="b7" class="rv">Quando você perguntar a líderes de RH sobre a Renata, é isso que elas vão te responder...</h2>
+    <div class="depos">
+      <figure class="depo rv">
+        <blockquote><p>"Tive o privilégio de trabalhar ao lado da Renata por cerca de quatro anos e posso dizer, sem exagero, que ela foi uma das profissionais que mais influenciaram minha trajetória."</p></blockquote>
+        <figcaption><strong>Isabella Grisi</strong>, People &amp; Culture Leader | HRBP Leader</figcaption>
+      </figure>
+      <figure class="depo rv">
+        <blockquote><p>"Sempre admirei a alta capacidade de conectar negócios e gente, a habilidade de analisar ambientes e agir rapidamente, a habilidade de articulação e poder de persuasão sem nunca perder seu bom humor, alto astral e a sensibilidade humana."</p></blockquote>
+        <figcaption><strong>Michelle Wizenberg Dentes</strong>, HR Director | Talent Management</figcaption>
+      </figure>
+      <figure class="depo rv">
+        <blockquote><p>"Renata é pura energia! Trouxe conhecimento, muita troca de ideias, criou um ambiente colaborativo e com forte olhar para o desenvolvimento de pessoas e atingimento de resultados."</p></blockquote>
+        <figcaption><strong>Augusta Marques</strong>, Head de Gente e Gestão</figcaption>
+      </figure>
+    </div>
+    <div class="ph-stack">
+      <p class="ph-box"><mark class="ph">[AUTORIZAÇÃO PENDENTE]</mark> No último evento presencial pago da Renata, foram 18 vendas, e 80% delas de líderes muito qualificadas. <mark class="ph">[confirmar com a Renata o que foi vendido e se o número pode ir para a página]</mark></p>
+      <p class="ph-box"><mark class="ph">[PROVA A COLETAR]</mark> Espaço reservado para o 1º caso de mentorada autorizado: cargo antes e depois, a cena da semana antes e depois, e a frase dela, literal. A headline deste espaço nasce quando o caso existir.</p>
+    </div>
+    <div class="cta"><button type="button" class="btn js-aplicar">Quero aplicar para a Mentoria ELA</button></div>
+  </div>
+</section>
+
+<!-- 8 · O QUE ACONTECE DEPOIS DE APLICAR -->
+<section class="s-escuro" aria-labelledby="b8">
+  <div class="wide">
+    <div class="wrap" style="padding:0">
+      <h2 id="b8" class="rv">Em uma reunião individual, eu te darei a lista do que largar primeiro.</h2>
+    </div>
+    <div class="passos">
+      <div class="passo rv"><p><strong>1. Você responde às 10 perguntas.</strong> Leva poucos minutos. Eu leio cada resposta pessoalmente.</p></div>
+      <div class="passo rv"><p><strong>2. Eu respondo no seu WhatsApp em até 1 dia útil.</strong> Se o seu momento combina com a mentoria, você recebe o convite para a nossa conversa de direcionamento, com dia e hora escolhidos por você. Se não combinar, você recebe uma resposta honesta e um conteúdo que faça sentido para onde você está.</p></div>
+      <div class="passo rv"><p><strong>3. A gente conversa em uma reunião individual.</strong> Você leva o primeiro rascunho do seu Inventário da Mochila, o que sai da sua semana primeiro. Se fizer sentido para nós duas, você também recebe a proposta e a data de início. A conversa termina com o próximo passo marcado no calendário.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 · FAQ -->
+<section class="s-creme" aria-labelledby="b9">
+  <div class="wrap">
+    <h2 id="b9" class="rv">O que toda executiva deveria saber antes de aplicar.</h2>
+    <div class="faq">
+      <details open><summary><strong>Quanto custa a Mentoria ELA?</strong></summary><p>A Renata apresenta o investimento na conversa de direcionamento, junto com o formato certo para o seu momento. Na aplicação você indica quanto reserva para o seu desenvolvimento. Assim a reunião já parte do que cabe no seu planejamento.</p></details>
+      <details><summary><strong>Eu não tenho filhos. A mentoria serve para mim?</strong></summary><p>Serve. A família, a saúde e o tempo pertencem a toda executiva. A Semana-Modelo protege o que é inegociável para você: o treino, a consulta adiada, o tempo com quem você ama, o descanso.</p></details>
+      <details><summary><strong>Já fiz MBA, coach e terapia. O que muda aqui?</strong></summary><p>Tudo o que você fez até agora somou. Aqui o trabalho começa subtraindo. Antes de acelerar, você tira da semana o que nunca foi do cargo. E sai com quatro entregas escritas, que ficam com você depois dos 90 dias.</p></details>
+      <details><summary><strong>Quanto tempo vou precisar por semana?</strong></summary><p>Seis encontros de 90 minutos ao longo de 90 dias, um a cada 15 dias, online. Entre eles, o canal no WhatsApp para as decisões que aparecem no meio da semana.</p></details>
+      <details><summary><strong>Como funciona o suporte entre os encontros?</strong></summary><p>WhatsApp individual em dias úteis, com resposta em até 1 dia útil. Ele serve para a pergunta de decisão do dia a dia. O trabalho grande acontece nos encontros. A regra fica escrita desde o primeiro dia, para você saber exatamente o que esperar.</p></details>
+      <details><summary><strong>A minha empresa pode custear?</strong></summary><p>Pode. Conte isso na aplicação, para a reunião já incluir quem decide o investimento.</p></details>
+      <details><summary><strong>É em grupo?</strong></summary><p>É individual. Do primeiro ao último encontro, é você e a Renata.</p></details>
+      <details><summary><strong>O que eu conto fica entre nós?</strong></summary><p><mark class="ph">[confirmar com a Renata a regra de confidencialidade antes de publicar esta resposta]</mark></p></details>
+      <details><summary><strong>Estou buscando recolocação. Faz sentido aplicar?</strong></summary><p>A Mentoria ELA é para quem lidera hoje e quer o próximo cargo. Para recolocação imediata, existem caminhos mais rápidos.</p></details>
+    </div>
+    <div class="cta"><button type="button" class="btn js-aplicar">Quero aplicar para a Mentoria ELA</button></div>
+  </div>
+</section>
+
+<!-- 11 · CTA FINAL -->
+<section class="s-escuro final" id="cta-final" aria-labelledby="b11">
+  <div class="wrap wrap--largo">
+    <h2 id="b11" class="rv">Para executivas que querem ser referência por onde passarem e chegar a tempo do jantar.</h2>
+    <p class="soco">Daqui a 90 dias, a sua semana vai ser uma de duas.</p>
+    <div class="duas">
+      <p class="semana semana--1 rv">Na primeira, a mochila continua igual. O jantar esfria no prato. A próxima proposta chega numa noite qualquer e você decide o preço dela às pressas, sozinha, com o celular na mão. Dezembro passa, janeiro começa, e a dúvida sobre ser a pessoa certa continua no mesmo lugar.</p>
+      <p class="semana semana--2 rv">Na segunda, a pauta de amanhã já está com quem deveria estar. A Rota diz para onde você vai e quanto aceita pagar. Você diz o seu número com a sua voz no comitê. E às 20h40 você está sentada à mesa, contando como foi o dia, com quem te espera em casa.</p>
+    </div>
+    <p>A executiva que sobe com a vida inteira dentro da agenda vira a prova viva de que a escolha nunca foi obrigatória. Para a casa dela, para o time dela e para a próxima mulher que entrar na sala.</p>
+    <p class="primeiro">O primeiro passo são 10 perguntas.</p>
+    <div class="cta cta--left"><button type="button" class="btn js-aplicar">Quero aplicar para a Mentoria ELA</button></div>
+  </div>
+</section>
+
+</main>
+
+<!-- Barra fixa no celular (aparece depois do hero, some no bloco final) -->
+<div class="barra" id="barra" data-ui="barra" aria-hidden="true">
+  <button type="button" class="btn js-aplicar" tabindex="-1">Quero aplicar para a Mentoria ELA</button>
+</div>
+
+<!-- Diálogo: o formulário NÃO está nesta página (decisão do Netanias). Destino do formulário: DESCONHECIDO. -->
+<dialog id="aplicar" data-ui="dialogo" aria-labelledby="aplicar-txt">
+  <p id="aplicar-txt">Aqui abre o formulário de aplicação da Renata. <mark class="ph">[destino do formulário: a definir]</mark></p>
+  <form method="dialog"><button class="btn-fechar" value="fechar">Fechar</button></form>
+</dialog>
+
+<script>
+(function(){
+  var d=document, root=d.documentElement;
+  root.classList.add('js');
+  var dlg=d.getElementById('aplicar'), ultimo=null;
+  function abrir(e){
+    ultimo=e.currentTarget;
+    if(dlg && typeof dlg.showModal==='function'){ dlg.showModal(); }
+    else { alert('Aqui abre o formulário de aplicação da Renata. [destino do formulário: a definir]'); }
+  }
+  d.querySelectorAll('.js-aplicar').forEach(function(b){ b.addEventListener('click',abrir); });
+  if(dlg){
+    dlg.addEventListener('close',function(){ if(ultimo && ultimo.focus) ultimo.focus(); });
+    dlg.addEventListener('click',function(e){ if(e.target===dlg) dlg.close(); });
+  }
+
+  var reduz=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var els=d.querySelectorAll('.rv');
+  if(reduz || !('IntersectionObserver' in window)){
+    els.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io=new IntersectionObserver(function(ents){
+      ents.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+    },{rootMargin:'0px 0px -8% 0px',threshold:.05});
+    els.forEach(function(el){ io.observe(el); });
+  }
+
+  // Barra fixa: aparece depois do hero, some no bloco final
+  var barra=d.getElementById('barra'), hero=d.getElementById('topo'), fim=d.getElementById('cta-final');
+  var passouHero=false, noFim=false;
+  function atualiza(){
+    var on=passouHero && !noFim;
+    barra.classList.toggle('on',on);
+    barra.setAttribute('aria-hidden',on?'false':'true');
+    barra.querySelector('button').tabIndex=on?0:-1;
+  }
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(e){ passouHero=!e[0].isIntersecting; atualiza(); }).observe(hero);
+    new IntersectionObserver(function(e){ noFim=e[0].isIntersecting; atualiza(); }).observe(fim);
+  }
+})();
+</script>
+</body>
+</html>
