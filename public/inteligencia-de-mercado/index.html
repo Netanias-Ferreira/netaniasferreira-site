@@ -167,6 +167,11 @@ details p{margin-top:8px;color:var(--muted)}
 .modal-head{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;gap:8px}
 .modal .thumb{aspect-ratio:9/16;cursor:default}
 .modal-foot{padding:12px 14px;display:flex;gap:8px;flex-wrap:wrap}
+.tx-modal{max-width:680px;overflow:hidden;grid-template-rows:auto minmax(0,1fr) auto}
+.tx-modal .modal-head h2{font-size:16px}
+.tx-body{overflow-y:auto;overscroll-behavior:contain;padding:0 14px 10px;display:grid;gap:10px;align-content:start;-webkit-overflow-scrolling:touch}
+.tx-texto{white-space:pre-wrap;font:inherit;font-size:14px;line-height:1.6;background:var(--surface-2);padding:12px;border-radius:8px;margin:0;overflow-wrap:anywhere}
+.tx-modal .modal-foot{border-top:1px solid var(--line)}
 .toast{position:fixed;bottom:max(20px,env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:9px 16px;border-radius:999px;font-size:13px;z-index:60}
 .proto{font-size:11px;background:var(--accent-soft);color:var(--accent);border-radius:6px;padding:6px 10px}
 .menu-btn{display:none}
@@ -233,6 +238,126 @@ table.adm{width:100%;border-collapse:collapse;font-size:13px}table.adm td,table.
 .mt{margin-top:10px}
 .escada{display:grid;gap:14px;--degrau:0px}@media (min-width:861px){.escada{--degrau:28px}}.nivel{padding:18px;display:grid;gap:10px}.nivel-head{display:flex;gap:12px;align-items:center}.nivel-head>div{flex:1;min-width:0}.n-num{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--amber));color:#111;font-weight:800;display:grid;place-items:center;flex:none}.nivel .erro{color:var(--bad)}:root[data-theme="dark"] .nivel .erro{color:#F87171}
 .fmt-card{color:inherit}.capa{position:relative;aspect-ratio:4/5;border-radius:12px;overflow:hidden;background:#1C1C1C;display:grid;place-items:center}.capa img,.capa video{width:100%;height:100%;object-fit:cover;display:block}.capa .play{pointer-events:none}.ver-mais{justify-self:start;padding:5px 12px;font-size:12px}.fmt-card:hover .ver-mais{border-color:var(--accent)}
+/* Tutoriais */
+.tut-sec{display:grid;gap:12px}.tut-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.tut{overflow:hidden;display:grid;align-content:start}.tut-body{padding:14px;display:grid;gap:6px}
+.tut .media{border-radius:0;max-height:none;aspect-ratio:16/9}
+.tut-frame{position:relative;aspect-ratio:16/9;background:#000}.tut-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+/* Máquina de Validação: uma linha por dimensão, seletor rolável em cada uma */
+.cx-board{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:20px;align-items:start}
+@media (max-width:1100px){.cx-board{grid-template-columns:minmax(0,1fr)}}
+.cx-frame{background:#1C1C1C;color:#fff;border-radius:var(--r);padding:18px 20px;display:grid;gap:8px}
+.cx-frame label{display:grid;gap:6px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#BDBDBD}
+.cx-frame textarea{font:inherit;font-size:14px;text-transform:none;letter-spacing:0;color:#fff;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:10px 12px;min-height:44px;resize:vertical}
+.cx-frame textarea::placeholder{color:#9A9A9A}.cx-frame textarea:focus{outline:none;border-color:var(--accent)}
+.cx-rows{display:flex;flex-direction:column;padding:4px 18px}
+.cx-row{display:grid;grid-template-columns:170px minmax(0,1fr);gap:16px;align-items:start;padding:16px 0;border-top:1px solid var(--line)}
+.cx-row:first-child{border-top:0}
+.cx-label{display:flex;gap:10px;align-items:flex-start}
+.cx-num{flex:none;width:28px;height:28px;border-radius:8px;border:1px solid var(--line);display:grid;place-items:center;font-weight:700;font-size:12px;color:var(--muted);transition:background .2s,color .2s,border-color .2s}
+.cx-row.on .cx-num{background:linear-gradient(135deg,var(--accent),var(--amber));color:#111;border-color:transparent}
+.cx-label h3{font-size:16px;line-height:1.15}.cx-label small{display:block;font-size:12px;color:var(--muted);margin-top:3px}
+.cx-pick{position:relative;max-width:460px}
+.cx-trigger{width:100%;min-height:44px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14px;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px;text-align:left;transition:border-color .2s,background .2s}
+.cx-trigger:hover{border-color:var(--accent)}
+.cx-trigger .cx-val{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.cx-trigger.chosen{color:var(--fg);font-weight:600;border-color:var(--accent);background:var(--accent-soft)}
+.cx-trigger svg{flex:none;width:18px;height:18px;transition:transform .2s}
+.cx-trigger[aria-expanded="true"] svg{transform:rotate(180deg)}
+.cx-pop{position:absolute;z-index:30;top:calc(100% + 6px);left:0;right:0;background:var(--surface);border:1px solid var(--accent);border-radius:12px;box-shadow:0 14px 34px rgba(0,0,0,.18);overflow:hidden}
+.cx-pop[hidden]{display:none}
+.cx-search{width:100%;font:inherit;font-size:14px;color:var(--fg);background:var(--surface-2);border:0;border-bottom:1px solid var(--line);padding:10px 14px}
+.cx-search:focus{outline:none;background:var(--accent-soft)}
+.cx-list{list-style:none;max-height:236px;overflow-y:auto;overscroll-behavior:contain;margin:0;padding:0}
+.cx-opt{font-size:14px;padding:11px 14px;cursor:pointer;border-top:1px solid var(--line);display:flex;align-items:center;gap:10px;min-height:44px}
+.cx-opt:first-child{border-top:0}
+.cx-opt:hover,.cx-opt:focus-visible{background:var(--accent-soft);outline:none}
+.cx-opt[aria-selected="true"]{font-weight:600;background:var(--accent-soft);color:var(--accent-txt)}
+.cx-opt .n{flex:none;width:22px;color:var(--muted);font-size:12px;text-align:center;font-variant-numeric:tabular-nums}
+.cx-opt[aria-selected="true"] .n::after{content:" ✓";color:var(--accent-txt)}
+.cx-opt .q{margin-left:auto;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+.cx-grp{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-txt);background:var(--surface-2);padding:7px 14px;border-top:1px solid var(--line)}
+.cx-empty{padding:12px 14px;font-size:13px;color:var(--muted)}.cx-empty[hidden]{display:none}
+.cx-desc{margin-top:8px;font-size:13px;color:var(--muted);max-width:60ch}
+.cx-desc .example{margin-top:6px;color:var(--fg)}
+.cx-result{position:sticky;top:20px;overflow:hidden}
+.cx-rhead{background:#1C1C1C;color:#fff;padding:16px 18px;display:grid;gap:2px}
+.cx-rhead .mono{color:var(--amber)}.cx-rhead h2{font-size:18px}
+.cx-rbody{padding:16px 18px;display:grid;gap:12px}
+.cx-recipe{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.cx-recipe li{display:grid;grid-template-columns:96px minmax(0,1fr);gap:10px;font-size:13px;align-items:baseline}
+.cx-recipe .k{color:var(--muted);font-size:11px;letter-spacing:.04em;text-transform:uppercase}
+.cx-recipe .v{font-weight:600;overflow-wrap:anywhere}.cx-recipe .v.vazio{color:var(--muted);font-weight:400;font-style:italic}
+.cx-prog{height:7px;border-radius:99px;background:var(--surface-2);overflow:hidden;border:1px solid var(--line)}
+.cx-prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--amber));transition:width .25s}
+.cx-progtxt{font-size:12px;color:var(--muted)}
+.cx-result .actions .btn{min-height:44px}
+.cx-result .btn.primary[disabled]{opacity:.45;cursor:not-allowed}
+.cx-rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.cx-rule{display:flex;gap:12px;align-items:flex-start;padding:16px}
+.cx-rule p{font-size:13px}
+@media (max-width:560px){.cx-row{grid-template-columns:minmax(0,1fr);gap:10px}.cx-pick{max-width:none}.cx-rows{padding:4px 14px}}
+@media (prefers-reduced-motion:reduce){.cx-prog i,.cx-trigger svg{transition:none}}
+/* Celular: barra superior fixa com menu em gaveta, tipografia e espaços compactos, sem rolagem lateral */
+.mbar,.side-fundo{display:none}
+:root[data-theme="dark"] .cx-frame{border:1px solid #333}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .cx-frame{border:1px solid #333}}
+@media (max-width:860px){
+  html,body{overflow-x:hidden}
+  body{font-size:14.5px}
+  .mbar{display:flex;align-items:center;gap:10px;position:fixed;top:0;left:0;right:0;z-index:35;min-height:54px;
+    padding:env(safe-area-inset-top,0px) max(12px,env(safe-area-inset-right,0px)) 0 max(12px,env(safe-area-inset-left,0px));
+    background:var(--side-bg);color:var(--side-fg);box-shadow:0 1px 0 rgba(255,255,255,.06)}
+  .mbar .brand-mark{width:28px;height:28px;font-size:14px;flex:none}
+  .mbar-t{font-weight:700;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+  .mbar-btn{flex:none;width:44px;height:44px;justify-content:center;padding:0;font-size:18px;background:#222!important;border-color:#333!important;color:#fff!important}
+  .app{padding-top:calc(54px + env(safe-area-inset-top,0px))}
+  .side{z-index:40;width:min(280px,86vw);box-shadow:none;visibility:hidden;transition:transform .2s,visibility .2s;padding-bottom:max(20px,env(safe-area-inset-bottom,0px))}
+  .side.open{box-shadow:0 0 40px rgba(0,0,0,.4);visibility:visible}
+  html{scroll-padding-top:calc(64px + env(safe-area-inset-top,0px))}
+  .side.open~.side-fundo{display:block;position:fixed;inset:0;z-index:38;background:rgba(0,0,0,.5)}
+  .top .menu-btn{display:none!important}
+  .top h1{margin-top:0!important}
+  h1{font-size:25px} h2{font-size:18px} h3{font-size:15px}
+  .main{gap:14px;padding-top:16px;padding-bottom:max(40px,env(safe-area-inset-bottom,0px))}
+  .top-meta{margin-top:6px}
+  .stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .stat{padding:12px 10px}
+  .stat b,.stats .stat b{font-size:26px;line-height:1.1}
+  .stat .muted{font-size:12px;line-height:1.3;display:block}
+  .stat-ir{font-size:11px;margin-top:6px}
+  .stats .stat:first-child::after{margin-top:8px;height:4px}
+  .panel[style*="padding:16px"]{padding:14px!important}
+  .piece,.fmt-card{padding:12px}.ex{padding:12px}.nivel{padding:14px}.step{padding:12px;gap:10px}
+  .pieces,.tut-grid{grid-template-columns:minmax(0,1fr);gap:12px}
+  .grid{gap:10px}
+  .impl{padding:16px;gap:12px}.impl h2{font-size:17px}
+  .filters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .filters select.f{width:100%;min-width:0}
+  .search{width:100%}
+  input,select,textarea,.search input,.cx-search,.cx-frame textarea,.form input,.form textarea,.form select{font-size:16px!important}
+  .group-head{padding:14px}
+  details{padding:12px 14px}
+  .escada{gap:12px}
+  .nivel-head{gap:10px}.n-num{width:32px;height:32px}
+  .cx-result{position:static}
+  .cx-frame{padding:14px}
+  .cx-rows{padding:2px 14px}
+  .cx-row{padding:14px 0}
+  .tablewrap{max-width:100%}
+  .foot{gap:8px}
+  .overlay{padding:max(12px,env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) max(12px,env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px))}
+  .tx-modal{max-height:calc(100dvh - 24px)}
+  .modal-foot .btn{min-height:44px}
+  .login{min-height:0;display:block;padding:max(24px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+  .login .panel{max-width:none!important;width:100%;padding:20px!important;gap:12px!important}
+  .login h1{font-size:24px}
+}
+@media (max-width:380px){
+  .stat b,.stats .stat b{font-size:24px}
+  .stat .muted{font-size:11.5px}
+  .cx-recipe li{grid-template-columns:84px minmax(0,1fr)}
+}
 </style>
 </head>
 <body>
@@ -256,7 +381,7 @@ const contato = () => CONTATO_NETANIAS.startsWith("http") ? CONTATO_NETANIAS : "
 const linkSeguro = u => /^https?:\/\//i.test(u || "") ? u : "#";
 const NIVEIS = {"intro": "Cada pessoa chega no anúncio sabendo uma coisa diferente sobre o próprio problema e sobre a sua oferta. Se o anúncio começa num ponto que ela ainda não alcançou, ela não entende. Se começa num ponto que ela já passou, ela se entedia. O nível de consciência diz onde a conversa deve começar.", "regra_ouro": "Comece o anúncio exatamente onde está a cabeça do seu público, nunca onde está a sua.", "niveis": [{"nivel": "inconsciente", "titulo": "Não sabe que tem um problema", "o_que_e": "A pessoa vive o problema, mas ainda não deu nome a ele. Para ela, aquilo é normal ou é só o jeito que a vida é.", "como_falar": "Abra pela identidade dela ou por uma cena que ela reconhece, nunca pelo produto. Entregue uma verdade incômoda que faça ela se ver no espelho. No high ticket, esse anúncio filtra pelo jeito de pensar, não vende.", "erro_comum": "Falar do método, do preço ou da oferta para quem nem sabe que precisa de ajuda.", "etapa_funil": "topo", "exemplos": ["Para qualquer pessoa com o mínimo de educação financeira, a poupança não é uma opção.", "100 dias sem redes sociais. A lição número 1 que aprendi você não vai gostar de ouvir.", "Quando você vai arrumar um trabalho de verdade? Eu: no meu trabalho de verdade."]}, {"nivel": "consciente do problema", "titulo": "Sente a dor, não sabe a saída", "o_que_e": "A pessoa sabe que algo está errado e sente isso no bolso ou na rotina. Ela ainda não sabe que existe um jeito de resolver.", "como_falar": "Abra pela dor dela, com as palavras que ela usa, em cena concreta. Mostre que você entende o problema melhor do que ela e só então aponte que existe uma saída. No high ticket, deixe claro o custo de continuar como está.", "erro_comum": "Pular direto para a solução sem antes provar que entende a dor.", "etapa_funil": "topo", "exemplos": ["Meu perfil parece abandonado. Mas já vendeu mais de R$300 mil em serviços.", "O \"vou pensar\" depois da call é falta de preparo do lead.", "Atender 7 horas por dia pra mal conseguir pagar as contas do mês não é liberdade, é sobreviver."]}, {"nivel": "consciente da solução", "titulo": "Sabe o que quer, não conhece você", "o_que_e": "A pessoa já sabe o resultado que deseja e que existe um caminho para chegar lá. Ela só não sabe que a sua oferta entrega isso.", "como_falar": "Abra pelo resultado que ela quer, dito de forma concreta e com número. Depois mostre por que o seu caminho chega lá melhor que os outros, com mecanismo e prova. No high ticket, a prova de casos parecidos com o dela pesa mais que a promessa.", "erro_comum": "Gastar tempo explicando o problema para quem já está procurando a solução.", "etapa_funil": "meio", "exemplos": ["Isso é o que acontece com o corpo de quem faz treino híbrido.", "Quer achar oferta de low ticket? Escreve isso aqui na biblioteca de anúncios.", "Para vender serviços e mentorias de R$5 mil a R$10 mil para pessoas que ainda não conhecem você."]}, {"nivel": "consciente do produto", "titulo": "Conhece você, ainda não decidiu", "o_que_e": "A pessoa já sabe o que você vende e o que a oferta faz. Ela ainda tem dúvida se funciona para ela ou se vale o preço.", "como_falar": "Abra pelo produto e pelo que ele já fez por gente como ela. Entregue prova, detalhes da entrega e resposta para as objeções que travam a decisão. No high ticket, mostre o passo a passo de como é trabalhar com você.", "erro_comum": "Repetir a apresentação genérica em vez de matar a dúvida que impede a compra.", "etapa_funil": "meio", "exemplos": ["Falaram que esse treino não funciona, mas eu testei por 7 dias.", "Vou te mostrar algo que todo eletricista residencial deveria ter.", "Vender 1 mentoria por semana sem abrir turma: anúncio que atrai, aplicação que filtra, sessão que fecha."]}, {"nivel": "totalmente consciente", "titulo": "Já quer, só precisa do empurrão", "o_que_e": "A pessoa conhece a oferta, confia e já quer comprar. Falta só um motivo para agir agora.", "como_falar": "Abra direto pela oferta, condição e prazo. Entregue o que muda hoje: bônus, vaga, condição especial ou fim do prazo. No high ticket, a urgência vem de vaga limitada e agenda real, nunca de desconto inventado.", "erro_comum": "Voltar a explicar o problema e o método para quem só está esperando o convite.", "etapa_funil": "fundo", "exemplos": ["Atenção. Última chance da promoção de feriadão com 40% de desconto.", "A pedidos, estendemos a nossa maior oferta de todos os tempos.", "Apenas hoje está liberado o lote antecipado no menor preço."]}]};
 const FILTRO0 = () => ({tipo:"", funil:"", etapa:"", nivel:"", angulo:"", q:""});
-const S = { user:null, admin:false, formatos:[], exemplos:[], angulos:[], favs:new Map(), f:FILTRO0() };
+const S = { user:null, admin:false, formatos:[], exemplos:[], angulos:[], tutoriais:[], favs:new Map(), f:FILTRO0() };
 
 function toast(m){ const t = document.createElement("div"); t.className = "toast"; t.setAttribute("role","status"); t.textContent = m; document.body.append(t); setTimeout(() => t.remove(), 2200); }
 function tema(){ const r = document.documentElement; const atual = r.dataset.theme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); r.dataset.theme = atual === "dark" ? "light" : "dark"; localStorage.setItem("im-tema", r.dataset.theme); }
@@ -335,20 +460,21 @@ async function sair(){ await sb.auth.signOut(); location.hash = ""; location.rel
 
 /* ---------- dados ---------- */
 async function carregar(){
-  const [f, e, a, fv] = await Promise.all([
+  const [f, e, a, fv, tu] = await Promise.all([
     sb.from("im_formatos").select("*").order("nome"),
     sb.from("im_exemplos").select("*").order("id"),
     sb.from("im_angulos").select("*").order("id"),
-    sb.from("im_favoritos").select("*")]);
-  S.formatos = f.data || []; S.exemplos = e.data || []; S.angulos = a.data || [];
+    sb.from("im_favoritos").select("*"),
+    sb.from("im_tutoriais").select("*").order("ordem").order("id")]);
+  S.formatos = f.data || []; S.exemplos = e.data || []; S.angulos = a.data || []; S.tutoriais = tu.data || [];
   S.favs = new Map((fv.data || []).map(x => [x.exemplo_id, x]));
 }
 
 /* ---------- casca ---------- */
-const ROTAS = ["senha","inicio","formatos","formato","angulos","niveis","favoritos","curadoria","admin"];
+const ROTAS = ["senha","inicio","formatos","formato","angulos","niveis","tutoriais","validacao","favoritos","curadoria","admin"];
 function casca(){
   const ini = (S.user.email || "?")[0].toUpperCase();
-  $("#root").innerHTML = `<div class="app">
+  $("#root").innerHTML = `<header class="mbar"><button class="btn mbar-btn" id="b-menu2" aria-label="Abrir menu" aria-controls="side" aria-expanded="false">☰</button><div class="brand-mark">N</div><span class="mbar-t">Inteligência do Mercado</span></header><div class="app">
   <aside class="side" id="side">${marca}
     <nav class="nav-group nav" aria-label="Menu">
       <span class="mono">Começo</span>
@@ -357,6 +483,8 @@ function casca(){
       <a href="#formatos" data-r="formatos">Formatos <span class="count">${S.formatos.length}</span></a>
       <a href="#angulos" data-r="angulos">Ângulos <span class="count">${S.angulos.length}</span></a>
       <a href="#niveis" data-r="niveis">Níveis de consciência <span class="count">5</span></a>
+      <a href="#tutoriais" data-r="tutoriais">Tutoriais <span class="count" id="c-tut">${S.tutoriais.length}</span></a>
+      <a href="#validacao" data-r="validacao">Máquina de Validação</a>
       <a href="#favoritos" data-r="favoritos">Favoritos <span class="count" id="c-fav">${S.favs.size}</span></a>
       <span class="mono mt">Com o Netanias</span>
       <a href="#curadoria" data-r="curadoria">Curadoria</a>
@@ -366,9 +494,14 @@ function casca(){
     <div class="user"><span class="avatar">${esc(ini)}</span><span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis">${esc(S.user.email)}</span></div>
     <div class="actions"><button class="btn" id="b-tema">Tema claro/escuro</button><a class="btn" href="#senha">Trocar senha</a><button class="btn" id="b-sair">Sair</button></div>
   </aside>
+  <div class="side-fundo" id="side-fundo"></div>
   <main class="main" id="main"></main></div>`;
   $("#b-tema").onclick = tema; $("#b-sair").onclick = sair;
-  $("#side").addEventListener("click", e => { if (e.target.closest("a")) $("#side").classList.remove("open"); });
+  const menu = abrir => { $("#side").classList.toggle("open", abrir); $("#b-menu2").setAttribute("aria-expanded", String(abrir)); };
+  $("#side").addEventListener("click", e => { if (e.target.closest("a")) menu(false); });
+  $("#b-menu2").onclick = () => menu(!$("#side").classList.contains("open"));
+  $("#side-fundo").onclick = () => menu(false);
+  addEventListener("keydown", e => { if (e.key === "Escape" && $("#side")?.classList.contains("open")) menu(false); });
 }
 function rodape(){ return `<div class="impl"><div><h2>Implementação de funil de aquisição para alto ticket</h2><p>Eu monto com você o funil que leva o lead do anúncio até a call de venda, com estes formatos aplicados na sua oferta.</p></div><a class="btn" href="${contato()}" target="_blank" rel="noopener">Quero a implementação</a></div>
 <div class="foot"><span>© ${new Date().getFullYear()} Netanias Ferreira</span><span>Inteligência do Mercado</span></div>`; }
@@ -380,7 +513,7 @@ function rota(){
   document.querySelectorAll(".nav a").forEach(a => a.classList.toggle("on", a.dataset.r === r || (r === "formato" && a.dataset.r === "formatos")));
   // troca o <main> para não acumular ouvintes de clique entre telas
   const velho = $("#main"); const m = velho.cloneNode(false); velho.replaceWith(m);
-  ({senha:() => telaSenha(false), inicio:vInicio, formatos:vFormatos, formato:x => vFormato(x, arg), angulos:vAngulos, niveis:vNiveis, favoritos:vFavoritos, curadoria:vCuradoria, admin:vAdmin})[r](m);
+  ({senha:() => telaSenha(false), inicio:vInicio, formatos:vFormatos, formato:x => vFormato(x, arg), angulos:vAngulos, niveis:vNiveis, tutoriais:vTutoriais, validacao:vCaixa, favoritos:vFavoritos, curadoria:vCuradoria, admin:vAdmin})[r](m);
   const b = $("#b-menu"); if (b) b.onclick = () => $("#side").classList.add("open");
   window.scrollTo(0, 0);
 }
@@ -413,7 +546,11 @@ function formatosFiltrados(){
 }
 function capa(fm){
   const e = S.exemplos.find(x => x.formato_id === fm.id && (x.miniatura || x.arquivo)); if (!e) return "";
-  const alt = esc(fm.nome);
+  return capaEx(e, fm.nome);
+}
+function capaEx(e, nome){
+  if (!e.miniatura && !e.arquivo) return "";
+  const alt = esc(nome);
   if (e.miniatura) return `<div class="capa"><img loading="lazy" alt="${alt}" src="${esc(midia(e.miniatura))}"></div>`;
   if (!ehVideo(e.arquivo)) return `<div class="capa"><img loading="lazy" alt="${alt}" src="${esc(midia(e.arquivo))}"></div>`;
   return `<div class="capa"><video muted playsinline preload="none" aria-label="${alt}" data-src="${esc(midia(e.arquivo))}#t=1"></video><span class="play" aria-hidden="true">▶</span></div>`;
@@ -440,6 +577,198 @@ function vNiveis(m){
   m.addEventListener("click", e => { const b = e.target.closest("[data-nivel]"); if (!b) return;
     const alvo = uniq("nivel").find(v => norm(v) === norm(b.dataset.nivel)) || b.dataset.nivel;
     S.f = FILTRO0(); S.f.nivel = alvo; location.hash = "formatos"; });
+}
+/* ---------- tutoriais ---------- */
+const CATS_TUT = ["Geral","Como cruzar","Nível de consciência","Ângulo","Formato","Gancho"];
+function playerTutorial(u){
+  u = String(u || "").trim(); if (!u) return "";
+  if (!/^https?:\/\//i.test(u)) return ehVideo(u) ? `<video class="media" controls playsinline preload="metadata" src="${esc(midia(u))}"></video>` : "";
+  let x, src = "";
+  if ((x = u.match(/(?:youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/)|youtu\.be\/)([\w-]{6,})/i))) src = `https://www.youtube-nocookie.com/embed/${x[1]}`;
+  else if ((x = u.match(/vimeo\.com\/(?:video\/)?(\d+)(?:\/(\w+))?/i))) src = `https://player.vimeo.com/video/${x[1]}${x[2] ? `?h=${x[2]}` : ""}`;
+  else if ((x = u.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:.*&)?id=)([\w-]+)/i))) src = `https://drive.google.com/file/d/${x[1]}/preview`;
+  else if (/\.(mp4|webm|mov|m4v)(\?|#|$)/i.test(u)) return `<video class="media" controls playsinline preload="metadata" src="${esc(u)}"></video>`;
+  if (src) return `<div class="tut-frame"><iframe src="${esc(src)}" title="Vídeo do tutorial" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>`;
+  return `<div class="tut-body"><a class="btn" href="${esc(linkSeguro(u))}" target="_blank" rel="noopener" style="justify-self:start">Abrir vídeo</a></div>`;
+}
+function vTutoriais(m){
+  const t = S.tutoriais, cat = x => x.categoria || "Geral";
+  const cats = [...CATS_TUT, ...new Set(t.map(cat).filter(c => !CATS_TUT.includes(c)))];
+  m.innerHTML = topo("Tutoriais", "Vídeos curtos para usar cada parte do sistema do jeito certo.") +
+    (S.admin ? '<a class="btn" href="#admin" style="justify-self:start">Gerenciar tutoriais no painel</a>' : "") +
+    (t.length ? cats.map(c => { const l = t.filter(x => cat(x) === c); if (!l.length) return "";
+      return `<section class="tut-sec"><h2>${esc(c)}</h2><div class="tut-grid">${l.map(x => `<article class="panel tut">${playerTutorial(x.video_url)}<div class="tut-body"><h3>${esc(x.titulo)}</h3>${x.descricao ? `<p class="muted">${esc(x.descricao)}</p>` : ""}</div></article>`).join("")}</div></section>`; }).join("")
+    : '<div class="empty panel">Em breve os primeiros tutoriais.</div>') + rodape();
+}
+
+/* ---------- máquina de validação (caixa de combinação) ---------- */
+const GANCHOS = [
+  {nome:"Curiosidade / Lacuna", desc:"Abre uma pergunta na cabeça de quem vê e só entrega a resposta mais adiante.", ex:["Tem um detalhe no seu anúncio que faz o cliente certo passar direto.","Descobri por que metade dos meus leads sumia depois da primeira mensagem."]},
+  {nome:"Negação / Contrarian", desc:"Contraria uma crença comum do mercado e obriga a pessoa a rever o que acha que sabe.", ex:["Postar todo dia não vai encher a sua agenda.","Baixar o preço é o jeito mais rápido de vender menos."]},
+  {nome:"Medo / Urgência", desc:"Mostra o custo de continuar como está ou um prazo real que está correndo.", ex:["Cada semana com esse funil parado custa clientes que não voltam.","Se a sua agenda depende só de indicação, este mês já começou atrasado."]},
+  {nome:"Prova social / Autoridade", desc:"Abre com um resultado, um número de casos ou uma credencial que dá peso à fala.", ex:["[número] clientes fechados em [prazo] com um único anúncio.","Depois de revisar [número] anúncios, este é o erro que eu mais vejo."]},
+  {nome:"Pergunta direta", desc:"Faz uma pergunta que o público responde sim na cabeça, logo no primeiro segundo.", ex:["Você atende bem, mas a agenda vive com buracos?","Quanto custa para você cada lead que some sem responder?"]},
+  {nome:"Identificação", desc:"Descreve a cena que o público vive, com as palavras dele, até ele pensar: isso sou eu.", ex:["Para quem sai da call achando que fechou e ouve um vou pensar.","Se você trabalha dez horas por dia e o mês ainda não fecha, fica aqui."]},
+  {nome:"Número / Lista", desc:"Promete uma quantidade fechada de itens, passos ou erros.", ex:["3 frases que fazem o lead responder no mesmo dia.","5 sinais de que o seu anúncio atrai curioso em vez de comprador."]},
+  {nome:"Tendência / Visual", desc:"Usa uma imagem inesperada ou um assunto do momento para parar o dedo antes da primeira palavra.", ex:["[Mostra o print da agenda cheia] Essa agenda estava vazia [prazo] atrás.","Todo mundo está falando de [assunto do momento]. Pouca gente viu o que isso muda no seu negócio."]},
+  {nome:"Narrativa / História", desc:"Começa no meio de uma cena, com hora, lugar e tensão, e a pessoa fica para saber o fim.", ex:["Terça, 7 da manhã, o telefone tocou e era o cliente que eu achei que tinha perdido.","Eu estava a um clique de desligar os anúncios quando vi o número no painel."]},
+  {nome:"Técnicas avançadas", desc:"Combina dois tipos ou quebra o padrão: contradição, ordem invertida, aviso para não fazer.", ex:["Eu cobrei mais caro e vendi o dobro. E tem um motivo.","Não grave este anúncio. A não ser que queira a agenda cheia."]}
+];
+const CX = { sel:{}, oferta:"" };
+const CX_ROWS = ["nivel","angulo","formato","gancho"];
+const mesmoGrupo = (a, b) => !!a && !!b && norm(a).replace(/s$/, "") === norm(b).replace(/s$/, "");
+const nivelBate = (ex, n) => { const a = norm(ex), b = norm(n); return !!a && (a === b || (b === "totalmente consciente" && a === "mais consciente")); };
+function cxEscolhas(){
+  const s = CX.sel;
+  return {
+    nivel: s.nivel != null ? NIVEIS.niveis[+s.nivel] : null,
+    angulo: s.angulo != null ? S.angulos.find(a => String(a.id) === s.angulo) : null,
+    formato: s.formato != null ? S.formatos.find(f => String(f.id) === s.formato) : null,
+    gancho: s.gancho != null ? GANCHOS[+s.gancho] : null };
+}
+function cxLinhas(){
+  const qtd = new Map(); S.exemplos.forEach(e => qtd.set(e.formato_id, (qtd.get(e.formato_id) || 0) + 1));
+  const fmts = [...S.formatos].sort((a, b) => (a.tipo === b.tipo ? 0 : a.tipo === "video" ? -1 : 1) || (qtd.get(b.id) || 0) - (qtd.get(a.id) || 0) || String(a.nome).localeCompare(b.nome));
+  const grupos = new Set(S.angulos.map(a => a.grupo)).size;
+  return [
+    {id:"nivel", nome:"Nível de consciência", meta:"Onde está a cabeça do público", ops:NIVEIS.niveis.map((n, i) => ({v:String(i), rot:`${n.nivel}: ${n.titulo}`}))},
+    {id:"angulo", nome:"Ângulo", meta:`${S.angulos.length} ângulos em ${grupos} grupos`, ops:S.angulos.map(a => ({v:String(a.id), rot:a.nome, grupo:a.grupo}))},
+    {id:"formato", nome:"Formato", meta:`${S.formatos.length} formatos, os com mais exemplos primeiro`, ops:fmts.map(f => ({v:String(f.id), rot:f.nome, grupo:f.tipo === "video" ? "Vídeo" : "Imagem", q:qtd.get(f.id) || 0}))},
+    {id:"gancho", nome:"Gancho", meta:"10 tipos de abertura", ops:GANCHOS.map((g, i) => ({v:String(i), rot:g.nome}))}
+  ];
+}
+function cxRotulo(id, c){
+  const x = c[id]; if (!x) return "";
+  return id === "nivel" ? `${x.nivel}: ${x.titulo}` : x.nome;
+}
+function cxDesc(id, c){
+  const x = c[id]; if (!x) return "";
+  if (id === "nivel") return `<b>Como falar:</b> ${esc(x.como_falar)}`;
+  if (id === "angulo") return `<b>${esc(x.grupo)}.</b> ${esc(x.descricao || "")}`;
+  if (id === "formato") return `${esc(x.o_que_e || "")} <a href="#formato/${x.id}">Ver exemplos deste formato</a>`;
+  return `${esc(x.desc)}${x.ex.map(t => `<div class="example">${esc(t)}</div>`).join("")}`;
+}
+function cxComando(){
+  const c = cxEscolhas();
+  const oferta = CX.oferta.trim() || "[descreva aqui o que você vende, para quem e por quanto]";
+  const l = [
+    c.formato ? `- Formato: ${c.formato.nome} (${c.formato.tipo === "video" ? "vídeo" : "imagem"}).${c.formato.o_que_e ? " O que é: " + c.formato.o_que_e : ""}${c.formato.quando_usar ? " Quando usar: " + c.formato.quando_usar : ""}` : "- Formato: escolha o mais adequado para o resto da combinação.",
+    c.angulo ? `- Ângulo: ${c.angulo.nome} (grupo ${c.angulo.grupo}).${c.angulo.descricao ? " " + c.angulo.descricao : ""}` : "- Ângulo: escolha o que mais combina com o público e a oferta.",
+    c.gancho ? `- Gancho do tipo ${c.gancho.nome}: ${c.gancho.desc} Exemplo de abertura desse tipo: "${c.gancho.ex[0]}"` : "- Gancho: escolha o tipo que mais faz esse público parar.",
+    c.nivel ? `- Público no nível de consciência "${c.nivel.nivel}" (${c.nivel.titulo}). Como falar: ${c.nivel.como_falar} Erro a evitar: ${c.nivel.erro_comum}` : "- Nível de consciência: deduza pela oferta e diga qual escolheu."
+  ];
+  return `Escreva um criativo de anúncio para a minha oferta: ${oferta}\n\nUse esta combinação:\n${l.join("\n")}\n\nEntregue: gancho (3 opções), roteiro completo e CTA.`;
+}
+function cxCriativos(){
+  const c = cxEscolhas();
+  const crit = [c.nivel && (e => nivelBate(e.nivel, c.nivel.nivel)), c.angulo && (e => mesmoGrupo(e.angulo_grupo, c.angulo.grupo)), c.formato && (e => e.formato_id === c.formato.id)].filter(Boolean);
+  if (!crit.length) return { vazio:true, lista:[] };
+  const pts = S.exemplos.map(e => ({ e, ok:crit.filter(f => f(e)).length,
+    p:crit.filter(f => f(e)).length + (c.angulo && norm(e.angulo) === norm(c.angulo.nome) ? .5 : 0) + (e.gancho ? .2 : 0) + (e.miniatura || e.arquivo ? .1 : 0) }));
+  const todos = pts.filter(x => x.ok === crit.length);
+  const base = (todos.length ? todos : pts.filter(x => x.ok > 0)).sort((a, b) => b.p - a.p);
+  return { lista:base.slice(0, 6).map(x => x.e), parcial:!todos.length, total:todos.length };
+}
+function cxCard(e){
+  const fm = S.formatos.find(x => x.id === e.formato_id), nome = fm ? fm.nome : "Criativo";
+  const txt = e.gancho ? `<p><b>Gancho:</b> ${esc(e.gancho)}</p>` : (e.resumo || e.texto ? `<p class="muted">${esc(String(e.resumo || e.texto).slice(0, 140))}</p>` : "");
+  return `<a class="panel fmt-card" href="#formato/${e.formato_id}">${capaEx(e, nome)}<span class="mono muted">${esc(nome)}</span>${txt}<div class="actions">${[e.nivel, e.angulo].filter(Boolean).map(t => `<span class="tag">${esc(t)}</span>`).join("")}</div><span class="btn ver-mais">Ver o formato →</span></a>`;
+}
+function vCaixa(m){
+  const linhas = cxLinhas();
+  const seta = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+  const lista = r => { let g = null, i = 0;
+    return r.ops.map(o => { let h = "";
+      if (o.grupo && o.grupo !== g) { g = o.grupo; h = `<li class="cx-grp" role="presentation" data-grp="${esc(g)}">${esc(g)}</li>`; }
+      return h + `<li role="option" class="cx-opt" tabindex="0" data-v="${esc(o.v)}" data-g="${esc(o.grupo || "")}" aria-selected="false"><span class="n">${++i}</span><span>${esc(o.rot)}</span>${o.q != null ? `<span class="q">${o.q} ex.</span>` : ""}</li>`; }).join(""); };
+  m.innerHTML = topo("Máquina de Validação", "Escolha uma opção em cada linha. Cada combinação vira um criativo diferente.") + `
+  <div class="cx-board">
+    <div style="display:grid;gap:14px;min-width:0">
+      <div class="cx-frame"><label>Sua oferta (opcional, entra no comando)<textarea id="cx-oferta" rows="2" placeholder="Ex.: mentoria de 3 meses para dentistas que querem lotar a agenda, R$ 5 mil">${esc(CX.oferta)}</textarea></label></div>
+      <div class="panel cx-rows">${linhas.map((r, k) => `
+        <div class="cx-row" data-row="${r.id}">
+          <div class="cx-label"><span class="cx-num">${k + 1}</span><div><h3>${esc(r.nome)}</h3><small>${esc(r.meta)}</small></div></div>
+          <div style="min-width:0">
+            <div class="cx-pick" data-row="${r.id}">
+              <button type="button" class="cx-trigger" aria-haspopup="listbox" aria-expanded="false"><span class="cx-val">Escolher…</span>${seta}</button>
+              <div class="cx-pop" hidden>
+                <input type="search" class="cx-search" placeholder="Filtrar (opcional)" aria-label="Filtrar ${esc(r.nome)}">
+                <ul class="cx-list" role="listbox" aria-label="${esc(r.nome)}">${lista(r)}</ul>
+                <div class="cx-empty" hidden>Nada encontrado.</div>
+              </div>
+            </div>
+            <div class="cx-desc" data-desc="${r.id}"></div>
+          </div>
+        </div>`).join("")}
+      </div>
+    </div>
+    <aside class="panel cx-result" aria-live="polite">
+      <div class="cx-rhead"><span class="mono">Sua combinação</span><h2 id="cx-titulo">Comece escolhendo</h2></div>
+      <div class="cx-rbody">
+        <ul class="cx-recipe">${linhas.map(r => `<li><span class="k">${esc(r.nome)}</span><span class="v vazio" id="cx-v-${r.id}">nada escolhido</span></li>`).join("")}</ul>
+        <div class="cx-prog"><i id="cx-prog"></i></div>
+        <p class="cx-progtxt" id="cx-progtxt">0 de 4 escolhas</p>
+        <div class="actions"><button class="btn primary" id="cx-copiar" disabled>Copiar comando</button><button class="btn" id="cx-rand">Caminho aleatório</button><button class="btn" id="cx-limpar">Limpar</button></div>
+        <p class="muted" style="font-size:12px">O comando sai pronto para colar no ChatGPT ou no Claude.</p>
+      </div>
+    </aside>
+  </div>
+  <section style="display:grid;gap:12px"><h2>Criativos do acervo que batem</h2><div id="cx-criativos"></div></section>
+  <section style="display:grid;gap:12px"><h2>Como cruzar</h2><div class="cx-rules">
+    <div class="panel cx-rule"><span class="n-num">1</span><p><b>Nível do público.</b> Comece por onde está a cabeça de quem vai ver o anúncio. É isso que define de onde a conversa parte.</p></div>
+    <div class="panel cx-rule"><span class="n-num">2</span><p><b>Ângulo.</b> Escolha a porta de entrada da mensagem que conversa com esse nível: problema, solução, produto, oferta ou coringa.</p></div>
+    <div class="panel cx-rule"><span class="n-num">3</span><p><b>Formato.</b> Escolha o jeito de gravar ou montar que entrega esse ângulo de forma natural para esse público.</p></div>
+    <div class="panel cx-rule"><span class="n-num">4</span><p><b>Gancho.</b> Por último, escreva a abertura no tipo de gancho que faz essa pessoa parar no primeiro segundo.</p></div>
+  </div><p class="muted">Para testar de verdade, mude uma linha por vez entre um criativo e o próximo.</p></section>` + rodape();
+
+  const fechar = exceto => m.querySelectorAll(".cx-pick").forEach(p => { if (p === exceto) return; p.querySelector(".cx-pop").hidden = true; p.querySelector(".cx-trigger").setAttribute("aria-expanded", "false"); });
+  const filtrar = (pop, q) => { q = norm(q); let vis = 0; const porGrupo = {};
+    pop.querySelectorAll(".cx-opt").forEach(o => { const ok = !q || norm(o.textContent).includes(q) || norm(o.dataset.g).includes(q); o.style.display = ok ? "" : "none"; if (ok) { vis++; porGrupo[o.dataset.g] = 1; } });
+    pop.querySelectorAll(".cx-grp").forEach(g => { g.style.display = porGrupo[g.dataset.grp] ? "" : "none"; });
+    pop.querySelector(".cx-empty").hidden = vis !== 0; };
+  const desenhar = () => {
+    const c = cxEscolhas(); let n = 0;
+    CX_ROWS.forEach(id => {
+      const rot = cxRotulo(id, c); if (rot) n++;
+      const v = $("#cx-v-" + id); v.textContent = rot || "nada escolhido"; v.classList.toggle("vazio", !rot);
+      const row = m.querySelector(`.cx-row[data-row="${id}"]`); row.classList.toggle("on", !!rot);
+      const t = row.querySelector(".cx-trigger"); t.classList.toggle("chosen", !!rot); t.querySelector(".cx-val").textContent = rot || "Escolher…";
+      row.querySelectorAll(".cx-opt").forEach(o => o.setAttribute("aria-selected", String(o.dataset.v === CX.sel[id])));
+      row.querySelector(".cx-desc").innerHTML = cxDesc(id, c);
+    });
+    $("#cx-prog").style.width = (n / 4 * 100) + "%";
+    $("#cx-progtxt").textContent = `${n} de 4 escolhas`;
+    $("#cx-titulo").textContent = n === 0 ? "Comece escolhendo" : n < 4 ? "Combinação em construção" : "Combinação completa";
+    $("#cx-copiar").disabled = n === 0;
+    const r = cxCriativos(), alvo = $("#cx-criativos");
+    alvo.innerHTML = r.vazio ? '<div class="empty panel">Escolha o nível, o ângulo ou o formato para ver os criativos do acervo que combinam.</div>'
+      : !r.lista.length ? '<div class="empty panel">Nenhum criativo do acervo bate com essa combinação ainda.</div>'
+      : `<p class="muted">${r.parcial ? "Nenhum criativo bate com tudo. Estes batem com parte da combinação." : `${r.total} criativo(s) batem com a combinação. Mostrando até 6.`}</p><div class="pieces">${r.lista.map(cxCard).join("")}</div>`;
+    ligarCapas(alvo);
+  };
+  const escolher = o => { CX.sel[o.closest(".cx-pick").dataset.row] = o.dataset.v; fechar(null); desenhar(); o.closest(".cx-pick").querySelector(".cx-trigger").focus(); };
+  m.addEventListener("click", async e => {
+    const t = e.target.closest(".cx-trigger");
+    if (t) { const p = t.closest(".cx-pick"), pop = p.querySelector(".cx-pop"), abrir = pop.hidden;
+      fechar(p); pop.hidden = !abrir; t.setAttribute("aria-expanded", String(abrir));
+      if (abrir) { const s = pop.querySelector(".cx-search"); s.value = ""; filtrar(pop, ""); const l = pop.querySelector(".cx-list"); const on = l.querySelector('[aria-selected="true"]'); l.scrollTop = on ? on.offsetTop - 40 : 0; }
+      return; }
+    const o = e.target.closest(".cx-opt"); if (o) return escolher(o);
+    if (!e.target.closest(".cx-pick")) fechar(null);
+    const b = e.target.closest("button"); if (!b) return;
+    if (b.id === "cx-limpar") { CX.sel = {}; desenhar(); }
+    if (b.id === "cx-rand") { const qtd = new Set(S.exemplos.map(x => x.formato_id)); const sorteio = a => a[Math.floor(Math.random() * a.length)];
+      CX.sel = {}; linhas.forEach(r => { const ops = r.id === "formato" && r.ops.some(x => qtd.has(+x.v)) ? r.ops.filter(x => qtd.has(+x.v)) : r.ops; if (ops.length) CX.sel[r.id] = sorteio(ops).v; }); desenhar(); }
+    if (b.id === "cx-copiar") { try { await navigator.clipboard.writeText(cxComando()); toast("Comando copiado. Cole no ChatGPT ou no Claude."); } catch { toast("Não consegui copiar. Tente de novo."); } }
+  });
+  m.addEventListener("input", e => { if (e.target.classList.contains("cx-search")) filtrar(e.target.closest(".cx-pop"), e.target.value); if (e.target.id === "cx-oferta") CX.oferta = e.target.value; });
+  m.addEventListener("keydown", e => {
+    if (e.key === "Escape") { const p = e.target.closest(".cx-pick"); fechar(null); if (p) p.querySelector(".cx-trigger").focus(); return; }
+    const o = e.target.closest(".cx-opt"); if (o && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); escolher(o); return; }
+    if (o && (e.key === "ArrowDown" || e.key === "ArrowUp")) { e.preventDefault(); const vis = [...o.parentElement.querySelectorAll(".cx-opt")].filter(x => x.style.display !== "none"); const i = vis.indexOf(o) + (e.key === "ArrowDown" ? 1 : -1); if (vis[i]) vis[i].focus(); return; }
+    if (e.target.classList.contains("cx-search") && e.key === "ArrowDown") { e.preventDefault(); const p = e.target.closest(".cx-pop"); const f = [...p.querySelectorAll(".cx-opt")].find(x => x.style.display !== "none"); if (f) f.focus(); }
+  });
+  desenhar();
 }
 function vFormatos(m){
   const sel = (k, rot, ops) => `<select class="f" data-k="${k}" aria-label="${rot}"><option value="">${rot}: todos</option>${ops.map(o => `<option ${S.f[k] === o ? "selected" : ""}>${esc(o)}</option>`).join("")}</select>`;
@@ -469,7 +798,7 @@ function blocoExemplo(e){
    ${e.cta ? `<p><b>CTA:</b> ${esc(e.cta)}</p>` : ""}
    <div class="actions">
     ${url ? `<a class="btn" href="${esc(url)}" download target="_blank" rel="noopener">↓ Baixar</a>` : ""}
-    <button class="btn" data-tx="txt">Transcrição .txt</button><button class="btn" data-tx="md">Transcrição .md</button>
+    <button class="btn" data-tx="ver">${ehVideo(e.arquivo) ? "Ver transcrição" : "Ver texto"}</button>
     <button class="btn ${fav ? "fav-on" : ""}" data-act="fav">${fav ? "★ Favorito" : "☆ Favoritar"}</button>
     <button class="btn ${fav?.testado ? "on" : ""}" data-act="testei">${fav?.testado ? "✓ Já testei" : "Marcar já testei"}</button>
    </div>
@@ -483,11 +812,42 @@ function baixarTexto(e, ext, fm){
     : `${nome}\n\nGancho: ${e.gancho || ""}\n\nResumo: ${e.resumo || ""}\n\nTexto:\n${e.texto || ""}\n\nEstrutura:\n${e.estrutura || ""}\n\nCTA: ${e.cta || ""}\n`;
   const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([t], {type: ext === "md" ? "text/markdown;charset=utf-8" : "text/plain;charset=utf-8"})); a.download = `exemplo-${e.id}.${ext}`; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
 }
+function abrirTranscricao(e, fm){
+  const nome = fm?.nome || "Exemplo", video = ehVideo(e.arquivo) || fm?.tipo === "video", texto = String(e.texto || "").trim();
+  const antes = document.activeElement, ov = document.createElement("div");
+  ov.className = "overlay";
+  ov.innerHTML = `<div class="modal tx-modal" role="dialog" aria-modal="true" aria-labelledby="tx-tit">
+    <div class="modal-head"><h2 id="tx-tit">${video ? "Transcrição" : "Texto do criativo"} · ${esc(nome)}</h2><button class="btn" type="button" data-x="fechar" aria-label="Fechar">✕</button></div>
+    <div class="tx-body" tabindex="0">
+      ${e.gancho ? `<p><b>Gancho:</b> ${esc(e.gancho)}</p>` : ""}${e.resumo ? `<p class="muted"><b>Resumo:</b> ${esc(e.resumo)}</p>` : ""}
+      ${texto ? `<pre class="tx-texto">${esc(texto)}</pre>` : `<p class="empty">${video ? "Este criativo não tem fala transcrita (só música ou imagem)." : "Este criativo não tem texto transcrito."}</p>`}
+    </div>
+    <div class="modal-foot">${texto ? '<button class="btn" type="button" data-x="txt">Baixar .txt</button><button class="btn" type="button" data-x="md">Baixar .md</button><button class="btn" type="button" data-x="copiar">Copiar</button>' : ""}<button class="btn primary" type="button" data-x="fechar">Fechar</button></div></div>`;
+  const rolagem = document.body.style.overflow;
+  const fechar = () => { ov.remove(); document.body.style.overflow = rolagem; document.removeEventListener("keydown", tecla, true); if (antes && antes.focus) antes.focus(); };
+  const focaveis = () => [...ov.querySelectorAll('button,[tabindex="0"]')];
+  const tecla = ev => {
+    if (ev.key === "Escape") { ev.preventDefault(); return fechar(); }
+    if (ev.key !== "Tab") return;
+    const f = focaveis(), i = f.indexOf(document.activeElement);
+    if (ev.shiftKey && i <= 0) { ev.preventDefault(); f[f.length - 1].focus(); }
+    else if (!ev.shiftKey && (i === -1 || i === f.length - 1)) { ev.preventDefault(); f[0].focus(); } };
+  ov.addEventListener("click", async ev => {
+    if (ev.target === ov) return fechar();
+    const b = ev.target.closest("[data-x]"); if (!b) return;
+    if (b.dataset.x === "fechar") return fechar();
+    if (b.dataset.x === "txt" || b.dataset.x === "md") return baixarTexto(e, b.dataset.x, fm);
+    if (b.dataset.x === "copiar") { try { await navigator.clipboard.writeText(texto); toast("Transcrição copiada."); } catch { toast("Não consegui copiar. Selecione o texto."); } } });
+  document.addEventListener("keydown", tecla, true);
+  document.body.style.overflow = "hidden";
+  document.body.append(ov);
+  ov.querySelector('[data-x="fechar"]').focus();
+}
 function ligarExemplos(root, aoMudar){
   root.addEventListener("click", async ev => {
     const b = ev.target.closest("button"); const art = ev.target.closest("article.ex"); if (!b || !art) return;
     const id = +art.dataset.id, e = S.exemplos.find(x => x.id === id), fm = S.formatos.find(f => f.id === e?.formato_id);
-    if (b.dataset.tx) return baixarTexto(e, b.dataset.tx, fm);
+    if (b.dataset.tx) return abrirTranscricao(e, fm);
     if (!b.dataset.act) return;
     const atual = S.favs.get(id);
     if (b.dataset.act === "fav" && atual) {
@@ -544,7 +904,16 @@ function vAdmin(m){
   <section class="panel" style="padding:16px;display:grid;gap:12px"><h2>Liberar acesso</h2>
   <form class="form" id="f-ac"><label>E-mail<input name="email" type="email" required></label><label>Nome<input name="nome"></label><label>Válido até (vazio = sem prazo)<input name="valido_ate" type="date"></label><button class="btn primary" style="justify-self:start">Liberar</button></form>
   <div class="tablewrap" id="acessos"></div></section>
-  <section class="panel" style="padding:16px;display:grid;gap:12px"><h2>Envios de curadoria</h2><div id="curs" class="list"></div></section>`;
+  <section class="panel" style="padding:16px;display:grid;gap:12px"><h2>Envios de curadoria</h2><div id="curs" class="list"></div></section>
+  <section class="panel" style="padding:16px;display:grid;gap:12px"><h2>Tutoriais</h2>
+  <form class="form" id="f-tut"><input type="hidden" name="id">
+  <label>Título<input name="titulo" required></label>
+  <label>Categoria<select name="categoria">${CATS_TUT.map(c => `<option>${esc(c)}</option>`).join("")}</select></label>
+  <label>Link do vídeo (YouTube, Vimeo, Google Drive ou arquivo .mp4)<input name="video_url" type="url" required placeholder="https://"></label>
+  <label>Descrição (opcional)<textarea name="descricao" rows="3"></textarea></label>
+  <label>Ordem (o menor número aparece primeiro)<input name="ordem" type="number" value="0" step="1"></label>
+  <div class="actions"><button class="btn primary" type="submit" id="tut-salvar">Adicionar tutorial</button><button class="btn" type="button" id="tut-cancelar" hidden>Cancelar edição</button></div></form>
+  <div class="tablewrap" id="tuts"></div></section>`;
   const listarAc = async () => { const { data, error } = await sb.from("im_acessos").select("*").order("criado_em", {ascending:false});
     $("#acessos").innerHTML = error ? '<p class="muted">Sem permissão de administrador. Rode o 002-admin.sql no banco.</p>' : `<table class="adm"><tr><th>E-mail</th><th>Nome</th><th>Válido até</th><th>Status</th><th></th></tr>${data.map(a => `<tr><td>${esc(a.email)}</td><td>${esc(a.nome)}</td><td><input type="date" aria-label="Validade" value="${esc(a.valido_ate || "")}" data-val="${esc(a.email)}"></td><td>${a.ativo ? "Ativo" : "Desativado"}</td><td><button class="btn" data-tg="${esc(a.email)}" data-on="${a.ativo}">${a.ativo ? "Desativar" : "Ativar"}</button></td></tr>`).join("")}</table>`; };
   const listarCur = async () => { const { data, error } = await sb.from("im_curadoria").select("*").order("criado_em", {ascending:false});
@@ -556,7 +925,23 @@ function vAdmin(m){
     if (t) { const { error } = await sb.from("im_acessos").update({ ativo: t.dataset.on !== "true" }).eq("email", t.dataset.tg); if (error) return toast("Não consegui mudar."); listarAc(); }
     if (r) { const txt = m.querySelector(`[data-resp="${r.dataset.r}"]`).value; const { error } = await sb.from("im_curadoria").update({ resposta: txt, status: "respondido" }).eq("id", r.dataset.r); if (error) return toast("Não consegui responder."); toast("Resposta enviada."); listarCur(); } });
   m.addEventListener("change", async e => { const i = e.target.closest("[data-val]"); if (!i) return; const { error } = await sb.from("im_acessos").update({ valido_ate: i.value || null }).eq("email", i.dataset.val); toast(error ? "Não consegui salvar." : "Validade salva."); });
-  listarAc(); listarCur();
+  const fT = $("#f-tut");
+  const limparTut = () => { fT.reset(); fT.id.value = ""; $("#tut-salvar").textContent = "Adicionar tutorial"; $("#tut-cancelar").hidden = true; };
+  const listarTut = async () => { const { data, error } = await sb.from("im_tutoriais").select("*").order("ordem").order("id");
+    if (error) { $("#tuts").innerHTML = '<p class="muted">Não consegui carregar os tutoriais. Rode o 004-tutoriais.sql no banco.</p>'; return; }
+    S.tutoriais = data || []; const c = $("#c-tut"); if (c) c.textContent = S.tutoriais.length;
+    $("#tuts").innerHTML = S.tutoriais.length ? `<table class="adm"><tr><th>Ordem</th><th>Título</th><th>Categoria</th><th></th></tr>${S.tutoriais.map(t => `<tr><td>${esc(t.ordem)}</td><td>${esc(t.titulo)}</td><td>${esc(t.categoria)}</td><td><div class="actions"><button class="btn" type="button" data-tut-ed="${t.id}">Editar</button><button class="btn" type="button" data-tut-del="${t.id}">Apagar</button></div></td></tr>`).join("")}</table>` : '<p class="muted">Nenhum tutorial ainda.</p>'; };
+  fT.onsubmit = async e => { e.preventDefault(); const fd = new FormData(fT), id = fd.get("id");
+    const reg = { titulo: fd.get("titulo").trim(), categoria: fd.get("categoria"), video_url: fd.get("video_url").trim(), descricao: fd.get("descricao").trim() || null, ordem: parseInt(fd.get("ordem"), 10) || 0 };
+    const { error } = id ? await sb.from("im_tutoriais").update(reg).eq("id", id) : await sb.from("im_tutoriais").insert(reg);
+    if (error) return toast("Não consegui salvar o tutorial."); toast(id ? "Tutorial atualizado." : "Tutorial adicionado."); limparTut(); listarTut(); };
+  $("#tut-cancelar").onclick = limparTut;
+  m.addEventListener("click", async e => { const ed = e.target.closest("[data-tut-ed]"), del = e.target.closest("[data-tut-del]");
+    if (ed) { const t = S.tutoriais.find(x => String(x.id) === ed.dataset.tutEd); if (!t) return;
+      fT.id.value = t.id; fT.titulo.value = t.titulo || ""; fT.categoria.value = t.categoria || "Geral"; fT.video_url.value = t.video_url || ""; fT.descricao.value = t.descricao || ""; fT.ordem.value = t.ordem ?? 0;
+      $("#tut-salvar").textContent = "Salvar alterações"; $("#tut-cancelar").hidden = false; fT.titulo.focus(); }
+    if (del) { if (!confirm("Apagar este tutorial?")) return; const { error } = await sb.from("im_tutoriais").delete().eq("id", del.dataset.tutDel); if (error) return toast("Não consegui apagar."); toast("Tutorial apagado."); listarTut(); } });
+  listarAc(); listarCur(); listarTut();
 }
 
 /* ---------- partida ---------- */
