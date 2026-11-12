@@ -231,6 +231,7 @@ select.f,.adm input{border:1px solid var(--line);background:var(--surface);color
 table.adm{width:100%;border-collapse:collapse;font-size:13px}table.adm td,table.adm th{border-top:1px solid var(--line);padding:8px;text-align:left}
 .tablewrap{overflow-x:auto}
 .mt{margin-top:10px}
+.fmt-card{color:inherit}.capa{position:relative;aspect-ratio:4/5;border-radius:12px;overflow:hidden;background:#1C1C1C;display:grid;place-items:center}.capa img,.capa video{width:100%;height:100%;object-fit:cover;display:block}.capa .play{pointer-events:none}.ver-mais{justify-self:start;padding:5px 12px;font-size:12px}.fmt-card:hover .ver-mais{border-color:var(--accent)}
 </style>
 </head>
 <body>
@@ -238,13 +239,14 @@ table.adm{width:100%;border-collapse:collapse;font-size:13px}table.adm td,table.
 <script type="module">
 /* ===== CONFIG (preencher antes de publicar) ===== */
 const SUPABASE_URL = "https://jxricnopvahlauurrwvj.supabase.co";
-const SUPABASE_ANON_KEY = "sb_publishable_JeZAfeTSJvyiem-25UiVRA_Hgs4oBCt";   // chave PÚBLICA (anon/publishable)
+const SUPABASE_ANON_KEY = "SUPABASE_ANON_KEY";   // chave PÚBLICA (anon/publishable)
 const MIDIA_BASE = "https://midia.netaniasferreira.com.br/"; // domínio público do R2
-const CONTATO_NETANIAS = "https://wa.me/558581825194";      // WhatsApp de trabalho do Netanias
+const ADMIN_EMAIL = "ADMIN_EMAIL";                // só mostra o menu; a segurança real é o 002-admin.sql
+const CONTATO_NETANIAS = "CONTATO_NETANIAS";      // link de contato (ex.: https://wa.me/55...)
 const TUTORIAL_VIDEO = "";                        // URL do vídeo tutorial (vazio = espaço reservado)
 /* ================================================ */
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
-const configurado = SUPABASE_ANON_KEY.startsWith("sb_") || SUPABASE_ANON_KEY.startsWith("eyJ");
+const configurado = !SUPABASE_ANON_KEY.includes("SUPABASE_ANON_KEY");
 const sb = configurado ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -315,7 +317,7 @@ function casca(){
       <a href="#curadoria" data-r="curadoria">Curadoria</a>
       ${S.admin ? '<a href="#admin" data-r="admin">Painel do Netanias</a>' : ""}
     </nav>
-    <div class="side-cta"><p>Quer ativar um sistema de marketing com IA, completo na sua operação? Chame o Netanias.</p><a class="btn primary" href="${contato()}" target="_blank" rel="noopener">Chamar o Netanias</a></div>
+    <div class="side-cta"><p><b>Squad completo personalizado</b><br>Quer o sistema inteiro montado para a sua oferta? Chame o Netanias.</p><a class="btn primary" href="${contato()}" target="_blank" rel="noopener">Chamar o Netanias</a></div>
     <div class="user"><span class="avatar">${esc(ini)}</span><span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis">${esc(S.user.email)}</span></div>
     <div class="actions"><button class="btn" id="b-tema">Tema claro/escuro</button><button class="btn" id="b-sair">Sair</button></div>
   </aside>
@@ -363,6 +365,21 @@ function formatosFiltrados(){
     if (q && !(fm.nome + " " + (fm.o_que_e || "") + " " + (fm.quando_usar || "") + " " + ex.map(e => e.gancho || "").join(" ")).toLowerCase().includes(q)) return false;
     return true; });
 }
+function capa(fm){
+  const e = S.exemplos.find(x => x.formato_id === fm.id && (x.miniatura || x.arquivo)); if (!e) return "";
+  const alt = esc(fm.nome);
+  if (e.miniatura) return `<div class="capa"><img loading="lazy" alt="${alt}" src="${esc(midia(e.miniatura))}"></div>`;
+  if (!ehVideo(e.arquivo)) return `<div class="capa"><img loading="lazy" alt="${alt}" src="${esc(midia(e.arquivo))}"></div>`;
+  return `<div class="capa"><video muted playsinline preload="none" aria-label="${alt}" data-src="${esc(midia(e.arquivo))}#t=1"></video><span class="play" aria-hidden="true">▶</span></div>`;
+}
+let obsCapa = null;
+function ligarCapas(root){
+  const vs = root.querySelectorAll("video[data-src]"); if (!vs.length) return;
+  if (!("IntersectionObserver" in window)) { vs.forEach(v => { v.preload = "metadata"; v.src = v.dataset.src; }); return; }
+  obsCapa?.disconnect();
+  obsCapa = new IntersectionObserver(es => es.forEach(en => { if (!en.isIntersecting) return; const v = en.target; v.preload = "metadata"; v.src = v.dataset.src; v.removeAttribute("data-src"); obsCapa.unobserve(v); }), {rootMargin:"200px"});
+  vs.forEach(v => obsCapa.observe(v));
+}
 function vFormatos(m){
   const sel = (k, rot, ops) => `<select class="f" data-k="${k}" aria-label="${rot}"><option value="">${rot}: todos</option>${ops.map(o => `<option ${S.f[k] === o ? "selected" : ""}>${esc(o)}</option>`).join("")}</select>`;
   m.innerHTML = topo("Formatos", "O que é cada formato e quando usar.") + `
@@ -372,7 +389,8 @@ function vFormatos(m){
   <div id="lista"></div>` + rodape();
   const desenhar = () => { const l = formatosFiltrados();
     $("#lista").innerHTML = `<div class="showing"><span>${l.length} formato(s)</span>${Object.values(S.f).some(Boolean) ? '<button class="btn" id="limpar">Limpar filtros</button>' : ""}</div>
-    ${l.length ? `<div class="pieces" style="margin-top:12px">${l.map(fm => `<a class="panel fmt-card" href="#formato/${fm.id}"><span class="mono muted">${fm.tipo === "video" ? "Vídeo" : "Imagem"} · ${S.exemplos.filter(e => e.formato_id === fm.id).length} exemplos</span><h3>${esc(fm.nome)}</h3>${fm.o_que_e ? `<p><b>O que é:</b> ${esc(fm.o_que_e)}</p>` : ""}${fm.quando_usar ? `<p class="muted"><b>Quando usar:</b> ${esc(fm.quando_usar)}</p>` : ""}</a>`).join("")}</div>` : '<div class="empty panel" style="margin-top:12px">Nenhum formato com esses filtros.</div>'}`;
+    ${l.length ? `<div class="pieces" style="margin-top:12px">${l.map(fm => `<a class="panel fmt-card" href="#formato/${fm.id}">${capa(fm)}<span class="mono muted">${fm.tipo === "video" ? "Vídeo" : "Imagem"} · ${S.exemplos.filter(e => e.formato_id === fm.id).length} exemplos</span><h3>${esc(fm.nome)}</h3>${fm.o_que_e ? `<p><b>O que é:</b> ${esc(fm.o_que_e)}</p>` : ""}${fm.quando_usar ? `<p class="muted"><b>Quando usar:</b> ${esc(fm.quando_usar)}</p>` : ""}<span class="btn ver-mais">Ver mais criativos →</span></a>`).join("")}</div>` : '<div class="empty panel" style="margin-top:12px">Nenhum formato com esses filtros.</div>'}`;
+    ligarCapas($("#lista"));
     const lp = $("#limpar"); if (lp) lp.onclick = () => { S.f = FILTRO0(); vFormatos(m); }; };
   m.querySelectorAll("select.f").forEach(s => s.onchange = () => { S.f[s.dataset.k] = s.value; desenhar(); });
   $("#q").oninput = e => { S.f.q = e.target.value; desenhar(); };
@@ -488,7 +506,7 @@ async function iniciar(){
   if (!session) return telaLogin();
   if (iniciado) return; iniciado = true;
   S.user = session.user;
-  S.admin = !!(await sb.rpc("im_admin")).data;
+  S.admin = (S.user.email || "").toLowerCase() === ADMIN_EMAIL.toLowerCase();
   const { data: liberado } = await sb.rpc("im_liberado");
   if (!liberado && !S.admin) return telaSemAcesso();
   await carregar(); casca(); rota();
