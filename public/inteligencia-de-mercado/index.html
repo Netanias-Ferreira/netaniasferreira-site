@@ -466,7 +466,7 @@ const S = { user:null, admin:false, formatos:[], exemplos:[], angulos:[], tutori
 function toast(m){ const t = document.createElement("div"); t.className = "toast"; t.setAttribute("role","status"); t.textContent = m; document.body.append(t); setTimeout(() => t.remove(), 2200); }
 function tema(){ const r = document.documentElement; const atual = r.dataset.theme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); r.dataset.theme = atual === "dark" ? "light" : "dark"; localStorage.setItem("im-tema", r.dataset.theme); }
 if (localStorage.getItem("im-tema")) document.documentElement.dataset.theme = localStorage.getItem("im-tema");
-const marca = `<div class="brand"><div class="brand-mark" style="padding:0;overflow:hidden"><img src="netanias.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block"></div><div><b>Inteligência do Mercado</b><small>Netanias Ferreira</small></div></div>`;
+const marca = `<div class="brand"><div class="brand-mark">N</div><div><b>Inteligência do Mercado</b><small>Netanias Ferreira</small></div></div>`;
 
 /* ---------- login ---------- */
 const SENHA_PADRAO = "Netanias12345";
@@ -554,7 +554,7 @@ async function carregar(){
 const ROTAS = ["senha","inicio","formatos","formato","angulos","niveis","tutoriais","validacao","altoticket","funis","favoritos","curadoria","admin"];
 function casca(){
   const ini = (S.user.email || "?")[0].toUpperCase();
-  $("#root").innerHTML = `<header class="mbar"><button class="btn mbar-btn" id="b-menu2" aria-label="Abrir menu" aria-controls="side" aria-expanded="false">☰</button><div class="brand-mark" style="padding:0;overflow:hidden"><img src="netanias.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block"></div><span class="mbar-t">Inteligência do Mercado</span></header><div class="app">
+  $("#root").innerHTML = `<header class="mbar"><button class="btn mbar-btn" id="b-menu2" aria-label="Abrir menu" aria-controls="side" aria-expanded="false">☰</button><div class="brand-mark">N</div><span class="mbar-t">Inteligência do Mercado</span></header><div class="app">
   <aside class="side" id="side">${marca}
     <nav class="nav-group nav" aria-label="Menu">
       <span class="mono">Começo</span>
