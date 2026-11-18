@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Banco de Criativos | Máquina de Clientes com IA</title>
+<meta name="description" content="Os 18 formatos de criativo para atrair clientes de alto valor, organizados por etapa do funil: topo, meio e fundo.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap">
+<style>
+:root{--bg:#232323;--s1:#2B2B2B;--s2:#333130;--bd:#3F3C3A;--tx:#FAF7F2;--mu:#B9B3AB;--ac:#D9776A;--pet:#0F5B66;color-scheme:dark}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{background:var(--bg);color:var(--tx);font-family:'Geist','Segoe UI',system-ui,-apple-system,Arial,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{width:min(1120px,100% - 32px);margin-inline:auto}
+.hero{padding:56px 0 30px;background:radial-gradient(60% 90% at 78% 0,rgba(184,88,75,.30),rgba(184,88,75,0) 70%)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ac)}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--ac);border-radius:2px}
+h1{font-size:clamp(34px,6.4vw,64px);line-height:1.02;font-weight:800;letter-spacing:-.02em;margin:14px 0 18px;max-width:14ch}
+.lead{font-size:clamp(16px,2.1vw,19px);color:#D9D4CC;max-width:62ch}
+.kpis{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.kpi{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:10px 16px}
+.kpi b{font-size:22px;font-weight:800;color:var(--tx);margin-right:6px}.kpi span{color:var(--mu);font-size:14px}
+.how{margin:8px 0 26px;display:grid;gap:12px;grid-template-columns:1fr}
+.how .box{background:var(--s1);border:1px solid var(--bd);border-radius:18px;padding:20px}
+.how h2{font-size:18px;margin-bottom:10px}
+.how ol{padding-left:20px;color:#D9D4CC;display:grid;gap:6px}
+.how p{color:#D9D4CC}
+.bar{position:sticky;top:0;z-index:20;background:rgba(35,35,35,.92);backdrop-filter:blur(10px);border-block:1px solid var(--bd);padding:10px 0}
+.bar .wrap{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tab{appearance:none;border:1px solid var(--bd);background:var(--s1);color:var(--tx);font:inherit;font-weight:700;font-size:14px;padding:9px 15px;border-radius:99px;cursor:pointer;min-height:42px}
+.tab small{color:var(--mu);font-weight:600;margin-left:5px}
+.tab[aria-pressed=true]{background:var(--tx);color:#232323;border-color:var(--tx)}
+.tab[aria-pressed=true] small{color:#555}
+.search{flex:1 1 220px;min-width:0}
+.search input{width:100%;min-height:42px;background:var(--s1);border:1px solid var(--bd);border-radius:99px;color:var(--tx);font:inherit;font-size:15px;padding:0 16px}
+.search input::placeholder{color:#8F8982}
+:focus-visible{outline:3px solid #7DB2F0;outline-offset:2px}
+.etapa{padding:46px 0 8px}
+.e-k{font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ac)}
+.e-head h2{font-size:clamp(28px,4.6vw,44px);line-height:1.05;font-weight:800;letter-spacing:-.015em;margin:6px 0 6px}
+.e-s{color:var(--mu);font-size:17px}
+.guia{margin:20px 0 22px;background:var(--s1);border:1px solid var(--bd);border-left:4px solid var(--ac);border-radius:16px;padding:16px 18px}
+.g-t{font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);margin-bottom:8px}
+.guia ul{list-style:none;display:grid;gap:12px}
+.guia li{display:grid;gap:6px}
+.o-t{font-weight:700}
+.o-f,.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;font-size:13.5px;font-weight:600;border:1px solid var(--bd);background:var(--s2);color:var(--tx);border-radius:99px;padding:5px 12px;text-decoration:none;min-height:32px}
+a.chip:hover{border-color:var(--ac)}
+.chip.off{color:var(--mu)}
+.grid{display:grid;grid-template-columns:1fr;gap:14px;align-items:start}
+.card{background:var(--s1);border:1px solid var(--bd);border-radius:18px;overflow:hidden}
+.card[open]{border-color:var(--ac)}
+summary{list-style:none;cursor:pointer;padding:18px 18px 16px;display:block}
+summary::-webkit-details-marker{display:none}
+.c-top{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;justify-content:space-between}
+.card h3{font-size:21px;line-height:1.15;font-weight:800;letter-spacing:-.01em}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:12px;font-weight:700;color:var(--mu);border:1px solid var(--bd);border-radius:99px;padding:3px 10px}
+.c-sum{margin-top:10px;color:#D9D4CC}
+.more{display:inline-flex;margin-top:12px;font-size:14px;font-weight:700;color:var(--ac)}
+.more::after{content:"";width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin:5px 0 0 9px;transition:transform .2s}
+.card[open] .more::after{transform:rotate(-135deg);margin-top:9px}
+.m-b{display:none}.card[open] .m-a{display:none}.card[open] .m-b{display:inline}
+.c-body{padding:2px 18px 20px;display:grid;gap:12px;border-top:1px solid var(--bd);padding-top:16px}
+.bl{background:var(--s2);border-radius:14px;padding:14px 16px}
+.bl h4{font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);margin-bottom:6px}
+.bl.ok{border-left:3px solid #2A9D8F}.bl.no{border-left:3px solid #B8584B}.bl.er{border-left:3px solid #E8B33C}
+.bl p{color:#EDE8E0}
+.bl ol{padding-left:20px;display:grid;gap:7px;color:#EDE8E0}
+.empty{display:none;padding:28px;text-align:center;color:var(--mu)}
+.foot{padding:48px 0 60px;color:var(--mu);font-size:14px;text-align:center}
+.top{position:fixed;right:16px;bottom:16px;z-index:30;background:var(--tx);color:#232323;font-weight:700;font-size:14px;padding:11px 16px;border-radius:99px;text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .2s}
+.top.on{opacity:1;pointer-events:auto}
+@media(min-width:760px){.how{grid-template-columns:1.1fr 1fr}.grid{grid-template-columns:1fr 1fr}.guia li{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);align-items:center}.hero{padding:76px 0 40px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+ <p class="eyebrow">Bônus 1 · Máquina de Clientes com IA</p>
+ <h1>Banco de Criativos</h1>
+ <p class="lead">Formato não é enfeite, é ferramenta: cada um existe para cumprir uma tarefa dentro do funil. Antes de pensar em como gravar, decida o que aquele conteúdo precisa provocar em quem assiste. Com a função clara, o formato certo aparece sozinho e a dúvida de como gravar deixa de travar a produção.</p>
+ <div class="kpis"><div class="kpi"><b>18</b><span>formatos de criativo</span></div><div class="kpi"><b>3</b><span>etapas do funil</span></div><div class="kpi"><b>4</b><span>passos em cada formato</span></div></div>
+</div></header>
+<div class="wrap">
+ <div class="how">
+  <div class="box"><h2>Como escolher o formato</h2><ol><li>Decida o que o conteúdo precisa provocar: atenção (topo), autoridade (meio) ou confiança (fundo).</li><li>Escolha o objetivo na lista da etapa e veja os formatos indicados.</li><li>Abra a ficha e siga os 4 passos, evitando o erro mais comum.</li></ol></div>
+  <div class="box"><h2>Como girar entre eles</h2><p>Ninguém precisa usar os 18 formatos: escolha de 4 a 6 que você domina, gire entre eles e coloque um novo em teste por mês, puxando daqui quando algum cansar. Para quem vende mentoria, consultoria ou serviço de alto valor, uma divisão que funciona é cerca de metade do volume no topo, um terço no meio e o restante no fundo. Se o perfil cresce mas ninguém compra, está faltando meio; se nem cresce, está faltando topo.</p></div>
+ </div>
+</div>
+<nav class="bar" aria-label="Filtro por etapa"><div class="wrap"><div class="tabs"><button class="tab" type="button" data-f="Todos" aria-pressed="true">Todos<small>18</small></button><button class="tab" type="button" data-f="Topo" aria-pressed="false">Topo<small>6</small></button><button class="tab" type="button" data-f="Meio" aria-pressed="false">Meio<small>6</small></button><button class="tab" type="button" data-f="Fundo" aria-pressed="false">Fundo<small>6</small></button></div><label class="search"><span class="sr" style="position:absolute;left:-9999px">Buscar formato</span><input id="q" type="search" placeholder="Buscar formato (ex.: React, carrossel)" autocomplete="off"></label></div></nav>
+<main class="wrap">
+
+<section class="etapa" data-etapa="Topo" id="topo" style="--ac:#2A9D8F">
+ <header class="e-head">
+  <p class="e-k">Topo do funil</p>
+  <h2>Chamar atenção</h2>
+  <p class="e-s">Ser visto por quem ainda não te conhece</p>
+ </header>
+ <div class="guia"><p class="g-t">Escolha pelo objetivo</p><ul><li><span class="o-t">Aproveitar um assunto que já está em alta</span><span class="o-f"><a class="chip" href="#f-tela-verde" data-go="tela-verde">Tela Verde</a><a class="chip" href="#f-twitter-padrao" data-go="twitter-padrao">Twitter Padrão</a></span></li><li><span class="o-t">Tomar posição contra uma ideia do mercado</span><span class="o-f"><a class="chip" href="#f-react" data-go="react">React</a><a class="chip" href="#f-ranking-ou-tier-list" data-go="ranking-ou-tier-list">Ranking ou Tier List</a></span></li><li><span class="o-t">Segurar o olhar pela curiosidade</span><span class="o-f"><a class="chip" href="#f-storytelling" data-go="storytelling">Storytelling</a><a class="chip" href="#f-b-roll" data-go="b-roll">B-Roll</a></span></li></ul></div>
+ <div class="grid">
+<details class="card" id="f-tela-verde" data-etapa="Topo" data-q="tela verde a notícia, o print ou o post fica de fundo e você aparece na frente dando a sua leitura sobre aquilo. o seu mercado está falando de um assunto e você enxerga um lado que nenhum concorrente está mostrando, algo que conversa com a dor do cliente que compra o seu serviço. vídeo">
+ <summary>
+  <div class="c-top"><h3>Tela Verde</h3><span class="tags"><span class="tag">Vídeo</span><span class="tag">Esforço baixo</span></span></div>
+  <p class="c-sum">A notícia, o print ou o post fica de fundo e você aparece na frente dando a sua leitura sobre aquilo.</p>
+  <span class="more"><span class="m-a">Ver a ficha completa</span><span class="m-b">Fechar a ficha</span></span>
+ </summary>
+ <div class="c-body">
+  <div class="bl ok"><h4>Use quando</h4><p>O seu mercado está falando de um assunto e você enxerga um lado que nenhum concorrente está mostrando, algo que conversa com a dor do cliente que compra o seu serviço.</p></div>
+  <div class="bl no"><h4>Não use quando</h4><p>O tema ainda não pegou. Esse formato só aproveita uma conversa que já existe, ele não fabrica interesse do zero.</p></div>
+  <div class="bl"><h4>Como executar</h4><ol><li>Separe uma imagem de fundo que já diga o essencial sozinha: manchete, print ou publicação.</li><li>Grave com fundo verde ou use o recurso de trocar o fundo do próprio aplicativo de edição.</li><li>Entre direto reagindo ao que está atrás de você, sem dizer seu nome nem o que você faz.</li><li>Termine com a sua conclusão sobre o caso, nunca repetindo o que a notícia já disse.</li></ol></div>
+  <div class="bl er"><h4>Erro mais comum</h4><p>Ler em voz alta o que está na tela. Se a pessoa consegue ler sozinha, a sua voz virou ruído; o valor está na opinião que só você tem.</p></div>
+  <div class="bl"><h4>Formatos vizinhos</h4><div class="chips"><a class="chip" href="#f-react" data-go="react">React</a><a class="chip" href="#f-twitter-padrao" data-go="twitter-padrao">Twitter Padrão</a><a class="chip" href="#f-storytelling" data-go="storytelling">Storytelling</a></div></div>
+ </div>
+</details>
+<details class="card" id="f-react" data-etapa="Topo" data-q="react o vídeo de outra pessoa roda na tela e você comenta a fala dela em cima. alguém que o seu público ouve disse algo que você contesta, ou que você concorda e consegue levar mais fundo, mostrando como um especialista de alto valor pensa diferente. vídeo">
+ <summary>
+  <div class="c-top"><h3>React</h3><span class="tags"><span class="tag">Vídeo</span><span class="tag">Esforço baixo</span></span></div>
+  <p class="c-sum">O vídeo de outra pessoa roda na tela e você comenta a fala dela em cima.</p>
+  <span class="more"><span class="m-a">Ver a ficha completa</span><span class="m-b">Fechar a ficha</span></span>
+ </summary>
+ <div class="c-body">
+  <div class="bl ok"><h4>Use quando</h4><p>Alguém que o seu público ouve disse algo que você contesta, ou que você concorda e consegue levar mais fundo, mostrando como um especialista de alto valor pensa diferente.</p></div>
+  <div class="bl no"><h4>Não use quando</h4><p>Você não tem uma tese própria para somar. Sem opinião, você só empresta palco e audiência para o outro.</p></div>
+  <div class="bl"><h4>Como executar</h4><ol><li>Recorte um trecho curto, de até 15 segundos, que se sustente sem explicação.</li><li>Deixe esse trecho tocar antes de você aparecer, para a pessoa entender o contexto.</li><li>Congele a imagem no exato momento da frase que você vai rebater ou aprofundar.</li><li>Diga a sua posição numa frase só e só depois explique o porquê.</li></ol></div>
+  <div class="bl er"><h4>Erro mais comum</h4><p>Deixar o vídeo alheio ocupar o conteúdo. Quando metade do tempo é a fala do outro, quem sai com autoridade é ele, não você.</p></div>
+  <div class="bl"><h4>Formatos vizinhos</h4><div class="chips"><a class="chip" href="#f-tela-verde" data-go="tela-verde">Tela Verde</a><a class="chip" href="#f-caixinha-de-perguntas" data-go="caixinha-de-perguntas">Caixinha de Perguntas</a></div></div>
+ </div>
+</details>
+<details class="card" id="f-ranking-ou-tier-list" data-etapa="Topo" data-q="ranking ou tier list você coloca em ordem ou em faixas itens que o seu mercado já conhece, normalmente numa tabela visual. o público já tem opinião sobre aquilo que você vai classificar (ferramentas, estratégias, tipos de oferta) e a discordância vai gerar comentário. vídeo">
+ <summary>
+  <div class="c-top"><h3>Ranking ou Tier List</h3><span class="tags"><span class="tag">Vídeo</span><span class="tag">Esforço médio</span></span></div>
+  <p class="c-sum">Você coloca em ordem ou em faixas itens que o seu mercado já conhece, normalmente numa tabela visual.</p>
+  <span class="more"><span class="m-a">Ver a ficha completa</span><span class="m-b">Fechar a ficha</span></span>
+ </summary>
+ <div class="c-body">
+  <div class="bl ok"><h4>Use quando</h4><p>O público já tem opinião sobre aquilo que você vai classificar (ferramentas, estratégias, tipos de oferta) e a discordância vai gerar comentário.</p></div>
+  <div class="bl no"><h4>Não use quando</h4><p>As pessoas não conhecem os itens. Classificar o desconhecido não provoca reação, só deixa todo mundo perdido.</p></div>
+  <div class="bl"><h4>Como executar</h4><ol><li>Monte a tabela antes de gravar e mantenha ela visível do começo ao fim.</li><li>Comece pelo item em que quase todo mundo concorda, para a pessoa entender a régua.</li><li>Inclua de propósito pelo menos uma posição que vai dividir opiniões.</li><li>Explique cada lugar com uma frase curta, porque justificativa longa mata o ritmo.</li></ol></div>
+  <div class="bl er"><h4>Erro mais comum</h4><p>Classificar sem dizer o critério. Sem saber o que está sendo medido, quem discorda deixa de debater e passa a desconfiar de você.</p></div>
+  <div class="bl"><h4>Formatos vizinhos</h4><div class="chips"><a class="chip" href="#f-comparativo" data-go="comparativo">Comparativo</a><a class="chip" href="#f-framework" data-go="framework">Framework</a><a class="chip" href="#f-storytelling" data-go="storytelling">Storytelling</a></div></div>
+ </div>
+</details>
+<details class="card" id="f-storytelling" data-etapa="Topo" data-q="storytelling a ideia chega embrulhada num acontecimento: primeiro a pessoa é fisgada pela história, depois recebe a lição. você viveu ou acompanhou um caso com tensão e final claro, e a lição só fica forte depois que a pessoa sente o que estava em jogo. vídeo">
+ <summary>
+  <div class="c-top"><h3>Storytelling</h3><span class="tags"><span class="tag">Vídeo</span><span class="tag">Esforço médio</span></span></div>
+  <p class="c-sum">A ideia chega embrulhada num acontecimento: primeiro a pessoa é fisgada pela história, depois recebe a lição.</p>
+  <span class="more"><span class="m-a">Ver a ficha completa</span><span class="m-b">Fechar a ficha</span></span>
+ </summary>
+ <div class="c-body">
+  <div class="bl ok"><h4>Use quando</h4><p>Você viveu ou acompanhou um caso com tensão e final claro, e a lição só fica forte depois que a pessoa sente o que estava em jogo.</p></div>
+  <div class="bl no"><h4>Não use quando</h4><p>Não existe conflito no que você vai contar. Sem tensão, é só um relato, e relato não segura ninguém.</p></div>
+  <div class="bl"><h4>Como executar</h4><ol><li>Entre no ponto mais tenso da história, nunca no começo da linha do tempo.</li><li>Deixe claro o que podia ser perdido antes de narrar o que aconteceu.</li><li>Guarde o desfecho para o último terço do vídeo.</li><li>Feche com a lição numa frase só, porque a história já fez o trabalho pesado.</li></ol></div>
+  <div class="bl er"><h4>Erro mais comum</h4><p>Anunciar que vai contar uma história. Avisar que vem uma história tira a surpresa e quebra o efeito antes de ele começar.</p></div>
+  <div class="bl"><h4>Formatos vizinhos</h4><div class="chips"><a class="chip" href="#f-estudo-de-caso-analise" data-go="estudo-de-caso-analise">Estudo de caso (análise)</a><a class="chip" href="#f-b-roll" data-go="b-roll">B-Roll</a><a class="chip" href="#f-falando-com-a-camera" data-go="falando-com-a-camera">Falando com a Câmera</a></div></div>
+ </div>
+</details>
+<details class="card" id="f-b-roll" data-etapa="Topo" data-q="b-roll imagens de apoio passam na tela enquanto a sua narração ou um texto escrito carrega a mensagem. a ideia é forte no papel ou no áudio, você não tem como gravar falando agora e tem imagens suas que combinam com o que está sendo dito. vídeo">
+ <summary>
+  <div class="c-top"><h3>B-Roll</h3><span class="tags"><span class="tag">Vídeo</span><span class="tag">Esforço médio</span></span></div>
+  <p class="c-sum">Imagens de apoio passam na tela enquanto a sua narração ou um texto escrito carrega a mensagem.</p>
+  <span class="more"><span class="m-a">Ver a ficha completa</span><span class="m-b">Fechar a ficha</span></span>
+ </summary>
+ <div class="c-body">
+  <div class="bl ok"><h4>Use quando</h4><p>A ideia é forte no papel ou no áudio, você não tem como gravar falando agora e tem imagens suas que combinam com o que está sendo dito.</p></div>
+  <div class="bl no"><h4>Não use quando</h4><p>Falta mensagem forte ou história boa por trás. Imagem bonita sem conteúdo espalha a atenção em vez de prender.</p></div>
+  <div class="bl"><h4>Como executar</h4><ol><li>Escreva ou grave a narração antes de pensar nas imagens.</li><li>Escolha cenas que mostrem exatamente o que a fala está dizendo.</li><li>Com narração, troque de imagem a cada 2 ou 3 segundos; com texto na tela, segure a mesma cena por uns 10 segundos.</li><li>Coloque a frase mais forte logo no primeiro segundo, para a imagem não parecer só decoração.</li></ol></div>
+  <div class="bl er"><h4>Erro mais comum</h4><p>Usar imagem de banco genérica. Para quem vende serviço caro, foto de estoque denuncia que você não tem material próprio para mostrar.</p></div>
+  <div class="bl"><h4>Formatos vizinhos</h4><div class="chips"><a class="chip" href="#f-storytelling" data-go="storytelling">Storytelling</a><a class="chip" href="#f-bastidores" data-go="bastidores">Bastidores</a><a class="chip" href="#f-estudo-de-caso-analise" data-go="estudo-de-caso-analise">Estudo de caso (análise)</a></div></div>
+ </div>
+</details>
+<details class="card" id="f-twitter-padrao" data-etapa="Topo" data-q="twitter padrão a imagem de uma publicação curta em texto, postada do jeito que ela é. a frase já existe, já repercutiu, e publicar rápido rende mais do que caprichar na arte. estático">
+ <summary>
+  <div class="c-top"><h3>Twitter Padrão</h3><span class="tags"><span class="tag">Estático</span><span class="tag">Esforço baixo</span></span></div>
+  <p class="c-sum">A imagem de uma publicação curta em texto, postada do jeito que ela é.</p>
+  <span class="more"><span class="m-a">Ver a ficha completa</span><span class="m-b">Fechar a ficha</span></span>
+ </summary>
+ <div class="c-body">
+  <div class="bl ok"><h4>Use quando</h4><p>A frase já existe, já repercutiu, e publicar rápido rende mais do que caprichar na arte.</p></div>
+  <div class="bl no"><h4>Não use quando</h4><p>A imagem está ruim ou a frase é sua e nunca teve alcance. Captura malfeita passa sensação de improviso, e improviso não combina com ticket alto.</p></div>
+  <div class="bl"><h4>Como executar</h4><ol><li>Tire a captura em boa resolução e no modo claro.</li><li>Corte o enquadramento para esconder os números de interação quando eles forem baixos.</li><li>Escreva uma legenda que desenvolva a ideia, porque a imagem sozinha não constrói autoridade.</li><li>Quando o tema pedir mais, use a imagem como primeira tela de um carrossel maior.</li></ol></div>
+  <div class="bl er"><h4>Erro mais comum</h4><p>Postar uma frase com pouquíssimas curtidas visíveis. O número baixo vira prova contra você.</p></div>
+  <div class="bl"><h4>Formatos vizinhos</h4><div class="chips"><a class="chip" href="#f-carrossel-edu" data-go="carrossel-edu">Carrossel Edu</a><a class="chip" href="#f-carrossel-fotos-texto-nativo" data-go="carrossel-fotos-texto-nativo">Carrossel Fotos + Texto Nativo</a><a class="chip" href="#f-tela-verde" data-go="tela-verde">Tela Verde</a></div></div>
+ </div>
+</details></div>
+</section>
+<section class="etapa" data-etapa="Meio" id="meio" style="--ac:#E8B33C">
+ <header class="e-head">
+  <p class="e-k">Meio do funil</p>
+  <h2>Gerar autoridade</h2>
+  <p class="e-s">Provar que você entende do assunto</p>
+ </header>
+ <div class="guia"><p class="g-t">Escolha pelo objetivo</p><ul><li><span class="o-t">Ensinar um conceito</span><span class="o-f"><a class="chip" href="#f-tela-dividida" data-go="tela-dividida">Tela Dividida</a><a class="chip" href="#f-quadro-branco" data-go="quadro-branco">Quadro Branco</a><a class="chip" href="#f-framework" data-go="framework">Framework</a></span></li><li><span class="o-t">Mostrar como você pensa</span><span class="o-f"><a class="chip" href="#f-estudo-de-caso-analise" data-go="estudo-de-caso-analise">Estudo de caso (análise)</a><a class="chip" href="#f-comparativo" data-go="comparativo">Comparativo</a></span></li><li><span class="o-t">Organizar a informação</span><span class="o-f"><a class="chip" href="#f-comparativo" data-go="comparativo">Comparativo</a><a class="chip" href="#f-framework" data-go="framework">Framework</a><a class="chip" href="#f-carrossel-edu" data-go="carrossel-edu">Carrossel Edu</a></span></li></ul></div>
+ <div class="grid">
+<details class="card" id="f-tela-dividida" data-etapa="Meio" data-q="tela dividida a tela fica em duas partes: o material que você está explicando de um lado e você do outro, em geral o material em cima e você embaixo. para entender o que você ensina, a pessoa precisa ver e ouvir ao mesmo tempo, como um número, um gráfico ou uma página analisada. vídeo">
+ <summary>
+  <div class="c-top"><h3>Tela Dividida</h3><span class="tags"><span class="tag">Vídeo</span><span class="tag">Esforço baixo</span></span></div>
+  <p class="c-sum">A tela fica em duas partes: o material que você está explicando de um lado e você do outro, em geral o material em cima e você embaixo.</p>
+  <span class="more"><span class="m-a">Ver a ficha completa</span><span class="m-b">Fechar a ficha</span></span>
+ </summary>
+ <div class="c-body">
+  <div class="bl ok"><h4>Use quando</h4><p>Para entender o que você ensina, a pessoa precisa ver e ouvir ao mesmo tempo, como um número, um gráfico ou uma página analisada.</p></div>
+  <div class="bl no"><h4>Não use quando</h4><p>O material não acrescenta nada. Dividir a tela só para preencher espaço diminui você sem ganho nenhum.</p></div>
+  <div class="bl"><h4>Como executar</h4><ol><li>Grave a sua parte olhando para a lente, não para o material.</li><li>Faça o que aparece na metade de cima acompanhar exatamente o que você está falando.</li><li>Mantenha o tamanho das duas partes fixo do início ao fim, para não confundir.</li><li>No final, volte para a tela inteira em você e entregue a sua conclusão.</li></ol></div>
+  <div class="bl er"><h4>Erro mais comum</h4><p>Deixar o material fora do tempo da fala. Imagem adiantada ou atrasada cansa em poucos segundos.</p></div>
+  <div class="bl"><h4>Formatos vizinhos</h4><div class="chips"><a class="chip" href="#f-quadro-branco" data-go="quadro-branco">Quadro Branco</a><a class="chip" href="#f-comparativo" data-go="comparativo">Comparativo</a><a class="chip" href="#f-carrossel-edu" data-go="carrossel-edu">Carrossel Edu</a></div></div>
+ </div>
+</details>
+<details class="card" id="f-estudo-de-caso-analise" data-etapa="Meio" data-q="estudo de caso (análise) você desmonta um caso real, de outra empresa ou do mercado, e mostra como você interpreta o problema. o objetivo é provar raciocínio. o que importa não é o resultado do caso, e sim o caminho que você faz para chegar até ele, que é o que o cliente de alto valor compra. vídeo">
+ <summary>
+  <div class="c-top"><h3>Estudo de caso (análise)</h3><span class="tags"><span class="tag">Vídeo</span><span class="tag">Esforço médio</span></span></div>
+  <p class="c-sum">Você desmonta um caso real, de outra empresa ou do mercado, e mostra como você interpreta o problema.</p>
+  <span class="more"><span class="m-a">Ver a ficha completa</span><span class="m-b">Fechar a ficha</span></span>
+ </summary>
+ <div class="c-body">
+  <div class="bl ok"><h4>Use quando</h4><p>O objetivo é provar raciocínio. O que importa não é o resultado do caso, e sim o caminho que você faz para chegar até ele, que é o que o cliente de alto valor compra.</p></div>
+  <div class="bl no"><h4>Não use quando</h4><p>Você sabe pouco sobre o caso. Análise em cima de achismo cai no primeiro comentário de quem conhece o assunto.</p></div>
+  <div class="bl"><h4>Como executar</h4><ol><li>Escolha um caso que o público conhece e olhe por um ângulo que ninguém está explorando.</li><li>Apresente os fatos antes da opinião, separando com clareza o que é dado do que é interpretação sua.</li><li>Mostre as etapas do seu raciocínio, não apenas a resposta final.</li><li>Termine tirando um princípio que a pessoa possa aplicar no negócio dela.</li></ol></div>
+  <div class="bl er"><h4>Erro mais comum</h4><p>Narrar o caso e parar. Sem a lição extraída, o vídeo vira notícia e não análise.</p></div>
+  <div class="bl"><h4>Formatos vizinhos</h4><div class="chips"><a class="chip" href="#f-comparativo" data-go="comparativo">Comparativo</a><a class="chip" href="#f-storytelling" data-go="storytelling">Storytelling</a><a class="chip" href="#f-estudo-de-caso-cliente-real" data-go="estudo-de-caso-cliente-real">Estudo de caso (cliente real)</a></div></div>
+ </div>
+</details>
+<details class="card" id="f-quadro-branco" data-etapa="Meio" data-q="quadro branco você explica desenhando ao vivo num quadro, montando a ideia diante de quem assiste. o conceito tem partes que se conectam, como etapas, relações ou níveis, e fica mais claro sendo construído do que sendo só falado. vídeo">
+ <summary>
+  <div class="c-top"><h3>Quadro Branco</h3><span class="tags"><span class="tag">Vídeo</span><span class="tag">Esforço médio</span></span></div>
+  <p class="c-sum">Você explica desenhando ao vivo num quadro, montando a ideia diante de quem assiste.</p>
+  <span class="more"><span class="m-a">Ver a ficha completa</span><span class="m-b">Fechar a ficha</span></span>
+ </summary>
+ <div class="c-body">
+  <div class="bl ok"><h4>Use quando</h4><p>O conceito tem partes que se conectam, como etapas, relações ou níveis, e fica mais claro sendo construído do que sendo só falado.</p></div>
+  <div class="bl no"><h4>Não use quando</h4><p>A ideia é simples e em linha reta. Desenhar o óbvio só deixa o vídeo arrastado.</p></div>
+  <div class="bl"><h4>Como executar</h4><ol><li>Planeje o desenho antes de ligar a câmera, porque improvisar no quadro vira rabisco.</li><li>Comece com o quadro limpo: ver a ideia nascendo é o que segura a atenção.</li><li>Fale enquanto escreve, nunca escreva primeiro e explique depois.</li><li>Termine com o quadro completo em plano fechado, para a pessoa salvar a imagem.</li></ol></div>
+  <div class="bl er"><h4>Erro mais comum</h4><p>Escrever com letra pequena. O conteúdo é visto no celular, e o que não dá para ler na tela pequena não existe.</p></div>
+  <div class="bl"><h4>Formatos vizinhos</h4><div class="chips"><a class="chip" href="#f-framework" data-go="framework">Framework</a><a class="chip" href="#f-tela-dividida" data-go="tela-dividida">Tela Dividida</a><a class="chip" href="#f-carrossel-edu" data-go="carrossel-edu">Carrossel Edu</a></div></div>
+ </div>
+</details>
+<details class="card" id="f-framework" data-etapa="Meio" data-q="framework você batiza o seu próprio método e ensina as etapas dele em ordem. você já aplica um processo com os clientes e quer transformá-lo em algo que diferencia a sua mentoria ou consultoria no mercado. vídeo">
+ <summary>
+  <div class="c-top"><h3>Framework</h3><span class="tags"><span class="tag">Vídeo</span><span class="tag">Esforço médio</span></span></div>
+  <p class="c-sum">Você batiza o seu próprio método e ensina as etapas dele em ordem.</p>
+  <span class="more"><span class="m-a">Ver a ficha completa</span><span class="m-b">Fechar a ficha</span></span>
+ </summary>
+ <div class="c-body">
+  <div class="bl ok"><h4>Use quando</h4><p>Você já aplica um processo com os clientes e quer transformá-lo em algo que diferencia a sua mentoria ou consultoria no mercado.</p></div>
+  <div class="bl no"><h4>Não use quando</h4><p>O método é o mesmo de todo mundo com outro nome. Rebatizar o óbvio é percebido rápido e tira credibilidade.</p></div>
+  <div class="bl"><h4>Como executar</h4><ol><li>Crie um nome curto e fácil de falar: se o público não repete, não pegou.</li><li>Limite de 3 a 5 etapas, porque mais do que isso ninguém guarda.</li><li>Deixe o desenho do método visível na tela desde o primeiro segundo.</li><li>Mostre o método funcionando num caso concreto dentro do mesmo vídeo.</li></ol></div>
+  <div class="bl er"><h4>Erro mais comum</h4><p>Inventar o método só para ter o que postar. Método que nasceu no roteiro, e não na prática, não aguenta a primeira pergunta difícil.</p></div>
+  <div class="bl"><h4>Formatos vizinhos</h4><div class="chips"><a class="chip" href="#f-quadro-branco" data-go="quadro-branco">Quadro Branco</a><a class="chip" href="#f-carrossel-edu" data-go="carrossel-edu">Carrossel Edu</a><a class="chip" href="#f-estudo-de-caso-analise" data-go="estudo-de-caso-analise">Estudo de caso (análise)</a></div></div>
+ </div>
+</details>
+<details class="card" id="f-comparativo" data-etapa="Meio" data-q="comparativo duas alternativas lado a lado, medidas pela mesma régua, com uma escolha no final. o seu público está dividido entre caminhos concretos (contratar, fazer sozinho, outro modelo) e ninguém compara com sinceridade. vídeo">
+ <summary>
+  <div class="c-top"><h3>Comparativo</h3><span class="tags"><span class="tag">Vídeo</span><span class="tag">Esforço médio</span></span></div>
+  <p class="c-sum">Duas alternativas lado a lado, medidas pela mesma régua, com uma escolha no final.</p>
+  <span class="more"><span class="m-a">Ver a ficha completa</span><span class="m-b">Fechar a ficha</span></span>
+ </summary>
+ <div class="c-body">
+  <div class="bl ok"><h4>Use quando</h4><p>O seu público está dividido entre caminhos concretos (contratar, fazer sozinho, outro modelo) e ninguém compara com sinceridade.</p></div>
+  <div class="bl no"><h4>Não use quando</h4><p>Você ganha com um dos lados e não vai assumir isso. Comparação puxada para um lado destrói a autoridade assim que alguém percebe.</p></div>
+  <div class="bl"><h4>Como executar</h4><ol><li>Diga quais critérios vai usar antes de começar a comparar.</li><li>Passe pelos mesmos critérios nos dois lados, na mesma sequência.</li><li>Admita pelo menos uma vantagem real da opção que você não vai recomendar.</li><li>Termine com a sua escolha e diga em que situação ela mudaria.</li></ol></div>
+  <div class="bl er"><h4>Erro mais comum</h4><p>Comparar e não escolher. A pessoa veio para resolver a dúvida, e um empate não responde nada.</p></div>
+  <div class="bl"><h4>Formatos vizinhos</h4><div class="chips"><a class="chip" href="#f-ranking-ou-tier-list" data-go="ranking-ou-tier-list">Ranking ou Tier List</a><a class="chip" href="#f-estudo-de-caso-analise" data-go="estudo-de-caso-analise">Estudo de caso (análise)</a><a class="chip" href="#f-tela-dividida" data-go="tela-dividida">Tela Dividida</a></div></div>
+ </div>
+</details>
+<details class="card" id="f-carrossel-edu" data-etapa="Meio" data-q="carrossel edu uma aula em sequência de telas, com capa forte e a ideia avançando passo a passo. o conteúdo tem etapas e a pessoa precisa ir no ritmo dela, voltando quando quiser. estático">
+ <summary>
+  <div class="c-top"><h3>Carrossel Edu</h3><span class="tags"><span class="tag">Estático</span><span class="tag">Esforço médio</span></span></div>
+  <p class="c-sum">Uma aula em sequência de telas, com capa forte e a ideia avançando passo a passo.</p>
+  <span class="more"><span class="m-a">Ver a ficha completa</span><span class="m-b">Fechar a ficha</span></span>
+ </summary>
+ <div class="c-body">
+  <div class="bl ok"><h4>Use quando</h4><p>O conteúdo tem etapas e a pessoa precisa ir no ritmo dela, voltando quando quiser.</p></div>
+  <div class="bl no"><h4>Não use quando</h4><p>A ideia cabe numa imagem só. Carrossel esticado à força é abandonado lá pela terceira tela.</p></div>
+  <div class="bl"><h4>Como executar</h4><ol><li>Coloque a maior parte da energia na capa, porque é ela que decide se o resto será visto.</li><li>Uma ideia por tela, sem exceção.</li><li>Amarre as telas: o fim de uma deve dar vontade de ver a próxima.</li><li>Feche com uma tela de resumo que valha a pena salvar sozinha.</li></ol></div>
+  <div class="bl er"><h4>Erro mais comum</h4><p>Conteúdo ótimo com capa fraca. Se a primeira tela não interrompe a rolagem, o resto nunca é visto.</p></div>
+  <div class="bl"><h4>Formatos vizinhos</h4><div class="chips"><a class="chip" href="#f-framework" data-go="framework">Framework</a><a class="chip" href="#f-quadro-branco" data-go="quadro-branco">Quadro Branco</a><a class="chip" href="#f-carrossel-fotos-texto-nativo" data-go="carrossel-fotos-texto-nativo">Carrossel Fotos + Texto Nativo</a></div></div>
+ </div>
+</details></div>
+</section>
+<section class="etapa" data-etapa="Fundo" id="fundo" style="--ac:#D9776A">
+ <header class="e-head">
+  <p class="e-k">Fundo do funil</p>
+  <h2>Gerar confiança</h2>
+  <p class="e-s">Fazer confiarem em você a ponto de comprar</p>
+ </header>
+ <div class="guia"><p class="g-t">Escolha pelo objetivo</p><ul><li><span class="o-t">Derrubar uma objeção</span><span class="o-f"><a class="chip" href="#f-caixinha-de-perguntas" data-go="caixinha-de-perguntas">Caixinha de Perguntas</a><a class="chip" href="#f-falando-com-a-camera" data-go="falando-com-a-camera">Falando com a Câmera</a></span></li><li><span class="o-t">Mostrar quem você é por dentro</span><span class="o-f"><a class="chip" href="#f-bastidores" data-go="bastidores">Bastidores</a><a class="chip" href="#f-no-carro" data-go="no-carro">No Carro</a></span></li><li><span class="o-t">Provar resultado</span><span class="o-f"><a class="chip" href="#f-estudo-de-caso-cliente-real" data-go="estudo-de-caso-cliente-real">Estudo de caso (cliente real)</a><a class="chip" href="#f-carrossel-fotos-texto-nativo" data-go="carrossel-fotos-texto-nativo">Carrossel Fotos + Texto Nativo</a></span></li></ul></div>
+ <div class="grid">
+<details class="card" id="f-caixinha-de-perguntas" data-etapa="Fundo" data-q="caixinha de perguntas você responde uma pergunta enviada por alguém da audiência, com a pergunta aparecendo na tela. é uma dúvida que surge sempre antes de alguém fechar com você e que você já respondeu muitas vezes nas conversas de venda. vídeo">
+ <summary>
+  <div class="c-top"><h3>Caixinha de Perguntas</h3><span class="tags"><span class="tag">Vídeo</span><span class="tag">Esforço baixo</span></span></div>
+  <p class="c-sum">Você responde uma pergunta enviada por alguém da audiência, com a pergunta aparecendo na tela.</p>
+  <span class="more"><span class="m-a">Ver a ficha completa</span><span class="m-b">Fechar a ficha</span></span>
+ </summary>
+ <div class="c-body">
+  <div class="bl ok"><h4>Use quando</h4><p>É uma dúvida que surge sempre antes de alguém fechar com você e que você já respondeu muitas vezes nas conversas de venda.</p></div>
+  <div class="bl no"><h4>Não use quando</h4><p>A pergunta é agressiva ou pessoal demais. Responder em público constrange quem mandou e faz os outros pararem de perguntar.</p></div>
+  <div class="bl"><h4>Como executar</h4><ol><li>Escolha perguntas que falem por muita gente, não pelo caso de uma pessoa só.</li><li>Mantenha a pergunta visível durante o vídeo inteiro.</li><li>Responda exatamente o que foi perguntado antes de abrir para o assunto maior.</li><li>Feche chamando novas perguntas, porque o formato vive delas.</li></ol></div>
+  <div class="bl er"><h4>Erro mais comum</h4><p>Escolher só perguntas fáceis. A audiência percebe que as difíceis ficam sem resposta e a confiança cai.</p></div>
+  <div class="bl"><h4>Formatos vizinhos</h4><div class="chips"><a class="chip" href="#f-falando-com-a-camera" data-go="falando-com-a-camera">Falando com a Câmera</a><a class="chip" href="#f-estudo-de-caso-cliente-real" data-go="estudo-de-caso-cliente-real">Estudo de caso (cliente real)</a><a class="chip" href="#f-react" data-go="react">React</a></div></div>
+ </div>
+</details>
+<details class="card" id="f-falando-com-a-camera" data-etapa="Fundo" data-q="falando com a câmera só você olhando para a lente, sem imagem de apoio e sem efeito. o jeito mais direto de falar com alguém. o assunto pede a sua presença: assumir uma posição, dar um recado ou quebrar uma objeção que só tem peso se vier de você. vídeo">
+ <summary>
+  <div class="c-top"><h3>Falando com a Câmera</h3><span class="tags"><span class="tag">Vídeo</span><span class="tag">Esforço baixo</span></span></div>
+  <p class="c-sum">Só você olhando para a lente, sem imagem de apoio e sem efeito. O jeito mais direto de falar com alguém.</p>
+  <span class="more"><span class="m-a">Ver a ficha completa</span><span class="m-b">Fechar a ficha</span></span>
+ </summary>
+ <div class="c-body">
+  <div class="bl ok"><h4>Use quando</h4><p>O assunto pede a sua presença: assumir uma posição, dar um recado ou quebrar uma objeção que só tem peso se vier de você.</p></div>
+  <div class="bl no"><h4>Não use quando</h4><p>O conteúdo depende de algo para mostrar. Explicação técnica sem apoio visual não para em pé.</p></div>
+  <div class="bl"><h4>Como executar</h4><ol><li>Enquadre de meio corpo para perto, com os olhos no terço de cima da tela.</li><li>Comece pela afirmação mais forte, nunca por quem você é.</li><li>Fale como se fosse com uma pessoa só, não com uma plateia.</li><li>Coloque legenda, porque o formato depende de retenção e muita gente assiste sem som.</li></ol></div>
+  <div class="bl er"><h4>Erro mais comum</h4><p>Ler o roteiro. O olhar desviando para o texto apaga justamente a conexão que o formato tem de melhor.</p></div>
+  <div class="bl"><h4>Formatos vizinhos</h4><div class="chips"><a class="chip" href="#f-caixinha-de-perguntas" data-go="caixinha-de-perguntas">Caixinha de Perguntas</a><a class="chip" href="#f-no-carro" data-go="no-carro">No Carro</a><a class="chip" href="#f-storytelling" data-go="storytelling">Storytelling</a></div></div>
+ </div>
+</details>
+<details class="card" id="f-estudo-de-caso-cliente-real" data-etapa="Fundo" data-q="estudo de caso (cliente real) a mesma lógica da análise, mas com um caso seu: cliente real, situação real e resultado real. o cliente autorizou a exposição e o resultado pode ser conferido. vídeo">
+ <summary>
+  <div class="c-top"><h3>Estudo de caso (cliente real)</h3><span class="tags"><span class="tag">Vídeo</span><span class="tag">Esforço médio</span></span></div>
+  <p class="c-sum">A mesma lógica da análise, mas com um caso seu: cliente real, situação real e resultado real.</p>
+  <span class="more"><span class="m-a">Ver a ficha completa</span><span class="m-b">Fechar a ficha</span></span>
+ </summary>
+ <div class="c-body">
+  <div class="bl ok"><h4>Use quando</h4><p>O cliente autorizou a exposição e o resultado pode ser conferido.</p></div>
+  <div class="bl no"><h4>Não use quando</h4><p>Faltam números ou falta permissão. Caso sem prova soa como promessa, e promessa na hora da compra aumenta a desconfiança.</p></div>
+  <div class="bl"><h4>Como executar</h4><ol><li>Peça autorização por escrito antes de gravar.</li><li>Comece pelo ponto de partida: onde o cliente estava e o que estava doendo.</li><li>Mostre a decisão que você tomou e o motivo dela, porque é o seu julgamento que se vende, não só o resultado.</li><li>Apresente o resultado com número e com o tempo que levou.</li></ol></div>
+  <div class="bl er"><h4>Erro mais comum</h4><p>Contar o caso como se fosse anúncio. O que convence é o raciocínio por trás da decisão; o resultado só confirma.</p></div>
+  <div class="bl"><h4>Formatos vizinhos</h4><div class="chips"><a class="chip" href="#f-bastidores" data-go="bastidores">Bastidores</a><a class="chip" href="#f-comparativo" data-go="comparativo">Comparativo</a><a class="chip" href="#f-estudo-de-caso-analise" data-go="estudo-de-caso-analise">Estudo de caso (análise)</a></div></div>
+ </div>
+</details>
+<details class="card" id="f-bastidores" data-etapa="Fundo" data-q="bastidores você abre a porta do processo e mostra como o trabalho acontece antes de o resultado aparecer. o que te diferencia está no jeito de fazer e esse jeito não aparece de fora, como a preparação de uma sessão ou a análise de um cliente. vídeo">
+ <summary>
+  <div class="c-top"><h3>Bastidores</h3><span class="tags"><span class="tag">Vídeo</span><span class="tag">Esforço baixo</span></span></div>
+  <p class="c-sum">Você abre a porta do processo e mostra como o trabalho acontece antes de o resultado aparecer.</p>
+  <span class="more"><span class="m-a">Ver a ficha completa</span><span class="m-b">Fechar a ficha</span></span>
+ </summary>
+ <div class="c-body">
+  <div class="bl ok"><h4>Use quando</h4><p>O que te diferencia está no jeito de fazer e esse jeito não aparece de fora, como a preparação de uma sessão ou a análise de um cliente.</p></div>
+  <div class="bl no"><h4>Não use quando</h4><p>O bastidor está bagunçado ou expõe um cliente. Aí a transparência vira risco.</p></div>
+  <div class="bl"><h4>Como executar</h4><ol><li>Escolha a parte do processo que o cliente nunca chega a ver.</li><li>Grave do jeito que está, sem produzir demais, porque bastidor arrumado perde a verdade.</li><li>Diga o que está acontecendo, porque sem explicação é só uma cena bonita.</li><li>Ligue o que aparece ao resultado que aquilo gera para o cliente.</li></ol></div>
+  <div class="bl er"><h4>Erro mais comum</h4><p>Mostrar um processo igual ao de todo mundo. Se qualquer concorrente faz igual, você provou que é parecido, não que é melhor.</p></div>
+  <div class="bl"><h4>Formatos vizinhos</h4><div class="chips"><a class="chip" href="#f-no-carro" data-go="no-carro">No Carro</a><a class="chip" href="#f-b-roll" data-go="b-roll">B-Roll</a><a class="chip" href="#f-falando-com-a-camera" data-go="falando-com-a-camera">Falando com a Câmera</a></div></div>
+ </div>
+</details>
+<details class="card" id="f-no-carro" data-etapa="Fundo" data-q="no carro uma conversa gravada dentro do carro, aproveitando o clima informal e próximo que esse lugar cria. você quer passar uma reflexão com cara de conversa particular, longe da formalidade de um cenário montado. vídeo">
+ <summary>
+  <div class="c-top"><h3>No Carro</h3><span class="tags"><span class="tag">Vídeo</span><span class="tag">Esforço baixo</span></span></div>
+  <p class="c-sum">Uma conversa gravada dentro do carro, aproveitando o clima informal e próximo que esse lugar cria.</p>
+  <span class="more"><span class="m-a">Ver a ficha completa</span><span class="m-b">Fechar a ficha</span></span>
+ </summary>
+ <div class="c-body">
+  <div class="bl ok"><h4>Use quando</h4><p>Você quer passar uma reflexão com cara de conversa particular, longe da formalidade de um cenário montado.</p></div>
+  <div class="bl no"><h4>Não use quando</h4><p>O carro está em movimento com você no volante. Além do perigo, a atenção dividida aparece na fala.</p></div>
+  <div class="bl"><h4>Como executar</h4><ol><li>Grave com o carro parado, sempre.</li><li>Use microfone de lapela, porque o som dentro do carro ecoa.</li><li>Prenda o celular no painel, um pouco acima da altura dos olhos.</li><li>Fale como numa conversa, não como numa aula: o formato depende de soar natural.</li></ol></div>
+  <div class="bl er"><h4>Erro mais comum</h4><p>Gravar dirigindo. O ganho de movimento não paga o risco nem a piora do áudio.</p></div>
+  <div class="bl"><h4>Formatos vizinhos</h4><div class="chips"><a class="chip" href="#f-falando-com-a-camera" data-go="falando-com-a-camera">Falando com a Câmera</a><a class="chip" href="#f-bastidores" data-go="bastidores">Bastidores</a><a class="chip" href="#f-caixinha-de-perguntas" data-go="caixinha-de-perguntas">Caixinha de Perguntas</a></div></div>
+ </div>
+</details>
+<details class="card" id="f-carrossel-fotos-texto-nativo" data-etapa="Fundo" data-q="carrossel fotos + texto nativo fotos reais do seu trabalho com texto simples, no estilo nativo da rede. você tem fotos verdadeiras de entrega, encontro ou cliente, e o texto explica o que cada foto comprova. estático">
+ <summary>
+  <div class="c-top"><h3>Carrossel Fotos + Texto Nativo</h3><span class="tags"><span class="tag">Estático</span><span class="tag">Esforço baixo</span></span></div>
+  <p class="c-sum">Fotos reais do seu trabalho com texto simples, no estilo nativo da rede.</p>
+  <span class="more"><span class="m-a">Ver a ficha completa</span><span class="m-b">Fechar a ficha</span></span>
+ </summary>
+ <div class="c-body">
+  <div class="bl ok"><h4>Use quando</h4><p>Você tem fotos verdadeiras de entrega, encontro ou cliente, e o texto explica o que cada foto comprova.</p></div>
+  <div class="bl no"><h4>Não use quando</h4><p>As fotos são genéricas. O formato só funciona quando a imagem é prova, não ilustração.</p></div>
+  <div class="bl"><h4>Como executar</h4><ol><li>Escolha fotos com gente e com lugar que dê para reconhecer.</li><li>Comece pelo texto que dá sentido à foto, nunca pela foto solta.</li><li>Use letra discreta e deixe a foto ser a estrela.</li><li>Feche com uma tela de texto que transforme a prova num convite para conversar com você.</li></ol></div>
+  <div class="bl er"><h4>Erro mais comum</h4><p>Postar as fotos sem texto. Sem contexto, parece álbum pessoal e não gera confiança para comprar.</p></div>
+  <div class="bl"><h4>Formatos vizinhos</h4><div class="chips"><a class="chip" href="#f-carrossel-edu" data-go="carrossel-edu">Carrossel Edu</a><a class="chip" href="#f-bastidores" data-go="bastidores">Bastidores</a><a class="chip" href="#f-twitter-padrao" data-go="twitter-padrao">Twitter Padrão</a></div></div>
+ </div>
+</details></div>
+</section>
+ <p class="empty">Nenhum formato encontrado para essa busca.</p>
+</main>
+<footer class="foot"><div class="wrap">Banco de Criativos · Máquina de Clientes com IA</div></footer>
+<a class="top" href="#" aria-label="Voltar ao topo">Voltar ao topo</a>
+<script>
+(function(){
+ var tabs=[].slice.call(document.querySelectorAll('.tab')),cards=[].slice.call(document.querySelectorAll('.card')),secs=[].slice.call(document.querySelectorAll('.etapa')),q=document.getElementById('q'),empty=document.querySelector('.empty'),top=document.querySelector('.top');
+ var f='Todos';
+ function apply(){
+  var t=(q.value||'').trim().toLowerCase(),n=0;
+  cards.forEach(function(c){var ok=(f==='Todos'||c.dataset.etapa===f)&&(!t||c.dataset.q.indexOf(t)>-1);c.hidden=!ok;if(ok)n++;});
+  secs.forEach(function(s){var v=s.querySelectorAll('.card:not([hidden])').length>0;s.hidden=!v;});
+  empty.style.display=n?'none':'block';
+ }
+ tabs.forEach(function(b){b.addEventListener('click',function(){f=b.dataset.f;tabs.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});apply();});});
+ q.addEventListener('input',apply);
+ function go(id){var c=document.getElementById('f-'+id);if(!c)return;if(c.hidden){f='Todos';tabs.forEach(function(x){x.setAttribute('aria-pressed',x.dataset.f==='Todos'?'true':'false')});q.value='';apply();}c.open=true;c.scrollIntoView({behavior:'smooth',block:'start'});}
+ document.addEventListener('click',function(e){var a=e.target.closest('[data-go]');if(a){e.preventDefault();history.replaceState(null,'','#f-'+a.dataset.go);go(a.dataset.go);}});
+ if(location.hash.indexOf('#f-')===0){go(location.hash.slice(3));}
+ window.addEventListener('scroll',function(){top.classList.toggle('on',window.scrollY>700)},{passive:true});
+ apply();
+})();
+</script>
+</body></html>
