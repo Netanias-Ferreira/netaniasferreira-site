@@ -5,7 +5,7 @@
   <!-- BLOCO 1 · AVISO TÉCNICO: [AVISO TÉCNICO: configurar checkout antes de publicar] -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="robots" content="noindex, nofollow"><!-- TODO: remover ao publicar -->
+  <meta name="robots" content="index, follow">
   <title>Máquina de Clientes com IA · Netanias Ferreira</title>
   <meta name="description" content="Crie anúncios com sua IA preferida e em 24 horas comece a captar clientes que pagam de R$3.000 a R$10.000 em serviços online, mesmo se você ainda não tiver uma oferta estruturada.">
   <meta name="theme-color" content="#2B2B2B">
@@ -416,6 +416,11 @@ b, strong { font-weight: 600; color: var(--fg); }
 .bonus-ico.ok { margin-bottom: 14px; }
 .modulos > .modulo:nth-child(3) .mod-img.ok > img { -webkit-mask-image: linear-gradient(90deg, transparent, #000 40px, #000 calc(100% - 40px), transparent), linear-gradient(180deg, transparent, #000 10px, #000 calc(100% - 10px), transparent); mask-image: linear-gradient(90deg, transparent, #000 40px, #000 calc(100% - 40px), transparent), linear-gradient(180deg, transparent, #000 10px, #000 calc(100% - 10px), transparent); }
 @media (min-width: 901px) { .bonus-ico.ok { height: 280px; } }
+/* Correção 17/11/2026: imagem dos bônus presa à caixa (antes passava por cima do título) */
+.bonus-ico.ok { --bh: 280px; height: var(--bh); overflow: hidden; display: grid; place-items: center; }
+@media (min-width: 901px) { .bonus-ico.ok { --bh: 300px; } }
+.bonus-ico.ok > img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; aspect-ratio: auto; object-fit: contain; border-radius: 0; -webkit-mask-image: none; mask-image: none; filter: drop-shadow(0 14px 20px rgba(0,0,0,.5)); }
+.bonus-ico.b-capa.ok > img { position: relative; inset: auto; width: auto; height: calc(var(--bh) - 28px); aspect-ratio: 1; max-width: 100%; object-fit: cover; border-radius: 20px; filter: none; box-shadow: 0 0 0 1px rgba(255,255,255,.12), 0 18px 40px -8px rgba(0,0,0,.65), 0 0 44px -6px rgb(var(--glow) / .5); }
 
 /* Cases: o print é o destaque, a legenda vem embaixo */
 .cases-trilho { width: min(1100px, calc(100vw - 40px)); left: 50%; translate: -50% 0; }
@@ -680,19 +685,19 @@ b, strong { font-weight: 600; color: var(--fg); }
       <div class="wrap">
         <div class="bonus-lista">
           <article class="bonus">
-            <div class="ph bonus-ico b-recorte" style="--glow: 214 96 150"><svg aria-hidden="true"><use href="#i-criativos"/></svg><img src="/maquina-de-clientes/imagens/bonus-1-banco-de-criativos-recorte.webp" alt="" width="457" height="424" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></div>
+            <div class="ph bonus-ico b-recorte" style="--glow: 214 96 150"><svg aria-hidden="true"><use href="#i-criativos"/></svg><img src="/maquina-de-clientes/imagens/bonus-1-banco-de-criativos.webp" alt="Banco de criativos em um notebook, com três vídeos na tela" width="800" height="800" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></div>
             <h3>BÔNUS 1 · BANCO DE CRIATIVOS</h3>
             <p><em>"Eu até entendo a estrutura... mas na hora de escrever, a folha fica em branco."</em> Aí entra o Banco de Criativos: os anúncios que mais trouxeram resultado para os meus clientes, em vários mercados. Copia a estrutura e adapta pro seu serviço.</p>
             <p class="bonus-valor"><s>R$97</s><b>ZERO</b></p>
           </article>
           <article class="bonus">
-            <div class="ph bonus-ico b-luz" style="--glow: 196 118 56"><svg aria-hidden="true"><use href="#i-rede"/></svg><img src="/maquina-de-clientes/imagens/bonus-2-equipe-de-ia.webp" alt="" width="480" height="480" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></div>
+            <div class="ph bonus-ico b-recorte" style="--glow: 255 138 31"><svg aria-hidden="true"><use href="#i-rede"/></svg><img src="/maquina-de-clientes/imagens/bonus-2-equipe-de-ia.webp" alt="Equipe de cinco especialistas de IA com rosto de robô" width="800" height="800" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></div>
             <h3>BÔNUS 2 · EQUIPE DE IA ESPECIALISTAS EM COPY PARA HIGH TICKET</h3>
             <p><em>"Já tentei a IA. Saiu um texto bonito que ninguém respondeu."</em> A IA genérica aprendeu com a média da internet. Estas skills foram treinadas por um copywriter sênior que vive da profissão e escreve pra cliente pagante toda semana. Guru que nunca escreveu uma linha de copy não tem o que ensinar pra IA nenhuma.</p>
             <p class="bonus-valor"><s>R$197</s><b>ZERO</b></p>
           </article>
           <article class="bonus">
-            <div class="ph bonus-ico b-luz" style="--glow: 170 30 52"><svg aria-hidden="true"><use href="#i-play"/></svg><img src="/maquina-de-clientes/imagens/bonus-3-workshop-botao-impulsionar.webp" alt="" width="480" height="480" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></div>
+            <div class="ph bonus-ico b-capa" style="--glow: 185 28 60"><svg aria-hidden="true"><use href="#i-play"/></svg><img src="/maquina-de-clientes/imagens/bonus-3-workshop-botao-impulsionar.webp" alt="Capa do Workshop Ao Vivo, com o Netanias" width="480" height="480" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></div>
             <h3>BÔNUS 3 · WORKSHOP AO VIVO: GERANDO LEADS QUALIFICADOS COM O BOTÃO IMPULSIONAR</h3>
             <p><em>"Gerenciador de anúncios me dá dor de cabeça."</em> Então começa pelo atalho: como usar o botão Impulsionar, aquele que fica embaixo do seu post, pra trazer lead qualificado todo dia pro seu Instagram.</p>
             <p class="bonus-valor"><s>R$97</s><b>ZERO</b></p>
@@ -802,7 +807,7 @@ b, strong { font-weight: 600; color: var(--fg); }
 
     <!-- ===================== BLOCO 16 · QUEM ENSINA ===================== -->
     <section class="secao mentor-sec" aria-labelledby="h-tutor">
-      <div class="ph mentor-foto"><span class="ph-label">[FOTO DO NETANIAS]<code>imagens/netanias-mentor.webp · retrato 3 x 4, 810 x 1080</code></span><img src="/maquina-de-clientes/imagens/netanias-mentor.webp" alt="Netanias Ferreira" width="810" height="1080" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></div>
+      <div class="ph mentor-foto"><span class="ph-label">[FOTO DO NETANIAS]<code>imagens/netanias-mentor.webp · retrato 4 x 5, 880 x 1100</code></span><img src="/maquina-de-clientes/imagens/netanias-mentor.webp" alt="Netanias Ferreira" width="880" height="1100" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></div>
       <div class="wrap">
         <div class="autor-txt">
           <h2 id="h-tutor">QUEM SERÁ SEU TUTOR?</h2>
@@ -846,7 +851,7 @@ b, strong { font-weight: 600; color: var(--fg); }
 
   <script>
     // TODO: preencher com o link do checkout antes de publicar (bloco 1: configurar checkout antes de publicar).
-    const CHECKOUT_URL = "";
+    const CHECKOUT_URL = "https://pay.kiwify.com.br/e4BIizG";
 
     (() => {
       // Modo publicação: marca com .vazio o lugar de imagem cujo arquivo não existe (o CSS esconde)
