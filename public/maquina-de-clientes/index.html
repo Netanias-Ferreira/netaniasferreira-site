@@ -146,6 +146,8 @@ b, strong { font-weight: 600; color: var(--fg); }
 .nome { font-size: clamp(1.2rem, 2vw, 1.55rem); letter-spacing: .02em; line-height: 1.15; text-transform: uppercase; color: var(--off); text-shadow: 0 2px 14px rgba(0,0,0,.6); }
 .headline { margin-top: 12px; max-width: 900px; font-size: clamp(1.75rem, 3.9vw, 2.9rem); font-weight: 600; letter-spacing: -.035em; line-height: 1.12; color: var(--off); }
 .headline strong { font-weight: 600; color: inherit; }
+/* Destaque da promessa: faixa terracota atrás do trecho, em qualquer largura (a faixa acompanha cada linha) */
+.headline mark.dest { background: var(--terra); color: var(--off); padding: .02em .16em; margin: 0 -.04em; border-radius: 0; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 .hero .btn { margin-top: 26px; }
 
 /* ---------- Cases (bloco 5) ---------- */
@@ -531,7 +533,7 @@ html { touch-action: manipulation; -webkit-tap-highlight-color: rgba(184, 88, 75
           </div>
           <!-- BLOCO 4 · HERO -->
           <h1 class="nome" id="h-nome">MÁQUINA DE CLIENTES COM IA</h1>
-          <p class="headline"><strong>Crie anúncios com sua IA preferida e em 24 horas comece a captar clientes que pagam de R$3.000 a R$10.000 em serviços online, mesmo se você ainda não tiver uma oferta estruturada.</strong></p>
+          <p class="headline"><strong>Crie anúncios com sua IA preferida e em 24 horas comece a <mark class="dest">captar clientes que pagam de R$3.000 a R$10.000 em serviços online</mark>, mesmo se você ainda não tiver uma oferta estruturada.</strong></p>
           <a class="btn btn-topo" data-cta="hero" href="#oferta"><span>QUERO A MÁQUINA POR R$27</span> <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
           <ul class="selos">
             <li><svg aria-hidden="true"><use href="#i-shield"/></svg>Compra segura</li>
