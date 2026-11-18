@@ -396,6 +396,44 @@ b, strong { font-weight: 600; color: var(--fg); }
 .publicar .of-card:has(.of-mockup.vazio) .of-palco { border-right: 0; border-bottom: 1px solid var(--rowline); padding: 32px 24px 26px; }
 /* Linha "Total" depende do valor de âncora do programa: some até ele existir */
 .publicar .of-total:has(.confirmar) { display: none; }
+
+/* ---------- Ajuste visual 17/11/2026 (ERR-014) ---------- */
+/* Etapas: o painel da imagem usa a cor de fundo do próprio mockup (amostrada da borda da imagem) */
+.modulo { --mod-bg: var(--tile); }
+.modulos > .modulo:nth-child(2) { --mod-bg: #EFE4FC; }
+.modulos > .modulo:nth-child(3) { --mod-bg: linear-gradient(180deg, #0C1940 0%, #0A183F 100%); }
+.modulos > .modulo:nth-child(4) { --mod-bg: #191919; }
+.modulos > .modulo:nth-child(5) { --mod-bg: #FEF0E7; }
+.mod-img.ok { background: var(--mod-bg); border: 0; }
+.mod-img.ok > img { -webkit-mask-image: linear-gradient(90deg, transparent, #000 8px, #000 calc(100% - 8px), transparent), linear-gradient(180deg, transparent, #000 8px, #000 calc(100% - 8px), transparent); -webkit-mask-composite: source-in; mask-image: linear-gradient(90deg, transparent, #000 8px, #000 calc(100% - 8px), transparent), linear-gradient(180deg, transparent, #000 8px, #000 calc(100% - 8px), transparent); mask-composite: intersect; }
+
+/* Bônus: imagem grande no topo do cartão, com luz na cor do mockup atrás */
+.bonus-ico.ok { width: 100%; height: 240px; margin: -6px 0 8px; border-radius: 18px; overflow: visible; background: radial-gradient(closest-side, rgb(var(--glow) / .34), rgb(var(--glow) / .10) 60%, transparent 100%); box-shadow: none; }
+.bonus-ico.ok > img { border-radius: 0; object-fit: contain; }
+.bonus-ico.b-recorte > img { inset: 4% 2%; width: 96%; height: 92%; filter: drop-shadow(0 18px 26px rgba(0,0,0,.45)); }
+.bonus-ico.b-luz > img { position: relative; inset: auto; width: auto; height: 86%; aspect-ratio: 1; max-width: 86%; border-radius: 22px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 18px, #000 calc(100% - 18px), transparent), linear-gradient(180deg, transparent, #000 18px, #000 calc(100% - 18px), transparent); -webkit-mask-composite: source-in; mask-image: linear-gradient(90deg, transparent, #000 18px, #000 calc(100% - 18px), transparent), linear-gradient(180deg, transparent, #000 18px, #000 calc(100% - 18px), transparent); mask-composite: intersect; }
+.bonus-ico.b-luz.ok { background: radial-gradient(closest-side, rgb(var(--glow) / .55), rgb(var(--glow) / .16) 70%, transparent 100%); }
+.bonus-ico.ok { margin-bottom: 14px; }
+.modulos > .modulo:nth-child(3) .mod-img.ok > img { -webkit-mask-image: linear-gradient(90deg, transparent, #000 40px, #000 calc(100% - 40px), transparent), linear-gradient(180deg, transparent, #000 10px, #000 calc(100% - 10px), transparent); mask-image: linear-gradient(90deg, transparent, #000 40px, #000 calc(100% - 40px), transparent), linear-gradient(180deg, transparent, #000 10px, #000 calc(100% - 10px), transparent); }
+@media (min-width: 901px) { .bonus-ico.ok { height: 280px; } }
+
+/* Cases: o print é o destaque, a legenda vem embaixo */
+.cases-trilho { width: min(1100px, calc(100vw - 40px)); left: 50%; translate: -50% 0; }
+.cases-trilho::before { display: none; }
+.cases-trilho ol { grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 20px; align-items: start; }
+.v24 { gap: 14px; padding: 14px 14px 20px; }
+.v24 .zoom { order: -1; max-width: none; aspect-ratio: auto; background: none; border-radius: 14px; border: 1px solid var(--line); box-shadow: 0 18px 36px -20px rgba(0,0,0,.8); }
+.v24 .zoom:not(.ok) { aspect-ratio: 720 / 900; background: var(--tile); border: 2px dashed var(--terra); }
+.v24 .zoom.ok { background: none; }
+.v24 .zoom > img { position: static; display: block; width: 100%; height: auto; max-height: 460px; object-fit: cover; object-position: top; }
+.v24 .zoom.ok::after { content: ""; position: absolute; right: 10px; bottom: 10px; width: 34px; height: 34px; border-radius: 50%; background: rgba(43,43,43,.82) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FAF7F2' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='6.5'/%3E%3Cpath d='M16 16l4.5 4.5M11 8.5v5M8.5 11h5'/%3E%3C/svg%3E") center / 18px no-repeat; box-shadow: 0 0 0 1px rgba(250,247,242,.18); }
+.v24-txt p { font-size: 1.05rem; }
+.v24-av:not(.ok) { display: none; }
+.publicar .v24.sem-print { display: none; }
+.publicar #cases:not(:has(.v24:not(.sem-print))) { display: none; }
+#zoom { max-height: 92dvh; overflow: auto; }
+#zoom img { max-height: none; width: 100%; height: auto; cursor: zoom-out; }
+@media (max-width: 600px) { .v24 { padding: 12px 12px 18px; } .v24-txt p { font-size: 1.02rem; } }
 </style>
   <script>
     // Modo publicação: true esconde rascunhos ([CONFIRMAR] e placeholders). Para ver o rascunho: abrir com ?rascunho=1
@@ -464,21 +502,21 @@ b, strong { font-weight: 600; color: var(--fg); }
                 <span class="ph v24-av" title="[FOTO DO CLIENTE: só com autorização] · imagens/case-1-foto.jpg"><span class="ph-label">[FOTO DO CLIENTE: só com autorização]</span><img src="/maquina-de-clientes/imagens/case-1-foto.jpg" alt="" width="160" height="160" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></span>
                 <p><em>5 vendas de R$5.000 em 24 horas.</em></p>
               </div>
-              <button class="ph zoom" type="button" aria-label="Ampliar print"><span class="ph-label">[PRINT: vendas do dia]<code>imagens/case-1-print.png · 720 x 215</code></span><img src="/maquina-de-clientes/imagens/case-1-print.png" alt="Print: vendas do dia" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></button>
+              <button class="ph zoom" type="button" aria-label="Ampliar print"><span class="ph-label">[PRINT: vendas do dia]<code>imagens/case-1-print.webp · 720 x 1065</code></span><img src="/maquina-de-clientes/imagens/case-1-print.webp" alt="Print de conversa no WhatsApp com 5 vendas de R$5.000 em 24 horas" width="720" height="1065" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></button>
             </li>
             <li class="v24">
               <div class="v24-txt">
                 <span class="ph v24-av" title="[FOTO DO CLIENTE: só com autorização] · imagens/case-2-foto.jpg"><span class="ph-label">[FOTO DO CLIENTE: só com autorização]</span><img src="/maquina-de-clientes/imagens/case-2-foto.jpg" alt="" width="160" height="160" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></span>
                 <p><em>Geração de demanda é o que garante novas vendas.</em></p>
               </div>
-              <button class="ph zoom" type="button" aria-label="Ampliar print"><span class="ph-label">[PRINT: faturamento do dia]<code>imagens/case-2-print.png · 720 x 215</code></span><img src="/maquina-de-clientes/imagens/case-2-print.png" alt="Print: faturamento do dia" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></button>
+              <button class="ph zoom" type="button" aria-label="Ampliar print"><span class="ph-label">[PRINT: faturamento do dia]<code>imagens/case-2-print.webp · 720 x 1196</code></span><img src="/maquina-de-clientes/imagens/case-2-print.webp" alt="Print das notificações de venda com o faturamento do dia" width="720" height="1196" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></button>
             </li>
             <li class="v24">
               <div class="v24-txt">
                 <span class="ph v24-av" title="[FOTO DO CLIENTE: só com autorização] · imagens/case-3-foto.jpg"><span class="ph-label">[FOTO DO CLIENTE: só com autorização]</span><img src="/maquina-de-clientes/imagens/case-3-foto.jpg" alt="" width="160" height="160" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></span>
                 <p><em>Leads qualificados preenchendo o formulário para serviços e consultorias de até R$60 mil.</em></p>
               </div>
-              <button class="ph zoom" type="button" aria-label="Ampliar print"><span class="ph-label">[PRINT: 21 formulários do Tobias Kfoury]<code>imagens/case-3-print.png · 720 x 215</code></span><img src="/maquina-de-clientes/imagens/case-3-print.png" alt="Print: formulários de leads qualificados" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></button>
+              <button class="ph zoom" type="button" aria-label="Ampliar print"><span class="ph-label">[PRINT: 21 formulários do Tobias Kfoury]<code>imagens/case-3-print.webp · 720 x 502</code></span><img src="/maquina-de-clientes/imagens/case-3-print.webp" alt="Print dos 21 formulários preenchidos por leads da campanha de e-mail para consultorias de até R$60 mil" width="720" height="502" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></button>
             </li>
             <li class="v24">
               <div class="v24-txt">
@@ -486,20 +524,20 @@ b, strong { font-weight: 600; color: var(--fg); }
                 <p><em>R$3 mil em uma consultoria online.</em></p>
               </div>
               <!-- Fonte do print: C:\Users\Usuário\OneDrive\Área de Trabalho\Projeto Consultor Digital\Baú dos Cases de Sucesso\RENATO FIGUEIREDO\Venda de 3k.jpeg -->
-              <button class="ph zoom" type="button" aria-label="Ampliar print"><span class="ph-label">[PRINT: Venda de R$ 3 mil "Baú dos Cases de Sucesso\RENATO FIGUEIREDO\Venda de 3k.jpeg"]<code>imagens/case-4-print.png · 720 x 215</code></span><img src="/maquina-de-clientes/imagens/case-4-print.png" alt="Print: venda de R$ 3 mil" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></button>
+              <button class="ph zoom" type="button" aria-label="Ampliar print"><span class="ph-label">[PRINT: Venda de R$ 3 mil "Baú dos Cases de Sucesso\RENATO FIGUEIREDO\Venda de 3k.jpeg"]<code>imagens/case-4-print.webp · 720 x 1046</code></span><img src="/maquina-de-clientes/imagens/case-4-print.webp" alt="Print do comprovante de Pix de R$3 mil de uma consultoria online" width="720" height="1046" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></button>
             </li>
             <li class="v24">
               <div class="v24-txt">
                 <span class="ph v24-av" title="[FOTO DO CLIENTE: só com autorização] · imagens/case-5-foto.jpg"><span class="ph-label">[FOTO DO CLIENTE: só com autorização]</span><img src="/maquina-de-clientes/imagens/case-5-foto.jpg" alt="" width="160" height="160" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></span>
                 <p><em>Pix de R$11 mil fechados. O Liwerton é dono de agência, onde muita gente cobra R$50 a R$70 por criativo, ele cobra 5 dígitos por contrato.</em></p>
               </div>
-              <button class="ph zoom" type="button" aria-label="Ampliar print"><span class="ph-label">[PRINT: comprovante do Pix]<code>imagens/case-5-print.png · 720 x 215</code></span><img src="/maquina-de-clientes/imagens/case-5-print.png" alt="Print: comprovante do Pix" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></button>
+              <button class="ph zoom" type="button" aria-label="Ampliar print"><span class="ph-label">[PRINT: comprovante do Pix]<code>imagens/case-5-print.webp · 720 x 1559</code></span><img src="/maquina-de-clientes/imagens/case-5-print.webp" alt="Print do comprovante de Pix de R$11 mil fechados pelo Liwerton" width="720" height="1559" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></button>
             </li>
             <li class="v24">
               <div class="v24-txt">
                 <p><em>Um post com R$761,72 de verba trouxe uma venda de R$10.000.</em></p>
               </div>
-              <button class="ph zoom" type="button" aria-label="Ampliar print"><span class="ph-label">[PRINT: post patrocinado e venda]<code>imagens/case-6-print.png · 720 x 215</code></span><img src="/maquina-de-clientes/imagens/case-6-print.png" alt="Print: post patrocinado e venda" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></button>
+              <button class="ph zoom" type="button" aria-label="Ampliar print"><span class="ph-label">[PRINT: post patrocinado e venda]<code>imagens/case-6-print.webp · 720 x 1386</code></span><img src="/maquina-de-clientes/imagens/case-6-print.webp" alt="Print do post patrocinado de R$761,72 e da venda de R$10.000 que ele trouxe" width="720" height="1386" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></button>
             </li>
           </ol>
         </div>
@@ -603,7 +641,7 @@ b, strong { font-weight: 600; color: var(--fg); }
             </div>
           </li>
           <li class="modulo">
-            <div class="ph mod-img"><span class="ph-label">[MOCKUP DO ENTREGÁVEL]<code>imagens/modulo-4-aplicando-com-ia.webp · 800 x 800</code></span><img src="/maquina-de-clientes/imagens/modulo-4-aplicando-com-ia.webp" alt="Módulo 4, Aplicando com IA" width="800" height="800" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></div>
+            <div class="ph mod-img"><span class="ph-label">[MOCKUP DO ENTREGÁVEL]<code>imagens/modulo-4-aplicando-com-ia.webp · 480 x 423</code></span><img src="/maquina-de-clientes/imagens/modulo-4-aplicando-com-ia.webp" alt="Etapa 4, Aplicando com IA" width="480" height="423" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></div>
             <div class="mod-txt">
               <h3>ETAPA 4 · APLICANDO COM IA</h3>
               <p>O passo a passo pra usar o Claude ou o ChatGPT em cada etapa, com os comandos prontos pra copiar e colar.</p>
@@ -642,19 +680,19 @@ b, strong { font-weight: 600; color: var(--fg); }
       <div class="wrap">
         <div class="bonus-lista">
           <article class="bonus">
-            <div class="ph bonus-ico"><svg aria-hidden="true"><use href="#i-criativos"/></svg><img src="/maquina-de-clientes/imagens/bonus-1-banco-de-criativos.webp" alt="" width="480" height="480" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></div>
+            <div class="ph bonus-ico b-recorte" style="--glow: 214 96 150"><svg aria-hidden="true"><use href="#i-criativos"/></svg><img src="/maquina-de-clientes/imagens/bonus-1-banco-de-criativos-recorte.webp" alt="" width="457" height="424" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></div>
             <h3>BÔNUS 1 · BANCO DE CRIATIVOS</h3>
             <p><em>"Eu até entendo a estrutura... mas na hora de escrever, a folha fica em branco."</em> Aí entra o Banco de Criativos: os anúncios que mais trouxeram resultado para os meus clientes, em vários mercados. Copia a estrutura e adapta pro seu serviço.</p>
             <p class="bonus-valor"><s>R$97</s><b>ZERO</b></p>
           </article>
           <article class="bonus">
-            <div class="ph bonus-ico"><svg aria-hidden="true"><use href="#i-rede"/></svg><img src="/maquina-de-clientes/imagens/bonus-2-equipe-de-ia.webp" alt="" width="480" height="480" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></div>
+            <div class="ph bonus-ico b-luz" style="--glow: 196 118 56"><svg aria-hidden="true"><use href="#i-rede"/></svg><img src="/maquina-de-clientes/imagens/bonus-2-equipe-de-ia.webp" alt="" width="480" height="480" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></div>
             <h3>BÔNUS 2 · EQUIPE DE IA ESPECIALISTAS EM COPY PARA HIGH TICKET</h3>
             <p><em>"Já tentei a IA. Saiu um texto bonito que ninguém respondeu."</em> A IA genérica aprendeu com a média da internet. Estas skills foram treinadas por um copywriter sênior que vive da profissão e escreve pra cliente pagante toda semana. Guru que nunca escreveu uma linha de copy não tem o que ensinar pra IA nenhuma.</p>
             <p class="bonus-valor"><s>R$197</s><b>ZERO</b></p>
           </article>
           <article class="bonus">
-            <div class="ph bonus-ico"><svg aria-hidden="true"><use href="#i-play"/></svg><img src="/maquina-de-clientes/imagens/bonus-3-workshop-botao-impulsionar.webp" alt="" width="480" height="480" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></div>
+            <div class="ph bonus-ico b-luz" style="--glow: 170 30 52"><svg aria-hidden="true"><use href="#i-play"/></svg><img src="/maquina-de-clientes/imagens/bonus-3-workshop-botao-impulsionar.webp" alt="" width="480" height="480" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></div>
             <h3>BÔNUS 3 · WORKSHOP AO VIVO: GERANDO LEADS QUALIFICADOS COM O BOTÃO IMPULSIONAR</h3>
             <p><em>"Gerenciador de anúncios me dá dor de cabeça."</em> Então começa pelo atalho: como usar o botão Impulsionar, aquele que fica embaixo do seu post, pra trazer lead qualificado todo dia pro seu Instagram.</p>
             <p class="bonus-valor"><s>R$97</s><b>ZERO</b></p>
@@ -818,6 +856,15 @@ b, strong { font-weight: 600; color: var(--fg); }
           const img = ph.querySelector('img');
           if (!img || (img.complete && img.naturalWidth === 0 && img.getAttribute('src'))) vazio(ph);
           else img.addEventListener('error', () => vazio(ph));
+        });
+      }
+      // Modo publicação: case sem print some (prova social nunca só texto); sem nenhum print, o bloco de cases inteiro some (CSS)
+      if (document.documentElement.classList.contains('publicar')) {
+        document.querySelectorAll('#cases .v24').forEach(li => {
+          const z = li.querySelector('.zoom');
+          const img = z && z.querySelector('img');
+          if (!z || !img || z.classList.contains('vazio') || (img.complete && img.naturalWidth === 0)) li.classList.add('sem-print');
+          else img.addEventListener('error', () => li.classList.add('sem-print'));
         });
       }
       // Modo publicação: tira o separador que ficaria solto antes de um [CONFIRMAR] escondido
