@@ -146,8 +146,8 @@ b, strong { font-weight: 600; color: var(--fg); }
 .nome { font-size: clamp(1.2rem, 2vw, 1.55rem); letter-spacing: .02em; line-height: 1.15; text-transform: uppercase; color: var(--off); text-shadow: 0 2px 14px rgba(0,0,0,.6); }
 .headline { margin-top: 12px; max-width: 900px; font-size: clamp(1.75rem, 3.9vw, 2.9rem); font-weight: 600; letter-spacing: -.035em; line-height: 1.12; color: var(--off); }
 .headline strong { font-weight: 600; color: inherit; }
-/* Destaque da promessa: faixa terracota atrás do trecho, em qualquer largura (a faixa acompanha cada linha) */
-.headline mark.dest { background: var(--terra); color: var(--off); padding: .02em .16em; margin: 0 -.04em; border-radius: 0; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+/* Destaque da promessa: só a COR das palavras (aqua, da família do petróleo da pré-headline), sem tarja atrás */
+.headline mark.dest { background: none; color: #5EDDE0; padding: 0; margin: 0; }
 .hero .btn { margin-top: 26px; }
 
 /* ---------- Cases (bloco 5) ---------- */
@@ -735,13 +735,13 @@ html { touch-action: manipulation; -webkit-tap-highlight-color: rgba(184, 88, 75
       <div class="wrap">
         <div class="bonus-lista">
           <article class="bonus">
-            <div class="ph bonus-ico b-recorte" style="--glow: 214 96 150"><svg aria-hidden="true"><use href="#i-criativos"/></svg><img src="/maquina-de-clientes/imagens/bonus-1-banco-de-criativos.webp" alt="Banco de criativos em um notebook, com três vídeos na tela" width="800" height="800" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></div>
+            <div class="ph bonus-ico b-recorte" style="--glow: 214 96 150"><svg aria-hidden="true"><use href="#i-criativos"/></svg><img src="/maquina-de-clientes/imagens/bonus-1-banco-de-criativos.webp" alt="Banco de criativos em um notebook, com três vídeos na tela" width="640" height="640" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></div>
             <h3>BÔNUS 1 · BANCO DE CRIATIVOS</h3>
             <p><em>"Eu até entendo a estrutura... mas na hora de escrever, a folha fica em branco."</em> Aí entra o Banco de Criativos: os anúncios que mais trouxeram resultado para os meus clientes, em vários mercados. Copia a estrutura e adapta pro seu serviço.</p>
             <p class="bonus-valor"><s>R$97</s><b>ZERO</b></p>
           </article>
           <article class="bonus">
-            <div class="ph bonus-ico b-recorte" style="--glow: 255 138 31"><svg aria-hidden="true"><use href="#i-rede"/></svg><img src="/maquina-de-clientes/imagens/bonus-2-equipe-de-ia.webp" alt="Equipe de cinco especialistas de IA com rosto de robô" width="800" height="800" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></div>
+            <div class="ph bonus-ico b-recorte" style="--glow: 255 138 31"><svg aria-hidden="true"><use href="#i-rede"/></svg><img src="/maquina-de-clientes/imagens/bonus-2-equipe-de-ia.webp" alt="Equipe de cinco especialistas de IA com rosto de robô" width="640" height="640" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></div>
             <h3>BÔNUS 2 · EQUIPE DE IA ESPECIALISTAS EM COPY PARA HIGH TICKET</h3>
             <p><em>"Já tentei a IA. Saiu um texto bonito que ninguém respondeu."</em> A IA genérica aprendeu com a média da internet. Estas skills foram treinadas por um copywriter sênior que vive da profissão e escreve pra cliente pagante toda semana. Guru que nunca escreveu uma linha de copy não tem o que ensinar pra IA nenhuma.</p>
             <p class="bonus-valor"><s>R$197</s><b>ZERO</b></p>
@@ -791,7 +791,7 @@ html { touch-action: manipulation; -webkit-tap-highlight-color: rgba(184, 88, 75
           <div class="of-palco">
             <div class="of-manual">
               <h3>Veja tudo que você está garantindo</h3>
-              <div class="ph of-mockup"><span class="ph-label">[MOCKUP: Programa Máquina de Clientes com IA]<code>imagens/mockup-programa-maquina-de-clientes.webp · 1200 x 614, fundo transparente</code></span><img src="/maquina-de-clientes/imagens/mockup-programa-maquina-de-clientes.webp" alt="Programa Máquina de Clientes com IA no computador, tablet e celular" width="1200" height="614" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></div>
+              <div class="ph of-mockup"><span class="ph-label">[MOCKUP: Programa Máquina de Clientes com IA]<code>imagens/mockup-programa-maquina-de-clientes.webp · 1200 x 614, fundo transparente</code></span><img src="/maquina-de-clientes/imagens/mockup-programa-maquina-de-clientes.webp" alt="Programa Máquina de Clientes com IA no computador, tablet e celular" width="900" height="461" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></div>
               <ul class="of-tags"><li>Passo 1 · Brecha de Mercado</li><li>Passo 2 · Mensagem Magnética</li><li>Passo 3 · Anúncios High Ticket</li></ul>
             </div>
           </div>
@@ -830,7 +830,7 @@ html { touch-action: manipulation; -webkit-tap-highlight-color: rgba(184, 88, 75
     <section class="secao branco" aria-labelledby="h-garantia">
       <div class="wrap estreito">
         <div class="garantia">
-          <img class="selo-garantia" src="/maquina-de-clientes/imagens/selo-garantia-30-dias.webp" alt="Garantia de 30 dias" width="516" height="600" loading="lazy">
+          <img class="selo-garantia" src="/maquina-de-clientes/imagens/selo-garantia-30-dias.webp" alt="Garantia de 30 dias" width="520" height="607" loading="lazy">
           <div>
             <h2 id="h-garantia">ATÉ A NOSSA GARANTIA É DIFERENTE: VOCÊ TEM 30 DIAS PARA TESTAR O MÉTODO.</h2>
             <p>Entra. Abre o manual. Faz o Passo 1. Se em até 30 dias você achar que não valeu os R$27, pede o dinheiro de volta e recebe os R$27 inteiros. O risco fica comigo.</p>
@@ -857,7 +857,7 @@ html { touch-action: manipulation; -webkit-tap-highlight-color: rgba(184, 88, 75
 
     <!-- ===================== BLOCO 16 · QUEM ENSINA ===================== -->
     <section class="secao mentor-sec" aria-labelledby="h-tutor">
-      <div class="ph mentor-foto"><span class="ph-label">[FOTO DO NETANIAS]<code>imagens/netanias-mentor.webp · retrato 4 x 5, 880 x 1100</code></span><img src="/maquina-de-clientes/imagens/netanias-mentor.webp" alt="Netanias Ferreira" width="880" height="1100" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></div>
+      <div class="ph mentor-foto"><span class="ph-label">[FOTO DO NETANIAS]<code>imagens/netanias-mentor.webp · retrato 4 x 5, 880 x 1100</code></span><img src="/maquina-de-clientes/imagens/netanias-mentor.webp" alt="Netanias Ferreira" width="720" height="900" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()"></div>
       <div class="wrap">
         <div class="autor-txt">
           <h2 id="h-tutor">QUEM SERÁ SEU TUTOR?</h2>
