@@ -20,6 +20,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>if (/[?&]embed=1(&|$)/.test(location.search)) document.documentElement.classList.add("embed");</script>
 <style>
 :root{
   --bg1:#FFFFFF; --bg2:#FAF7F2; --act:#B8584B; --act-esc:#9C4A3F; --hl:#F2DDB3;
@@ -109,11 +110,19 @@ button,input,textarea{font:inherit;color:inherit}
 .mock-saida{margin-top:24px;font-size:12px}
 .mock-saida pre{white-space:pre-wrap;word-break:break-word;background:var(--bg1);border:1px solid var(--line);border-radius:8px;padding:12px;max-height:360px;overflow:auto}
 
+/* modo embed (iframe na LP): sem rolagem própria; a altura vai para a página-mãe por postMessage */
+html.embed,html.embed body{overflow:hidden}
+html.embed body{min-height:0}
+html.embed .topo{position:static}
+html.embed .palco{padding:16px 16px 24px}
+html.embed .legal{padding-bottom:12px}
+
 @media (min-width:768px){
   .palco{padding:56px 16px 64px}
   .tela h1{font-size:30px}
   .sub{font-size:17px}
   .final .texto p{font-size:18px}
+  html.embed .palco{padding:24px 24px 28px}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
@@ -231,6 +240,9 @@ const ss = { get(k) { try { return sessionStorage.getItem(k); } catch (e) { retu
 const ls = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
 
 UTM_KEYS.forEach((k) => { const v = qs.get(k); if (v) ss.set("ap3_" + k, v.slice(0, 500)); });
+const EMBED = qs.get("embed") === "1";
+const REF = (qs.get("ref") || "").slice(0, 1000);
+if (EMBED && /^https?:\/\//i.test(REF)) ss.set("ap3_url_origem", REF);   // no iframe, a origem é a URL da LP, não a do iframe
 if (!ss.get("ap3_url_origem")) ss.set("ap3_url_origem", location.href.slice(0, 1000));
 if (!ss.get("ap3_referrer")) ss.set("ap3_referrer", (document.referrer || "").slice(0, 1000));
 
@@ -554,9 +566,29 @@ function renderFinal() {
 
 if (MOCK) document.body.insertAdjacentHTML("beforeend", `<span class="mock">MODO TESTE${MOCK_ERRO ? ": ERRO" : ""}</span>`);
 
+/* ================== modo embed: conversa com a LP (só altura, tela e pedidos de foco/fechar; nenhum dado pessoal) ================== */
+function avisarAltura() {
+  if (!EMBED || window.parent === window) return;
+  const h = Math.ceil(document.body.getBoundingClientRect().height);
+  window.parent.postMessage({ tipo: "ap3-altura", h, passo: S.enviado ? "final" : S.passo }, "*");
+}
+if (EMBED) {
+  new MutationObserver(() => requestAnimationFrame(avisarAltura)).observe(palco, { childList: true });
+  if (window.ResizeObserver) new ResizeObserver(() => avisarAltura()).observe(document.body);
+  window.addEventListener("resize", avisarAltura);
+  window.addEventListener("load", avisarAltura);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(avisarAltura);
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") window.parent.postMessage({ tipo: "ap3-esc" }, "*"); });
+  window.addEventListener("message", (e) => {
+    if (e.source !== window.parent || !e.data || e.data.tipo !== "ap3-foco") return;
+    const alvo = $("h1", palco); if (alvo) alvo.focus({ preventScroll: true });
+  });
+}
+
 window.__AP3 = { TELAS, calcularRota, validarPayload, montarPayload, estado: () => S };
 render();
 retentarPendentes();
+avisarAltura();
 </script>
 </body>
 </html>

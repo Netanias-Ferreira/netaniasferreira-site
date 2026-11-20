@@ -2,8 +2,9 @@
 <html lang="pt-BR">
 <head>
 <script>
-  /* Destino de todos os botões "Quero aplicar agora." (a query string da LP é repassada: UTM, fbclid). */
-  const APPLY_URL = "/aplicacao/formulario";
+  /* Formulário de aplicação (o mesmo arquivo serve a página própria e o iframe com ?embed=1).
+     Modo do formulário na LP: pop-up (padrão) ou inline (?f=inline). */
+  const FORM_URL = "/aplicacao/formulario";
 </script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -71,6 +72,22 @@ p{margin:0 0 14px}
 .shot img{display:block;width:100%;height:100%;object-fit:contain}
 .shot-hint{position:absolute;right:8px;bottom:8px;background:rgba(43,43,43,.85);color:#fff;font-size:12px;font-weight:600;line-height:1;padding:6px 8px;border-radius:6px}
 .shot:focus-visible{outline:3px solid var(--tx);outline-offset:3px}
+/* Formulário integrado (iframe do formulário em ?embed=1) */
+.sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.form-frame{display:block;width:100%;height:640px;border:0;background:var(--bg2)}
+.form-inline{margin:28px 0 0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg2);text-align:left;scroll-margin-top:12px}
+html.pop-aberto,html.pop-aberto body{overflow:hidden}
+.pop{padding:0;border:0;margin:0;width:100%;max-width:100%;height:100%;height:100dvh;max-height:100%;max-height:100dvh;background:var(--bg2);color:var(--tx);overflow-y:auto;overscroll-behavior:contain}
+.pop::backdrop{background:rgba(20,20,20,.72)}
+.pop-caixa{min-height:100%;padding-bottom:env(safe-area-inset-bottom)}
+.pop-topo{position:sticky;top:0;z-index:2;display:flex;justify-content:flex-end;align-items:center;padding:calc(4px + env(safe-area-inset-top)) calc(8px + env(safe-area-inset-right)) 0 8px;background:var(--bg2)}
+.pop-fechar{width:44px;height:44px;border:0;border-radius:50%;background:transparent;color:var(--tx);font:700 26px/1 "Inter",sans-serif;cursor:pointer;touch-action:manipulation}
+.pop-fechar:hover{background:var(--line)}
+.pop-fechar:focus-visible{outline:3px solid var(--act);outline-offset:2px}
+@media (min-width:768px){
+  .pop{width:min(760px,94vw);height:auto;height:fit-content;max-height:92vh;max-height:92dvh;margin:auto;border-radius:16px;box-shadow:0 24px 64px rgba(0,0,0,.3)}
+  .pop-caixa{min-height:0}
+}
 /* Lightbox: dialog nativo (prende o foco, fecha com Esc) */
 .lb{border:0;padding:0;background:transparent;max-width:min(92vw,760px);max-height:92vh;overflow:visible}
 .lb::backdrop{background:rgba(20,20,20,.86)}
@@ -149,7 +166,8 @@ footer .legal a:focus-visible{outline:3px solid var(--act);outline-offset:2px;bo
       <li class="step"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 4h18l-7 8.5V19l-4 2v-8.5z"/><path d="M7 8h10"/></svg></span><h3>Etapa 5 - Qualificação Automática</h3><p>Qual o melhor funil de vendas para o contexto da sua empresa? Essa é uma resposta que apenas conversando com você podemos definir isso.</p><p>O guru vende um pacote pronto, aqui tudo que fazemos por você depende do momento da sua empresa.</p><p>Será feito um diagnóstico personalizado para entendermos os bastidores do seu negócio.</p></li>
       <li class="step"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M8 3v4M16 3v4"/><path d="M9 15.5l2 2 4-4"/></svg></span><h3>Etapa 6 - Fechamento Previsível</h3><p>Scripts para conseguir conversar e agendar reuniões qualificadas.</p><p>Roteiro e apresentação que convertem ofertas de até R$&nbsp;50&nbsp;mil.</p><p>Modelos para follow-up, recuperação e ativação de base.</p></li>
     </ol>
-    <div class="cta-row"><a class="cta" href="/aplicacao/formulario">Quero aplicar agora.</a></div>
+    <div class="cta-row" id="cta-etapas"><a class="cta" href="/aplicacao/formulario">Quero aplicar agora.</a></div>
+    <div class="form-inline" id="aplicar" hidden></div>
   </div>
 </section>
 
@@ -224,6 +242,13 @@ footer .legal a:focus-visible{outline:3px solid var(--act);outline-offset:2px;bo
   </div>
 </footer>
 
+<dialog class="pop" id="pop" role="dialog" aria-modal="true" aria-labelledby="pop-titulo">
+  <div class="pop-caixa">
+    <div class="pop-topo"><span class="sr" id="pop-titulo">Formulário de aplicação</span><button type="button" class="pop-fechar" id="pop-fechar" aria-label="Fechar o formulário">&times;</button></div>
+    <div id="pop-corpo"></div>
+  </div>
+</dialog>
+
 <dialog class="lb" id="lb" aria-label="Print ampliado">
   <img id="lb-img" src="data:," alt="">
   <button type="button" class="lb-close" id="lb-close" aria-label="Fechar o print ampliado">&times;</button>
@@ -248,11 +273,109 @@ footer .legal a:focus-visible{outline:3px solid var(--act);outline-offset:2px;bo
     dlg.addEventListener("close", function () { img.src = "data:,"; if (last) last.focus(); });
   })();
   (function () {
-    function destino() { return APPLY_URL + (window.location.search || ""); }
-    document.querySelectorAll("a.cta").forEach(function (a) {
-      a.setAttribute("href", destino());
-      a.addEventListener("click", function () { a.setAttribute("href", destino()); });
+    var q = new URLSearchParams(location.search);
+    var INLINE = q.get("f") === "inline";
+    q.delete("f");                                   /* o modo da LP não vai para o formulário */
+    var qsLP = q.toString();                          /* utm, fbclid, mock... */
+    var fallback = FORM_URL + (qsLP ? "?" + qsLP : "");
+    var reduz = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var ctas = document.querySelectorAll("a.cta");
+    var iframe = null, ultimoPasso = null;
+    ctas.forEach(function (a) { a.setAttribute("href", fallback); });   /* sem JS: abre a página do formulário */
+
+    function srcIframe() {
+      var p = new URLSearchParams(qsLP);
+      p.set("embed", "1");
+      p.set("ref", location.href.split("#")[0]);
+      return FORM_URL + "?" + p.toString();
+    }
+    function criar(onde) {
+      if (iframe) return iframe;
+      iframe = document.createElement("iframe");
+      iframe.className = "form-frame";
+      iframe.title = "Formulário de aplicação";
+      iframe.src = srcIframe();
+      iframe.addEventListener("load", function () { if (!INLINE && pop.open) focoNoForm(); });
+      onde.appendChild(iframe);
+      return iframe;
+    }
+    function focoNoForm() {
+      if (!iframe) return;
+      try { iframe.focus(); iframe.contentWindow.postMessage({ tipo: "ap3-foco" }, "*"); } catch (e) {}
+    }
+    function aoTrocarTela() {
+      if (!INLINE) { pop.scrollTop = 0; return; }
+      var r = iframe.getBoundingClientRect();
+      if (r.top < 0 || r.top > window.innerHeight * 0.4) iframe.scrollIntoView({ behavior: reduz ? "auto" : "smooth", block: "start" });
+    }
+    window.addEventListener("message", function (e) {
+      if (!iframe || e.source !== iframe.contentWindow || !e.data) return;
+      if (e.data.tipo === "ap3-altura" && e.data.h > 0) {
+        iframe.style.height = e.data.h + "px";
+        if (ultimoPasso !== null && e.data.passo !== ultimoPasso) aoTrocarTela();
+        ultimoPasso = e.data.passo;
+      } else if (e.data.tipo === "ap3-esc" && !INLINE && pop.open) {
+        fechar();
+      }
     });
+
+    var pop = document.getElementById("pop");
+
+    if (INLINE) {
+      var box = document.getElementById("aplicar");
+      box.hidden = false;
+      document.getElementById("cta-etapas").hidden = true;
+      criar(box);
+      ctas.forEach(function (a) {
+        a.setAttribute("href", "#aplicar");
+        a.addEventListener("click", function (e) {
+          e.preventDefault();
+          box.scrollIntoView({ behavior: reduz ? "auto" : "smooth", block: "start" });
+          setTimeout(focoNoForm, reduz ? 0 : 450);
+        });
+      });
+      return;
+    }
+
+    /* pop-up (padrão) */
+    var corpo = document.getElementById("pop-corpo"), gatilho = null;
+    function temResposta() {
+      try {
+        var st = JSON.parse(sessionStorage.getItem("ap3_estado") || "null");
+        if (!st || st.enviado) return false;
+        var c = st.c || {};
+        return Object.keys(st.r || {}).length > 0 || Object.keys(c).some(function (k) { return String(c[k] || "").trim() !== ""; });
+      } catch (e) { return false; }
+    }
+    function abrir(btn) {
+      gatilho = btn;
+      criar(corpo);
+      document.documentElement.classList.add("pop-aberto");
+      pop.showModal();
+      pop.scrollTop = 0;
+      setTimeout(focoNoForm, 60);
+    }
+    function fechar() { if (pop.open) pop.close(); }
+    pop.addEventListener("close", function () {
+      document.documentElement.classList.remove("pop-aberto");
+      if (gatilho) gatilho.focus();
+    });
+    document.getElementById("pop-fechar").addEventListener("click", fechar);
+    pop.addEventListener("click", function (e) {
+      if (e.target !== pop) return;                  /* só o fundo escuro, fora da janela */
+      if (temResposta() && !window.confirm("Você já começou a responder. Quer mesmo fechar? Suas respostas ficam guardadas neste aparelho até você voltar.")) return;
+      fechar();
+    });
+    ctas.forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        if (e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;   /* nova aba: segue o link */
+        if (typeof pop.showModal !== "function") return;                                 /* navegador antigo: segue o link */
+        e.preventDefault();
+        abrir(a);
+      });
+    });
+    /* carrega o formulário em tempo ocioso para o pop-up abrir na hora */
+    (window.requestIdleCallback || function (f) { setTimeout(f, 1500); })(function () { criar(corpo); });
   })();
 </script>
 </body>
