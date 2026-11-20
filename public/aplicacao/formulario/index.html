@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<!-- Formulário de aplicação · Aplicação 3 · Netanias Ferreira
+     Copy: formulario-aplicacao-3.md (mesma pasta), 8 perguntas + contato (revisão do Netanias) + Tela 11 neutra da Variante 2 (tela final única; a rota é só para o CRM, nunca aparece). Texto literal; só saíram as marcas internas.
+     Plataforma: HTML único · Stack: domínio único do Netanias (public/<slug>/index.html, push na main, só com OK)
+     Destino dos dados: Supabase do CRM (SIS-02) pela função registrar_lead_aplicacao_3 (SQL em lp-aplicacao-3-formulario-leads.sql).
+     Sem a SQL aplicada no Supabase o envio real falha (a pessoa vê a tela de erro, nunca a tela final).
+     Teste local sem rede: abrir com ?mock=1 (ou ?mock=erro para simular falha).
+     Aviso: a regra de rota roda no navegador e fica visível no código; o banco recalcula a rota por conta própria. -->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#FAF7F2">
+<title>Aplicação | Netanias Ferreira</title>
+<meta name="description" content="Formulário de aplicação.">
+<meta property="og:title" content="Aplicação | Netanias Ferreira">
+<meta property="og:description" content="Formulário de aplicação.">
+<!-- og:image: DESCONHECIDO (página noindex; não há imagem de compartilhamento definida) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg1:#FFFFFF; --bg2:#FAF7F2; --act:#B8584B; --act-esc:#9C4A3F; --hl:#F2DDB3;
+  --tx:#2B2B2B; --mu:#5E5750; --line:#E8DFD2;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--tx);background:var(--bg2);line-height:1.55;-webkit-font-smoothing:antialiased;min-height:100vh;min-height:100dvh}
+button,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--act);outline-offset:2px}
+.sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* topo: progresso + voltar */
+.topo{position:sticky;top:0;z-index:10;background:var(--bg2)}
+.barra{height:4px;background:var(--line)}
+.barra i{display:block;height:100%;width:0;background:var(--act);transition:width .3s ease}
+.topo-linha{display:flex;align-items:center;justify-content:space-between;gap:8px;max-width:672px;margin:0 auto;padding:4px 16px}
+.voltar{flex:none;width:48px;display:inline-flex;align-items:center;gap:6px;min-height:48px;min-width:48px;padding:0 8px 0 0;background:none;border:0;color:var(--mu);font-size:15px;font-weight:600;cursor:pointer;touch-action:manipulation}
+.voltar:hover{color:var(--tx)}
+.voltar[hidden]{display:inline-flex;visibility:hidden}
+.voltar svg{width:20px;height:20px}
+.marca{flex:1;min-width:0;font-size:13px;line-height:1.3;font-weight:700;color:var(--tx);text-align:center;text-wrap:balance}
+.topo-lado{flex:none;width:48px}
+.voltar-txt{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (min-width:480px){.voltar,.topo-lado{width:88px}.voltar-txt{position:static;width:auto;height:auto;overflow:visible;clip:auto}}
+
+/* palco da pergunta */
+.palco{max-width:672px;margin:0 auto;padding:24px 16px 48px}
+.tela{outline:none}
+.tela h1:focus{outline:none}
+.tela.entra{animation:entra .26s ease-out both}
+@keyframes entra{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.num{display:block;font-size:14px;font-weight:700;color:var(--act);margin:0 0 8px}
+.tela h1{font-size:24px;line-height:1.25;font-weight:800;letter-spacing:-.015em;margin:0 0 10px;text-wrap:balance}
+.sub{font-size:16px;color:var(--mu);margin:0 0 22px}
+.sub:empty{display:none}
+.tela h1 + .opcoes{margin-top:20px}
+
+/* cartões de opção */
+.opcoes{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.op{display:flex;align-items:flex-start;gap:12px;width:100%;min-height:56px;padding:14px 16px;text-align:left;background:var(--bg1);border:1px solid var(--line);border-radius:10px;font-size:16px;line-height:1.45;color:var(--tx);cursor:pointer;transition:border-color .15s ease,background-color .15s ease;touch-action:manipulation}
+.op:hover{border-color:var(--act)}
+.op .letra{flex:none;display:inline-grid;place-items:center;width:28px;height:28px;margin-top:-2px;border:1px solid var(--act);border-radius:6px;color:var(--act);font-size:13px;font-weight:700;background:var(--bg1);transition:background-color .15s ease,color .15s ease}
+.op[aria-checked="true"]{background:var(--hl);border-color:var(--act);box-shadow:inset 0 0 0 1px var(--act)}
+.op[aria-checked="true"] .letra{background:var(--act);color:#FFFFFF}
+.dica{font-size:13px;color:var(--mu);margin:14px 0 0}
+
+/* botões */
+.acoes{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:22px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:14px 26px;border:0;border-radius:10px;background:var(--act);color:#FFFFFF;font-size:17px;font-weight:700;text-decoration:none;cursor:pointer;transition:background-color .15s ease;touch-action:manipulation}
+.btn:hover{background:var(--act-esc)}
+.btn[disabled]{opacity:.55;cursor:not-allowed}
+.btn.largo{width:100%}
+.btn-sec{min-height:48px;padding:0 12px;background:none;border:0;color:var(--mu);font-size:16px;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.btn-sec:hover{color:var(--tx)}
+.btn .giro{width:18px;height:18px;border:2px solid rgba(255,255,255,.45);border-top-color:#FFFFFF;border-radius:50%;animation:giro .8s linear infinite}
+@keyframes giro{to{transform:rotate(360deg)}}
+
+/* campos */
+.campo{margin:0 0 16px}
+.campo label{display:block;font-size:15px;font-weight:600;margin:0 0 6px}
+.campo input,.campo textarea{display:block;width:100%;min-height:52px;padding:12px 14px;background:var(--bg1);border:1px solid var(--mu);border-radius:10px;font-size:16px;line-height:1.45}
+.campo textarea{min-height:120px;resize:vertical}
+.campo input::placeholder,.campo textarea::placeholder{color:#7A726A}
+.campo input[aria-invalid="true"]{border-color:var(--act);box-shadow:inset 0 0 0 1px var(--act)}
+.erro-campo{font-size:14px;color:var(--act);font-weight:600;margin:6px 0 0}
+.erro-campo:empty{display:none}
+.apoio p{font-size:16px;color:var(--mu);margin:0 0 12px}
+.op,.campo input,.campo textarea,.btn{scroll-margin-top:80px;scroll-margin-bottom:24px}
+.hp{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
+
+/* erro de envio */
+.alerta{margin:18px 0 0;padding:14px 16px;border:1px solid var(--act);border-radius:10px;background:var(--bg1)}
+.alerta p{margin:0 0 10px;font-size:15px}
+.alerta[hidden]{display:none}
+
+/* telas finais */
+.final .texto p{font-size:17px;margin:0 0 14px}
+.final .texto b{font-weight:700}
+.final .btn{margin-top:10px}
+
+
+.legal{max-width:672px;margin:0 auto;padding:0 16px calc(16px + env(safe-area-inset-bottom));display:flex;flex-wrap:wrap;gap:4px 16px;font-size:12px;line-height:1.4;color:var(--mu)}
+.legal a{display:inline-flex;align-items:center;min-height:44px;color:var(--mu);text-underline-offset:2px}
+.legal a:hover{color:var(--tx)}
+.mock{position:fixed;right:8px;bottom:8px;z-index:20;background:#F97316;color:#1A1A1A;font-size:12px;font-weight:800;padding:4px 8px;border-radius:4px}
+.mock-saida{margin-top:24px;font-size:12px}
+.mock-saida pre{white-space:pre-wrap;word-break:break-word;background:var(--bg1);border:1px solid var(--line);border-radius:8px;padding:12px;max-height:360px;overflow:auto}
+
+@media (min-width:768px){
+  .palco{padding:56px 16px 64px}
+  .tela h1{font-size:30px}
+  .sub{font-size:17px}
+  .final .texto p{font-size:18px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+<header class="topo">
+  <div class="barra" id="progresso" role="progressbar" aria-label="Progresso do formulário" aria-valuemin="0" aria-valuemax="9" aria-valuenow="1"><i id="barra"></i></div>
+  <div class="topo-linha">
+    <button type="button" class="voltar" id="voltar" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+      <span class="voltar-txt">Voltar</span>
+    </button>
+    <span class="marca">Sistema de Aquisição de Leads e Clientes de Alto Ticket</span>
+    <span class="topo-lado" aria-hidden="true"></span>
+  </div>
+</header>
+
+<main class="palco" id="palco"></main>
+<p class="sr" id="anuncio" aria-live="polite"></p>
+
+<footer class="legal">
+  <a href="https://netaniasferreira.com.br/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>
+  <a href="https://netaniasferreira.com.br/termos-e-condicoes/" target="_blank" rel="noopener">Termos e Condições</a>
+</footer>
+
+<script>
+/* ================== CONFIG (o único lugar para mexer) ================== */
+const CONFIG = {
+  SUPABASE_URL: "https://jxricnopvahlauurrwvj.supabase.co",          // mesmo projeto do CRM (SIS-02)
+  SUPABASE_CHAVE_PUBLICA: "sb_publishable_JeZAfeTSJvyiem-25UiVRA_Hgs4oBCt", // chave pública (anon). NUNCA a service_role aqui.
+  RPC: "registrar_lead_aplicacao_3",
+  MOCK: false,                                   // true = não grava, só valida o envio (igual a ?mock=1)
+  WHATSAPP_NETANIAS: "5585981825194",            // WhatsApp de trabalho (link wa.me)
+  WHATSAPP_NETANIAS_EXIBIDO: "(85) 98182-5194"   // como o número aparece na tela final
+};
+
+/* ================== COPY (formulario-aplicacao-3.md + revisão do Netanias, 19/11/2026) ================== */
+const TELAS = [
+  { id: 1, tipo: "unica", pergunta: "O que você vende hoje?", opcoes: [
+    "Mentoria, consultoria ou serviço que eu já vendi várias vezes.",
+    "Já vendi algumas vezes, quase tudo por indicação ou pra quem já me conhecia.",
+    "Tenho resultado com cliente e grana pra começar, mas a oferta ainda não está no papel.",
+    "Curso gravado, infoproduto barato ou lançamento.",
+    "Ainda estou estudando a área, sem cliente atendido."
+  ]},
+  { id: 2, tipo: "unica", pergunta: "Quanto custa a sua oferta principal?", opcoes: [
+    "Até R$ 3 mil",
+    "Entre R$ 3 e R$ 5 mil",
+    "Entre R$ 5 e R$ 10 mil",
+    "Acima de R$ 10 mil"
+  ]},
+  { id: 3, tipo: "unica", pergunta: "Quanto o negócio fatura por mês, na média dos últimos 3 meses?", opcoes: [
+    "Ainda não faturo com isso.",
+    "Até R$10 mil.",
+    "Mais de R$10 mil até R$20 mil.",
+    "Mais de R$20 mil até R$40 mil.",
+    "Mais de R$40 mil até R$100 mil.",
+    "Mais de R$100 mil."
+  ]},
+  { id: 4, tipo: "unica", pergunta: "Quantas calls de venda você fez no último mês?", opcoes: [
+    "Nenhuma ainda.",
+    "De 1 a 5.",
+    "De 6 a 15.",
+    "De 16 a 30.",
+    "Mais de 30."
+  ]},
+  { id: 5, tipo: "multipla", pergunta: "De onde vem o lead que faz reunião com você hoje?", sub: "Pode marcar mais de uma.", opcoes: [
+    "Anúncio: chega mensagem todo dia, e a maioria pergunta o preço e some.",
+    "Indicação: quando vem, fecha. O problema é que não vem toda semana.",
+    "Prospecção na DM ou no LinkedIn: horas de “oi, tudo bem?” e uma canseira no fim do dia.",
+    "Instagram orgânico: o pessoal torce por mim, mas não contrata.",
+    "Lançamento ou evento: o caixa enche e depois vêm meses de agenda vazia.",
+    "Ainda não chega ninguém de forma constante."
+  ]},
+  { id: 6, tipo: "unica", pergunta: "Quanto você investe por mês em anúncio pra trazer cliente novo?", sub: "A verba é sua e vai direto pro Meta. Aqui eu só quero saber o tamanho da conta que a gente vai fazer junto.", opcoes: [
+    "R$0. Hoje não invisto em anúncio.",
+    "Menos de R$1 mil.",
+    "De R$1 mil até R$2.999.",
+    "De R$3 mil até R$5 mil.",
+    "Mais de R$5 mil até R$10 mil.",
+    "Mais de R$10 mil."
+  ]},
+  { id: 7, tipo: "unica", pergunta: "Quem está à frente da sua empresa?", opcoes: [
+    "Só eu.",
+    "Eu e minha esposa ou meu marido.",
+    "Eu e meu sócio ou minha sócia.",
+    "Eu e um coprodutor.",
+    "Eu e uma agência de marketing.",
+    "Eu e o meu mentor."
+  ]},
+  { id: 8, tipo: "unica", pergunta: "O que mais te incomoda hoje no dia a dia?", opcoes: [
+    "Cansei de call de uma hora que termina em “vou pensar”.",
+    "Cansei de explicar o preço pra quem não tem nem a entrada.",
+    "Até hoje, todo cliente que fechei era amigo ou indicação. De anúncio, nenhum.",
+    "Faz meses que o faturamento não sai do lugar, e eu já entendi que sozinho(a) não vai."
+  ]},
+  { id: 9, tipo: "contato", pergunta: "Última: pra onde eu mando a resposta?",
+    apoio: [
+      "Confere o WhatsApp, porque é por ele que a gente marca a conversa."
+    ],
+    campos: { nome: "Nome", whatsapp: "WhatsApp com DDD", email: "E-mail", instagram: "@ do Instagram (opcional)" } }
+];
+const LETRAS = "ABCDEFG";
+const TOTAL = TELAS.length;
+
+/* ================== modo, armazenamento, UTM ================== */
+const qs = new URLSearchParams(location.search);
+const MOCK = CONFIG.MOCK || qs.has("mock");
+const MOCK_ERRO = qs.get("mock") === "erro";
+const K_ESTADO = "ap3_estado", K_PEND = "ap3_pendentes";
+const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "fbclid"];
+const ss = { get(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { sessionStorage.setItem(k, v); } catch (e) {} } };
+const ls = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
+
+UTM_KEYS.forEach((k) => { const v = qs.get(k); if (v) ss.set("ap3_" + k, v.slice(0, 500)); });
+if (!ss.get("ap3_url_origem")) ss.set("ap3_url_origem", location.href.slice(0, 1000));
+if (!ss.get("ap3_referrer")) ss.set("ap3_referrer", (document.referrer || "").slice(0, 1000));
+
+const uid = () => (crypto && crypto.randomUUID) ? crypto.randomUUID() : "x" + Date.now().toString(36) + Math.random().toString(36).slice(2, 12);
+let S = null;
+try { S = JSON.parse(ss.get(K_ESTADO) || "null"); } catch (e) { S = null; }
+if (!S || typeof S !== "object" || !S.r || S.v !== 2) S = { v: 2, passo: 0, r: {}, c: { nome: "", whatsapp: "", email: "", instagram: "" }, envio_id: uid(), enviado: false, rota: null, final: null };
+const salvar = () => ss.set(K_ESTADO, JSON.stringify(S));
+
+/* ================== rota (regra nova do Netanias, 19/11/2026; o banco recalcula igual) ================== */
+function calcularRota(r) {
+  const t5 = Array.isArray(r.t5) ? r.t5 : [];
+  const anuncia = t5.includes("A");                        // anuncia = Tela 5 com A
+  const ABC = ["A", "B", "C"].includes(r.t6);
+  const verm = [], ama = [];
+  if (r.t1 === "D" || r.t1 === "E") verm.push("tela1=" + r.t1);
+  if (ABC && !anuncia) verm.push("tela6=" + r.t6 + "+sem_anuncio_tela5");
+  if (r.t2 === "A") ama.push("tela2=A");
+  if (ABC && anuncia) ama.push("tela6=" + r.t6 + "+anuncia_tela5");
+  let rota, gatilhos;
+  if (verm.length) { rota = "vermelho"; gatilhos = verm; }
+  else if (ama.length) { rota = "amarelo"; gatilhos = ama; }
+  else { rota = "verde"; gatilhos = ["sem_gatilho_vermelho_ou_amarelo"]; }
+  const pede_socio = ["B", "C", "D"].includes(r.t7);    // decide junto com outra pessoa
+  if (pede_socio) gatilhos = gatilhos.concat("tela7=" + r.t7 + "+pede_socio");
+  // Prioridade entre VERDES (máximo 8)
+  let p = 0;
+  p += ({ B: 1, C: 2, D: 3 })[r.t2] || 0;                // Tela 2
+  p += ({ D: 1, E: 2, F: 3 })[r.t6] || 0;                // Tela 6
+  if (["A", "B", "D"].includes(r.t8)) p += 1;            // Tela 8 = A, B ou D
+  if (r.t4 === "D" || r.t4 === "E") p += 1;              // Tela 4 = D ou E
+  return { rota, gatilhos, pede_socio, pontuacao: p, anuncia };
+}
+
+/* ================== utilidades ================== */
+const $ = (s, el = document) => el.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+const reduzido = () => window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+const digitos = (s) => String(s || "").replace(/\D/g, "");
+
+/* máscara e validação do WhatsApp (BR) */
+const DDDS = "11 12 13 14 15 16 17 18 19 21 22 24 27 28 31 32 33 34 35 37 38 41 42 43 44 45 46 47 48 49 51 53 54 55 61 62 63 64 65 66 67 68 69 71 73 74 75 77 79 81 82 83 84 85 86 87 88 89 91 92 93 94 95 96 97 98 99".split(" ");
+function zapLocal(s) { let d = digitos(s); if (d.length >= 12 && d.startsWith("55")) d = d.slice(2); return d.replace(/^0+/, "").slice(0, 11); }
+function mascaraZap(s) {
+  const d = zapLocal(s);
+  if (d.length <= 2) return d.length ? `(${d}` : "";
+  if (d.length <= 6) return `(${d.slice(0, 2)}) ${d.slice(2)}`;
+  if (d.length <= 10) return `(${d.slice(0, 2)}) ${d.slice(2, 6)}-${d.slice(6)}`;
+  return `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`;
+}
+function zapValido(s) {
+  const d = zapLocal(s);
+  if (!DDDS.includes(d.slice(0, 2))) return false;
+  if (d.length === 11) return d[2] === "9";
+  return d.length === 10 && /[2-5]/.test(d[2]);    // fixo
+}
+const emailValido = (s) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(s || "").trim()) && String(s).trim().length <= 160;
+const normInsta = (s) => String(s || "").trim().replace(/^https?:\/\/(www\.)?instagram\.com\//i, "").replace(/[/?#].*$/, "").replace(/^@+/, "").toLowerCase();
+const instaValido = (s) => s === "" || /^[a-z0-9._]{1,30}$/.test(s);
+
+/* ================== render ================== */
+const palco = $("#palco"), barra = $("#barra"), progresso = $("#progresso"), anuncio = $("#anuncio"), btnVoltar = $("#voltar");
+let avancando = false;
+
+function topo(i) {
+  const fim = i >= TOTAL;
+  barra.style.width = (fim ? 100 : Math.round((i / TOTAL) * 100)) + "%";
+  progresso.setAttribute("aria-valuenow", String(fim ? TOTAL : i + 1));
+  progresso.setAttribute("aria-valuetext", fim ? "Concluído" : `Pergunta ${i + 1} de ${TOTAL}`);
+  btnVoltar.hidden = fim || i === 0;
+}
+
+function montar(html, rotulo) {
+  palco.innerHTML = html;
+  const t = $(".tela", palco);
+  if (!reduzido()) t.classList.add("entra");
+  anuncio.textContent = rotulo;
+  const h = $("h1", t);
+  if (h) { h.setAttribute("tabindex", "-1"); h.focus({ preventScroll: true }); }
+  window.scrollTo({ top: 0, behavior: "auto" });
+}
+
+function render() {
+  if (S.enviado && S.final) return renderFinal();
+  const i = Math.max(0, Math.min(S.passo, TOTAL - 1));
+  S.passo = i; salvar(); topo(i);
+  const t = TELAS[i], chave = "t" + t.id;
+  const cab = `<h1 id="q${t.id}">${esc(t.pergunta)}</h1>${t.sub ? `<p class="sub" id="s${t.id}">${esc(t.sub)}</p>` : ""}`;
+  let corpo = "";
+  if (t.tipo === "unica" || t.tipo === "multipla") {
+    const multi = t.tipo === "multipla";
+    const sel = multi ? (S.r[chave] || []) : [S.r[chave]];
+    corpo = `<ul class="opcoes" role="${multi ? "group" : "radiogroup"}" aria-labelledby="q${t.id}"${t.sub ? ` aria-describedby="s${t.id}"` : ""}>` +
+      t.opcoes.map((o, k) => `<li><button type="button" class="op" role="${multi ? "checkbox" : "radio"}" aria-checked="${sel.includes(LETRAS[k])}" data-letra="${LETRAS[k]}"><span class="letra" aria-hidden="true">${LETRAS[k]}</span><span>${esc(o)}</span></button></li>`).join("") +
+      `</ul><p class="dica">Digite a letra ou clique na opção</p>` +
+      (multi ? `<div class="acoes"><button type="button" class="btn" id="continuar"${sel.length ? "" : " disabled"}>Continuar</button></div>` : "");
+  } else {
+    const c = S.c, L = t.campos;
+    corpo = `<div class="apoio">${t.apoio.map((p) => `<p>${esc(p)}</p>`).join("")}</div>
+      <form id="form" novalidate>
+        <div class="hp" aria-hidden="true"><label for="empresa_site">Não preencha</label><input id="empresa_site" name="empresa_site" tabindex="-1" autocomplete="off"></div>
+        ${campo("nome", L.nome, "text", c.nome, 'autocomplete="name" maxlength="120" required')}
+        ${campo("whatsapp", L.whatsapp, "tel", c.whatsapp, 'autocomplete="tel-national" inputmode="tel" placeholder="(85) 99999-8888" maxlength="16" required')}
+        ${campo("email", L.email, "email", c.email, 'autocomplete="email" inputmode="email" spellcheck="false" maxlength="160" required')}
+        ${campo("instagram", L.instagram, "text", c.instagram, 'autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="60" placeholder="@seuperfil"')}
+        <button type="submit" class="btn largo" id="enviar">Enviar respostas</button>
+        <div class="alerta" id="alerta" role="alert" hidden>
+          <p><b>Não consegui enviar as suas respostas.</b> Elas continuam guardadas neste aparelho. Confira a internet e tente de novo.</p>
+          <button type="button" class="btn" id="tentar">Tentar de novo</button>
+        </div>
+      </form>`;
+  }
+  montar(`<section class="tela" aria-labelledby="q${t.id}">${cab}${corpo}</section>`, `Pergunta ${i + 1} de ${TOTAL}`);
+  ligar(t);
+}
+
+function campo(id, label, type, val, extra) {
+  return `<div class="campo"><label for="f_${id}">${esc(label)}</label><input id="f_${id}" name="${id}" type="${type}" value="${esc(val)}" ${extra} aria-describedby="e_${id}"><p class="erro-campo" id="e_${id}" aria-live="polite"></p></div>`;
+}
+
+function ir(n) { S.passo = n; salvar(); render(); }
+
+function ligar(t) {
+  const chave = "t" + t.id;
+  if (t.tipo === "unica") {
+    palco.querySelectorAll(".op").forEach((b) => b.addEventListener("click", () => escolher(t, b.dataset.letra)));
+  } else if (t.tipo === "multipla") {
+    palco.querySelectorAll(".op").forEach((b) => b.addEventListener("click", () => alternar(t, b.dataset.letra)));
+    $("#continuar").addEventListener("click", () => { if ((S.r[chave] || []).length) ir(S.passo + 1); });
+  } else {
+    const f = $("#form");
+    const zap = $("#f_whatsapp");
+    zap.addEventListener("input", () => { const pos = zap.value.length; zap.value = mascaraZap(zap.value); if (pos !== zap.value.length) zap.setSelectionRange(zap.value.length, zap.value.length); });
+    ["nome", "whatsapp", "email", "instagram"].forEach((k) => $("#f_" + k).addEventListener("input", (e) => { S.c[k] = e.target.value; salvar(); erro(k, ""); }));
+    f.addEventListener("submit", (e) => { e.preventDefault(); enviar(); });
+    $("#tentar").addEventListener("click", enviar);
+  }
+}
+
+function escolher(t, letra) {
+  if (avancando) return;
+  S.r["t" + t.id] = letra; salvar();
+  palco.querySelectorAll(".op").forEach((b) => b.setAttribute("aria-checked", String(b.dataset.letra === letra)));
+  avancando = true;
+  setTimeout(() => { avancando = false; ir(S.passo + 1); }, reduzido() ? 120 : 320);
+}
+function alternar(t, letra) {
+  const k = "t" + t.id, cur = new Set(S.r[k] || []);
+  cur.has(letra) ? cur.delete(letra) : cur.add(letra);
+  S.r[k] = LETRAS.split("").filter((l) => cur.has(l)); salvar();
+  palco.querySelectorAll(".op").forEach((b) => b.setAttribute("aria-checked", String(cur.has(b.dataset.letra))));
+  $("#continuar").disabled = !S.r[k].length;
+}
+
+btnVoltar.addEventListener("click", () => { if (S.passo > 0 && !S.enviado) ir(S.passo - 1); });
+
+document.addEventListener("keydown", (e) => {
+  if (S.enviado || e.ctrlKey || e.metaKey || e.altKey) return;
+  const tag = (e.target.tagName || "").toLowerCase();
+  if (tag === "input" || tag === "textarea") return;
+  const t = TELAS[S.passo];
+  if (!t || (t.tipo !== "unica" && t.tipo !== "multipla")) return;
+  const L = e.key.length === 1 ? e.key.toUpperCase() : "";
+  const k = LETRAS.indexOf(L);
+  if (L && k > -1 && k < t.opcoes.length) { e.preventDefault(); t.tipo === "unica" ? escolher(t, L) : alternar(t, L); return; }
+  if (e.key === "Enter" && t.tipo === "multipla" && (S.r["t" + t.id] || []).length && tag !== "button") { e.preventDefault(); ir(S.passo + 1); }
+});
+
+/* ================== envio ================== */
+function erro(k, msg) { const p = $("#e_" + k), i = $("#f_" + k); if (p) p.textContent = msg; if (i) i.setAttribute("aria-invalid", msg ? "true" : "false"); }
+
+function validarContato() {
+  const c = S.c; let primeiro = null;
+  const marca = (k, m) => { erro(k, m); if (m && !primeiro) primeiro = k; };
+  const nome = c.nome.trim();
+  marca("nome", nome.length < 2 ? "Escreva o seu nome." : "");
+  marca("whatsapp", !zapValido(c.whatsapp) ? "Confira o WhatsApp: DDD + número, ex.: (85) 99999-8888." : "");
+  marca("email", !emailValido(c.email) ? "Confira o e-mail, ex.: nome@empresa.com." : "");
+  marca("instagram", !instaValido(normInsta(c.instagram)) ? "Use só o @ do perfil, ex.: @seuperfil." : "");
+  if (primeiro) $("#f_" + primeiro).focus();
+  return !primeiro;
+}
+
+function legiveis(r) {
+  const out = {};
+  TELAS.filter((t) => t.tipo === "unica" || t.tipo === "multipla").forEach((t) => {
+    const key = "Tela " + String(t.id).padStart(2, "0");
+    let resp = "";
+    if (t.tipo === "unica") resp = r["t" + t.id] ? `${r["t" + t.id]}) ${t.opcoes[LETRAS.indexOf(r["t" + t.id])]}` : "";
+    else resp = (r["t" + t.id] || []).map((l) => `${l}) ${t.opcoes[LETRAS.indexOf(l)]}`).join(" / ");
+    out[key] = `${t.pergunta} → ${resp}`;
+  });
+  return out;
+}
+
+function montarPayload() {
+  const r = S.r, rt = calcularRota(r);
+  const utm = {}; UTM_KEYS.slice(0, 5).forEach((k) => (utm[k] = ss.get("ap3_" + k) || ""));
+  return {
+    versao: 1,
+    formulario: "aplicacao-3",
+    envio_id: S.envio_id,
+    nome: S.c.nome.trim(),
+    whatsapp: "55" + zapLocal(S.c.whatsapp),
+    email: S.c.email.trim().toLowerCase(),
+    instagram: normInsta(S.c.instagram),
+    link_anuncio: "",
+    rota: rt.rota,
+    pede_socio: rt.pede_socio,
+    gatilhos: rt.gatilhos,
+    pontuacao: rt.pontuacao,
+    respostas: { tela1: r.t1, tela2: r.t2, tela3: r.t3, tela4: r.t4, tela5: r.t5 || [], tela6: r.t6, tela7: r.t7, tela8: r.t8 },
+    respostas_legiveis: legiveis(r),
+    utm,
+    fbclid: ss.get("ap3_fbclid") || "",
+    url_origem: ss.get("ap3_url_origem") || "",
+    referrer: ss.get("ap3_referrer") || "",
+    enviado_em: new Date().toISOString(),
+    hp: ($("#empresa_site") && $("#empresa_site").value) || ""
+  };
+}
+
+/* mesmas regras da função do banco: o modo teste reprova o que o banco reprovaria */
+function validarPayload(p) {
+  const e = [];
+  const um = (x, n) => typeof x === "string" && new RegExp(`^[A-${LETRAS[n - 1]}]$`).test(x);
+  const rr = p.respostas || {};
+  if (!um(rr.tela1, 5)) e.push("tela1"); if (!um(rr.tela2, 4)) e.push("tela2"); if (!um(rr.tela3, 6)) e.push("tela3");
+  if (!um(rr.tela4, 5)) e.push("tela4"); if (!Array.isArray(rr.tela5) || !rr.tela5.length || rr.tela5.length > 6 || rr.tela5.some((x) => !um(x, 6))) e.push("tela5");
+  if (!um(rr.tela6, 6)) e.push("tela6"); if (!um(rr.tela7, 6)) e.push("tela7"); if (!um(rr.tela8, 4)) e.push("tela8");
+  if (!p.nome || p.nome.length < 2 || p.nome.length > 120) e.push("nome");
+  if (!/^55[1-9][1-9]\d{8,9}$/.test(p.whatsapp)) e.push("whatsapp");
+  if (!emailValido(p.email)) e.push("email");
+  if (!instaValido(p.instagram)) e.push("instagram");
+  if (!/^[A-Za-z0-9-]{8,64}$/.test(p.envio_id)) e.push("envio_id");
+  if (!["verde", "amarelo", "vermelho"].includes(p.rota)) e.push("rota");
+  const recalculo = calcularRota({ t1: rr.tela1, t2: rr.tela2, t4: rr.tela4, t5: rr.tela5, t6: rr.tela6, t7: rr.tela7, t8: rr.tela8 });
+  if (recalculo.rota !== p.rota) e.push("rota_diverge");
+  if (JSON.stringify(p).length > 40000) e.push("tamanho");
+  return e;
+}
+
+async function gravar(p) {
+  if (MOCK) {
+    await new Promise((ok) => setTimeout(ok, 700));
+    if (MOCK_ERRO) throw new Error("mock: falha simulada");
+    const e = validarPayload(p);
+    if (e.length) throw new Error("mock: payload reprovado: " + e.join(", "));
+    window.__ap3_payload = p;
+    console.info("[AP3 mock] payload válido", p);
+    return { ok: true, rota: p.rota };
+  }
+  const ctl = new AbortController(); const tm = setTimeout(() => ctl.abort(), 15000);
+  try {
+    const res = await fetch(`${CONFIG.SUPABASE_URL}/rest/v1/rpc/${CONFIG.RPC}`, {
+      method: "POST", signal: ctl.signal,
+      headers: { "Content-Type": "application/json", apikey: CONFIG.SUPABASE_CHAVE_PUBLICA },
+      body: JSON.stringify({ payload: p })
+    });
+    const j = await res.json().catch(() => null);
+    if (!res.ok || !j || j.ok !== true) throw new Error("falha " + res.status);
+    return j;
+  } finally { clearTimeout(tm); }
+}
+
+function pendentes() { try { return JSON.parse(ls.get(K_PEND) || "[]"); } catch (e) { return []; } }
+function guardarPendente(p) { const l = pendentes().filter((x) => x.envio_id !== p.envio_id); l.push(p); ls.set(K_PEND, JSON.stringify(l.slice(-5))); }
+function tirarPendente(id) { ls.set(K_PEND, JSON.stringify(pendentes().filter((x) => x.envio_id !== id))); }
+
+async function enviar() {
+  if (S.enviando || S.enviado) return;
+  if (!validarContato()) return;
+  const btn = $("#enviar"), tentar = $("#tentar"), alerta = $("#alerta");
+  S.enviando = true;
+  const p = montarPayload();
+  btn.disabled = true; if (tentar) tentar.disabled = true;
+  btn.innerHTML = `<span class="giro" aria-hidden="true"></span> Enviando…`;
+  anuncio.textContent = "Enviando…";
+  alerta.hidden = true;
+  try {
+    const r = await gravar(p);
+    tirarPendente(p.envio_id);
+    S.enviado = true; S.rota = r.rota || p.rota; S.final = { rota: S.rota, mock: MOCK ? p : null };
+    delete S.enviando; salvar();
+    renderFinal();
+  } catch (err) {
+    console.warn("[AP3] envio falhou", err);
+    if (!MOCK) guardarPendente(p);
+    delete S.enviando;
+    btn.disabled = false; if (tentar) tentar.disabled = false;
+    btn.textContent = "Enviar respostas";
+    alerta.hidden = false;
+    anuncio.textContent = "Não consegui enviar as suas respostas.";
+    $("#tentar").focus();
+  }
+}
+
+/* re-tenta envios que ficaram presos numa visita anterior (o banco ignora repetido pelo envio_id) */
+function retentarPendentes() {
+  if (MOCK) return;
+  pendentes().forEach((p) => {
+    if (p.envio_id === S.envio_id && !S.enviado) return;   // este mesmo envio está aberto na tela: a pessoa reenvia
+    gravar(p).then(() => tirarPendente(p.envio_id)).catch(() => {});
+  });
+}
+
+/* ================== tela final única (Tela 11 neutra, Variante 2) ==================
+   Igual para todas as rotas. A rota só vai para o CRM (triagem interna). */
+function renderFinal() {
+  topo(TOTAL);
+  const titulo = "Recebido. Agora eu leio.";
+  const texto = [
+    "Em até 1 hora útil (segunda a sexta, das 9h às 18h) chega no seu WhatsApp o próximo passo que faz sentido pra você.",
+    "Às vezes é uma call comigo. Às vezes é um passo antes dela. Você vai saber qual, e por quê.",
+    `Salva o número <b>${esc(CONFIG.WHATSAPP_NETANIAS_EXIBIDO)}</b> pra mensagem não afundar no meio dos grupos.`
+  ];
+  const botao = `<a class="btn largo" href="https://wa.me/${esc(digitos(CONFIG.WHATSAPP_NETANIAS))}" target="_blank" rel="noopener">Abrir o WhatsApp</a>`;
+  const mock = S.final.mock ? `<details class="mock-saida" open><summary>Payload enviado (modo teste, não aparece na página real)</summary><pre>${esc(JSON.stringify(S.final.mock, null, 2))}</pre></details>` : "";
+  montar(`<section class="tela final" aria-labelledby="qf"><h1 id="qf">${titulo}</h1><div class="texto">${texto.map((p) => `<p>${p}</p>`).join("")}</div>${botao}${mock}</section>`, titulo);
+}
+
+if (MOCK) document.body.insertAdjacentHTML("beforeend", `<span class="mock">MODO TESTE${MOCK_ERRO ? ": ERRO" : ""}</span>`);
+
+window.__AP3 = { TELAS, calcularRota, validarPayload, montarPayload, estado: () => S };
+render();
+retentarPendentes();
+</script>
+</body>
+</html>

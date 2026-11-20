@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<script>
+  /* Destino de todos os botões "Quero aplicar agora." (a query string da LP é repassada: UTM, fbclid). */
+  const APPLY_URL = "/aplicacao/formulario";
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Aplique para uma consultoria | Máquina de Leads e Clientes</title>
+<meta name="description" content="Aplicação para uma consultoria com um especialista da Máquina de Leads e Clientes, para especialistas com ofertas validadas de serviços, consultorias ou mentorias.">
+<meta property="og:title" content="Aplique para uma consultoria | Máquina de Leads e Clientes">
+<meta property="og:description" content="Aplicação para uma consultoria com um especialista da Máquina de Leads e Clientes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Paleta 3 "Quente do Netanias" (escolhida pelo Netanias). Contraste calculado (WCAG):
+   texto #2B2B2B: 14.16 no branco / 13.25 no off-white · apoio #5E5750: 7.11 / 6.65 · branco no botão #B8584B: 4.63 */
+:root{
+  --bg1:#FFFFFF; --bg2:#FAF7F2; --act:#B8584B; --act-shadow:rgba(184,88,75,.28);
+  --hl:#F2DDB3; --tx:#2B2B2B; --mu:#5E5750; --line:#E8DFD2; --card:#FFFFFF;
+  --w-text:680px; --w-wide:1040px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--tx);background:var(--bg1);line-height:1.6;-webkit-font-smoothing:antialiased}
+.skip{position:absolute;left:-9999px;top:0;background:var(--tx);color:#fff;padding:10px 14px;z-index:10}
+.skip:focus{left:8px;top:8px}
+
+.blk{padding:56px 16px}
+.b-white{background:var(--bg1)}
+.b-tint{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.wrap{max-width:var(--w-text);margin:0 auto}
+.wrap-wide{max-width:var(--w-wide);margin:0 auto}
+.center{text-align:center}
+
+.eyebrow{display:inline-block;background:var(--hl);color:var(--tx);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;line-height:1.45;padding:5px 10px;border-radius:3px;margin:0 0 18px}
+h1{font-size:clamp(28px,7.4vw,40px);line-height:1.15;font-weight:800;letter-spacing:-.02em;margin:0 0 18px;text-wrap:balance}
+h2.t{font-size:clamp(24px,6vw,32px);line-height:1.2;font-weight:800;letter-spacing:-.015em;margin:0 0 16px;text-wrap:balance;scroll-margin-top:16px}
+mark{background:var(--hl);color:inherit;padding:0 .1em;border-radius:3px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.lead{font-size:17px;color:var(--mu);margin:0 auto;max-width:600px}
+.muted{color:var(--mu)}
+p{margin:0 0 14px}
+
+/* Botão único da página */
+.cta-row{margin-top:28px;text-align:center}
+.cta{display:inline-flex;align-items:center;justify-content:center;min-height:56px;width:100%;max-width:380px;padding:16px 28px;border-radius:12px;background:var(--act);color:#FFFFFF;font-size:18px;font-weight:700;text-decoration:none;box-shadow:0 8px 22px var(--act-shadow);touch-action:manipulation;transition:transform .15s ease,box-shadow .15s ease,filter .15s ease}
+.cta:hover,.cta:active{filter:brightness(.9);transform:translateY(-1px);box-shadow:0 10px 26px var(--act-shadow)}
+.cta:focus-visible{outline:3px solid var(--tx);outline-offset:3px}
+
+/* Bloco 2: etapas */
+.intro{font-size:16px;color:var(--mu);margin:0 0 14px}
+.intro strong{color:var(--tx)}
+.bridge{font-size:16px;font-weight:600;margin:0 0 28px}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:14px;text-align:left}
+.step{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 20px 18px;position:relative}
+.step::before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:3px;border-radius:0 3px 3px 0;background:var(--act)}
+.step .ico{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;background:#F7ECE7;color:var(--act);margin:0 0 12px}
+.step .ico svg{width:24px;height:24px}
+.step h3{font-size:17px;line-height:1.3;font-weight:700;margin:0 0 10px}
+.step p{font-size:16px;color:var(--mu);margin:0 0 8px}
+.step p:last-child{margin-bottom:0}
+
+/* Bloco 3: provas (só texto da copy; sem print, foto ou logo) */
+.cases{list-style:none;margin:32px 0 0;padding:0;display:grid;gap:14px;text-align:left}
+.case{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px}
+/* Painel do print na cor de fundo do próprio print (ERR-014); print inteiro, sem corte (contain) */
+.shot{position:relative;display:block;width:100%;height:340px;margin:0 0 18px;padding:12px;border:0;border-radius:10px;background:var(--shot-bg);cursor:zoom-in;touch-action:manipulation}
+.shot img{display:block;width:100%;height:100%;object-fit:contain}
+.shot-hint{position:absolute;right:8px;bottom:8px;background:rgba(43,43,43,.85);color:#fff;font-size:12px;font-weight:600;line-height:1;padding:6px 8px;border-radius:6px}
+.shot:focus-visible{outline:3px solid var(--tx);outline-offset:3px}
+/* Lightbox: dialog nativo (prende o foco, fecha com Esc) */
+.lb{border:0;padding:0;background:transparent;max-width:min(92vw,760px);max-height:92vh;overflow:visible}
+.lb::backdrop{background:rgba(20,20,20,.86)}
+.lb img{display:block;max-width:min(92vw,760px);max-height:86vh;width:auto;height:auto;border-radius:10px;margin:0 auto}
+.lb-close{position:absolute;top:-14px;right:-6px;width:44px;height:44px;border-radius:50%;border:0;background:#FFFFFF;color:var(--tx);font:700 22px/1 "Inter",sans-serif;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.lb-close:focus-visible{outline:3px solid var(--hl);outline-offset:2px}
+.case h3{font-size:18px;line-height:1.3;font-weight:700;margin:0 0 4px}
+.case .role{font-size:14px;color:var(--mu);margin:0 0 12px;line-height:1.5}
+.case .res{font-size:16px;margin:0;line-height:1.55}
+.case .quote{font-size:15px;color:var(--mu);font-style:italic;margin:10px 0 0}
+.cases-note{font-size:15px;color:var(--mu);margin:24px auto 0;max-width:var(--w-text);text-align:center}
+
+/* Bloco 4 */
+.b4 p{font-size:17px}
+.b4 .strong-line{font-size:18px;font-weight:700;margin:22px 0}
+.nots{list-style:none;margin:22px 0;padding:0;display:grid;gap:10px}
+.nots li{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--act);border-radius:8px;padding:12px 16px;font-size:17px;font-weight:600}
+.closing{text-align:center;font-size:17px;font-weight:600;margin:18px auto 0;max-width:520px}
+
+/* Bloco 5: quem está por trás. Foto logo abaixo do título e acima do texto, em todas as larguras (pedido do Netanias).
+   Foto 900x1125 (4:5) exibida inteira, sem corte do rosto. */
+.about{max-width:var(--w-text);margin:0 auto}
+.about h2.t{text-align:center}
+.about p{font-size:17px}
+.about-photo{margin:0 auto 28px;width:100%;max-width:420px}
+.about-photo img{display:block;width:100%;height:auto;border-radius:16px;box-shadow:0 18px 48px rgba(43,43,43,.18),0 4px 12px rgba(43,43,43,.10)}
+.about .cta-row{text-align:center}
+
+/* Rodapé */
+footer{background:var(--bg2);border-top:1px solid var(--line);padding:32px 16px 40px}
+footer .wrap{max-width:var(--w-text)}
+footer p{font-size:13px;line-height:1.6;color:var(--mu);margin:0 0 12px;text-align:center}
+footer strong{color:var(--tx)}
+footer .legal{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 24px;margin-top:20px}
+footer .legal a{font-size:14px;line-height:1.6;color:var(--tx);text-decoration:underline;text-underline-offset:3px;padding:12px 4px;min-height:44px;display:inline-flex;align-items:center}
+footer .legal a:hover{color:var(--act)}
+footer .legal a:focus-visible{outline:3px solid var(--act);outline-offset:2px;border-radius:4px}
+
+@media (min-width:768px){
+  .blk{padding:80px 24px}
+  .lead{font-size:18px}
+  .steps{grid-template-columns:1fr 1fr;gap:16px}
+  .cases{grid-template-columns:1fr 1fr;gap:16px}
+  .cta{width:auto;min-width:320px}
+}
+@media (min-width:1024px){
+  .cases{grid-template-columns:repeat(3,1fr)}
+}
+@media (prefers-reduced-motion:reduce){.cta{transition:none}.cta:hover,.cta:active{transform:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<main id="conteudo">
+
+<!-- BLOCO 1 · HERO (branco) -->
+<section class="blk b-white center" aria-labelledby="h-hero">
+  <div class="wrap">
+    <p class="eyebrow">PARA ESPECIALISTAS COM OFERTAS VALIDADAS DE SERVIÇOS, CONSULTORIAS OU MENTORIAS</p>
+    <h1 id="h-hero">Nós Vamos Ativar na Sua Empresa o Sistema Que Faz Seus Leads Chegarem na Reunião <mark>Prontos Para Comprar.</mark></h1>
+    <p class="lead">Você vai ativar o mesmo sistema que usamos por 4 anos para gerar reuniões qualificadas todos os dias e encher a agenda do time comercial só com quem está pronto para comprar: sem postar todo dia, sem prospecção manual e sem anúncio que não converte.</p>
+  </div>
+</section>
+
+<!-- BLOCO 2 · APLIQUE + 6 ETAPAS (off-white) -->
+<section class="blk b-tint center" aria-labelledby="h-aplique">
+  <div class="wrap">
+    <h2 class="t" id="h-aplique">Aplique para uma consultoria com um especialista da Máquina de Leads e Clientes</h2>
+    <p class="intro">Isto <strong>NÃO</strong> é um curso nem um “pacote de tráfego”. Só implementamos o Sistema de Leads e Clientes para especialistas que já têm um produto que vende e querem um sistema completo de aquisição rodando todo mês, da captação ao fechamento.</p>
+    <p class="bridge">Veja como funcionará o funil que vamos construir para a sua empresa.</p>
+    <ol class="steps">
+      <li class="step"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 21h18"/><path d="M5 21v-5"/><path d="M9 21v-8"/><circle cx="15" cy="9" r="4"/><path d="M18 12l3 3"/></svg></span><h3>Etapa 1 - Inteligência de Mercado</h3><p>Pesquisa de mercado para criar seu funil com base em dados reais e não em achismos, é a estratégia número um de um marketing eficiente.</p><p>Com essa inteligência de mercado, você consegue fazer melhor que a concorrência, isso é um atalho para você ser respeitado.</p></li>
+      <li class="step"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="11" cy="13" r="8"/><circle cx="11" cy="13" r="4"/><path d="M11 13l8-8"/><path d="M16 4.5V8h3.5"/></svg></span><h3>Etapa 2 - Sua Brecha de Mercado</h3><p>O marketing não briga por um espaço na calçada, luta por um lugar na mente do cliente.</p><p>Por isso, vamos desenhar uma narrativa para encaixar você na brecha de mercado da sua marca pessoal.</p></li>
+      <li class="step"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18"/><path d="M8 9l4 12 4-12"/><path d="M9 3l-1 6M15 3l1 6"/></svg></span><h3>Etapa 3 - Oferta Premium</h3><p>Existem ofertas que vendem e existem as que escalam sem você ficar com burnout.</p><p>O modelo de oferta premium foi criado para ajudar especialistas a vender mais com menos dor de cabeça na entrega.</p></li>
+      <li class="step"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 10v4a1 1 0 0 0 1 1h3l7 4V5L7 9H4a1 1 0 0 0-1 1z"/><path d="M7 15l1.5 5H11l-1-4.5"/><path d="M18 9a3 3 0 0 1 0 6"/></svg></span><h3>Etapa 4 - Anúncios High Ticket</h3><p>Chega de anúncios que não convertem.<br>Você irá receber toda a estratégia de copy (ângulos, ganchos, estrutura, formatos) lapidada (roteiros), pronta para você gravar e subir.</p></li>
+      <li class="step"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 4h18l-7 8.5V19l-4 2v-8.5z"/><path d="M7 8h10"/></svg></span><h3>Etapa 5 - Qualificação Automática</h3><p>Qual o melhor funil de vendas para o contexto da sua empresa? Essa é uma resposta que apenas conversando com você podemos definir isso.</p><p>O guru vende um pacote pronto, aqui tudo que fazemos por você depende do momento da sua empresa.</p><p>Será feito um diagnóstico personalizado para entendermos os bastidores do seu negócio.</p></li>
+      <li class="step"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M8 3v4M16 3v4"/><path d="M9 15.5l2 2 4-4"/></svg></span><h3>Etapa 6 - Fechamento Previsível</h3><p>Scripts para conseguir conversar e agendar reuniões qualificadas.</p><p>Roteiro e apresentação que convertem ofertas de até R$&nbsp;50&nbsp;mil.</p><p>Modelos para follow-up, recuperação e ativação de base.</p></li>
+    </ol>
+    <div class="cta-row"><a class="cta" href="/aplicacao/formulario">Quero aplicar agora.</a></div>
+  </div>
+</section>
+
+<!-- BLOCO 3 · PROVAS (branco). Um print real por cartão (Baú dos Cases); clique abre o print ampliado. -->
+<section class="blk b-white center" aria-labelledby="h-provas">
+  <div class="wrap-wide">
+    <div class="wrap">
+      <h2 class="t" id="h-provas">PROVAS REAIS, DE EMPRESAS REAIS</h2>
+      <p class="muted">Resultados reais de empresários usando nossos Funis de Aquisição de Leads e Clientes em +10 nichos: saúde, consultoria, mentoria, concurso, beleza, educação e mais.</p>
+    </div>
+    <ul class="cases">
+      <li class="case"><button type="button" class="shot" style="--shot-bg:#2E6B73" data-full="/aplicacao/assets/thiago.jpg" data-w="720" data-h="1600" aria-label="Ampliar o print do resultado de Dr. Thiago Pereira"><img src="/aplicacao/assets/thiago.jpg" alt="Print do resultado de Dr. Thiago Pereira" width="720" height="1600" loading="lazy" decoding="async"><span class="shot-hint" aria-hidden="true">Toque para ampliar</span></button><h3>Dr. Thiago Pereira,</h3><p class="role">mentor de finanças para médicos:</p><p class="res"><mark>saiu do zero para mais de R$&nbsp;500&nbsp;mil por ano</mark>.</p></li>
+      <li class="case"><button type="button" class="shot" style="--shot-bg:#ECE5DD" data-full="/aplicacao/assets/renata.jpg" data-w="738" data-h="1600" aria-label="Ampliar o print do resultado de Renata Passos"><img src="/aplicacao/assets/renata.jpg" alt="Print do resultado de Renata Passos" width="738" height="1600" loading="lazy" decoding="async"><span class="shot-hint" aria-hidden="true">Toque para ampliar</span></button><h3>Renata Passos,</h3><p class="role">mentora de líderes e gestoras executivas:</p><p class="res">ela deixou de vender ofertas de R$&nbsp;2&nbsp;mil e <mark>começou a fechar contratos acima de R$&nbsp;10&nbsp;mil.</mark></p></li>
+      <li class="case"><button type="button" class="shot" style="--shot-bg:#0B0B0B" data-full="/aplicacao/assets/bluve.jpg" data-w="739" data-h="1600" aria-label="Ampliar o print do resultado de Bluve Company"><img src="/aplicacao/assets/bluve.jpg" alt="Print do resultado de Bluve Company" width="739" height="1600" loading="lazy" decoding="async"><span class="shot-hint" aria-hidden="true">Toque para ampliar</span></button><h3>Bluve Company,</h3><p class="role">empresa de saúde para homens:</p><p class="res"><mark>ROI 4 voltou a ser “rotina”</mark> e a equipe comercial voltou a quebrar recordes de vendas.</p><p class="quote">“Os leads que chegam são muito qualificados.”</p></li>
+      <li class="case"><button type="button" class="shot" style="--shot-bg:#0B0B0B" data-full="/aplicacao/assets/turbo.jpg" data-w="591" data-h="1280" aria-label="Ampliar o print do resultado de Mentoria Turbo"><img src="/aplicacao/assets/turbo.jpg" alt="Print do resultado de Mentoria Turbo" width="591" height="1280" loading="lazy" decoding="async"><span class="shot-hint" aria-hidden="true">Toque para ampliar</span></button><h3>Mentoria Turbo,</h3><p class="role">nicho: concurso.</p><p class="res">Lançamos o teste de sair só do low ticket para <mark>vendas de R$&nbsp;4&nbsp;mil</mark>.</p></li>
+      <li class="case"><button type="button" class="shot" style="--shot-bg:#0B0B0B" data-full="/aplicacao/assets/liwerton.jpg" data-w="739" data-h="1600" aria-label="Ampliar o print do resultado de Liwerton Alves"><img src="/aplicacao/assets/liwerton.jpg" alt="Print do resultado de Liwerton Alves" width="739" height="1600" loading="lazy" decoding="async"><span class="shot-hint" aria-hidden="true">Toque para ampliar</span></button><h3>Liwerton Alves,</h3><p class="role">dono de agência:</p><p class="res">em um mercado onde as pessoas vendem “criativos por R$&nbsp;50”, ele está <mark>fechando propostas por R$&nbsp;11.000</mark>.</p></li>
+      <li class="case"><button type="button" class="shot" style="--shot-bg:#EFEAE2" data-full="/aplicacao/assets/tobias.jpg" data-w="1080" data-h="753" aria-label="Ampliar o print do resultado de Tobias Kfoury"><img src="/aplicacao/assets/tobias.jpg" alt="Print do resultado de Tobias Kfoury" width="1080" height="753" loading="lazy" decoding="async"><span class="shot-hint" aria-hidden="true">Toque para ampliar</span></button><h3>Tobias Kfoury,</h3><p class="role">o maior consultor de gestão do setor de clínicas e consultórios:</p><p class="res">nosso sistema gerou por cerca de 1 ano <mark>centenas de MQLs para ofertas de R$&nbsp;20 a 60&nbsp;mil.</mark></p></li>
+    </ul>
+    <p class="cases-note">Números reais, documentados em prints, dashboards (a gente envia até os contatos dele pra você conferir).</p>
+  </div>
+</section>
+
+<!-- BLOCO 4 · TIME COMERCIAL (off-white) -->
+<section class="blk b-tint b4" aria-labelledby="h-time">
+  <div class="wrap">
+    <h2 class="t center" id="h-time">"Meu Time Comercial performa, só preciso de Leads mais qualificados"</h2>
+    <p>Você está a um funil de conseguir dar um salto no faturamento…</p>
+    <p>Então, pense no trabalho necessário para construir tudo isso separadamente.</p>
+    <p>Você precisaria contratar diferentes profissionais ou dominar diversas habilidades.</p>
+    <p>Pesquisa de mercado, copywriting, estrategista, desenvolvimento de páginas e automação de marketing.</p>
+    <p>São muitas etapas.</p>
+    <p class="strong-line"><strong>E basta uma delas ficar incompleta para o funil não funcionar como deveria.</strong></p>
+    <p>Nossa proposta é eliminar essa complexidade da sua rotina.</p>
+    <p>Em vez de tentar dominar todas essas atividades, você terá uma equipe responsável por montar a estrutura de aquisição para o seu negócio.</p>
+    <ul class="nots">
+      <li>Não é sobre entregar apenas um anúncio bonito.</li>
+      <li>Não é sobre criar apenas uma landing page.</li>
+      <li>E também não é sobre configurar algumas ferramentas.</li>
+    </ul>
+    <p>É sobre conectar todas essas peças em um único processo de aquisição de leads e oportunidades de vendas.</p>
+    <div class="cta-row"><a class="cta" href="/aplicacao/formulario">Quero aplicar agora.</a></div>
+    <p class="closing">Um sistema de aquisição que transforma desconhecidos em pessoas prontas para comprar.</p>
+  </div>
+</section>
+
+<!-- BLOCO 5 · QUEM ESTÁ POR TRÁS (branco), com foto do Netanias abaixo do título -->
+<section class="blk b-white" aria-labelledby="h-quem">
+  <div class="about has-photo">
+    <h2 class="t" id="h-quem">QUEM ESTÁ POR TRÁS</h2>
+    <figure class="about-photo"><img src="/aplicacao/assets/netanias.jpg" alt="Netanias Ferreira" width="900" height="1125" loading="lazy" decoding="async"></figure>
+    <p>Netanias Ferreira, pai de 3 filhos, cristão, marido.</p>
+    <p>Trabalho como estrategista de funis high ticket desde 2022, onde atuei direta e indiretamente na operação (como executor ou tutor) de mais de 200 empresas.</p>
+    <p>Em um mercado onde todo mundo quer ser mentor de negócios, eu decidi continuar na vanguarda da implementação…</p>
+    <p>… para acelerar empresas cujos donos não tem mais tempo de participar de 500 aulas, 1000 calls ao vivo e fazer tudo sozinho.</p>
+    <p>Se você já percebeu que não consegue abraçar o mundo sozinho e precisa ativar funis que captam leads e clientes de alto ticket.</p>
+    <p>Você está no local certo, nós ativamos um sistema de aquisição que transforma desconhecidos em pessoas prontas para comprar.</p>
+    <div class="cta-row"><a class="cta" href="/aplicacao/formulario">Quero aplicar agora.</a></div>
+  </div>
+</section>
+
+</main>
+
+<!-- BLOCO 6 · RODAPÉ -->
+<footer>
+  <div class="wrap">
+    <p>Aviso sobre resultados: os cases, depoimentos, prints e números exibidos nesta página são de operações reais de clientes e da própria AG Expert Em Vendas Online e servem apenas como ilustração. Não constituem promessa nem garantia de resultado. O desempenho de cada empresa depende de oferta, mercado, investimento, equipe e execução, e muitos dos fatores estão fora do nosso controle.</p>
+    <p><strong>Aviso geral:</strong> o conteúdo desta página tem caráter educacional e não substitui aconselhamento jurídico, contábil ou financeiro. Ao usar este site, você concorda em tomar suas próprias decisões de negócio por conta própria. Este site não é afiliado, endossado ou patrocinado pelo Facebook, Instagram, Google ou qualquer plataforma de mídia social.</p>
+    <nav class="legal" aria-label="Documentos legais">
+      <a href="https://netaniasferreira.com.br/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>
+      <a href="https://netaniasferreira.com.br/termos-e-condicoes/" target="_blank" rel="noopener">Termos e Condições</a>
+    </nav>
+  </div>
+</footer>
+
+<dialog class="lb" id="lb" aria-label="Print ampliado">
+  <img id="lb-img" src="data:," alt="">
+  <button type="button" class="lb-close" id="lb-close" aria-label="Fechar o print ampliado">&times;</button>
+</dialog>
+
+<script>
+  (function () {
+    var dlg = document.getElementById("lb"), img = document.getElementById("lb-img"), last = null;
+    if (!dlg || typeof dlg.showModal !== "function") return; /* sem suporte: o print continua visível no cartão */
+    document.querySelectorAll(".shot").forEach(function (b) {
+      b.addEventListener("click", function () {
+        last = b;
+        img.src = b.dataset.full; img.alt = b.querySelector("img").alt;
+        img.width = b.dataset.w; img.height = b.dataset.h;
+        dlg.showModal();
+        document.getElementById("lb-close").focus();
+      });
+    });
+    document.getElementById("lb-close").addEventListener("click", function () { dlg.close(); });
+    dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener("keydown", function (e) { if (e.key === "Tab") { e.preventDefault(); document.getElementById("lb-close").focus(); } });
+    dlg.addEventListener("close", function () { img.src = "data:,"; if (last) last.focus(); });
+  })();
+  (function () {
+    function destino() { return APPLY_URL + (window.location.search || ""); }
+    document.querySelectorAll("a.cta").forEach(function (a) {
+      a.setAttribute("href", destino());
+      a.addEventListener("click", function () { a.setAttribute("href", destino()); });
+    });
+  })();
+</script>
+</body>
+</html>
