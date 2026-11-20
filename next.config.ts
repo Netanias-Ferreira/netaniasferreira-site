@@ -10,7 +10,12 @@ const FINANCAS = "https://gestao-financeira-netaniasdeusefiel-5381s-projects.ver
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   async redirects() {
-    return [{ source: "/squad", destination: "/squad/organograma-squad.html", permanent: false }];
+    return [
+      { source: "/squad", destination: "/squad/organograma-squad.html", permanent: false },
+      // LP de aplicação: o endereço oficial é /funil-1; o /aplicacao antigo só redireciona
+      { source: "/aplicacao", destination: "/funil-1", permanent: false },
+      { source: "/aplicacao/formulario", destination: "/funil-1/formulario", permanent: false },
+    ];
   },
   async rewrites() {
     return [
